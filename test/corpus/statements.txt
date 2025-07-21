@@ -1,0 +1,90 @@
+================
+Empty
+================
+
+---
+
+(source_file)
+
+================
+Statements
+================
+0
+
+⋄
+
+0 0 ⋄ 0 0 0 ⋄
+0 0 ⋄ ⋄ 0
+---
+
+(source_file
+  (statement
+    (number))
+  (statement
+    (number)
+    (number))
+  (statement
+    (number)
+    (number)
+    (number))
+  (statement
+    (number)
+    (number))
+  (statement
+    (number)))
+
+================
+Comments
+================
+⍝
+⍝ a comment
+⍝⍝ anoter comment
+⍝ comment with ⍝ comment
+0 ⍝ commented
+0 ⍝ 0 ⋄ ⍝
+---
+
+(source_file
+  (comment)
+  (comment)
+  (comment)
+  (comment)
+  (statement
+    (number))
+  (comment)
+  (statement
+    (number))
+  (comment))
+
+================
+Primitives
+================
+1+3
+ab×∘!c ⋄ ⌈ ⋄ ⌊/ab
+¯45e6abc7+!×÷
+---
+
+(source_file
+  (statement
+    (number)
+    (primitive)
+    (number))
+  (statement
+    (identifier)
+    (primitive)
+    (primitive)
+    (primitive)
+    (identifier))
+  (statement
+    (primitive))
+  (statement
+    (primitive)
+    (primitive)
+    (identifier))
+  (statement
+    (number)
+    (identifier)
+    (primitive)
+    (primitive)
+    (primitive)
+    (primitive)))

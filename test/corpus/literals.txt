@@ -1,0 +1,51 @@
+================
+Numbers
+================
+1 ¯23
+4.5 6.7e8 9E¯1
+2j3 ¯4.5e6J7.8E¯9
+---
+
+(source_file
+  (statement
+    (number)
+    (number))
+  (statement
+    (number)
+    (number)
+    (number))
+  (statement
+    (number)
+    (number)))
+
+================
+Strings
+================
+'a string'
+'a string with ''quotes'' inside'
+'' '''' ''''''
+'nop
+multiline'
+---
+
+(source_file
+  (statement
+    (string
+      (string_fragment)))
+  (statement
+    (string
+      (string_fragment)))
+  (statement
+    (string
+      (string_fragment))
+    (string
+      (string_fragment))
+    (string
+      (string_fragment)))
+  (ERROR
+    (string_fragment))
+  (statement
+    (identifier)
+    (string
+      (string_fragment)
+      (MISSING "'"))))
