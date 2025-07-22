@@ -7,16 +7,16 @@ Numbers
 ---
 
 (source_file
-  (statement
-    (number)
-    (number))
-  (statement
-    (number)
-    (number)
-    (number))
-  (statement
-    (number)
-    (number)))
+  (expression_statement
+    (number_literal)
+    (number_literal))
+  (expression_statement
+    (number_literal)
+    (number_literal)
+    (number_literal))
+  (expression_statement
+    (number_literal)
+    (number_literal)))
 
 ================
 Strings
@@ -24,28 +24,28 @@ Strings
 'a string'
 'a string with ''quotes'' inside'
 '' '''' ''''''
-'nop
+'no
 multiline'
 ---
 
 (source_file
-  (statement
-    (string
-      (string_fragment)))
-  (statement
-    (string
-      (string_fragment)))
-  (statement
-    (string
-      (string_fragment))
-    (string
-      (string_fragment))
-    (string
-      (string_fragment)))
-  (ERROR
-    (string_fragment))
-  (statement
+  (expression_statement
+    (string_literal
+      (string_literal_content)))
+  (expression_statement
+    (string_literal
+      (string_literal_content)))
+  (expression_statement
+    (string_literal)
+    (string_literal
+      (string_literal_content))
+    (string_literal
+      (string_literal_content)))
+  (expression_statement
+    (string_literal
+      (string_literal_content)
+      (MISSING "'")))
+  (expression_statement
     (identifier)
-    (string
-      (string_fragment)
+    (string_literal
       (MISSING "'"))))

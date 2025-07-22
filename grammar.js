@@ -4,47 +4,87 @@
  * @license MIT
  */
 
+const PREC = {
+  dop2: 3,
+  dop1: 2,
+  dfn: 1,
+}
+
+const dop2Identifier = '⍵⍵';
+const dop1Identifier = '⍺⍺';
+const dopIdentifier = '∇∇';
+const dfnIdentifiers = ['⍵', '⍺', '∇', dopIdentifier];
+
+const newline = /\n/;
+const terminator = repeat1(choice(newline, '⋄', '\0'));
+
+const digits = /[0-9]+/;
+const signed = seq(optional("¯"), digits);
+const decimal = seq(signed, optional(seq(".", optional(digits))));
+const exponent = seq(choice("E", "e"), optional("¯"), digits);
+const real = seq(decimal, optional(exponent));
+const imaginary = seq(choice("J", "j"), real);
+const numberLiteral = seq(real, optional(imaginary));
+
 module.exports = grammar({
   name: "apl",
 
-  extras: $ => [' ', "\t", "\r", $.comment],
+  extras: $ => [
+    $.comment,
+    /\s/,
+  ],
+
+  inline: $ => [
+    $._simple_expression,
+  ],
 
   word: $ => $.identifier,
 
+  conflicts: $ => [
+  ],
+
   rules: {
-    source_file: $ => optional($._statements),
-
-    _statements: $ => seq(
-      optional($._brk),
-      $.statement,
-      repeat(seq($._brk, $.statement)),
-      optional($._brk),
+    source_file: $ => seq(
+      repeat(seq($._statement, terminator)),
+      optional($._statement),
     ),
-    statement: $ => repeat1($._token),
 
-    _token: $ => choice(
-      $.identifier, $.string, $.number,
+    _statement: $ => choice(
+      $.expression_statement,
+    ),
+
+    expression_statement: $ => $._expression,
+
+    _expression: $ => repeat1(prec.right($._simple_expression)),
+
+    _simple_expression: $ => choice(
+      // $.parenthesis,
+      // $.namespace,
+      // $.bracket,
+      // $.indexed,
+      $.identifier,
+      $.string_literal,
+      $.number_literal,
       $.primitive,
     ),
+
+    dop2_identifier: _ => dop2Identifier,
+    dop1_identifier: _ => dop1Identifier,
+    dfn_identifier: _ => choice(...dfnIdentifiers),
     identifier: _ => /[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/,
-    string: $ => seq(
+
+    string_literal: $ => seq(
       "'",
-      alias(/[^'\n]*(''[^'\n]*)*/, $.string_fragment),
-      "'"
+      // alias(token.immediate(prec(1, /[^'\n]*(''[^'\n]*)*/)), $.string_literal_content),
+      optional(alias(token.immediate(prec(1, /(''|[^'\n])+/)), $.string_literal_content)),
+      token.immediate("'")
     ),
-    number: _ => {
-      const digits = /[0-9]+/;
-      const signed = seq(optional("¯"), digits);
-      const decimal = seq(signed, optional(seq(".", optional(digits))));
-      const exponent = seq(choice("E", "e"), optional("¯"), digits);
-      const real = seq(decimal, optional(exponent));
-      const imaginary = seq(choice("J", "j"), real);
-      return token(seq(real, optional(imaginary)));
-    },
+
+    number_literal: _ => token(numberLiteral),
+
     primitive: _ => /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍞⎕⍠⌸⌺⌶⍎⍕→&⍬]/,
 
-    _brk: _ => repeat1(choice('⋄', "\n")),
-
-    comment: _ => seq('⍝', /.*/),
+    comment: _ => token(seq('⍝', /.*/)),
   },
+
 });

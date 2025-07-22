@@ -18,20 +18,20 @@ Statements
 ---
 
 (source_file
-  (statement
-    (number))
-  (statement
-    (number)
-    (number))
-  (statement
-    (number)
-    (number)
-    (number))
-  (statement
-    (number)
-    (number))
-  (statement
-    (number)))
+  (expression_statement
+    (number_literal))
+  (expression_statement
+    (number_literal)
+    (number_literal))
+  (expression_statement
+    (number_literal)
+    (number_literal)
+    (number_literal))
+  (expression_statement
+    (number_literal)
+    (number_literal))
+  (expression_statement
+    (number_literal)))
 
 ================
 Comments
@@ -49,11 +49,11 @@ Comments
   (comment)
   (comment)
   (comment)
-  (statement
-    (number))
+  (expression_statement
+    (number_literal))
   (comment)
-  (statement
-    (number))
+  (expression_statement
+    (number_literal))
   (comment))
 
 ================
@@ -65,24 +65,24 @@ ab×∘!c ⋄ ⌈ ⋄ ⌊/ab
 ---
 
 (source_file
-  (statement
-    (number)
+  (expression_statement
+    (number_literal)
     (primitive)
-    (number))
-  (statement
+    (number_literal))
+  (expression_statement
     (identifier)
     (primitive)
     (primitive)
     (primitive)
     (identifier))
-  (statement
+  (expression_statement
     (primitive))
-  (statement
+  (expression_statement
     (primitive)
     (primitive)
     (identifier))
-  (statement
-    (number)
+  (expression_statement
+    (number_literal)
     (identifier)
     (primitive)
     (primitive)

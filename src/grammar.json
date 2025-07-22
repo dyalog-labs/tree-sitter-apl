@@ -4,36 +4,8 @@
   "word": "identifier",
   "rules": {
     "source_file": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_statements"
-        },
-        {
-          "type": "BLANK"
-        }
-      ]
-    },
-    "_statements": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_brk"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "statement"
-        },
         {
           "type": "REPEAT",
           "content": {
@@ -41,11 +13,27 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_brk"
+                "name": "_statement"
               },
               {
-                "type": "SYMBOL",
-                "name": "statement"
+                "type": "REPEAT1",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "\\n"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "⋄"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "\u0000"
+                    }
+                  ]
+                }
               }
             ]
           }
@@ -55,7 +43,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_brk"
+              "name": "_statement"
             },
             {
               "type": "BLANK"
@@ -64,14 +52,31 @@
         }
       ]
     },
-    "statement": {
+    "_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "expression_statement"
+        }
+      ]
+    },
+    "expression_statement": {
+      "type": "SYMBOL",
+      "name": "_expression"
+    },
+    "_expression": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "_token"
+        "type": "PREC_RIGHT",
+        "value": 0,
+        "content": {
+          "type": "SYMBOL",
+          "name": "_simple_expression"
+        }
       }
     },
-    "_token": {
+    "_simple_expression": {
       "type": "CHOICE",
       "members": [
         {
@@ -80,11 +85,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "string"
+          "name": "string_literal"
         },
         {
           "type": "SYMBOL",
-          "name": "number"
+          "name": "number_literal"
         },
         {
           "type": "SYMBOL",
@@ -92,11 +97,40 @@
         }
       ]
     },
+    "dop2_identifier": {
+      "type": "STRING",
+      "value": "⍵⍵"
+    },
+    "dop1_identifier": {
+      "type": "STRING",
+      "value": "⍺⍺"
+    },
+    "dfn_identifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "⍵"
+        },
+        {
+          "type": "STRING",
+          "value": "⍺"
+        },
+        {
+          "type": "STRING",
+          "value": "∇"
+        },
+        {
+          "type": "STRING",
+          "value": "∇∇"
+        }
+      ]
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*"
     },
-    "string": {
+    "string_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -104,21 +138,39 @@
           "value": "'"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[^'\\n]*(''[^'\\n]*)*"
-          },
-          "named": true,
-          "value": "string_fragment"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 1,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "(''|[^'\\n])+"
+                  }
+                }
+              },
+              "named": true,
+              "value": "string_literal_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "STRING",
-          "value": "'"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "'"
+          }
         }
       ]
     },
-    "number": {
+    "number_literal": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
@@ -360,58 +412,39 @@
       "type": "PATTERN",
       "value": "[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍞⎕⍠⌸⌺⌶⍎⍕→&⍬]"
     },
-    "_brk": {
-      "type": "REPEAT1",
+    "comment": {
+      "type": "TOKEN",
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
           {
             "type": "STRING",
-            "value": "⋄"
+            "value": "⍝"
           },
           {
-            "type": "STRING",
-            "value": "\n"
+            "type": "PATTERN",
+            "value": ".*"
           }
         ]
       }
-    },
-    "comment": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "⍝"
-        },
-        {
-          "type": "PATTERN",
-          "value": ".*"
-        }
-      ]
     }
   },
   "extras": [
     {
-      "type": "STRING",
-      "value": " "
-    },
-    {
-      "type": "STRING",
-      "value": "\t"
-    },
-    {
-      "type": "STRING",
-      "value": "\r"
-    },
-    {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "PATTERN",
+      "value": "\\s"
     }
   ],
   "conflicts": [],
   "precedences": [],
   "externals": [],
-  "inline": [],
+  "inline": [
+    "_simple_expression"
+  ],
   "supertypes": [],
   "reserved": {}
 }
