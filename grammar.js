@@ -4,16 +4,20 @@
  * @license MIT
  */
 
+/** /// <reference types="tree-sitter-cli/dsl" />
+// @ts-check */
+
 const PREC = {
   dop2: 3,
   dop1: 2,
   dfn: 1,
-}
+};
 
 const dop2Identifier = '⍵⍵';
 const dop1Identifier = '⍺⍺';
 const dopIdentifier = '∇∇';
 const dfnIdentifiers = ['⍵', '⍺', '∇', dopIdentifier];
+
 
 const newline = /\n/;
 const terminator = repeat1(choice(newline, '⋄', '\0'));
@@ -27,7 +31,7 @@ const imaginary = seq(choice("J", "j"), real);
 const numberLiteral = seq(real, optional(imaginary));
 
 module.exports = grammar({
-  name: "apl",
+  name: 'apl',
 
   extras: $ => [
     $.comment,
@@ -35,29 +39,35 @@ module.exports = grammar({
   ],
 
   inline: $ => [
-    $._simple_expression,
+    $._dop2_statements,
+    $._dop1_statements,
+    $._dfn_statements,
+    $._dop2_expressions,
+    $._dop1_expressions,
+    $._dfn_expressions,
   ],
 
   word: $ => $.identifier,
 
   conflicts: $ => [
+    [$.dop2_definition, $.dop1_definition, $.dfn_definition],
+    [$.dop2_definition, $.dop1_definition],
   ],
 
   rules: {
     source_file: $ => seq(
-      repeat(seq($._statement, terminator)),
-      optional($._statement),
+      optional(terminator),
+      repeat(seq($.statement, terminator)),
+      optional($.statement),
     ),
 
-    _statement: $ => choice(
-      $.expression_statement,
-    ),
+    dop2_statement: $ => $._dop2_expression,
+    dop1_statement: $ => $._dop1_expression,
+    dfn_statement: $ => $._dfn_expression,
+    statement: $ => $._expression,
 
-    expression_statement: $ => $._expression,
-
-    _expression: $ => repeat1(prec.right($._simple_expression)),
-
-    _simple_expression: $ => choice(
+    _expression: $ => repeat1(choice(
+      $._definition,
       // $.parenthesis,
       // $.namespace,
       // $.bracket,
@@ -66,6 +76,80 @@ module.exports = grammar({
       $.string_literal,
       $.number_literal,
       $.primitive,
+    )),
+
+    _definition: $ => choice(
+      $.dop2_definition,
+      $.dop1_definition,
+      $.dfn_definition,
+    ),
+
+    dop2_definition: $ => seq(
+      '{',
+      optional(terminator),
+      repeat(seq($._dop1_statements, terminator)),
+      $.dop2_statement,
+      repeat(seq(terminator, $._dop2_statements)),
+      '}',
+    ),
+    _dop2_statements: $ => choice(
+      $.dop2_statement,
+      $._dop1_statements,
+    ),
+
+    dop1_definition: $ => seq(
+      '{',
+      optional(terminator),
+      repeat(seq($._dfn_statements, terminator)),
+      $.dop1_statement,
+      repeat(seq(terminator, $._dop1_statements)),
+      '}',
+    ),
+    _dop1_statements: $ => choice(
+      $.dop1_statement,
+      $._dfn_statements,
+    ),
+
+    dfn_definition: $ => seq(
+      '{',
+      optional(terminator),
+      repeat(seq($._dfn_statements, terminator)),
+      optional($._dfn_statements),
+      '}',
+    ),
+    _dfn_statements: $ => choice(
+        $.dfn_statement,
+        $.statement,
+    ),
+
+    _dop2_expression: $ => prec(PREC.dop2, seq(
+      optional($._dop1_expressions),
+      $.dop2_identifier,
+      optional($._dop2_expressions),
+    )),
+    _dop2_expressions: $ => choice(
+      $._dop2_expression,
+      $._dop1_expressions,
+    ),
+
+    _dop1_expression: $ => prec(PREC.dop1, seq(
+      optional($._dfn_expressions),
+      $.dop1_identifier,
+      optional($._dop1_expressions),
+    )),
+    _dop1_expressions: $ => choice(
+      $._dop1_expression,
+      $._dfn_expressions,
+    ),
+
+    _dfn_expression: $ => prec(PREC.dfn, seq(
+      optional($._expression),
+      $.dfn_identifier,
+      optional($._dfn_expressions),
+    )),
+    _dfn_expressions: $ => choice(
+      $._dfn_expression,
+      $._expression,
     ),
 
     dop2_identifier: _ => dop2Identifier,
@@ -86,5 +170,4 @@ module.exports = grammar({
 
     comment: _ => token(seq('⍝', /.*/)),
   },
-
 });

@@ -1,12 +1,200 @@
 [
   {
-    "type": "expression_statement",
+    "type": "dfn_definition",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "dfn_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "dop2_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_identifier",
+          "named": true
+        },
         {
           "type": "identifier",
           "named": true
@@ -36,7 +224,46 @@
       "required": false,
       "types": [
         {
-          "type": "expression_statement",
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -71,6 +298,14 @@
     "extra": true
   },
   {
+    "type": "dop1_identifier",
+    "named": true
+  },
+  {
+    "type": "dop2_identifier",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -87,7 +322,31 @@
     "named": true
   },
   {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "∇",
+    "named": false
+  },
+  {
+    "type": "∇∇",
+    "named": false
+  },
+  {
     "type": "⋄",
+    "named": false
+  },
+  {
+    "type": "⍵",
+    "named": false
+  },
+  {
+    "type": "⍺",
     "named": false
   }
 ]

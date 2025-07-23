@@ -7,14 +7,14 @@ Numbers
 ---
 
 (source_file
-  (expression_statement
+  (statement
     (number_literal)
     (number_literal))
-  (expression_statement
+  (statement
     (number_literal)
     (number_literal)
     (number_literal))
-  (expression_statement
+  (statement
     (number_literal)
     (number_literal)))
 
@@ -29,23 +29,23 @@ multiline'
 ---
 
 (source_file
-  (expression_statement
+  (statement
     (string_literal
       (string_literal_content)))
-  (expression_statement
+  (statement
     (string_literal
       (string_literal_content)))
-  (expression_statement
+  (statement
     (string_literal)
     (string_literal
       (string_literal_content))
     (string_literal
       (string_literal_content)))
-  (expression_statement
+  (statement
     (string_literal
       (string_literal_content)
       (MISSING "'")))
-  (expression_statement
+  (statement
     (identifier)
     (string_literal
       (MISSING "'"))))
