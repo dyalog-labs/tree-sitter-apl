@@ -59,6 +59,8 @@ module.exports = grammar({
   conflicts: $ => [
     [$.dop2_definition, $.dop1_definition, $.dfn_definition],
     [$.dop2_definition, $.dop1_definition],
+    [$._dop1_expression],
+    [$._dfn_expression],
   ],
 
   rules: {
@@ -66,7 +68,7 @@ module.exports = grammar({
 
     _expression: $ => repeat1(choice(
       $._definition,
-      // $.parenthesis,
+      $.parenthesis,
       // $.namespace,
       // $.bracket,
       // $.indexed,
@@ -161,13 +163,6 @@ module.exports = grammar({
       $._dfn_expressions,
     ),
 
-    _dop2_simple_expression: $ => $.dop2_identifier,
-    _dop1_simple_expression: $ => $.dop1_identifier,
-    _dfn_simple_expression: $ => choice(
-      $.dop_identifier,
-      $.dfn_identifier,
-    ),
-
     _dop2_expressions: $ => choice(
       $._dop2_expression,
       $._dop1_expressions,
@@ -179,6 +174,40 @@ module.exports = grammar({
     _dfn_expressions: $ => choice(
       $._dfn_expression,
       $._expression,
+    ),
+
+    _dop2_simple_expression: $ => choice(
+      $.dop2_parenthesis,
+      $.dop2_identifier,
+    ),
+    _dop1_simple_expression: $ => choice(
+      $.dop1_parenthesis,
+      $.dop1_identifier,
+    ),
+    _dfn_simple_expression: $ => choice(
+      $.dfn_parenthesis,
+      choice($.dop_identifier, $.dfn_identifier),
+    ),
+
+    dop2_parenthesis: $ => seq(
+      '(',
+      $._dop2_expression,
+      ')',
+    ),
+    dop1_parenthesis: $ => seq(
+      '(',
+      $._dop1_expression,
+      ')',
+    ),
+    dfn_parenthesis: $ => seq(
+      '(',
+      $._dfn_expression,
+      ')',
+    ),
+    parenthesis: $ => seq(
+      '(',
+      $._expression,
+      ')',
     ),
 
     dop2_identifier: _ => dop2Identifier,

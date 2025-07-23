@@ -24,7 +24,7 @@
     "fields": {}
   },
   {
-    "type": "dfn_statement",
+    "type": "dfn_parenthesis",
     "named": true,
     "fields": {},
     "children": {
@@ -37,6 +37,10 @@
         },
         {
           "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
           "named": true
         },
         {
@@ -57,6 +61,65 @@
         },
         {
           "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
           "named": true
         },
         {
@@ -94,7 +157,7 @@
     }
   },
   {
-    "type": "dop1_statement",
+    "type": "dop1_parenthesis",
     "named": true,
     "fields": {},
     "children": {
@@ -110,11 +173,19 @@
           "named": true
         },
         {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
         {
           "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
           "named": true
         },
         {
@@ -131,6 +202,73 @@
         },
         {
           "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
           "named": true
         },
         {
@@ -172,6 +310,77 @@
     }
   },
   {
+    "type": "dop2_parenthesis",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_identifier",
+          "named": true
+        },
+        {
+          "type": "dop2_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dop2_statement",
     "named": true,
     "fields": {},
@@ -188,6 +397,10 @@
           "named": true
         },
         {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
@@ -196,11 +409,19 @@
           "named": true
         },
         {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
           "type": "dop2_definition",
           "named": true
         },
         {
           "type": "dop2_identifier",
+          "named": true
+        },
+        {
+          "type": "dop2_parenthesis",
           "named": true
         },
         {
@@ -213,6 +434,53 @@
         },
         {
           "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parenthesis",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
           "named": true
         },
         {
@@ -271,6 +539,10 @@
           "named": true
         },
         {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
           "type": "primitive",
           "named": true
         },
@@ -302,6 +574,14 @@
   },
   {
     "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
     "named": false
   },
   {

@@ -1,0 +1,85 @@
+================
+Parenthesis
+================
+(1 2 3)
+(1 b 3)
+(⋄1 2 3) ⍝ fail
+({⍺})
+({(⍵)})
+({(a⍺(w⍵)e)})
+{⋄(1)⍺⋄3}
+{⋄1⍺⋄(3)}
+{1⋄(⍺)}
+{(⍺)⋄1}
+---
+
+(source_file
+  (statement
+    (parenthesis
+      (number_literal)
+      (number_literal)
+      (number_literal)))
+  (statement
+    (parenthesis
+      (number_literal)
+      (identifier)
+      (number_literal)))
+  (statement
+    (parenthesis
+      (ERROR)
+      (number_literal)
+      (number_literal)
+      (number_literal)))
+  (comment)
+  (statement
+    (parenthesis
+      (dfn_definition
+        (dfn_statement
+          (dfn_identifier)))))
+  (statement
+    (parenthesis
+      (dfn_definition
+        (dfn_statement
+          (dfn_parenthesis
+            (dfn_identifier))))))
+  (statement
+    (parenthesis
+      (dfn_definition
+        (dfn_statement
+          (dfn_parenthesis
+            (identifier)
+            (dfn_identifier)
+            (dfn_parenthesis
+              (identifier)
+              (dfn_identifier))
+            (identifier))))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (parenthesis
+          (number_literal))
+        (dfn_identifier))
+      (statement
+        (number_literal))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (number_literal)
+        (dfn_identifier))
+      (statement
+        (parenthesis
+          (number_literal)))))
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal))
+      (dfn_statement
+        (dfn_parenthesis
+          (dfn_identifier)))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_parenthesis
+          (dfn_identifier)))
+      (statement
+        (number_literal)))))
