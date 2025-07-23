@@ -44,6 +44,10 @@
           "named": true
         },
         {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
@@ -73,6 +77,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
           "named": true
         }
       ]
@@ -99,6 +107,10 @@
           "named": true
         },
         {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
@@ -128,6 +140,29 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_vector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
           "named": true
         }
       ]
@@ -177,6 +212,10 @@
           "named": true
         },
         {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
@@ -186,6 +225,10 @@
         },
         {
           "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_vector",
           "named": true
         },
         {
@@ -214,6 +257,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
           "named": true
         }
       ]
@@ -240,6 +287,10 @@
           "named": true
         },
         {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
@@ -249,6 +300,10 @@
         },
         {
           "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_vector",
           "named": true
         },
         {
@@ -277,6 +332,33 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_vector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
           "named": true
         }
       ]
@@ -330,6 +412,10 @@
           "named": true
         },
         {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
@@ -342,6 +428,10 @@
           "named": true
         },
         {
+          "type": "dop1_vector",
+          "named": true
+        },
+        {
           "type": "dop2_definition",
           "named": true
         },
@@ -351,6 +441,10 @@
         },
         {
           "type": "dop2_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_vector",
           "named": true
         },
         {
@@ -375,6 +469,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
           "named": true
         }
       ]
@@ -401,6 +499,10 @@
           "named": true
         },
         {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
           "type": "dop1_definition",
           "named": true
         },
@@ -413,6 +515,10 @@
           "named": true
         },
         {
+          "type": "dop1_vector",
+          "named": true
+        },
+        {
           "type": "dop2_definition",
           "named": true
         },
@@ -422,6 +528,10 @@
         },
         {
           "type": "dop2_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_vector",
           "named": true
         },
         {
@@ -446,6 +556,37 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_vector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "dop2_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
           "named": true
         }
       ]
@@ -489,6 +630,10 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
           "named": true
         }
       ]
@@ -549,6 +694,10 @@
         {
           "type": "string_literal",
           "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
         }
       ]
     }
@@ -563,6 +712,21 @@
       "types": [
         {
           "type": "string_literal_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "vector",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
           "named": true
         }
       ]

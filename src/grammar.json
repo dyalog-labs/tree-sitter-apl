@@ -30,6 +30,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "vector"
+          },
+          {
+            "type": "SYMBOL",
             "name": "identifier"
           },
           {
@@ -281,6 +285,34 @@
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "\\n"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "⋄"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\u0000"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -382,6 +414,34 @@
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "\\n"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "⋄"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\u0000"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -483,6 +543,34 @@
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "\\n"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "⋄"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\u0000"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -797,6 +885,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "dop2_vector"
+        },
+        {
+          "type": "SYMBOL",
           "name": "dop2_identifier"
         }
       ]
@@ -810,6 +902,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "dop1_vector"
+        },
+        {
+          "type": "SYMBOL",
           "name": "dop1_identifier"
         }
       ]
@@ -820,6 +916,10 @@
         {
           "type": "SYMBOL",
           "name": "dfn_parenthesis"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dfn_vector"
         },
         {
           "type": "CHOICE",
@@ -837,40 +937,90 @@
       ]
     },
     "dop2_parenthesis": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_dop2_expression"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_dop2_expression"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
     },
     "dop1_parenthesis": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_dop1_expression"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_dop1_expression"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
     },
     "dfn_parenthesis": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_dfn_expression"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
+    },
+    "parenthesis": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "("
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          {
+            "type": "STRING",
+            "value": ")"
+          }
+        ]
+      }
+    },
+    "dop2_vector": {
       "type": "SEQ",
       "members": [
         {
@@ -879,7 +1029,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_dfn_expression"
+          "name": "_dop2_statement_list"
         },
         {
           "type": "STRING",
@@ -887,7 +1037,7 @@
         }
       ]
     },
-    "parenthesis": {
+    "dop1_vector": {
       "type": "SEQ",
       "members": [
         {
@@ -896,7 +1046,41 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_expression"
+          "name": "_dop1_statement_list"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "dfn_vector": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_dfn_statement_list"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "vector": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_statement_list"
         },
         {
           "type": "STRING",
@@ -1255,6 +1439,34 @@
     [
       "dop2_definition",
       "dop1_definition"
+    ],
+    [
+      "dop2_vector",
+      "dop1_vector",
+      "dfn_vector",
+      "vector"
+    ],
+    [
+      "dop2_vector",
+      "dop1_vector",
+      "dfn_vector"
+    ],
+    [
+      "dop2_vector",
+      "dop1_vector"
+    ],
+    [
+      "dop1_vector",
+      "dfn_vector",
+      "vector"
+    ],
+    [
+      "dop1_vector",
+      "dfn_vector"
+    ],
+    [
+      "dfn_vector",
+      "vector"
     ],
     [
       "_dop1_expression"

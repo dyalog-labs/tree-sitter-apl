@@ -59,6 +59,12 @@ module.exports = grammar({
   conflicts: $ => [
     [$.dop2_definition, $.dop1_definition, $.dfn_definition],
     [$.dop2_definition, $.dop1_definition],
+    [$.dop2_vector, $.dop1_vector, $.dfn_vector, $.vector],
+    [$.dop2_vector, $.dop1_vector, $.dfn_vector],
+    [$.dop2_vector, $.dop1_vector],
+    [$.dop1_vector, $.dfn_vector, $.vector],
+    [$.dop1_vector, $.dfn_vector],
+    [$.dfn_vector, $.vector],
     [$._dop1_expression],
     [$._dfn_expression],
   ],
@@ -69,7 +75,7 @@ module.exports = grammar({
     _expression: $ => repeat1(choice(
       $._definition,
       $.parenthesis,
-      // $.namespace,
+      $.vector,
       // $.bracket,
       // $.indexed,
       $.identifier,
@@ -84,18 +90,8 @@ module.exports = grammar({
       $.dfn_definition,
     ),
 
-    dop2_definition: $ => seq(
-      '{',
-      $._dop2_statement_list,
-      '}',
-    ),
-
-    dop1_definition: $ => seq(
-      '{',
-      $._dop1_statement_list,
-      '}',
-    ),
-
+    dop2_definition: $ => braced($._dop2_statement_list),
+    dop1_definition: $ => braced($._dop1_statement_list),
     dfn_definition: $ => seq(
       '{',
       optional(terminator),
@@ -178,37 +174,29 @@ module.exports = grammar({
 
     _dop2_simple_expression: $ => choice(
       $.dop2_parenthesis,
+      $.dop2_vector,
       $.dop2_identifier,
     ),
     _dop1_simple_expression: $ => choice(
       $.dop1_parenthesis,
+      $.dop1_vector,
       $.dop1_identifier,
     ),
     _dfn_simple_expression: $ => choice(
       $.dfn_parenthesis,
+      $.dfn_vector,
       choice($.dop_identifier, $.dfn_identifier),
     ),
 
-    dop2_parenthesis: $ => seq(
-      '(',
-      $._dop2_expression,
-      ')',
-    ),
-    dop1_parenthesis: $ => seq(
-      '(',
-      $._dop1_expression,
-      ')',
-    ),
-    dfn_parenthesis: $ => seq(
-      '(',
-      $._dfn_expression,
-      ')',
-    ),
-    parenthesis: $ => seq(
-      '(',
-      $._expression,
-      ')',
-    ),
+    dop2_parenthesis: $ => prec(1, parenthesized($._dop2_expression)),
+    dop1_parenthesis: $ => prec(1, parenthesized($._dop1_expression)),
+    dfn_parenthesis: $ => prec(1, parenthesized($._dfn_expression)),
+    parenthesis: $ => prec(1, parenthesized($._expression)),
+
+    dop2_vector: $ => parenthesized($._dop2_statement_list),
+    dop1_vector: $ => parenthesized($._dop1_statement_list),
+    dfn_vector: $ => parenthesized($._dfn_statement_list),
+    vector: $ => parenthesized($._statement_list),
 
     dop2_identifier: _ => dop2Identifier,
     dop1_identifier: _ => dop1Identifier,
@@ -237,6 +225,7 @@ function statements(prev_statements, statement, statements){
     repeat(seq(prev_statements, terminator)),
     statement,
     repeat(seq(terminator, statements)),
+    optional(terminator),
   );
 }
 
@@ -246,4 +235,19 @@ function expression(p, prev_expression, expression, expressions){
     expression,
     optional(expressions),
   ));
+}
+
+function braced(content){
+  return seq(
+    '{',
+    content,
+    '}',
+  );
+}
+function parenthesized(content){
+  return seq(
+    '(',
+    content,
+    ')',
+  );
 }
