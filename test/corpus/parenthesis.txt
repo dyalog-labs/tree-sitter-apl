@@ -171,3 +171,180 @@ Vector
             (dfn_identifier))))
       (statement
         (number_literal)))))
+
+================
+Namespace
+================
+(a:1 2 3)
+(a:{⍺})
+({(a:⍵)})
+({(a:⍺(w:⍵)e)})
+{⋄(a:1)⍺⋄3}
+{1⋄(a:⍺)}
+{(a:⍺)⋄1}
+(a:1⋄b:2⋄c:3)
+(a:1 b 3⋄)
+(⋄b:1 2 3)
+(a:{⍺}⋄)
+(⋄{(a:⍵ ⋄ b:⍺⍺)})
+({(a⍺(a:1⋄b:⍵)e)})
+{(⋄a:1⋄b:2)⍺⋄3}
+---
+
+(source_file
+  (statement
+    (namespace
+      (member
+        (member_identifier)
+        (member_expression
+          (number_literal)
+          (number_literal)
+          (number_literal)))))
+  (statement
+    (namespace
+      (member
+        (member_identifier)
+        (member_expression
+          (dfn_definition
+            (dfn_statement
+              (dfn_identifier)))))))
+  (statement
+    (parenthesis
+      (dfn_definition
+        (dfn_statement
+          (dfn_namespace
+            (dfn_member
+              (dfn_member_identifier)
+              (dfn_member_expression
+                (dfn_identifier))))))))
+  (statement
+    (parenthesis
+      (dfn_definition
+        (dfn_statement
+          (dfn_namespace
+            (dfn_member
+              (dfn_member_identifier)
+              (dfn_member_expression
+                (dfn_identifier)
+                (dfn_namespace
+                  (dfn_member
+                    (dfn_member_identifier)
+                    (dfn_member_expression
+                      (dfn_identifier))))
+                (identifier))))))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (namespace
+          (member
+            (member_identifier)
+            (member_expression
+              (number_literal))))
+        (dfn_identifier))
+      (statement
+        (number_literal))))
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal))
+      (dfn_statement
+        (dfn_namespace
+          (dfn_member
+            (dfn_member_identifier)
+            (dfn_member_expression
+              (dfn_identifier)))))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_namespace
+          (dfn_member
+            (dfn_member_identifier)
+            (dfn_member_expression
+              (dfn_identifier)))))
+      (statement
+        (number_literal))))
+  (statement
+    (namespace
+      (member
+        (member_identifier)
+        (member_expression
+          (number_literal)))
+      (member
+        (member_identifier)
+        (member_expression
+          (number_literal)))
+      (member
+        (member_identifier)
+        (member_expression
+          (number_literal)))))
+  (statement
+    (namespace
+      (member
+        (member_identifier)
+        (member_expression
+          (number_literal)
+          (identifier)
+          (number_literal)))))
+  (statement
+    (namespace
+      (member
+        (member_identifier)
+        (member_expression
+          (number_literal)
+          (number_literal)
+          (number_literal)))))
+  (statement
+    (namespace
+      (member
+        (member_identifier)
+        (member_expression
+          (dfn_definition
+            (dfn_statement
+              (dfn_identifier)))))))
+  (statement
+    (vector
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_namespace
+              (dfn_member
+                (dfn_member_identifier)
+                (dfn_member_expression
+                  (dfn_identifier)))
+              (dfn_member
+                (dfn_member_identifier)
+                (dfn_member_expression
+                  (dfn_identifier)
+                  (dfn_identifier)))))))))
+  (statement
+    (parenthesis
+      (dfn_definition
+        (dfn_statement
+          (dfn_parenthesis
+            (identifier)
+            (dfn_identifier)
+            (dfn_namespace
+              (member
+                (member_identifier)
+                (member_expression
+                  (number_literal)))
+              (dfn_member
+                (dfn_member_identifier)
+                (dfn_member_expression
+                  (dfn_identifier))))
+            (identifier))))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (namespace
+          (member
+            (member_identifier)
+            (member_expression
+              (number_literal)))
+          (member
+            (member_identifier)
+            (member_expression
+              (number_literal))))
+        (dfn_identifier))
+      (statement
+        (number_literal)))))

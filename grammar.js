@@ -52,6 +52,13 @@ module.exports = grammar({
     $._dop1_statement_list,
     $._dfn_statement_list,
     $._statement_list,
+    $._dop2_members,
+    $._dop1_members,
+    $._dfn_members,
+    $._dop2_member_list,
+    $._dop1_member_list,
+    $._dfn_member_list,
+    $._member_list,
   ],
 
   word: $ => $.identifier,
@@ -65,6 +72,12 @@ module.exports = grammar({
     [$.dop1_vector, $.dfn_vector, $.vector],
     [$.dop1_vector, $.dfn_vector],
     [$.dfn_vector, $.vector],
+    [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace, $.namespace],
+    [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace],
+    [$.dop2_namespace, $.dop1_namespace],
+    [$.dop1_namespace, $.dfn_namespace, $.namespace],
+    [$.dop1_namespace, $.dfn_namespace],
+    [$.dfn_namespace, $.namespace],
     [$.dop2_highrank, $.dop1_highrank, $.dfn_highrank, $.highrank],
     [$.dop2_highrank, $.dop1_highrank, $.dfn_highrank],
     [$.dop2_highrank, $.dop1_highrank],
@@ -82,7 +95,7 @@ module.exports = grammar({
       $._definition,
       $.parenthesis,
       $.vector,
-      // $.namespace,
+      $.namespace,
       $.highrank,
       // $.indexed,
       $.identifier,
@@ -129,18 +142,9 @@ module.exports = grammar({
       optional(terminator),
     ),
 
-    _dop2_statements: $ => choice(
-      $.dop2_statement,
-      $._dop1_statements,
-    ),
-    _dop1_statements: $ => choice(
-      $.dop1_statement,
-      $._dfn_statements,
-    ),
-    _dfn_statements: $ => choice(
-      $.dfn_statement,
-      $.statement,
-    ),
+    _dop2_statements: $ => choice($.dop2_statement, $._dop1_statements),
+    _dop1_statements: $ => choice($.dop1_statement, $._dfn_statements),
+    _dfn_statements: $ => choice($.dfn_statement, $.statement),
 
     dop2_statement: $ => $._dop2_expression,
     dop1_statement: $ => $._dop1_expression,
@@ -166,34 +170,28 @@ module.exports = grammar({
       $._dfn_expressions,
     ),
 
-    _dop2_expressions: $ => choice(
-      $._dop2_expression,
-      $._dop1_expressions,
-    ),
-    _dop1_expressions: $ => choice(
-      $._dop1_expression,
-      $._dfn_expressions,
-    ),
-    _dfn_expressions: $ => choice(
-      $._dfn_expression,
-      $._expression,
-    ),
+    _dop2_expressions: $ => choice($._dop2_expression, $._dop1_expressions),
+    _dop1_expressions: $ => choice($._dop1_expression, $._dfn_expressions),
+    _dfn_expressions: $ => choice($._dfn_expression, $._expression),
 
     _dop2_simple_expression: $ => choice(
       $.dop2_parenthesis,
       $.dop2_vector,
+      $.dop2_namespace,
       $.dop2_highrank,
       $.dop2_identifier,
     ),
     _dop1_simple_expression: $ => choice(
       $.dop1_parenthesis,
       $.dop1_vector,
+      $.dop1_namespace,
       $.dop1_highrank,
       $.dop1_identifier,
     ),
     _dfn_simple_expression: $ => choice(
       $.dfn_parenthesis,
       $.dfn_vector,
+      $.dfn_namespace,
       $.dfn_highrank,
       choice($.dop_identifier, $.dfn_identifier),
     ),
@@ -207,6 +205,54 @@ module.exports = grammar({
     dop1_vector: $ => parenthesized($._dop1_statement_list),
     dfn_vector: $ => parenthesized($._dfn_statement_list),
     vector: $ => parenthesized($._statement_list),
+
+    dop2_namespace: $ => prec(2, parenthesized($._dop2_member_list)),
+    dop1_namespace: $ => prec(2, parenthesized($._dop1_member_list)),
+    dfn_namespace: $ => prec(2, parenthesized($._dfn_member_list)),
+    namespace: $ => prec(2, parenthesized($._member_list)),
+
+    _dop2_member_list: $ => statements(
+      $._dop1_members,
+      $.dop2_member,
+      $._dop2_members,
+    ),
+    _dop1_member_list: $ => statements(
+      $._dfn_members,
+      $.dop1_member,
+      $._dop1_members,
+    ),
+    _dfn_member_list: $ => statements(
+      $.member,
+      $.dfn_member,
+      $._dfn_members,
+    ),
+    _member_list: $ => seq(
+      optional(terminator),
+      $.member,
+      repeat(seq(terminator, $.member)),
+      optional(terminator),
+    ),
+
+    _dop2_members: $ => choice($.dop2_member, $._dop1_members),
+    _dop1_members: $ => choice($.dop1_member, $._dfn_members),
+    _dfn_members: $ => choice($.dfn_member, $.member),
+
+    dop2_member: $ => namespace_member(
+      alias($.identifier, $.dop2_member_identifier),
+      alias($._dop2_expression, $.dop2_member_expression),
+    ),
+    dop1_member: $ => namespace_member(
+      alias($.identifier, $.dop1_member_identifier),
+      alias($._dop1_expression, $.dop1_member_expression),
+    ),
+    dfn_member: $ => namespace_member(
+      alias($.identifier, $.dfn_member_identifier),
+      alias($._dfn_expression, $.dfn_member_expression),
+    ),
+    member: $ => namespace_member(
+      alias($.identifier, $.member_identifier),
+      alias($._expression, $.member_expression),
+    ),
 
     dop2_highrank: $ => bracketed($._dop2_statement_list),
     dop1_highrank: $ => bracketed($._dop1_statement_list),
@@ -262,4 +308,8 @@ function parenthesized(content){
 
 function bracketed(content){
   return seq('[', content, ']');
+}
+
+function namespace_member(identifier, expression){
+  return seq(identifier, ':', expression);
 }

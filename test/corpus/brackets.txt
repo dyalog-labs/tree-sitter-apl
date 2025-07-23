@@ -1,0 +1,98 @@
+================
+High rank
+================
+[1⋄2⋄3]
+[1 b 3⋄]
+[⋄1 2 3]
+[{⍺}⋄]
+[⋄{[⍵]}]
+[{[a⍺[w⋄⍵]e]}]
+{[⋄1]⍺⋄3}
+{⋄1⍺[⋄3]}
+{1⋄[⋄⍺]}
+{[⍺⋄]⋄1}
+---
+
+(source_file
+  (statement
+    (highrank
+      (statement
+        (number_literal))
+      (statement
+        (number_literal))
+      (statement
+        (number_literal))))
+  (statement
+    (highrank
+      (statement
+        (number_literal)
+        (identifier)
+        (number_literal))))
+  (statement
+    (highrank
+      (statement
+        (number_literal)
+        (number_literal)
+        (number_literal))))
+  (statement
+    (highrank
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_identifier))))))
+  (statement
+    (highrank
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_highrank
+              (dfn_statement
+                (dfn_identifier))))))))
+  (statement
+    (highrank
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_highrank
+              (dfn_statement
+                (identifier)
+                (dfn_identifier)
+                (dfn_highrank
+                  (statement
+                    (identifier))
+                  (dfn_statement
+                    (dfn_identifier)))
+                (identifier))))))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (highrank
+          (statement
+            (number_literal)))
+        (dfn_identifier))
+      (statement
+        (number_literal))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (number_literal)
+        (dfn_identifier)
+        (highrank
+          (statement
+            (number_literal))))))
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal))
+      (dfn_statement
+        (dfn_highrank
+          (dfn_statement
+            (dfn_identifier))))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_highrank
+          (dfn_statement
+            (dfn_identifier))))
+      (statement
+        (number_literal)))))

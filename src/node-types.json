@@ -43,7 +43,26 @@
     "fields": {}
   },
   {
-    "type": "dfn_parenthesis",
+    "type": "dfn_member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_member_expression",
+          "named": true
+        },
+        {
+          "type": "dfn_member_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_member_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -60,6 +79,10 @@
         },
         {
           "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
           "named": true
         },
         {
@@ -88,6 +111,108 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_namespace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_member",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_parenthesis",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -134,6 +259,10 @@
           "named": true
         },
         {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
           "type": "dfn_parenthesis",
           "named": true
         },
@@ -159,6 +288,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -250,12 +383,31 @@
     }
   },
   {
-    "type": "dop1_parenthesis",
+    "type": "dop1_member",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dop1_member_expression",
+          "named": true
+        },
+        {
+          "type": "dop1_member_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_member_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "dfn_definition",
@@ -267,6 +419,10 @@
         },
         {
           "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
           "named": true
         },
         {
@@ -287,6 +443,10 @@
         },
         {
           "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
           "named": true
         },
         {
@@ -311,6 +471,132 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_namespace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_member",
+          "named": true
+        },
+        {
+          "type": "dop1_member",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_parenthesis",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_vector",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -357,6 +643,10 @@
           "named": true
         },
         {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
           "type": "dfn_parenthesis",
           "named": true
         },
@@ -374,6 +664,10 @@
         },
         {
           "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
           "named": true
         },
         {
@@ -398,6 +692,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -501,12 +799,31 @@
     }
   },
   {
-    "type": "dop2_parenthesis",
+    "type": "dop2_member",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dop2_member_expression",
+          "named": true
+        },
+        {
+          "type": "dop2_member_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_member_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "dfn_definition",
@@ -518,6 +835,10 @@
         },
         {
           "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
           "named": true
         },
         {
@@ -541,6 +862,10 @@
           "named": true
         },
         {
+          "type": "dop1_namespace",
+          "named": true
+        },
+        {
           "type": "dop1_parenthesis",
           "named": true
         },
@@ -561,6 +886,10 @@
           "named": true
         },
         {
+          "type": "dop2_namespace",
+          "named": true
+        },
+        {
           "type": "dop2_parenthesis",
           "named": true
         },
@@ -578,6 +907,156 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_namespace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_member",
+          "named": true
+        },
+        {
+          "type": "dop1_member",
+          "named": true
+        },
+        {
+          "type": "dop2_member",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_parenthesis",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dfn_vector",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_vector",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_highrank",
+          "named": true
+        },
+        {
+          "type": "dop2_identifier",
+          "named": true
+        },
+        {
+          "type": "dop2_namespace",
+          "named": true
+        },
+        {
+          "type": "dop2_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_vector",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -624,6 +1103,10 @@
           "named": true
         },
         {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
           "type": "dfn_parenthesis",
           "named": true
         },
@@ -641,6 +1124,10 @@
         },
         {
           "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
           "named": true
         },
         {
@@ -664,6 +1151,10 @@
           "named": true
         },
         {
+          "type": "dop2_namespace",
+          "named": true
+        },
+        {
           "type": "dop2_parenthesis",
           "named": true
         },
@@ -681,6 +1172,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -749,6 +1244,95 @@
     }
   },
   {
+    "type": "member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "member_expression",
+          "named": true
+        },
+        {
+          "type": "member_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "member_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespace",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parenthesis",
     "named": true,
     "fields": {},
@@ -774,6 +1358,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -841,6 +1429,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "namespace",
           "named": true
         },
         {
@@ -913,6 +1505,10 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -926,11 +1522,23 @@
     "extra": true
   },
   {
+    "type": "dfn_member_identifier",
+    "named": true
+  },
+  {
     "type": "dop1_identifier",
     "named": true
   },
   {
+    "type": "dop1_member_identifier",
+    "named": true
+  },
+  {
     "type": "dop2_identifier",
+    "named": true
+  },
+  {
+    "type": "dop2_member_identifier",
     "named": true
   },
   {
@@ -939,6 +1547,10 @@
   },
   {
     "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "member_identifier",
     "named": true
   },
   {
