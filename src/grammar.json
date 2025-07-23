@@ -34,6 +34,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "highrank"
+          },
+          {
+            "type": "SYMBOL",
             "name": "identifier"
           },
           {
@@ -889,6 +893,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "dop2_highrank"
+        },
+        {
+          "type": "SYMBOL",
           "name": "dop2_identifier"
         }
       ]
@@ -906,6 +914,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "dop1_highrank"
+        },
+        {
+          "type": "SYMBOL",
           "name": "dop1_identifier"
         }
       ]
@@ -920,6 +932,10 @@
         {
           "type": "SYMBOL",
           "name": "dfn_vector"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dfn_highrank"
         },
         {
           "type": "CHOICE",
@@ -1085,6 +1101,74 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "dop2_highrank": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_dop2_statement_list"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "dop1_highrank": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_dop1_statement_list"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "dfn_highrank": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_dfn_statement_list"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "highrank": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_statement_list"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
@@ -1467,6 +1551,34 @@
     [
       "dfn_vector",
       "vector"
+    ],
+    [
+      "dop2_highrank",
+      "dop1_highrank",
+      "dfn_highrank",
+      "highrank"
+    ],
+    [
+      "dop2_highrank",
+      "dop1_highrank",
+      "dfn_highrank"
+    ],
+    [
+      "dop2_highrank",
+      "dop1_highrank"
+    ],
+    [
+      "dop1_highrank",
+      "dfn_highrank",
+      "highrank"
+    ],
+    [
+      "dop1_highrank",
+      "dfn_highrank"
+    ],
+    [
+      "dfn_highrank",
+      "highrank"
     ],
     [
       "_dop1_expression"

@@ -19,6 +19,25 @@
     }
   },
   {
+    "type": "dfn_highrank",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dfn_identifier",
     "named": true,
     "fields": {}
@@ -33,6 +52,10 @@
       "types": [
         {
           "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
           "named": true
         },
         {
@@ -57,6 +80,10 @@
         },
         {
           "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -99,6 +126,10 @@
           "named": true
         },
         {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
           "type": "dfn_identifier",
           "named": true
         },
@@ -120,6 +151,10 @@
         },
         {
           "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -192,6 +227,29 @@
     }
   },
   {
+    "type": "dop1_highrank",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dop1_parenthesis",
     "named": true,
     "fields": {},
@@ -201,6 +259,10 @@
       "types": [
         {
           "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
           "named": true
         },
         {
@@ -217,6 +279,10 @@
         },
         {
           "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
           "named": true
         },
         {
@@ -237,6 +303,10 @@
         },
         {
           "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -279,6 +349,10 @@
           "named": true
         },
         {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
           "type": "dfn_identifier",
           "named": true
         },
@@ -292,6 +366,10 @@
         },
         {
           "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
           "named": true
         },
         {
@@ -312,6 +390,10 @@
         },
         {
           "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -392,6 +474,33 @@
     }
   },
   {
+    "type": "dop2_highrank",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "dop2_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dop2_parenthesis",
     "named": true,
     "fields": {},
@@ -401,6 +510,10 @@
       "types": [
         {
           "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
           "named": true
         },
         {
@@ -420,6 +533,10 @@
           "named": true
         },
         {
+          "type": "dop1_highrank",
+          "named": true
+        },
+        {
           "type": "dop1_identifier",
           "named": true
         },
@@ -436,6 +553,10 @@
           "named": true
         },
         {
+          "type": "dop2_highrank",
+          "named": true
+        },
+        {
           "type": "dop2_identifier",
           "named": true
         },
@@ -449,6 +570,10 @@
         },
         {
           "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -491,6 +616,10 @@
           "named": true
         },
         {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
           "type": "dfn_identifier",
           "named": true
         },
@@ -504,6 +633,10 @@
         },
         {
           "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
           "named": true
         },
         {
@@ -523,6 +656,10 @@
           "named": true
         },
         {
+          "type": "dop2_highrank",
+          "named": true
+        },
+        {
           "type": "dop2_identifier",
           "named": true
         },
@@ -536,6 +673,10 @@
         },
         {
           "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -593,6 +734,21 @@
     }
   },
   {
+    "type": "highrank",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parenthesis",
     "named": true,
     "fields": {},
@@ -610,6 +766,10 @@
         },
         {
           "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -673,6 +833,10 @@
         },
         {
           "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
           "named": true
         },
         {
@@ -746,6 +910,14 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
