@@ -120,21 +120,9 @@ module.exports = grammar({
       '}',
     ),
 
-    _dop2_statement_list: $ => statements(
-      $._dop1_statements,
-      $.dop2_statement,
-      $._dop2_statements,
-    ),
-    _dop1_statement_list: $ => statements(
-      $._dfn_statements,
-      $.dop1_statement,
-      $._dop1_statements,
-    ),
-    _dfn_statement_list: $ => statements(
-      $.statement,
-      $.dfn_statement,
-      $._dfn_statements,
-    ),
+    _dop2_statement_list: $ => statements($, PREC.dop2),
+    _dop1_statement_list: $ => statements($, PREC.dop1),
+    _dfn_statement_list: $ => statements($, PREC.dfn),
     _statement_list: $ => seq(
       optional(terminator),
       $.statement,
@@ -211,21 +199,9 @@ module.exports = grammar({
     dfn_namespace: $ => prec(2, parenthesized($._dfn_member_list)),
     namespace: $ => prec(2, parenthesized($._member_list)),
 
-    _dop2_member_list: $ => statements(
-      $._dop1_members,
-      $.dop2_member,
-      $._dop2_members,
-    ),
-    _dop1_member_list: $ => statements(
-      $._dfn_members,
-      $.dop1_member,
-      $._dop1_members,
-    ),
-    _dfn_member_list: $ => statements(
-      $.member,
-      $.dfn_member,
-      $._dfn_members,
-    ),
+    _dop2_member_list: $ => members($, PREC.dop2),
+    _dop1_member_list: $ => members($, PREC.dop1),
+    _dfn_member_list: $ => members($, PREC.dfn),
     _member_list: $ => seq(
       optional(terminator),
       $.member,
@@ -280,14 +256,40 @@ module.exports = grammar({
   },
 });
 
-function statements(prev_statements, statement, statements){
+// function statements(prev_statements, statement, statements){
+//   return seq(
+//     optional(terminator),
+//     repeat(seq(prev_statements, terminator)),
+//     statement,
+//     repeat(seq(terminator, statements)),
+//     optional(terminator),
+//   );
+// }
+
+function separated(separator, statements, p){
+  const _statement = statements[0];
+  const _dfn_statement = choice(statements[PREC.dfn], _statement);
+  const _dop1_statement = choice(statements[PREC.dop1], _dfn_statement);
+  const _dop2_statement = choice(statements[PREC.dop2], _dop1_statement);
+  const _statements = [_statement, _dfn_statement, _dop1_statement, _dop2_statement];
+  
   return seq(
-    optional(terminator),
-    repeat(seq(prev_statements, terminator)),
-    statement,
-    repeat(seq(terminator, statements)),
-    optional(terminator),
+    optional(separator),
+    repeat(seq(_statements[p-1], separator)),
+    statements[p],
+    repeat(seq(separator, _statements[p])),
+    optional(separator),
   );
+}
+
+function statements($$, p){
+  const statements = [$$.statement, $$.dfn_statement, $$.dop1_statement, $$.dop2_statement];
+  return separated(terminator, statements, p);
+}
+
+function members($$, p){
+  const members = [$$.member, $$.dfn_member, $$.dop1_member, $$.dop2_member];
+  return separated(terminator, members, p);
 }
 
 function expression(p, prev_expression, expression, expressions){

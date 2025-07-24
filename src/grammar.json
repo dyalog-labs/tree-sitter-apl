@@ -232,8 +232,26 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_dop1_statements"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dop1_statement"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "dfn_statement"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "statement"
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "type": "REPEAT1",
@@ -288,8 +306,35 @@
                 }
               },
               {
-                "type": "SYMBOL",
-                "name": "_dop2_statements"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dop2_statement"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "dop1_statement"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "dfn_statement"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "statement"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -361,8 +406,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_dfn_statements"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dfn_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "statement"
+                  }
+                ]
               },
               {
                 "type": "REPEAT1",
@@ -417,8 +471,26 @@
                 }
               },
               {
-                "type": "SYMBOL",
-                "name": "_dop1_statements"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dop1_statement"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "dfn_statement"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "statement"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -546,8 +618,17 @@
                 }
               },
               {
-                "type": "SYMBOL",
-                "name": "_dfn_statements"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dfn_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "statement"
+                  }
+                ]
               }
             ]
           }
@@ -1241,8 +1322,26 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_dop1_members"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dop1_member"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "dfn_member"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "member"
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "type": "REPEAT1",
@@ -1297,8 +1396,35 @@
                 }
               },
               {
-                "type": "SYMBOL",
-                "name": "_dop2_members"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dop2_member"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "dop1_member"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "dfn_member"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "member"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -1370,8 +1496,17 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "_dfn_members"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dfn_member"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "member"
+                  }
+                ]
               },
               {
                 "type": "REPEAT1",
@@ -1426,8 +1561,26 @@
                 }
               },
               {
-                "type": "SYMBOL",
-                "name": "_dop1_members"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dop1_member"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "dfn_member"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "member"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -1555,8 +1708,17 @@
                 }
               },
               {
-                "type": "SYMBOL",
-                "name": "_dfn_members"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "dfn_member"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "member"
+                  }
+                ]
               }
             ]
           }
