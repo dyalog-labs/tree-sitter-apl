@@ -50,12 +50,12 @@ module.exports = grammar({
   conflicts: $ => [
     [$.dop2_definition, $.dop1_definition, $.dfn_definition],
     [$.dop2_definition, $.dop1_definition],
-    [$.dop2_vector, $.dop1_vector, $.dfn_vector, $.vector],
-    [$.dop2_vector, $.dop1_vector, $.dfn_vector],
-    [$.dop2_vector, $.dop1_vector],
-    [$.dop1_vector, $.dfn_vector, $.vector],
-    [$.dop1_vector, $.dfn_vector],
-    [$.dfn_vector, $.vector],
+    [$.dop2_parenthesis, $.dop1_parenthesis, $.dfn_parenthesis, $.parenthesis],
+    [$.dop2_parenthesis, $.dop1_parenthesis, $.dfn_parenthesis],
+    [$.dop2_parenthesis, $.dop1_parenthesis],
+    [$.dop1_parenthesis, $.dfn_parenthesis, $.parenthesis],
+    [$.dop1_parenthesis, $.dfn_parenthesis],
+    [$.dfn_parenthesis, $.parenthesis],
     [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace, $.namespace],
     [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace],
     [$.dop2_namespace, $.dop1_namespace],
@@ -78,7 +78,6 @@ module.exports = grammar({
     _expression: $ => repeat1(choice(
       $._definition,
       $.parenthesis,
-      $.vector,
       $.namespace,
       $.highrank,
       // $.indexed,
@@ -126,15 +125,10 @@ module.exports = grammar({
     _dop1_expression: $ => expression($, PREC.dop1),
     _dfn_expression: $ => expression($, PREC.dfn),
 
-    dop2_parenthesis: $ => prec(1, parenthesized($._dop2_expression)),
-    dop1_parenthesis: $ => prec(1, parenthesized($._dop1_expression)),
-    dfn_parenthesis: $ => prec(1, parenthesized($._dfn_expression)),
-    parenthesis: $ => prec(1, parenthesized($._expression)),
-
-    dop2_vector: $ => parenthesized($._dop2_statement_list),
-    dop1_vector: $ => parenthesized($._dop1_statement_list),
-    dfn_vector: $ => parenthesized($._dfn_statement_list),
-    vector: $ => parenthesized($._statement_list),
+    dop2_parenthesis: $ => parenthesized($._dop2_statement_list),
+    dop1_parenthesis: $ => parenthesized($._dop1_statement_list),
+    dfn_parenthesis: $ => parenthesized($._dfn_statement_list),
+    parenthesis: $ => parenthesized($._statement_list),
 
     dop2_namespace: $ => prec(2, parenthesized(members($, PREC.dop2))),
     dop1_namespace: $ => prec(2, parenthesized(members($, PREC.dop1))),
@@ -218,32 +212,21 @@ function members($$, p){
   return separated(terminator, members, p);
 }
 
-// function expression(p, prev_expression, expression, expressions){
-//   return prec(p, seq(
-//     optional(prev_expression),
-//     expression,
-//     optional(expressions),
-//   ));
-// }
-
 function expression($$, p){
   const _dop2_expression = choice(
     $$.dop2_parenthesis,
-    $$.dop2_vector,
     $$.dop2_namespace,
     $$.dop2_highrank,
     $$.dop2_identifier,
   );
   const _dop1_expression = choice(
     $$.dop1_parenthesis,
-    $$.dop1_vector,
     $$.dop1_namespace,
     $$.dop1_highrank,
     $$.dop1_identifier,
   );
   const _dfn_expression = choice(
     $$.dfn_parenthesis,
-    $$.dfn_vector,
     $$.dfn_namespace,
     $$.dfn_highrank,
     choice($$.dop_identifier, $$.dfn_identifier),

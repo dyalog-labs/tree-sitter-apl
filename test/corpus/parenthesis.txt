@@ -15,41 +15,50 @@ Parenthesis
 (source_file
   (statement
     (parenthesis
-      (number_literal)
-      (number_literal)
-      (number_literal)))
+      (statement
+        (number_literal)
+        (number_literal)
+        (number_literal))))
   (statement
     (parenthesis
-      (number_literal)
-      (identifier)
-      (number_literal)))
+      (statement
+        (number_literal)
+        (identifier)
+        (number_literal))))
   (statement
     (parenthesis
-      (dfn_definition
-        (dfn_statement
-          (dfn_identifier)))))
-  (statement
-    (parenthesis
-      (dfn_definition
-        (dfn_statement
-          (dfn_parenthesis
+      (statement
+        (dfn_definition
+          (dfn_statement
             (dfn_identifier))))))
   (statement
     (parenthesis
-      (dfn_definition
-        (dfn_statement
-          (dfn_parenthesis
-            (identifier)
-            (dfn_identifier)
+      (statement
+        (dfn_definition
+          (dfn_statement
             (dfn_parenthesis
-              (identifier)
-              (dfn_identifier))
-            (identifier))))))
+              (dfn_statement
+                (dfn_identifier))))))))
+  (statement
+    (parenthesis
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_parenthesis
+              (dfn_statement
+                (identifier)
+                (dfn_identifier)
+                (dfn_parenthesis
+                  (dfn_statement
+                    (identifier)
+                    (dfn_identifier)))
+                (identifier))))))))
   (statement
     (dfn_definition
       (dfn_statement
         (parenthesis
-          (number_literal))
+          (statement
+            (number_literal)))
         (dfn_identifier))
       (statement
         (number_literal))))
@@ -60,19 +69,22 @@ Parenthesis
         (dfn_identifier))
       (statement
         (parenthesis
-          (number_literal)))))
+          (statement
+            (number_literal))))))
   (statement
     (dfn_definition
       (statement
         (number_literal))
       (dfn_statement
         (dfn_parenthesis
-          (dfn_identifier)))))
+          (dfn_statement
+            (dfn_identifier))))))
   (statement
     (dfn_definition
       (dfn_statement
         (dfn_parenthesis
-          (dfn_identifier)))
+          (dfn_statement
+            (dfn_identifier))))
       (statement
         (number_literal)))))
 
@@ -93,7 +105,7 @@ Vector
 
 (source_file
   (statement
-    (vector
+    (parenthesis
       (statement
         (number_literal))
       (statement
@@ -101,47 +113,50 @@ Vector
       (statement
         (number_literal))))
   (statement
-    (vector
+    (parenthesis
       (statement
         (number_literal)
         (identifier)
         (number_literal))))
   (statement
-    (vector
+    (parenthesis
       (statement
         (number_literal)
         (number_literal)
         (number_literal))))
   (statement
-    (vector
+    (parenthesis
       (statement
         (dfn_definition
           (dfn_statement
             (dfn_identifier))))))
   (statement
-    (vector
+    (parenthesis
       (statement
         (dfn_definition
           (dfn_statement
             (dfn_parenthesis
-              (dfn_identifier)))))))
+              (dfn_statement
+                (dfn_identifier))))))))
   (statement
     (parenthesis
-      (dfn_definition
-        (dfn_statement
-          (dfn_parenthesis
-            (identifier)
-            (dfn_identifier)
-            (dfn_vector
-              (statement
-                (identifier))
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_parenthesis
               (dfn_statement
-                (dfn_identifier)))
-            (identifier))))))
+                (identifier)
+                (dfn_identifier)
+                (dfn_parenthesis
+                  (statement
+                    (identifier))
+                  (dfn_statement
+                    (dfn_identifier)))
+                (identifier))))))))
   (statement
     (dfn_definition
       (dfn_statement
-        (vector
+        (parenthesis
           (statement
             (number_literal)))
         (dfn_identifier))
@@ -152,7 +167,7 @@ Vector
       (dfn_statement
         (number_literal)
         (dfn_identifier)
-        (vector
+        (parenthesis
           (statement
             (number_literal))))))
   (statement
@@ -160,13 +175,13 @@ Vector
       (statement
         (number_literal))
       (dfn_statement
-        (dfn_vector
+        (dfn_parenthesis
           (dfn_statement
             (dfn_identifier))))))
   (statement
     (dfn_definition
       (dfn_statement
-        (dfn_vector
+        (dfn_parenthesis
           (dfn_statement
             (dfn_identifier))))
       (statement
@@ -210,28 +225,30 @@ Namespace
               (dfn_identifier)))))))
   (statement
     (parenthesis
-      (dfn_definition
-        (dfn_statement
-          (dfn_namespace
-            (dfn_member
-              (dfn_member_identifier)
-              (dfn_member_expression
-                (dfn_identifier))))))))
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_namespace
+              (dfn_member
+                (dfn_member_identifier)
+                (dfn_member_expression
+                  (dfn_identifier)))))))))
   (statement
     (parenthesis
-      (dfn_definition
-        (dfn_statement
-          (dfn_namespace
-            (dfn_member
-              (dfn_member_identifier)
-              (dfn_member_expression
-                (dfn_identifier)
-                (dfn_namespace
-                  (dfn_member
-                    (dfn_member_identifier)
-                    (dfn_member_expression
-                      (dfn_identifier))))
-                (identifier))))))))
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_namespace
+              (dfn_member
+                (dfn_member_identifier)
+                (dfn_member_expression
+                  (dfn_identifier)
+                  (dfn_namespace
+                    (dfn_member
+                      (dfn_member_identifier)
+                      (dfn_member_expression
+                        (dfn_identifier))))
+                  (identifier)))))))))
   (statement
     (dfn_definition
       (dfn_statement
@@ -302,7 +319,7 @@ Namespace
             (dfn_statement
               (dfn_identifier)))))))
   (statement
-    (vector
+    (parenthesis
       (statement
         (dfn_definition
           (dfn_statement
@@ -318,21 +335,23 @@ Namespace
                   (dfn_identifier)))))))))
   (statement
     (parenthesis
-      (dfn_definition
-        (dfn_statement
-          (dfn_parenthesis
-            (identifier)
-            (dfn_identifier)
-            (dfn_namespace
-              (member
-                (member_identifier)
-                (member_expression
-                  (number_literal)))
-              (dfn_member
-                (dfn_member_identifier)
-                (dfn_member_expression
-                  (dfn_identifier))))
-            (identifier))))))
+      (statement
+        (dfn_definition
+          (dfn_statement
+            (dfn_parenthesis
+              (dfn_statement
+                (identifier)
+                (dfn_identifier)
+                (dfn_namespace
+                  (member
+                    (member_identifier)
+                    (member_expression
+                      (number_literal)))
+                  (dfn_member
+                    (dfn_member_identifier)
+                    (dfn_member_expression
+                      (dfn_identifier))))
+                (identifier))))))))
   (statement
     (dfn_definition
       (dfn_statement
