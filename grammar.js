@@ -39,10 +39,6 @@ module.exports = grammar({
   ],
 
   inline: $ => [
-    $._dop2_statement_list,
-    $._dop1_statement_list,
-    $._dfn_statement_list,
-    $._statement_list,
   ],
 
   word: $ => $.identifier,
@@ -73,7 +69,7 @@ module.exports = grammar({
   ],
 
   rules: {
-    source_file: $ => optional($._statement_list),
+    source_file: $ => optional(statements($, 0)),
 
     _expression: $ => repeat1(choice(
       $._definition,
@@ -93,8 +89,8 @@ module.exports = grammar({
       $.dfn_definition,
     ),
 
-    dop2_definition: $ => braced($._dop2_statement_list),
-    dop1_definition: $ => braced($._dop1_statement_list),
+    dop2_definition: $ => braced(statements($, PREC.dop2)),
+    dop1_definition: $ => braced(statements($, PREC.dop1)),
     dfn_definition: $ => {
       const dfn_statements = choice($.dfn_statement, $.statement);
       return seq(
@@ -106,16 +102,6 @@ module.exports = grammar({
       );
     },
 
-    _dop2_statement_list: $ => statements($, PREC.dop2),
-    _dop1_statement_list: $ => statements($, PREC.dop1),
-    _dfn_statement_list: $ => statements($, PREC.dfn),
-    _statement_list: $ => seq(
-      optional(terminator),
-      $.statement,
-      repeat(seq(terminator, $.statement)),
-      optional(terminator),
-    ),
-
     dop2_statement: $ => $._dop2_expression,
     dop1_statement: $ => $._dop1_expression,
     dfn_statement: $ => $._dfn_expression,
@@ -125,10 +111,10 @@ module.exports = grammar({
     _dop1_expression: $ => expression($, PREC.dop1),
     _dfn_expression: $ => expression($, PREC.dfn),
 
-    dop2_parenthesis: $ => parenthesized($._dop2_statement_list),
-    dop1_parenthesis: $ => parenthesized($._dop1_statement_list),
-    dfn_parenthesis: $ => parenthesized($._dfn_statement_list),
-    parenthesis: $ => parenthesized($._statement_list),
+    dop2_parenthesis: $ => parenthesized(statements($, PREC.dop2)),
+    dop1_parenthesis: $ => parenthesized(statements($, PREC.dop1)),
+    dfn_parenthesis: $ => parenthesized(statements($, PREC.dfn)),
+    parenthesis: $ => parenthesized(statements($, 0)),
 
     dop2_namespace: $ => prec(2, parenthesized(members($, PREC.dop2))),
     dop1_namespace: $ => prec(2, parenthesized(members($, PREC.dop1))),
@@ -157,10 +143,10 @@ module.exports = grammar({
       alias($._expression, $.member_expression),
     ),
 
-    dop2_highrank: $ => bracketed($._dop2_statement_list),
-    dop1_highrank: $ => bracketed($._dop1_statement_list),
-    dfn_highrank: $ => bracketed($._dfn_statement_list),
-    highrank: $ => bracketed($._statement_list),
+    dop2_highrank: $ => bracketed(statements($, PREC.dop2)),
+    dop1_highrank: $ => bracketed(statements($, PREC.dop1)),
+    dfn_highrank: $ => bracketed(statements($, PREC.dfn)),
+    highrank: $ => bracketed(statements($, 0)),
 
     dop2_identifier: _ => dop2Identifier,
     dop1_identifier: _ => dop1Identifier,
@@ -192,6 +178,12 @@ function choice4(choices){
 }
 
 function separated(separator, statements, p){
+  if (p == 0) return seq(
+    optional(terminator),
+    statements[0],
+    repeat(seq(terminator, statements[0])),
+    optional(terminator),
+  );
   const _statements = choice4(statements);
   return seq(
     optional(separator),
