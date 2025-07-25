@@ -190,6 +190,7 @@ Vector
 ================
 Namespace
 ================
+()
 (a:1 2 3)
 (a:{⍺})
 ({(a:⍵)})
@@ -208,6 +209,8 @@ Namespace
 ---
 
 (source_file
+  (statement
+    (namespace))
   (statement
     (namespace
       (member

@@ -121,12 +121,10 @@ module.exports = grammar({
     dop2_namespace: $ => parenthesized(members($, DOP2)),
     dop1_namespace: $ => parenthesized(members($, DOP1)),
     dfn_namespace: $ => parenthesized(members($, DFN)),
-    namespace: $ => parenthesized(seq(
-      optional(terminator),
-      $.member,
-      repeat(seq(terminator, $.member)),
-      optional(terminator),
-    )),
+    namespace: $ => parenthesized(optional(choice(
+      members($, 0),
+      terminator,
+    ))),
 
     dop2_member: $ => namespace_member($, DOP2),
     dop1_member: $ => namespace_member($, DOP1),
