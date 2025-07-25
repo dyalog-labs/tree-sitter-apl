@@ -47,28 +47,6 @@ module.exports = grammar({
     dfn_statement: $ => prec.right($._dfn_expression),
     statement: $ => prec.right($._expression),
 
-    _expression: $ => repeat1(choice(
-      $.dop2_definition,
-      $.dop1_definition,
-      $.dfn_definition,
-      $.namespace,
-      $.indices,
-      $.parenthesis,
-      $.highrank,
-      $.identifier,
-      $.string_literal,
-      $.number_literal,
-      $.primitive,
-    )),
-
-    dop2_definition: $ => braced(statements($, DOP2)),
-    dop1_definition: $ => braced(statements($, DOP1)),
-    dfn_definition: $ => braced(optional(choice(
-      statements($, DFN),
-      statements($, 0),
-      terminator,
-    ))),
-
     _dop2_expression: $ => expression($, DOP2, choice(
       $.dop2_namespace,
       $.dop2_indices,
@@ -90,6 +68,27 @@ module.exports = grammar({
       $.dfn_highrank,
       choice($.dop_identifier, $.dfn_identifier),
     )),
+    _expression: $ => repeat1(choice(
+      $.dop2_definition,
+      $.dop1_definition,
+      $.dfn_definition,
+      $.namespace,
+      $.indices,
+      $.parenthesis,
+      $.highrank,
+      $.identifier,
+      $.string_literal,
+      $.number_literal,
+      $.primitive,
+    )),
+
+    dop2_definition: $ => braced(statements($, DOP2)),
+    dop1_definition: $ => braced(statements($, DOP1)),
+    dfn_definition: $ => braced(optional(choice(
+      statements($, DFN),
+      statements($, 0),
+      terminator,
+    ))),
 
     dop2_namespace: $ => parenthesized(members($, DOP2)),
     dop1_namespace: $ => parenthesized(members($, DOP1)),
@@ -126,7 +125,10 @@ module.exports = grammar({
     dop2_indices: $ => bracketed(indices($, DOP2)),
     dop1_indices: $ => bracketed(indices($, DOP1)),
     dfn_indices: $ => bracketed(indices($, DFN)),
-    indices: $ => bracketed(optional(choice(indices($, 0), separator))),
+    indices: $ => bracketed(optional(choice(
+      indices($, 0),
+      separator,
+    ))),
 
     dop2_highrank: $ => bracketed(statements($, DOP2)),
     dop1_highrank: $ => bracketed(statements($, DOP1)),
@@ -176,7 +178,12 @@ function separated(separator, statements, p){
 }
 
 function statements($$, p){
-  const statements = [$$.statement, $$.dfn_statement, $$.dop1_statement, $$.dop2_statement];
+  const statements = [
+    $$.statement,
+    $$.dfn_statement,
+    $$.dop1_statement,
+    $$.dop2_statement,
+  ];
   return separated(terminator, statements, p);
 }
 
@@ -191,12 +198,22 @@ function indices($$, p){
 }
 
 function members($$, p){
-  const members = [$$.member, $$.dfn_member, $$.dop1_member, $$.dop2_member];
+  const members = [
+    $$.member,
+    $$.dfn_member,
+    $$.dop1_member,
+    $$.dop2_member,
+  ];
   return separated(terminator, members, p);
 }
 
 function expression($$, p, simple_expression){
-  const expressions = [$$._expression, $$._dfn_expression, $$._dop1_expression, $$._dop2_expression];
+  const expressions = [
+    $$._expression,
+    $$._dfn_expression,
+    $$._dop1_expression,
+    $$._dop2_expression,
+  ];
   const _expressions = choice4(expressions);
   return prec.right(seq(
     optional(_expressions[p-1]),
