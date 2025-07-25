@@ -21,6 +21,7 @@ const dfnIdentifiers = ['⍵', '⍺', '∇'];
 
 const newline = /\n/;
 const terminator = repeat1(choice(newline, '⋄', '\0'));
+const separator = repeat1(';');
 
 const digits = /[0-9]+/;
 const signed = seq(optional("¯"), digits);
@@ -46,48 +47,74 @@ module.exports = grammar({
   conflicts: $ => [
     [$.dop2_definition, $.dop1_definition, $.dfn_definition],
     [$.dop2_definition, $.dop1_definition],
+    [$.dop2_definition],
+    [$.dop1_definition],
     [$.dop2_parenthesis, $.dop1_parenthesis, $.dfn_parenthesis, $.parenthesis],
     [$.dop2_parenthesis, $.dop1_parenthesis, $.dfn_parenthesis],
     [$.dop2_parenthesis, $.dop1_parenthesis],
+    [$.dop2_parenthesis],
+    [$.dop1_parenthesis],
+    [$.dfn_parenthesis],
     [$.dop1_parenthesis, $.dfn_parenthesis, $.parenthesis],
     [$.dop1_parenthesis, $.dfn_parenthesis],
     [$.dfn_parenthesis, $.parenthesis],
     [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace, $.namespace],
     [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace],
     [$.dop2_namespace, $.dop1_namespace],
+    [$.dop2_namespace],
+    [$.dop1_namespace],
+    [$.dfn_namespace],
     [$.dop1_namespace, $.dfn_namespace, $.namespace],
     [$.dop1_namespace, $.dfn_namespace],
     [$.dfn_namespace, $.namespace],
     [$.dop2_highrank, $.dop1_highrank, $.dfn_highrank, $.highrank],
     [$.dop2_highrank, $.dop1_highrank, $.dfn_highrank],
     [$.dop2_highrank, $.dop1_highrank],
+    [$.dop2_highrank],
+    [$.dop1_highrank],
+    [$.dfn_highrank],
     [$.dop1_highrank, $.dfn_highrank, $.highrank],
     [$.dop1_highrank, $.dfn_highrank],
     [$.dfn_highrank, $.highrank],
+    [$._dop2_expression, $._dop1_expression, $._dfn_expression],
+    [$._dop2_expression, $._dop1_expression],
+    [$._dop2_expression],
+    [$._dop1_expression, $._dfn_expression],
     [$._dop1_expression],
     [$._dfn_expression],
+    [$.dop2_indices, $.dop1_indices, $.dfn_indices, $.indices],
+    [$.dop2_indices, $.dop1_indices, $.dfn_indices],
+    [$.dop2_indices, $.dop1_indices],
+    [$.dop2_indices],
+    [$.dop1_indices, $.dfn_indices, $.indices],
+    [$.dop1_indices, $.dfn_indices],
+    [$.dop1_indices],
+    [$.dfn_indices, $.indices],
+    [$.dfn_indices],
+    [$.dop2_indices, $.dop2_statement],
+    [$.dop1_indices, $.dop1_statement],
+    [$.dfn_indices, $.dfn_statement],
+    [$.indices, $.statement],
   ],
 
   rules: {
     source_file: $ => optional(statements($, 0)),
 
+    statement: $ => $._expression,
+
     _expression: $ => repeat1(choice(
-      $._definition,
-      $.parenthesis,
+      $.dop2_definition,
+      $.dop1_definition,
+      $.dfn_definition,
       $.namespace,
+      $.indices,
+      $.parenthesis,
       $.highrank,
-      // $.indexed,
       $.identifier,
       $.string_literal,
       $.number_literal,
       $.primitive,
     )),
-
-    _definition: $ => choice(
-      $.dop2_definition,
-      $.dop1_definition,
-      $.dfn_definition,
-    ),
 
     dop2_definition: $ => braced(statements($, PREC.dop2)),
     dop1_definition: $ => braced(statements($, PREC.dop1)),
@@ -105,26 +132,38 @@ module.exports = grammar({
     dop2_statement: $ => $._dop2_expression,
     dop1_statement: $ => $._dop1_expression,
     dfn_statement: $ => $._dfn_expression,
-    statement: $ => $._expression,
 
-    _dop2_expression: $ => expression($, PREC.dop2),
-    _dop1_expression: $ => expression($, PREC.dop1),
-    _dfn_expression: $ => expression($, PREC.dfn),
+    _dop2_expression: $ => expression($, PREC.dop2, choice(
+      $.dop2_namespace,
+      $.dop2_indices,
+      $.dop2_parenthesis,
+      $.dop2_highrank,
+      $.dop2_identifier,
+    )),
+    _dop1_expression: $ => expression($, PREC.dop1, choice(
+      $.dop1_namespace,
+      $.dop1_indices,
+      $.dop1_parenthesis,
+      $.dop1_highrank,
+      $.dop1_identifier,
+    )),
+    _dfn_expression: $ => expression($, PREC.dfn, choice(
+      $.dfn_namespace,
+      $.dfn_indices,
+      $.dfn_parenthesis,
+      $.dfn_highrank,
+      choice($.dop_identifier, $.dfn_identifier),
+    )),
 
-    dop2_parenthesis: $ => parenthesized(statements($, PREC.dop2)),
-    dop1_parenthesis: $ => parenthesized(statements($, PREC.dop1)),
-    dfn_parenthesis: $ => parenthesized(statements($, PREC.dfn)),
-    parenthesis: $ => parenthesized(statements($, 0)),
-
-    dop2_namespace: $ => prec(2, parenthesized(members($, PREC.dop2))),
-    dop1_namespace: $ => prec(2, parenthesized(members($, PREC.dop1))),
-    dfn_namespace: $ => prec(2, parenthesized(members($, PREC.dfn))),
-    namespace: $ => prec(2, parenthesized(seq(
+    dop2_namespace: $ => parenthesized(members($, PREC.dop2)),
+    dop1_namespace: $ => parenthesized(members($, PREC.dop1)),
+    dfn_namespace: $ => parenthesized(members($, PREC.dfn)),
+    namespace: $ => parenthesized(seq(
       optional(terminator),
       $.member,
       repeat(seq(terminator, $.member)),
       optional(terminator),
-    ))),
+    )),
 
     dop2_member: $ => namespace_member(
       alias($.identifier, $.dop2_member_identifier),
@@ -143,6 +182,16 @@ module.exports = grammar({
       alias($._expression, $.member_expression),
     ),
 
+    dop2_parenthesis: $ => parenthesized(statements($, PREC.dop2)),
+    dop1_parenthesis: $ => parenthesized(statements($, PREC.dop1)),
+    dfn_parenthesis: $ => parenthesized(statements($, PREC.dfn)),
+    parenthesis: $ => parenthesized(statements($, 0)),
+
+    dop2_indices: $ => bracketed(indices($, PREC.dop2)),
+    dop1_indices: $ => bracketed(indices($, PREC.dop1)),
+    dfn_indices: $ => bracketed(indices($, PREC.dfn)),
+    indices: $ => bracketed(optional(choice(indices($, 0), separator))),
+
     dop2_highrank: $ => bracketed(statements($, PREC.dop2)),
     dop1_highrank: $ => bracketed(statements($, PREC.dop1)),
     dfn_highrank: $ => bracketed(statements($, PREC.dfn)),
@@ -153,16 +202,12 @@ module.exports = grammar({
     dop_identifier: _ => dopIdentifier,
     dfn_identifier: _ => choice(...dfnIdentifiers),
     identifier: _ => /[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/,
-
     string_literal: $ => seq(
       "'",
-      // alias(token.immediate(prec(1, /[^'\n]*(''[^'\n]*)*/)), $.string_literal_content),
       optional(alias(token.immediate(prec(1, /(''|[^'\n])+/)), $.string_literal_content)),
       token.immediate("'"),
     ),
-
     number_literal: _ => token(numberLiteral),
-
     primitive: _ => /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍞⎕⍠⌸⌺⌶⍎⍕→&⍬]/,
 
     comment: _ => token(seq('⍝', /.*/)),
@@ -179,17 +224,17 @@ function choice4(choices){
 
 function separated(separator, statements, p){
   if (p == 0) return seq(
-    optional(terminator),
+    optional(separator),
     statements[0],
-    repeat(seq(terminator, statements[0])),
-    optional(terminator),
+    repeat(seq(separator, statements[0])),
+    optional(separator),
   );
   const _statements = choice4(statements);
   return seq(
     optional(separator),
-    repeat(seq(_statements[p-1], separator)),
-    statements[p],
-    repeat(seq(separator, _statements[p])),
+    repeat(seq(_statements[p], separator)),
+    prec(1, statements[p]),
+    repeat(seq(separator, _statements[p-1])),
     optional(separator),
   );
 }
@@ -199,38 +244,29 @@ function statements($$, p){
   return separated(terminator, statements, p);
 }
 
+function indices($$, p){
+  const expressions = [
+    alias($$._expression, $$.index),
+    alias($$._dfn_expression, $$.dfn_index),
+    alias($$._dop1_expression, $$.dop1_index),
+    alias($$._dop2_expression, $$.dop2_index),
+  ];
+  return separated(separator, expressions, p);
+}
+
 function members($$, p){
   const members = [$$.member, $$.dfn_member, $$.dop1_member, $$.dop2_member];
   return separated(terminator, members, p);
 }
 
-function expression($$, p){
-  const _dop2_expression = choice(
-    $$.dop2_parenthesis,
-    $$.dop2_namespace,
-    $$.dop2_highrank,
-    $$.dop2_identifier,
-  );
-  const _dop1_expression = choice(
-    $$.dop1_parenthesis,
-    $$.dop1_namespace,
-    $$.dop1_highrank,
-    $$.dop1_identifier,
-  );
-  const _dfn_expression = choice(
-    $$.dfn_parenthesis,
-    $$.dfn_namespace,
-    $$.dfn_highrank,
-    choice($$.dop_identifier, $$.dfn_identifier),
-  );
-  const expression = [_dfn_expression, _dop1_expression, _dop2_expression];
+function expression($$, p, simple_expression){
   const expressions = [$$._expression, $$._dfn_expression, $$._dop1_expression, $$._dop2_expression];
   const _expressions = choice4(expressions);
-  return prec(p, seq(
-    optional(_expressions[p-1]),
-    expression[p-1],
+  return seq(
     optional(_expressions[p]),
-  ));
+    prec(1, simple_expression),
+    optional(_expressions[p-1]),
+  );
 }
 
 function braced(content){

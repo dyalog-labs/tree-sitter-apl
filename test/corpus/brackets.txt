@@ -5,8 +5,8 @@ High rank
 [1 b 3⋄]
 [⋄1 2 3]
 [{⍺}⋄]
-[⋄{[⍵]}]
-[{[a⍺[w⋄⍵]e]}]
+[⋄{[⍵⋄]}]
+[{[a⋄⍺[w⋄⍵]e]}⋄]
 {[⋄1]⍺⋄3}
 {⋄1⍺[⋄3]}
 {1⋄[⋄⍺]}
@@ -54,8 +54,9 @@ High rank
         (dfn_definition
           (dfn_statement
             (dfn_highrank
+              (statement
+                (identifier))
               (dfn_statement
-                (identifier)
                 (dfn_identifier)
                 (dfn_highrank
                   (statement

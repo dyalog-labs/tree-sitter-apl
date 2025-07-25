@@ -201,9 +201,10 @@ Namespace
 (a:1 b 3⋄)
 (⋄b:1 2 3)
 (a:{⍺}⋄)
-(⋄{(a:⍵ ⋄ b:⍺⍺)})
 ({(a⍺(a:1⋄b:⍵)e)})
 {(⋄a:1⋄b:2)⍺⋄3}
+{(a:⍺⍺)⍵}
+(⋄{(a:⍵ ⋄ b:⍺⍺)})
 ---
 
 (source_file
@@ -323,21 +324,6 @@ Namespace
       (statement
         (dfn_definition
           (dfn_statement
-            (dfn_namespace
-              (dfn_member
-                (dfn_member_identifier)
-                (dfn_member_expression
-                  (dfn_identifier)))
-              (dfn_member
-                (dfn_member_identifier)
-                (dfn_member_expression
-                  (dfn_identifier)
-                  (dfn_identifier)))))))))
-  (statement
-    (parenthesis
-      (statement
-        (dfn_definition
-          (dfn_statement
             (dfn_parenthesis
               (dfn_statement
                 (identifier)
@@ -366,4 +352,27 @@ Namespace
               (number_literal))))
         (dfn_identifier))
       (statement
-        (number_literal)))))
+        (number_literal))))
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_namespace
+          (dop1_member
+            (dop1_member_identifier)
+            (dop1_member_expression
+              (dop1_identifier))))
+        (dfn_identifier))))
+  (statement
+    (parenthesis
+      (statement
+        (dop1_definition
+          (dop1_statement
+            (dop1_namespace
+              (dfn_member
+                (dfn_member_identifier)
+                (dfn_member_expression
+                  (dfn_identifier)))
+              (dop1_member
+                (dop1_member_identifier)
+                (dop1_member_expression
+                  (dop1_identifier))))))))))
