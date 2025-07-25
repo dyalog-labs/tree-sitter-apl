@@ -231,7 +231,7 @@ Namespace
           (dfn_statement
             (dfn_namespace
               (dfn_member
-                (dfn_member_identifier)
+                (member_identifier)
                 (dfn_member_expression
                   (dfn_identifier)))))))))
   (statement
@@ -241,12 +241,12 @@ Namespace
           (dfn_statement
             (dfn_namespace
               (dfn_member
-                (dfn_member_identifier)
+                (member_identifier)
                 (dfn_member_expression
                   (dfn_identifier)
                   (dfn_namespace
                     (dfn_member
-                      (dfn_member_identifier)
+                      (member_identifier)
                       (dfn_member_expression
                         (dfn_identifier))))
                   (identifier)))))))))
@@ -268,7 +268,7 @@ Namespace
       (dfn_statement
         (dfn_namespace
           (dfn_member
-            (dfn_member_identifier)
+            (member_identifier)
             (dfn_member_expression
               (dfn_identifier)))))))
   (statement
@@ -276,7 +276,7 @@ Namespace
       (dfn_statement
         (dfn_namespace
           (dfn_member
-            (dfn_member_identifier)
+            (member_identifier)
             (dfn_member_expression
               (dfn_identifier)))))
       (statement
@@ -334,7 +334,7 @@ Namespace
                     (member_expression
                       (number_literal)))
                   (dfn_member
-                    (dfn_member_identifier)
+                    (member_identifier)
                     (dfn_member_expression
                       (dfn_identifier))))
                 (identifier))))))))
@@ -358,7 +358,7 @@ Namespace
       (dop1_statement
         (dop1_namespace
           (dop1_member
-            (dop1_member_identifier)
+            (member_identifier)
             (dop1_member_expression
               (dop1_identifier))))
         (dfn_identifier))))
@@ -369,10 +369,10 @@ Namespace
           (dop1_statement
             (dop1_namespace
               (dfn_member
-                (dfn_member_identifier)
+                (member_identifier)
                 (dfn_member_expression
                   (dfn_identifier)))
               (dop1_member
-                (dop1_member_identifier)
+                (member_identifier)
                 (dop1_member_expression
                   (dop1_identifier))))))))))

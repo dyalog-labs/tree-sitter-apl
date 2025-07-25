@@ -172,3 +172,136 @@ Dyadic Operator
         (dop2_identifier))
       (statement
         (number_literal)))))
+
+================
+Guards
+================
+{a:0}
+{a:1 2 3}
+{a:1 b 3⋄b:2}
+{⋄a:1 2 3}
+{⋄a:1⋄b:2⋄3}
+{a:⍺}
+{a:⍺⍺}
+{a:⍵⍵}
+{a:⍺w⋄⍵e}
+{⋄1⋄a:⍺⋄3}
+{a:1⋄⍺}
+{⍺⋄a:1}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)))))
+  (statement
+    (dfn_definition
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)
+          (number_literal)
+          (number_literal)))))
+  (statement
+    (dfn_definition
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)
+          (identifier)
+          (number_literal)))
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)))))
+  (statement
+    (dfn_definition
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)
+          (number_literal)
+          (number_literal)))))
+  (statement
+    (dfn_definition
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)))
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)))
+      (statement
+        (number_literal))))
+  (statement
+    (dfn_definition
+      (dfn_guard
+        (guard_condition
+          (identifier))
+        (dfn_guard_expression
+          (dfn_identifier)))))
+  (statement
+    (dop1_definition
+      (dop1_guard
+        (guard_condition
+          (identifier))
+        (dop1_guard_expression
+          (dop1_identifier)))))
+  (statement
+    (dop2_definition
+      (dop2_guard
+        (guard_condition
+          (identifier))
+        (dop2_guard_expression
+          (dop2_identifier)))))
+  (statement
+    (dfn_definition
+      (dfn_guard
+        (guard_condition
+          (identifier))
+        (dfn_guard_expression
+          (dfn_identifier)
+          (identifier)))
+      (dfn_statement
+        (dfn_identifier)
+        (identifier))))
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal))
+      (dfn_guard
+        (guard_condition
+          (identifier))
+        (dfn_guard_expression
+          (dfn_identifier)))
+      (statement
+        (number_literal))))
+  (statement
+    (dfn_definition
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal)))
+      (dfn_statement
+        (dfn_identifier))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_identifier))
+      (guard
+        (guard_condition
+          (identifier))
+        (guard_expression
+          (number_literal))))))

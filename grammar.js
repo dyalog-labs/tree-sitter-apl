@@ -42,10 +42,22 @@ module.exports = grammar({
   rules: {
     source_file: $ => optional(statements($, 0)),
 
-    dop2_statement: $ => prec.right($._dop2_expression),
-    dop1_statement: $ => prec.right($._dop1_expression),
-    dfn_statement: $ => prec.right($._dfn_expression),
-    statement: $ => prec.right($._expression),
+    _dop2_statement: $ => prec.right(choice(
+      $.dop2_guard,
+      alias($._dop2_expression, $.dop2_statement),
+    )),
+    _dop1_statement: $ => prec.right(choice(
+      $.dop1_guard,
+      alias($._dop1_expression, $.dop1_statement),
+    )),
+    _dfn_statement: $ => prec.right(choice(
+      $.dfn_guard,
+      alias($._dfn_expression, $.dfn_statement),
+    )),
+    _statement: $ => prec.right(choice(
+      $.guard,
+      alias($._expression, $.statement),
+    )),
 
     _dop2_expression: $ => expression($, DOP2, choice(
       $.dop2_namespace,
@@ -68,7 +80,7 @@ module.exports = grammar({
       $.dfn_highrank,
       choice($.dop_identifier, $.dfn_identifier),
     )),
-    _expression: $ => repeat1(choice(
+    _expression: $ => repeat1(prec.right(choice(
       $.dop2_definition,
       $.dop1_definition,
       $.dfn_definition,
@@ -80,7 +92,12 @@ module.exports = grammar({
       $.string_literal,
       $.number_literal,
       $.primitive,
-    )),
+    ))),
+
+    dop2_guard: $ => guard_expression($, DOP2),
+    dop1_guard: $ => guard_expression($, DOP1),
+    dfn_guard: $ => guard_expression($, DFN),
+    guard: $ => guard_expression($, 0),
 
     dop2_definition: $ => braced(statements($, DOP2)),
     dop1_definition: $ => braced(statements($, DOP1)),
@@ -100,22 +117,10 @@ module.exports = grammar({
       optional(terminator),
     )),
 
-    dop2_member: $ => namespace_member(
-      alias($.identifier, $.dop2_member_identifier),
-      alias($._dop2_expression, $.dop2_member_expression),
-    ),
-    dop1_member: $ => namespace_member(
-      alias($.identifier, $.dop1_member_identifier),
-      alias($._dop1_expression, $.dop1_member_expression),
-    ),
-    dfn_member: $ => namespace_member(
-      alias($.identifier, $.dfn_member_identifier),
-      alias($._dfn_expression, $.dfn_member_expression),
-    ),
-    member: $ => namespace_member(
-      alias($.identifier, $.member_identifier),
-      alias($._expression, $.member_expression),
-    ),
+    dop2_member: $ => namespace_member($, DOP2),
+    dop1_member: $ => namespace_member($, DOP1),
+    dfn_member: $ => namespace_member($, DFN),
+    member: $ => namespace_member($, 0),
 
     dop2_parenthesis: $ => parenthesized(statements($, DOP2)),
     dop1_parenthesis: $ => parenthesized(statements($, DOP1)),
@@ -161,12 +166,13 @@ function choice4(choices){
 }
 
 function separated(separator, statements, p){
-  if (p == 0) return seq(
-    optional(separator),
-    statements[0],
-    repeat(seq(separator, statements[0])),
-    optional(separator),
-  );
+  if (p == 0)
+    return seq(
+      optional(separator),
+      statements[0],
+      repeat(seq(separator, statements[0])),
+      optional(separator),
+    );
   const _statements = choice4(statements);
   return seq(
     optional(separator),
@@ -179,10 +185,10 @@ function separated(separator, statements, p){
 
 function statements($$, p){
   const statements = [
-    $$.statement,
-    $$.dfn_statement,
-    $$.dop1_statement,
-    $$.dop2_statement,
+    $$._statement,
+    $$._dfn_statement,
+    $$._dop1_statement,
+    $$._dop2_statement,
   ];
   return separated(terminator, statements, p);
 }
@@ -222,6 +228,44 @@ function expression($$, p, simple_expression){
   ));
 }
 
+function guard_expression($$, p){
+  const expressions = [
+    alias($$._expression, $$.guard_expression),
+    alias($$._dfn_expression, $$.dfn_guard_expression),
+    alias($$._dop1_expression, $$.dop1_guard_expression),
+    alias($$._dop2_expression, $$.dop2_guard_expression),
+  ];
+  const conditions = [
+    alias($$._expression, $$.guard_condition),
+    alias($$._dfn_expression, $$.dfn_guard_condition),
+    alias($$._dop1_expression, $$.dop1_guard_condition),
+    alias($$._dop2_expression, $$.dop2_guard_condition),
+  ];
+  const colon = choice('::', ':');
+  if (p == 0)
+    return seq(conditions[0], colon, expressions[0]);
+  const _expressions = choice4(expressions);
+  const _conditions = choice4(conditions);
+  return choice(
+    seq(_conditions[p-1], colon, expressions[p]),
+    seq(conditions[p], colon, _expressions[p]),
+  );
+}
+
+function namespace_member($$, p){
+  const expressions = [
+    alias($$._expression, $$.member_expression),
+    alias($$._dfn_expression, $$.dfn_member_expression),
+    alias($$._dop1_expression, $$.dop1_member_expression),
+    alias($$._dop2_expression, $$.dop2_member_expression),
+  ];
+  return seq(
+    alias($$.identifier, $$.member_identifier),
+    ':',
+    expressions[p],
+  );
+}
+
 function braced(content){
   return seq('{', content, '}');
 }
@@ -232,8 +276,4 @@ function parenthesized(content){
 
 function bracketed(content){
   return seq('[', content, ']');
-}
-
-function namespace_member(identifier, expression){
-  return seq(identifier, ':', expression);
 }
