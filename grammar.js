@@ -16,10 +16,12 @@ const dop1Identifier = '⍺⍺';
 const dopIdentifier = '∇∇';
 const dfnIdentifiers = ['⍵', '⍺', '∇'];
 
-
 const newline = /\n/;
 const terminator = repeat1(choice(newline, '⋄', '\0'));
 const separator = repeat1(';');
+
+const colon = ':';
+const colons = '::';
 
 const digits = /[0-9]+/;
 const signed = seq(optional("¯"), digits);
@@ -43,18 +45,22 @@ module.exports = grammar({
     source_file: $ => optional(statements($, 0)),
 
     _dop2_statement: $ => prec.right(choice(
+      $.dop2_error_guard,
       $.dop2_guard,
       alias($._dop2_expression, $.dop2_statement),
     )),
     _dop1_statement: $ => prec.right(choice(
+      $.dop1_error_guard,
       $.dop1_guard,
       alias($._dop1_expression, $.dop1_statement),
     )),
     _dfn_statement: $ => prec.right(choice(
+      $.dfn_error_guard,
       $.dfn_guard,
       alias($._dfn_expression, $.dfn_statement),
     )),
     _statement: $ => prec.right(choice(
+      $.error_guard,
       $.guard,
       alias($._expression, $.statement),
     )),
@@ -93,6 +99,11 @@ module.exports = grammar({
       $.number_literal,
       $.primitive,
     ))),
+
+    dop2_error_guard: $ => error_guard_expression($, DOP2),
+    dop1_error_guard: $ => error_guard_expression($, DOP1),
+    dfn_error_guard: $ => error_guard_expression($, DFN),
+    error_guard: $ => error_guard_expression($, 0),
 
     dop2_guard: $ => guard_expression($, DOP2),
     dop1_guard: $ => guard_expression($, DOP1),
@@ -165,8 +176,8 @@ function choice4(choices){
   return [c0, c1, c2, c3];
 }
 
-function separated(separator, statements, p){
-  if (p == 0)
+function separated(separator, statements, d){
+  if (d == 0)
     return seq(
       optional(separator),
       statements[0],
@@ -176,44 +187,44 @@ function separated(separator, statements, p){
   const _statements = choice4(statements);
   return seq(
     optional(separator),
-    optional(seq(_statements[p-1], separator)),
-    prec(1, statements[p]),
-    repeat(seq(separator, _statements[p])),
+    optional(seq(_statements[d-1], separator)),
+    prec(1, statements[d]),
+    repeat(seq(separator, _statements[d])),
     optional(separator),
   );
 }
 
-function statements($$, p){
+function statements($$, d){
   const statements = [
     $$._statement,
     $$._dfn_statement,
     $$._dop1_statement,
     $$._dop2_statement,
   ];
-  return separated(terminator, statements, p);
+  return separated(terminator, statements, d);
 }
 
-function indices($$, p){
+function indices($$, d){
   const expressions = [
     alias($$._expression, $$.index),
     alias($$._dfn_expression, $$.dfn_index),
     alias($$._dop1_expression, $$.dop1_index),
     alias($$._dop2_expression, $$.dop2_index),
   ];
-  return separated(separator, expressions, p);
+  return separated(separator, expressions, d);
 }
 
-function members($$, p){
+function members($$, d){
   const members = [
     $$.member,
     $$.dfn_member,
     $$.dop1_member,
     $$.dop2_member,
   ];
-  return separated(terminator, members, p);
+  return separated(terminator, members, d);
 }
 
-function expression($$, p, simple_expression){
+function expression($$, d, simple_expression){
   const expressions = [
     $$._expression,
     $$._dfn_expression,
@@ -222,13 +233,24 @@ function expression($$, p, simple_expression){
   ];
   const _expressions = choice4(expressions);
   return prec.right(seq(
-    optional(_expressions[p-1]),
+    optional(_expressions[d-1]),
     prec(1, simple_expression),
-    optional(_expressions[p]),
+    optional(_expressions[d]),
   ));
 }
 
-function guard_expression($$, p){
+function _guard_expression($$, conditions, colon, expressions, d){
+  if (d == 0)
+    return seq(conditions[0], colon, expressions[0]);
+  const _expressions = choice4(expressions);
+  const _conditions = choice4(conditions);
+  return choice(
+    seq(_conditions[d-1], colon, expressions[d]),
+    seq(conditions[d], colon, _expressions[d]),
+  );
+}
+
+function guard_expression($$, d){
   const expressions = [
     alias($$._expression, $$.guard_expression),
     alias($$._dfn_expression, $$.dfn_guard_expression),
@@ -241,18 +263,26 @@ function guard_expression($$, p){
     alias($$._dop1_expression, $$.dop1_guard_condition),
     alias($$._dop2_expression, $$.dop2_guard_condition),
   ];
-  const colon = choice('::', ':');
-  if (p == 0)
-    return seq(conditions[0], colon, expressions[0]);
-  const _expressions = choice4(expressions);
-  const _conditions = choice4(conditions);
-  return choice(
-    seq(_conditions[p-1], colon, expressions[p]),
-    seq(conditions[p], colon, _expressions[p]),
-  );
+  return _guard_expression($$, conditions, colon, expressions, d);
 }
 
-function namespace_member($$, p){
+function error_guard_expression($$, d){
+  const expressions = [
+    alias($$._expression, $$.error_guard_expression),
+    alias($$._dfn_expression, $$.dfn_error_guard_expression),
+    alias($$._dop1_expression, $$.dop1_error_guard_expression),
+    alias($$._dop2_expression, $$.dop2_error_guard_expression),
+  ];
+  const conditions = [
+    alias($$._expression, $$.error_guard_condition),
+    alias($$._dfn_expression, $$.dfn_error_guard_condition),
+    alias($$._dop1_expression, $$.dop1_error_guard_condition),
+    alias($$._dop2_expression, $$.dop2_error_guard_condition),
+  ];
+  return _guard_expression($$, conditions, colons, expressions, d);
+}
+
+function namespace_member($$, d){
   const expressions = [
     alias($$._expression, $$.member_expression),
     alias($$._dfn_expression, $$.dfn_member_expression),
@@ -262,7 +292,7 @@ function namespace_member($$, p){
   return seq(
     alias($$.identifier, $$.member_identifier),
     ':',
-    expressions[p],
+    expressions[d],
   );
 }
 

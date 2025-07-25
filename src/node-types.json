@@ -8,6 +8,10 @@
       "required": false,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
@@ -16,11 +20,200 @@
           "named": true
         },
         {
+          "type": "error_guard",
+          "named": true
+        },
+        {
           "type": "guard",
           "named": true
         },
         {
           "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_error_guard",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "dfn_error_guard_expression",
+          "named": true
+        },
+        {
+          "type": "error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "error_guard_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_error_guard_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_indices",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dfn_error_guard_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_indices",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -220,11 +413,19 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
         {
           "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "error_guard",
           "named": true
         },
         {
@@ -467,11 +668,19 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
         {
           "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "error_guard",
           "named": true
         },
         {
@@ -573,11 +782,19 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
         {
           "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard",
           "named": true
         },
         {
@@ -589,11 +806,248 @@
           "named": true
         },
         {
+          "type": "error_guard",
+          "named": true
+        },
+        {
           "type": "guard",
           "named": true
         },
         {
           "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_error_guard",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "dfn_error_guard_expression",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard_expression",
+          "named": true
+        },
+        {
+          "type": "error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "error_guard_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_error_guard_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_indices",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_indices",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop1_error_guard_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_indices",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_indices",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -841,6 +1295,10 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
@@ -849,11 +1307,19 @@
           "named": true
         },
         {
+          "type": "dop1_error_guard",
+          "named": true
+        },
+        {
           "type": "dop1_guard",
           "named": true
         },
         {
           "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "error_guard",
           "named": true
         },
         {
@@ -1139,6 +1605,10 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
@@ -1147,11 +1617,19 @@
           "named": true
         },
         {
+          "type": "dop1_error_guard",
+          "named": true
+        },
+        {
           "type": "dop1_guard",
           "named": true
         },
         {
           "type": "dop1_statement",
+          "named": true
+        },
+        {
+          "type": "error_guard",
           "named": true
         },
         {
@@ -1273,11 +1751,19 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
         {
           "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard",
           "named": true
         },
         {
@@ -1289,6 +1775,10 @@
           "named": true
         },
         {
+          "type": "dop2_error_guard",
+          "named": true
+        },
+        {
           "type": "dop2_guard",
           "named": true
         },
@@ -1297,11 +1787,296 @@
           "named": true
         },
         {
+          "type": "error_guard",
+          "named": true
+        },
+        {
           "type": "guard",
           "named": true
         },
         {
           "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_error_guard",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "dfn_error_guard_expression",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard_expression",
+          "named": true
+        },
+        {
+          "type": "dop2_error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "dop2_error_guard_expression",
+          "named": true
+        },
+        {
+          "type": "error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "error_guard_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_error_guard_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_indices",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_indices",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_highrank",
+          "named": true
+        },
+        {
+          "type": "dop2_identifier",
+          "named": true
+        },
+        {
+          "type": "dop2_indices",
+          "named": true
+        },
+        {
+          "type": "dop2_namespace",
+          "named": true
+        },
+        {
+          "type": "dop2_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "dop2_error_guard_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dfn_highrank",
+          "named": true
+        },
+        {
+          "type": "dfn_identifier",
+          "named": true
+        },
+        {
+          "type": "dfn_indices",
+          "named": true
+        },
+        {
+          "type": "dfn_namespace",
+          "named": true
+        },
+        {
+          "type": "dfn_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_highrank",
+          "named": true
+        },
+        {
+          "type": "dop1_identifier",
+          "named": true
+        },
+        {
+          "type": "dop1_indices",
+          "named": true
+        },
+        {
+          "type": "dop1_namespace",
+          "named": true
+        },
+        {
+          "type": "dop1_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_highrank",
+          "named": true
+        },
+        {
+          "type": "dop2_identifier",
+          "named": true
+        },
+        {
+          "type": "dop2_indices",
+          "named": true
+        },
+        {
+          "type": "dop2_namespace",
+          "named": true
+        },
+        {
+          "type": "dop2_parenthesis",
+          "named": true
+        },
+        {
+          "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -1597,11 +2372,19 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
         {
           "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard",
           "named": true
         },
         {
@@ -1613,11 +2396,19 @@
           "named": true
         },
         {
+          "type": "dop2_error_guard",
+          "named": true
+        },
+        {
           "type": "dop2_guard",
           "named": true
         },
         {
           "type": "dop2_statement",
+          "named": true
+        },
+        {
+          "type": "error_guard",
           "named": true
         },
         {
@@ -1951,11 +2742,19 @@
       "required": true,
       "types": [
         {
+          "type": "dfn_error_guard",
+          "named": true
+        },
+        {
           "type": "dfn_guard",
           "named": true
         },
         {
           "type": "dfn_statement",
+          "named": true
+        },
+        {
+          "type": "dop1_error_guard",
           "named": true
         },
         {
@@ -1967,11 +2766,19 @@
           "named": true
         },
         {
+          "type": "dop2_error_guard",
+          "named": true
+        },
+        {
           "type": "dop2_guard",
           "named": true
         },
         {
           "type": "dop2_statement",
+          "named": true
+        },
+        {
+          "type": "error_guard",
           "named": true
         },
         {
@@ -2067,6 +2874,135 @@
         },
         {
           "type": "dop_identifier",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "error_guard",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "error_guard_condition",
+          "named": true
+        },
+        {
+          "type": "error_guard_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "error_guard_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "error_guard_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dfn_definition",
+          "named": true
+        },
+        {
+          "type": "dop1_definition",
+          "named": true
+        },
+        {
+          "type": "dop2_definition",
           "named": true
         },
         {
@@ -2241,6 +3177,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "error_guard",
+          "named": true
+        },
         {
           "type": "guard",
           "named": true
@@ -2420,6 +3360,10 @@
       "required": true,
       "types": [
         {
+          "type": "error_guard",
+          "named": true
+        },
+        {
           "type": "guard",
           "named": true
         },
@@ -2439,6 +3383,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "error_guard",
+          "named": true
+        },
         {
           "type": "guard",
           "named": true
