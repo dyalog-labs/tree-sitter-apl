@@ -97,3 +97,132 @@ High rank
             (dfn_identifier))))
       (statement
         (number_literal)))))
+
+================
+Indices
+================
+a[]
+a[1]
+a[;]
+a[1;]
+a[;1]
+a[;1;]
+a[1;;2]
+a[1;2;]
+a[;1;2]
+a[;1;2;]
+a[1;2;3]
+{
+    ⍺[]
+    a[⍵]
+    ⍺[;]
+    a[⍺;]
+    a[;⍵]
+    a[⍺;;⍵]
+    a[⍺;2;⍵]
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (indices))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))
+      (index
+        (number_literal))))
+  (statement
+    (identifier)
+    (indices
+      (index
+        (number_literal))
+      (index
+        (number_literal))
+      (index
+        (number_literal))))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_identifier)
+        (indices))
+      (dfn_statement
+        (identifier)
+        (dfn_indices
+          (dfn_index
+            (dfn_identifier))))
+      (dfn_statement
+        (dfn_identifier)
+        (indices))
+      (dfn_statement
+        (identifier)
+        (dfn_indices
+          (dfn_index
+            (dfn_identifier))))
+      (dfn_statement
+        (identifier)
+        (dfn_indices
+          (dfn_index
+            (dfn_identifier))))
+      (dfn_statement
+        (identifier)
+        (dfn_indices
+          (dfn_index
+            (dfn_identifier))
+          (dfn_index
+            (dfn_identifier))))
+      (dfn_statement
+        (identifier)
+        (dfn_indices
+          (dfn_index
+            (dfn_identifier))
+          (index
+            (number_literal))
+          (dfn_index
+            (dfn_identifier)))))))
