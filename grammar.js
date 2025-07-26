@@ -100,6 +100,14 @@ module.exports = grammar({
       $.primitive,
     ))),
 
+    dop2_definition: $ => braced(statements($, DOP2)),
+    dop1_definition: $ => braced(statements($, DOP1)),
+    dfn_definition: $ => braced(optional(choice(
+      statements($, DFN),
+      statements($, 0),
+      terminator,
+    ))),
+
     dop2_error_guard: $ => error_guard_expression($, DOP2),
     dop1_error_guard: $ => error_guard_expression($, DOP1),
     dfn_error_guard: $ => error_guard_expression($, DFN),
@@ -109,14 +117,6 @@ module.exports = grammar({
     dop1_guard: $ => guard_expression($, DOP1),
     dfn_guard: $ => guard_expression($, DFN),
     guard: $ => guard_expression($, 0),
-
-    dop2_definition: $ => braced(statements($, DOP2)),
-    dop1_definition: $ => braced(statements($, DOP1)),
-    dfn_definition: $ => braced(optional(choice(
-      statements($, DFN),
-      statements($, 0),
-      terminator,
-    ))),
 
     dop2_namespace: $ => parenthesized(members($, DOP2)),
     dop1_namespace: $ => parenthesized(members($, DOP1)),
@@ -166,6 +166,25 @@ module.exports = grammar({
   },
 });
 
+function def(name) {
+  const prefixes = ['dfn', 'dop1', 'dop2'];
+  const private = name[0] == '_' ? '_' : '';
+  const base = name[0] == '_' ? name : '_' + name;
+  return $ => {
+    const rules = [$[name]];
+    for (const prefix of prefixes) {
+      rules.push($[private + prefix + base]);
+    }
+    return rules;
+  };
+}
+
+function aliased($$, name){
+  const expressions = def('_expression')($$);
+  const aliases = def(name)($$);
+  return expressions.map((elem, i) => alias(elem, aliases[i]));
+}
+
 function choice4(choices){
   const c0 = choices[0];
   const c1 = choice(choices[1], c0);
@@ -193,43 +212,20 @@ function separated(separator, statements, d){
 }
 
 function statements($$, d){
-  const statements = [
-    $$._statement,
-    $$._dfn_statement,
-    $$._dop1_statement,
-    $$._dop2_statement,
-  ];
-  return separated(terminator, statements, d);
+  return separated(terminator, def('_statement')($$), d);
 }
 
 function indices($$, d){
-  const expressions = [
-    alias($$._expression, $$.index),
-    alias($$._dfn_expression, $$.dfn_index),
-    alias($$._dop1_expression, $$.dop1_index),
-    alias($$._dop2_expression, $$.dop2_index),
-  ];
-  return separated(separator, expressions, d);
+  const indices = aliased($$, 'index');
+  return separated(separator, indices, d);
 }
 
 function members($$, d){
-  const members = [
-    $$.member,
-    $$.dfn_member,
-    $$.dop1_member,
-    $$.dop2_member,
-  ];
-  return separated(terminator, members, d);
+  return separated(terminator, def('member')($$), d);
 }
 
 function expression($$, d, simple_expression){
-  const expressions = [
-    $$._expression,
-    $$._dfn_expression,
-    $$._dop1_expression,
-    $$._dop2_expression,
-  ];
-  const _expressions = choice4(expressions);
+  const _expressions = choice4(def('_expression')($$));
   return prec.right(seq(
     optional(_expressions[d-1]),
     prec(1, simple_expression),
@@ -249,49 +245,21 @@ function _guard_expression($$, conditions, colon, expressions, d){
 }
 
 function guard_expression($$, d){
-  const expressions = [
-    alias($$._expression, $$.guard_expression),
-    alias($$._dfn_expression, $$.dfn_guard_expression),
-    alias($$._dop1_expression, $$.dop1_guard_expression),
-    alias($$._dop2_expression, $$.dop2_guard_expression),
-  ];
-  const conditions = [
-    alias($$._expression, $$.guard_condition),
-    alias($$._dfn_expression, $$.dfn_guard_condition),
-    alias($$._dop1_expression, $$.dop1_guard_condition),
-    alias($$._dop2_expression, $$.dop2_guard_condition),
-  ];
+  const conditions = aliased($$, 'guard_condition');
+  const expressions = aliased($$, 'guard_expression');
   return _guard_expression($$, conditions, colon, expressions, d);
 }
 
 function error_guard_expression($$, d){
-  const expressions = [
-    alias($$._expression, $$.error_guard_expression),
-    alias($$._dfn_expression, $$.dfn_error_guard_expression),
-    alias($$._dop1_expression, $$.dop1_error_guard_expression),
-    alias($$._dop2_expression, $$.dop2_error_guard_expression),
-  ];
-  const conditions = [
-    alias($$._expression, $$.error_guard_condition),
-    alias($$._dfn_expression, $$.dfn_error_guard_condition),
-    alias($$._dop1_expression, $$.dop1_error_guard_condition),
-    alias($$._dop2_expression, $$.dop2_error_guard_condition),
-  ];
+  const conditions = aliased($$, 'error_guard_condition');
+  const expressions = aliased($$, 'error_guard_expression');
   return _guard_expression($$, conditions, colons, expressions, d);
 }
 
 function namespace_member($$, d){
-  const expressions = [
-    alias($$._expression, $$.member_expression),
-    alias($$._dfn_expression, $$.dfn_member_expression),
-    alias($$._dop1_expression, $$.dop1_member_expression),
-    alias($$._dop2_expression, $$.dop2_member_expression),
-  ];
-  return seq(
-    alias($$.identifier, $$.member_identifier),
-    ':',
-    expressions[d],
-  );
+  const members = aliased($$, 'member_expression');
+  const identifier = alias($$.identifier, $$.member_identifier);
+  return seq(identifier, colon, members[d]);
 }
 
 function braced(content){
