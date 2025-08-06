@@ -533,11 +533,19 @@
             },
             {
               "type": "SYMBOL",
+              "name": "system_command"
+            },
+            {
+              "type": "SYMBOL",
               "name": "primitive"
             }
           ]
         }
       }
+    },
+    "system_command": {
+      "type": "SYMBOL",
+      "name": "_system_command"
     },
     "dop2_definition": {
       "type": "SEQ",
@@ -4476,7 +4484,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*"
+      "value": "⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*"
     },
     "string_literal": {
       "type": "SEQ",
@@ -4757,7 +4765,7 @@
     },
     "primitive": {
       "type": "PATTERN",
-      "value": "[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍞⎕⍠⌸⌺⌶⍎⍕→&⍬]"
+      "value": "[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]"
     },
     "comment": {
       "type": "TOKEN",
@@ -4788,7 +4796,16 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_system_command"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_invalid_system_command"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}

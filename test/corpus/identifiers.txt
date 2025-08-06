@@ -1,0 +1,59 @@
+================
+Identifiers
+================
+a b ab a1b 1ab 1e3e
+ab'cde'fg
+{∆∇∆}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (number_literal)
+    (identifier)
+    (number_literal)
+    (identifier))
+  (statement
+    (identifier)
+    (string_literal
+      (string_literal_content))
+    (identifier))
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (identifier)
+        (dfn_identifier)
+        (identifier)))))
+
+================
+Quads
+================
+⎕A ⋄ ⎕csv ⋄ ⎕CSV ⋄ ⎕WsId ⋄ ⎕nop
+⎕A⎕A ⋄ ⎕ A ⋄ ⎕⎕A⎕
+⎕AA
+---
+
+(source_file
+  (statement
+    (system_command))
+  (statement
+    (system_command))
+  (statement
+    (system_command))
+  (statement
+    (system_command))
+  (ERROR)
+  (statement
+    (system_command)
+    (system_command))
+  (statement
+    (identifier)
+    (identifier))
+  (statement
+    (identifier)
+    (system_command)
+    (identifier))
+  (ERROR))

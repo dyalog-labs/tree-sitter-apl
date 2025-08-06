@@ -34,9 +34,9 @@ const numberLiteral = seq(real, optional(imaginary));
 
 const stringContentLiteral = /(''|[^'\n])+/;
 
-const identifier = /[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
+const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
-const primitive = /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍞⎕⍠⌸⌺⌶⍎⍕→&⍬]/;
+const primitive = /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
 
 const definitions = [ 'dop2', 'dop1', 'dfn'];
 const literals = ['string', 'number'];
@@ -58,6 +58,11 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 
+  externals: $ => [
+    $._system_command,
+    $._invalid_system_command,
+  ],
+
   rules: {
     source_file: $ => optional(statements($, 0)),
 
@@ -72,8 +77,11 @@ module.exports = grammar({
     _expression: $ => expression($, 0,
       ...definitions.map(d => $[d + '_definition']),
       ...literals.map(l => $[l + '_literal']),
+      $.system_command,
       $.primitive,
     ),
+
+    system_command: $ => $._system_command,
 
     dop2_definition: $ => seq('{', statements($, DOP2), '}'),
     dop1_definition: $ => seq('{', statements($, DOP1), '}'),
@@ -129,7 +137,7 @@ module.exports = grammar({
     dop_identifier: _ => dopIdentifier,
     dfn_identifier: _ => choice(...dfnIdentifiers),
     identifier: _ => identifier,
-    
+
     string_literal: $ => seq(
       "'",
       prec(1, optional($.string_literal_content)),
