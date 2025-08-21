@@ -429,23 +429,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_error_guard",
-          "named": true
-        },
-        {
-          "type": "dfn_guard",
-          "named": true
-        },
-        {
           "type": "dfn_statement",
-          "named": true
-        },
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
           "named": true
         },
         {
@@ -692,23 +676,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_error_guard",
-          "named": true
-        },
-        {
-          "type": "dfn_guard",
-          "named": true
-        },
-        {
           "type": "dfn_statement",
-          "named": true
-        },
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
           "named": true
         },
         {
@@ -1339,35 +1307,11 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_error_guard",
-          "named": true
-        },
-        {
-          "type": "dfn_guard",
-          "named": true
-        },
-        {
           "type": "dfn_statement",
           "named": true
         },
         {
-          "type": "dop1_error_guard",
-          "named": true
-        },
-        {
-          "type": "dop1_guard",
-          "named": true
-        },
-        {
           "type": "dop1_statement",
-          "named": true
-        },
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
           "named": true
         },
         {
@@ -1657,35 +1601,11 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_error_guard",
-          "named": true
-        },
-        {
-          "type": "dfn_guard",
-          "named": true
-        },
-        {
           "type": "dfn_statement",
           "named": true
         },
         {
-          "type": "dop1_error_guard",
-          "named": true
-        },
-        {
-          "type": "dop1_guard",
-          "named": true
-        },
-        {
           "type": "dop1_statement",
-          "named": true
-        },
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
           "named": true
         },
         {
@@ -2444,23 +2364,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_error_guard",
-          "named": true
-        },
-        {
-          "type": "dfn_guard",
-          "named": true
-        },
-        {
           "type": "dfn_statement",
-          "named": true
-        },
-        {
-          "type": "dop1_error_guard",
-          "named": true
-        },
-        {
-          "type": "dop1_guard",
           "named": true
         },
         {
@@ -2468,23 +2372,7 @@
           "named": true
         },
         {
-          "type": "dop2_error_guard",
-          "named": true
-        },
-        {
-          "type": "dop2_guard",
-          "named": true
-        },
-        {
           "type": "dop2_statement",
-          "named": true
-        },
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
           "named": true
         },
         {
@@ -2822,23 +2710,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_error_guard",
-          "named": true
-        },
-        {
-          "type": "dfn_guard",
-          "named": true
-        },
-        {
           "type": "dfn_statement",
-          "named": true
-        },
-        {
-          "type": "dop1_error_guard",
-          "named": true
-        },
-        {
-          "type": "dop1_guard",
           "named": true
         },
         {
@@ -2846,23 +2718,7 @@
           "named": true
         },
         {
-          "type": "dop2_error_guard",
-          "named": true
-        },
-        {
-          "type": "dop2_guard",
-          "named": true
-        },
-        {
           "type": "dop2_statement",
-          "named": true
-        },
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
           "named": true
         },
         {
@@ -3275,16 +3131,8 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
-          "named": true
-        },
         {
           "type": "statement",
           "named": true
@@ -3468,14 +3316,6 @@
       "required": true,
       "types": [
         {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
-          "named": true
-        },
-        {
           "type": "statement",
           "named": true
         }
@@ -3491,14 +3331,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "error_guard",
-          "named": true
-        },
-        {
-          "type": "guard",
-          "named": true
-        },
         {
           "type": "statement",
           "named": true

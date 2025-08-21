@@ -63,8 +63,59 @@ module.exports = grammar({
     $._invalid_system_command,
   ],
 
+  conflicts: $ => [
+    [$.dop2_definition, $.dop1_definition, $.dfn_definition],
+    [$.dop2_definition, $.dop1_definition],
+    [$.dop2_definition],
+    [$.dop1_definition],
+    [$.dfn_definition],
+    [$.dop2_parenthesis, $.dop1_parenthesis, $.dfn_parenthesis, $.parenthesis],
+    [$.dop1_parenthesis, $.dfn_parenthesis, $.parenthesis],
+    [$.dfn_parenthesis, $.parenthesis],
+    [$.dop2_parenthesis, $.dop1_parenthesis, $.dfn_parenthesis],
+    [$.dop2_parenthesis, $.dop1_parenthesis],
+    [$.dop2_parenthesis],
+    [$.dop1_parenthesis],
+    [$.dfn_parenthesis],
+    [$.dop1_parenthesis, $.dfn_parenthesis],
+    [$.dop2_highrank, $.dop1_highrank, $.dfn_highrank, $.highrank],
+    [$.dop1_highrank, $.dfn_highrank, $.highrank],
+    [$.dfn_highrank, $.highrank],
+    [$.dop2_highrank, $.dop1_highrank, $.dfn_highrank],
+    [$.dop2_highrank, $.dop1_highrank],
+    [$.dop2_highrank],
+    [$.dop2_highrank, $.dop2_indices],
+    [$.dop1_highrank, $.dop1_indices],
+    [$.dfn_highrank, $.dfn_indices],
+    [$.dop1_highrank],
+    [$.dfn_highrank],
+    [$.dop1_highrank, $.dfn_highrank],
+    [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace, $.namespace],
+    [$.dop1_namespace, $.dfn_namespace, $.namespace],
+    [$.dfn_namespace, $.namespace],
+    [$.dop2_namespace, $.dop1_namespace, $.dfn_namespace],
+    [$.dop2_namespace, $.dop1_namespace],
+    [$.dop2_namespace],
+    [$.dop1_namespace],
+    [$.dfn_namespace],
+    [$.dop1_namespace, $.dfn_namespace],
+    [$.dop2_indices, $.dop1_indices, $.dfn_indices, $.indices],
+    [$.dop1_indices, $.dfn_indices, $.indices],
+    [$.dfn_indices, $.indices],
+    [$.dop2_indices, $.dop1_indices, $.dfn_indices],
+    [$.dop2_indices, $.dop1_indices],
+    [$.dop2_indices],
+    [$.dop1_indices],
+    [$.dfn_indices],
+    [$.dop1_indices, $.dfn_indices],
+    [$.indices, $.highrank],
+  ],
+
   rules: {
-    source_file: $ => optional(statements($, 0)),
+    source_file: $ => optional(choice(
+      _statements($, 0),
+      terminator,
+    )),
 
     _dop2_statement: $ => statement($, DOP2),
     _dop1_statement: $ => statement($, DOP1),
@@ -114,10 +165,10 @@ module.exports = grammar({
     dfn_member: $ => namespace_member($, DFN),
     member: $ => namespace_member($, 0),
 
-    dop2_parenthesis: $ => seq('(', statements($, DOP2), ')'),
-    dop1_parenthesis: $ => seq('(', statements($, DOP1), ')'),
-    dfn_parenthesis: $ => seq('(', statements($, DFN), ')'),
-    parenthesis: $ => seq('(', statements($, 0), ')'),
+    dop2_parenthesis: $ => seq('(', _statements($, DOP2), ')'),
+    dop1_parenthesis: $ => seq('(', _statements($, DOP1), ')'),
+    dfn_parenthesis: $ => seq('(', _statements($, DFN), ')'),
+    parenthesis: $ => seq('(', _statements($, 0), ')'),
 
     dop2_indices: $ => seq('[', indices($, DOP2), ']'),
     dop1_indices: $ => seq('[', indices($, DOP1), ']'),
@@ -127,10 +178,13 @@ module.exports = grammar({
       separator,
     )), ']'),
 
-    dop2_highrank: $ => seq('[', statements($, DOP2), ']'),
-    dop1_highrank: $ => seq('[', statements($, DOP1), ']'),
-    dfn_highrank: $ => seq('[', statements($, DFN), ']'),
-    highrank: $ => seq('[', statements($, 0), ']'),
+    dop2_highrank: $ => seq('[', _statements($, DOP2), ']'),
+    dop1_highrank: $ => seq('[', _statements($, DOP1), ']'),
+    dfn_highrank: $ => seq('[', _statements($, DFN), ']'),
+    highrank: $ => seq('[', choice(
+      _statements($, 0),
+      terminator,
+    ), ']'),
 
     dop2_identifier: _ => dop2Identifier,
     dop1_identifier: _ => dop1Identifier,
@@ -212,11 +266,15 @@ function _separated(separator, statements, d){
   const _statements = _choice(statements);
   return seq(
     optional(separator),
-    optional(seq(_statements[d-1], separator)),
+    repeat(seq(_statements[d-1], separator)),
     statements[d],
     repeat(seq(separator, _statements[d])),
     optional(separator),
   );
+}
+
+function _statements($$, d){
+  return _separated(terminator, _alias($$, 'statement'), d);
 }
 
 function statements($$, d){

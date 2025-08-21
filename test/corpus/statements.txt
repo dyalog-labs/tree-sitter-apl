@@ -7,6 +7,14 @@ Empty
 (source_file)
 
 ================
+Terminator
+================
+⋄
+---
+
+(source_file)
+
+================
 Statements
 ================
 0

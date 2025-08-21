@@ -1,0 +1,325 @@
+================
+Alpha 1
+================
+{⍺}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_identifier)))))
+
+================
+Alpha 2
+================
+{1 ⋄ ⍺}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal))
+      (dfn_statement
+        (dfn_identifier)))))
+
+================
+Alpha 3
+================
+{1 ⋄ ⍺ ⋄ 1}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal))
+      (dfn_statement
+        (dfn_identifier))
+      (statement
+        (number_literal)))))
+
+================
+Alpha 4
+================
+{⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 5
+================
+{⍺⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier)
+        (dfn_identifier)))))
+
+================
+Alpha 6
+================
+{⍺⍺⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier)
+        (dop1_identifier)))))
+
+================
+Alpha 7
+================
+{⍺⍺ ⋄ ⍺⍺⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier))
+      (dop1_statement
+        (dop1_identifier)
+        (dop1_identifier)))))
+
+================
+Alpha 8
+================
+{⍺ ⋄ ⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 9
+================
+{⍺⍺ ⋄}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 10
+================
+{⍺⍺ ⋄ ⍺ ⋄ ⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier))
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 11
+================
+{⍺⍺
+⍺
+⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier))
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 12
+================
+{⍺⍺ ⋄ ⍺ ⋄ 1 2 3 ⋄ ⍺ ⋄ ⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier))
+      (dfn_statement
+        (dfn_identifier))
+      (statement
+        (number_literal)
+        (number_literal)
+        (number_literal))
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 13
+================
+{⍺⍺ ⋄ ⍺ ⋄ 1 2 ⍺⍺ 3 ⋄ ⍺ ⋄ ⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dop1_statement
+        (dop1_identifier))
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (number_literal)
+        (number_literal)
+        (dop1_identifier)
+        (number_literal))
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 14
+================
+{⍺ ⋄ 1 2 ⍺⍺ 3 ⋄ ⍺ ⋄ ⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (number_literal)
+        (number_literal)
+        (dop1_identifier)
+        (number_literal))
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 15
+================
+{⍺ ⋄ ⍺⍺ ⋄ ⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier))
+      (dfn_statement
+        (dfn_identifier)))))
+
+================
+Alpha 16
+================
+{⍺ ⋄ ⍺⍺ ⋄ ⍺ ⋄ ⍺⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier))
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (dop1_identifier)))))
+
+================
+Alpha 17
+================
+{⍺ ⋄ 1 2 ⍺⍺ 3 ⋄ ⍺}
+---
+
+(source_file
+  (statement
+    (dop1_definition
+      (dfn_statement
+        (dfn_identifier))
+      (dop1_statement
+        (number_literal)
+        (number_literal)
+        (dop1_identifier)
+        (number_literal))
+      (dfn_statement
+        (dfn_identifier)))))
+
+================
+Alpha 18
+================
+{⍺}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_identifier)))))
+
+================
+Alpha 19
+================
+{⍺ ⋄}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_identifier)))))
+
+================
+Alpha 20
+================
+{⍺ ⋄ 1}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (dfn_statement
+        (dfn_identifier))
+      (statement
+        (number_literal)))))
+
+================
+Alpha 21
+================
+{1 ⋄ ⍺}
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal))
+      (dfn_statement
+        (dfn_identifier)))))

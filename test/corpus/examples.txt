@@ -1,0 +1,372 @@
+================
+eg: dfn
+================
+mean←{          ⍝ Arithmetic mean
+    sum←+/⍵     ⍝ Sum of items
+    num←⍴⍵      ⍝ Number of items
+    sum÷num     ⍝ Mean
+}
+rms←{                ⍝ Root Mean Square
+    root←{⍵*0.5}      ⍝ ∇ Square root
+    mean←{(+/⍵)÷⍴⍵}   ⍝ ∇ Mean
+    square←{⍵×⍵}      ⍝ ∇ Square
+    root mean square ⍵
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (primitive)
+        (dfn_identifier))
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (dfn_identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (identifier))
+      (comment)))
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (dfn_definition
+          (dfn_statement
+            (dfn_identifier)
+            (primitive)
+            (number_literal))))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (dfn_definition
+          (dfn_statement
+            (dfn_parenthesis
+              (dfn_statement
+                (primitive)
+                (primitive)
+                (dfn_identifier)))
+            (primitive)
+            (primitive)
+            (dfn_identifier))))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (dfn_definition
+          (dfn_statement
+            (dfn_identifier)
+            (primitive)
+            (dfn_identifier))))
+      (comment)
+      (dfn_statement
+        (identifier)
+        (identifier)
+        (identifier)
+        (dfn_identifier)))))
+
+================
+eg: dfn guards
+================
+sign←{   
+    ⍵>0: '+ve'      ⍝ Positive
+    ⍵=0: 'zero'     ⍝ zero
+        '-ve'      ⍝ Negative (Default)
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (dfn_guard
+        (dfn_guard_condition
+          (dfn_identifier)
+          (primitive)
+          (number_literal))
+        (guard_expression
+          (string_literal
+            (string_literal_content))))
+      (comment)
+      (dfn_guard
+        (dfn_guard_condition
+          (dfn_identifier)
+          (primitive)
+          (number_literal))
+        (guard_expression
+          (string_literal
+            (string_literal_content))))
+      (comment)
+      (statement
+        (string_literal
+          (string_literal_content)))
+      (comment))))
+
+======================
+eg: dfn error guards
+======================
+open←{                 ⍝ Handle for component file ⍵.
+    0::0               ⍝ Fails:: return 0 handle.
+    22::⍵ ⎕FCREATE 0   ⍝ FILE NAME:: create new one.
+    24 25::⍵ ⎕FSTIE 0  ⍝ FILE TIED:: try share tie.
+           ⍵ ⎕FTIE 0   ⍝ Attempt to open file.
+}
+
+div←{                  ⍝ Tolerant division:: ⍺÷0 → ⍺.
+    ⍺←1                ⍝ default numerator.
+    5::↑∇/↓↑⍺ ⍵        ⍝ LENGTH:: stretch to fit.
+    11::⍺ ∇ ⍵+⍵=0      ⍝ DOMAIN:: increase divisor.
+    ⍺÷⍵                ⍝ attempt division.
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (comment)
+      (error_guard
+        (error_guard_condition
+          (number_literal))
+        (error_guard_expression
+          (number_literal)))
+      (comment)
+      (dfn_error_guard
+        (error_guard_condition
+          (number_literal))
+        (dfn_error_guard_expression
+          (dfn_identifier)
+          (system_command)
+          (number_literal)))
+      (comment)
+      (dfn_error_guard
+        (error_guard_condition
+          (number_literal)
+          (number_literal))
+        (dfn_error_guard_expression
+          (dfn_identifier)
+          (system_command)
+          (number_literal)))
+      (comment)
+      (dfn_statement
+        (dfn_identifier)
+        (system_command)
+        (number_literal))
+      (comment)))
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (comment)
+      (dfn_statement
+        (dfn_identifier)
+        (primitive)
+        (number_literal))
+      (comment)
+      (dfn_error_guard
+        (error_guard_condition
+          (number_literal))
+        (dfn_error_guard_expression
+          (primitive)
+          (dfn_identifier)
+          (primitive)
+          (primitive)
+          (primitive)
+          (dfn_identifier)
+          (dfn_identifier)))
+      (comment)
+      (dfn_error_guard
+        (error_guard_condition
+          (number_literal))
+        (dfn_error_guard_expression
+          (dfn_identifier)
+          (dfn_identifier)
+          (dfn_identifier)
+          (primitive)
+          (dfn_identifier)
+          (primitive)
+          (number_literal)))
+      (comment)
+      (dfn_statement
+        (dfn_identifier)
+        (primitive)
+        (dfn_identifier))
+      (comment))))
+
+===========
+eg: dops
+===========
+else←{
+    ⍺: ⍺⍺ ⍵     ⍝ True: apply Left operand
+        ⍵⍵ ⍵     ⍝ Else,  ..   Right   ..
+}
+each←{res←⍺⍺¨nub}
+each←{              ⍝ Fast each:                           
+    shp←⍴⍵          ⍝ Shape and ...                        
+    vec←,⍵          ⍝ ... ravel of arg.                    
+    nub←∪vec        ⍝ Vector of unique elements.           
+    res←⍺⍺¨nub      ⍝ Result for unique elts.              
+    idx←nub⍳vec     ⍝ Indices of arg in nub ...
+    shp⍴idx⊃¨⊂res   ⍝ ... distribute result.
+}
+each←{              ⍝ Fast each:                           
+    res←⍺⍺¨nub      ⍝ Result for unique elts.              
+    idx←nub⍳vec     ⍝ Indices of arg in nub ...
+    shp⍴idx⊃¨⊂res   ⍝ ... distribute result.
+}
+each←{              ⍝ Fast each:                           
+    shp←⍴⍵          ⍝ Shape and ...                        
+    vec←,⍵          ⍝ ... ravel of arg.                    
+    nub←∪vec        ⍝ Vector of unique elements.           
+    res←⍺⍺¨nub      ⍝ Result for unique elts.              
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (dop2_definition
+      (dop1_guard
+        (dfn_guard_condition
+          (dfn_identifier))
+        (dop1_guard_expression
+          (dop1_identifier)
+          (dfn_identifier)))
+      (comment)
+      (dop2_statement
+        (dop2_identifier)
+        (dfn_identifier))
+      (comment)))
+  (statement
+    (identifier)
+    (primitive)
+    (dop1_definition
+      (dop1_statement
+        (identifier)
+        (primitive)
+        (dop1_identifier)
+        (primitive)
+        (identifier))))
+  (statement
+    (identifier)
+    (primitive)
+    (dop1_definition
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (dfn_identifier))
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (dfn_identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (identifier))
+      (comment)
+      (dop1_statement
+        (identifier)
+        (primitive)
+        (dop1_identifier)
+        (primitive)
+        (identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (primitive)
+        (primitive)
+        (identifier))
+      (comment)))
+  (statement
+    (identifier)
+    (primitive)
+    (dop1_definition
+      (comment)
+      (dop1_statement
+        (identifier)
+        (primitive)
+        (dop1_identifier)
+        (primitive)
+        (identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (primitive)
+        (primitive)
+        (identifier))
+      (comment)))
+  (statement
+    (identifier)
+    (primitive)
+    (dop1_definition
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (dfn_identifier))
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (dfn_identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (primitive)
+        (identifier))
+      (comment)
+      (dop1_statement
+        (identifier)
+        (primitive)
+        (dop1_identifier)
+        (primitive)
+        (identifier))
+      (comment))))
