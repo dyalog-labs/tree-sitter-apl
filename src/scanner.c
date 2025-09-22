@@ -2,12 +2,24 @@
 #include <wctype.h>
 #include <string.h>
 
+#include <stdio.h>
+
 enum TokenType {
+  LEFT_ARG,
+  RIGHT_ARG,
+  LEFT_OP,
+  RIGHT_OP,
+  SELF_FN,
+  SELF_OP,
+  EVAL_IO,
   SYSTEM_COMMAND,
   INVALID_SYSTEM_COMMAND,
 };
 
-const int32_t QUAD = L'⎕';
+#define ALPHA L'⍺'
+#define OMEGA L'⍵'
+#define DEL L'∇'
+#define QUAD L'⎕'
 
 const char *SYSTEM_COMMANDS[] = {
   "A", "AI", "AN", "ARBIN", "ARBOUT", "AT", "ATX", "AV", "AVU", "BASE",
@@ -51,44 +63,87 @@ void tree_sitter_apl_external_scanner_deserialize(void *payload, const char *buf
 
 // The main scanning function
 bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+  if (valid_symbols[INVALID_SYSTEM_COMMAND]) {
+    printf("ERROR RECOVERY\n");
+    return false;
+  }
+
   // Skip any leading whitespace
   while (iswspace(lexer->lookahead)) {
+    if (lexer->lookahead == '\r' || lexer->lookahead =='\n') {
+      return false;
+    }
     lexer->advance(lexer, true);
+    // lexer->advance(lexer, lexer->lookahead != '\r' && lexer->lookahead !='\n');
   }
 
-  // We are only interested in tokens that start with ⎕
-  if (lexer->lookahead != QUAD) {
+  // We are interested in tokens that start with ⎕ or {,⍺,⍵,∇,}
+  switch (lexer->lookahead) {
+  case ALPHA:
+      lexer->result_symbol = LEFT_ARG;
+      break;
+  case OMEGA:
+      lexer->result_symbol = RIGHT_ARG;
+      break;
+  case DEL:
+      lexer->result_symbol = SELF_FN;
+      break;
+  case QUAD:
+      lexer->result_symbol = EVAL_IO;
+      break;
+  default:
     return false;
   }
-  lexer->advance(lexer, false); // Consume the ⎕
+  lexer->advance(lexer, false); // Consume the character
 
-  // If what comes after ⎕ is not a valid character,
-  // let the internal lexer handle it by returning false
-  if (!isidentifier0(lexer->lookahead)) {
-    return false;
-  }
-
-  // It's a command-like token. Read the rest of the name
-  // TODO: remove 32 chars limit
-  char command_name[32];
-  int i = 0;
-  while (isidentifier1(lexer->lookahead) && i < 31) {
-    command_name[i++] = toupper(lexer->lookahead);
-    lexer->advance(lexer, false);
-  }
-  command_name[i] = '\0';
-
-  // Check if the command is in the list of system commands
-  int n = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
-  for (int j = 0; j < n; j++) {
-    if (strcmp(command_name, SYSTEM_COMMANDS[j]) == 0) {
-      // It's a valid command!
-      lexer->result_symbol = SYSTEM_COMMAND;
+  switch (lexer->result_symbol) {
+  case LEFT_ARG:
+    if (lexer->lookahead == ALPHA) {
+      lexer->result_symbol = LEFT_OP;
+      lexer->advance(lexer, false); // consume another alpha
+    }
+    return true;  
+  case RIGHT_ARG:
+    if (lexer->lookahead == OMEGA) {
+      lexer->result_symbol = RIGHT_OP;
+      lexer->advance(lexer, false); // consume another omega
+    }
+    return true;  
+  case SELF_FN:
+    if (lexer->lookahead == DEL) {
+      lexer->result_symbol = SELF_OP;
+      lexer->advance(lexer, false); // consume another del
+    }
+    return true;
+  case EVAL_IO:
+    // If what comes after ⎕ is not a valid character,
+    // let the internal lexer handle it by returning false
+    if (!isidentifier0(lexer->lookahead)) {
       return true;
     }
-  }
 
-  // The command was not in the list
-  lexer->result_symbol = INVALID_SYSTEM_COMMAND;
-  return true;
+    // It's a command-like token. Read the rest of the name
+    // TODO: remove 32 chars limit
+    char command_name[32];
+    int i = 0;
+    while (isidentifier1(lexer->lookahead) && i < 31) {
+      command_name[i++] = toupper(lexer->lookahead);
+      lexer->advance(lexer, false);
+    }
+    command_name[i] = '\0';
+
+    // Check if the command is in the list of system commands
+    int n = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
+    for (i = 0; i < n; i++) {
+      if (strcmp(command_name, SYSTEM_COMMANDS[i]) == 0) {
+        // It's a valid command!
+        lexer->result_symbol = SYSTEM_COMMAND;
+        return true;
+      }
+    }
+
+    // The command was not in the list
+    lexer->result_symbol = INVALID_SYSTEM_COMMAND;
+    return true;
+  }
 }

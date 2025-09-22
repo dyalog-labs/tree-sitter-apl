@@ -11,11 +11,6 @@ const DOP2 = 3;
 const DOP1 = 2;
 const DFN = 1;
 
-const dop2Identifier = '⍵⍵';
-const dop1Identifier = '⍺⍺';
-const dopIdentifier = '∇∇';
-const dfnIdentifiers = ['⍵', '⍺', '∇'];
-
 const newline = /\n/;
 const terminator = repeat1(choice(newline, '⋄', '\0'));
 const separator = repeat1(';');
@@ -34,7 +29,7 @@ const numberLiteral = seq(real, optional(imaginary));
 
 const stringContentLiteral = /(''|[^'\n])+/;
 
-const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
+const identifier = /⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
 const primitive = /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
 
@@ -56,9 +51,16 @@ module.exports = grammar({
     /\s/,
   ],
 
-  word: $ => $.identifier,
+  word: $ => $._identifier,
 
   externals: $ => [
+    $._dfn_left,
+    $._dfn_right,
+    $._dop_left,
+    $._dop_right,
+    $._dfn_self,
+    $._dop_self,
+    $._quad,
     $._system_command,
     $._invalid_system_command,
   ],
@@ -186,11 +188,12 @@ module.exports = grammar({
       terminator,
     ), ']'),
 
-    dop2_identifier: _ => dop2Identifier,
-    dop1_identifier: _ => dop1Identifier,
-    dop_identifier: _ => dopIdentifier,
-    dfn_identifier: _ => choice(...dfnIdentifiers),
-    identifier: _ => identifier,
+    dop2_identifier: $ => $._dop_right,
+    dop1_identifier: $ => $._dop_left,
+    dop_identifier: $ => $._dop_self,
+    dfn_identifier: $ => choice($._dfn_left, $._dfn_right, $._dfn_self),
+    identifier: $ => choice($._quad, $._identifier),
+    _identifier: _ => identifier,
 
     string_literal: $ => seq(
       "'",

@@ -1322,6 +1322,11 @@
     }
   },
   {
+    "type": "dop1_identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "dop1_index",
     "named": true,
     "fields": {},
@@ -2383,6 +2388,11 @@
     }
   },
   {
+    "type": "dop2_identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "dop2_index",
     "named": true,
     "fields": {},
@@ -2852,6 +2862,11 @@
     }
   },
   {
+    "type": "dop_identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "error_guard",
     "named": true,
     "fields": {},
@@ -3141,6 +3156,11 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "index",
     "named": true,
     "fields": {},
@@ -3291,6 +3311,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "member_identifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "namespace",
@@ -3459,26 +3484,6 @@
     "extra": true
   },
   {
-    "type": "dop1_identifier",
-    "named": true
-  },
-  {
-    "type": "dop2_identifier",
-    "named": true
-  },
-  {
-    "type": "dop_identifier",
-    "named": true
-  },
-  {
-    "type": "identifier",
-    "named": true
-  },
-  {
-    "type": "member_identifier",
-    "named": true
-  },
-  {
     "type": "number_literal",
     "named": true
   },
@@ -3499,19 +3504,7 @@
     "named": false
   },
   {
-    "type": "∇",
-    "named": false
-  },
-  {
     "type": "⋄",
-    "named": false
-  },
-  {
-    "type": "⍵",
-    "named": false
-  },
-  {
-    "type": "⍺",
     "named": false
   }
 ]
