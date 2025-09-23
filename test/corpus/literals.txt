@@ -26,6 +26,8 @@ Strings
 '' '''' ''''''
 'no
 multiline'
+'fine'
+'not finished
 ---
 
 (source_file
@@ -44,8 +46,11 @@ multiline'
   (statement
     (string_literal
       (string_literal_content)
-      (MISSING "'")))
+      (ERROR)))
   (statement
-    (identifier)
     (string_literal
+      (string_literal_content)))
+  (statement
+    (string_literal
+      (string_literal_content)
       (MISSING "'"))))

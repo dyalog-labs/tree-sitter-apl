@@ -2,8 +2,6 @@
 #include <wctype.h>
 #include <string.h>
 
-#include <stdio.h>
-
 enum TokenType {
   LEFT_ARG,
   RIGHT_ARG,
@@ -63,18 +61,12 @@ void tree_sitter_apl_external_scanner_deserialize(void *payload, const char *buf
 
 // The main scanning function
 bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-  if (valid_symbols[INVALID_SYSTEM_COMMAND]) {
-    printf("ERROR RECOVERY\n");
-    return false;
-  }
-
   // Skip any leading whitespace
   while (iswspace(lexer->lookahead)) {
     if (lexer->lookahead == '\r' || lexer->lookahead =='\n') {
       return false;
     }
     lexer->advance(lexer, true);
-    // lexer->advance(lexer, lexer->lookahead != '\r' && lexer->lookahead !='\n');
   }
 
   // We are interested in tokens that start with ⎕ or {,⍺,⍵,∇,}

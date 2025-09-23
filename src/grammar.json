@@ -4639,31 +4639,31 @@
       ]
     },
     "dop2_identifier": {
-      "type": "SYMBOL",
-      "name": "_dop_right"
+      "type": "STRING",
+      "value": "⍵⍵"
     },
     "dop1_identifier": {
-      "type": "SYMBOL",
-      "name": "_dop_left"
+      "type": "STRING",
+      "value": "⍺⍺"
     },
     "dop_identifier": {
-      "type": "SYMBOL",
-      "name": "_dop_self"
+      "type": "STRING",
+      "value": "∇∇"
     },
     "dfn_identifier": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_dfn_left"
+          "type": "STRING",
+          "value": "⍺"
         },
         {
-          "type": "SYMBOL",
-          "name": "_dfn_right"
+          "type": "STRING",
+          "value": "⍵"
         },
         {
-          "type": "SYMBOL",
-          "name": "_dfn_self"
+          "type": "STRING",
+          "value": "∇"
         }
       ]
     },
@@ -4671,8 +4671,8 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_quad"
+          "type": "STRING",
+          "value": "⎕"
         },
         {
           "type": "SYMBOL",
@@ -5003,26 +5003,8 @@
       "dop1_definition"
     ],
     [
-      "dop2_definition"
-    ],
-    [
-      "dop1_definition"
-    ],
-    [
-      "dfn_definition"
-    ],
-    [
       "dop2_parenthesis",
       "dop1_parenthesis",
-      "dfn_parenthesis",
-      "parenthesis"
-    ],
-    [
-      "dop1_parenthesis",
-      "dfn_parenthesis",
-      "parenthesis"
-    ],
-    [
       "dfn_parenthesis",
       "parenthesis"
     ],
@@ -5036,79 +5018,21 @@
       "dop1_parenthesis"
     ],
     [
-      "dop2_parenthesis"
-    ],
-    [
-      "dop1_parenthesis"
-    ],
-    [
-      "dfn_parenthesis"
+      "dop1_parenthesis",
+      "dfn_parenthesis",
+      "parenthesis"
     ],
     [
       "dop1_parenthesis",
       "dfn_parenthesis"
     ],
     [
-      "dop2_highrank",
-      "dop1_highrank",
-      "dfn_highrank",
-      "highrank"
-    ],
-    [
-      "dop1_highrank",
-      "dfn_highrank",
-      "highrank"
-    ],
-    [
-      "dfn_highrank",
-      "highrank"
-    ],
-    [
-      "dop2_highrank",
-      "dop1_highrank",
-      "dfn_highrank"
-    ],
-    [
-      "dop2_highrank",
-      "dop1_highrank"
-    ],
-    [
-      "dop2_highrank"
-    ],
-    [
-      "dop2_highrank",
-      "dop2_indices"
-    ],
-    [
-      "dop1_highrank",
-      "dop1_indices"
-    ],
-    [
-      "dfn_highrank",
-      "dfn_indices"
-    ],
-    [
-      "dop1_highrank"
-    ],
-    [
-      "dfn_highrank"
-    ],
-    [
-      "dop1_highrank",
-      "dfn_highrank"
+      "dfn_parenthesis",
+      "parenthesis"
     ],
     [
       "dop2_namespace",
       "dop1_namespace",
-      "dfn_namespace",
-      "namespace"
-    ],
-    [
-      "dop1_namespace",
-      "dfn_namespace",
-      "namespace"
-    ],
-    [
       "dfn_namespace",
       "namespace"
     ],
@@ -5122,30 +5046,49 @@
       "dop1_namespace"
     ],
     [
-      "dop2_namespace"
-    ],
-    [
-      "dop1_namespace"
-    ],
-    [
-      "dfn_namespace"
+      "dop1_namespace",
+      "dfn_namespace",
+      "namespace"
     ],
     [
       "dop1_namespace",
       "dfn_namespace"
     ],
     [
+      "dfn_namespace",
+      "namespace"
+    ],
+    [
+      "dop2_highrank",
+      "dop1_highrank",
+      "dfn_highrank",
+      "highrank"
+    ],
+    [
+      "dop2_highrank",
+      "dop1_highrank",
+      "dfn_highrank"
+    ],
+    [
+      "dop2_highrank",
+      "dop1_highrank"
+    ],
+    [
+      "dop1_highrank",
+      "dfn_highrank",
+      "highrank"
+    ],
+    [
+      "dop1_highrank",
+      "dfn_highrank"
+    ],
+    [
+      "dfn_highrank",
+      "highrank"
+    ],
+    [
       "dop2_indices",
       "dop1_indices",
-      "dfn_indices",
-      "indices"
-    ],
-    [
-      "dop1_indices",
-      "dfn_indices",
-      "indices"
-    ],
-    [
       "dfn_indices",
       "indices"
     ],
@@ -5159,16 +5102,28 @@
       "dop1_indices"
     ],
     [
+      "dop1_indices",
+      "dfn_indices",
+      "indices"
+    ],
+    [
+      "dop1_indices",
+      "dfn_indices"
+    ],
+    [
+      "dfn_indices",
+      "indices"
+    ],
+    [
+      "dop2_highrank",
       "dop2_indices"
     ],
     [
+      "dop1_highrank",
       "dop1_indices"
     ],
     [
-      "dfn_indices"
-    ],
-    [
-      "dop1_indices",
+      "dfn_highrank",
       "dfn_indices"
     ],
     [
@@ -5179,32 +5134,32 @@
   "precedences": [],
   "externals": [
     {
-      "type": "SYMBOL",
-      "name": "_dfn_left"
+      "type": "STRING",
+      "value": "⍺"
     },
     {
-      "type": "SYMBOL",
-      "name": "_dfn_right"
+      "type": "STRING",
+      "value": "⍵"
     },
     {
-      "type": "SYMBOL",
-      "name": "_dop_left"
+      "type": "STRING",
+      "value": "⍺⍺"
     },
     {
-      "type": "SYMBOL",
-      "name": "_dop_right"
+      "type": "STRING",
+      "value": "⍵⍵"
     },
     {
-      "type": "SYMBOL",
-      "name": "_dfn_self"
+      "type": "STRING",
+      "value": "∇"
     },
     {
-      "type": "SYMBOL",
-      "name": "_dop_self"
+      "type": "STRING",
+      "value": "∇∇"
     },
     {
-      "type": "SYMBOL",
-      "name": "_quad"
+      "type": "STRING",
+      "value": "⎕"
     },
     {
       "type": "SYMBOL",
