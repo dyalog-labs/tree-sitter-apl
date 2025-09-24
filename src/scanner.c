@@ -61,12 +61,19 @@ void tree_sitter_apl_external_scanner_deserialize(void *payload, const char *buf
 
 // The main scanning function
 bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+  if (valid_symbols[INVALID_SYSTEM_COMMAND]) {
+    return false;
+  }
+
   // Skip any leading whitespace
-  while (iswspace(lexer->lookahead)) {
+  while (iswspace(lexer->lookahead) && !lexer->eof(lexer)) {
     if (lexer->lookahead == '\r' || lexer->lookahead =='\n') {
       return false;
     }
     lexer->advance(lexer, true);
+  }
+  if (lexer->eof(lexer)) {
+    return false;
   }
 
   // We are interested in tokens that start with ⎕ or {,⍺,⍵,∇,}
@@ -118,7 +125,7 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
     // TODO: remove 32 chars limit
     char command_name[32];
     int i = 0;
-    while (isidentifier1(lexer->lookahead) && i < 31) {
+    while (isidentifier1(lexer->lookahead) && !lexer->eof(lexer) && i < 31) {
       command_name[i++] = toupper(lexer->lookahead);
       lexer->advance(lexer, false);
     }
