@@ -81,6 +81,48 @@ rms←{                ⍝ Root Mean Square
         (identifier)
         (dfn_identifier)))))
 
+==============
+eg: left arg
+==============
+root←{      ⍝ ⍺th root
+    ⍺←2     ⍝ default to sqrt
+    ⍵*÷⍺
+}
+foo←{
+    ⍺←⊢
+    ⍺ goo ⍵
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (comment)
+      (dfn_statement
+        (dfn_identifier)
+        (primitive)
+        (number_literal))
+      (comment)
+      (dfn_statement
+        (dfn_identifier)
+        (primitive)
+        (primitive)
+        (dfn_identifier))))
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (dfn_statement
+        (dfn_identifier)
+        (primitive)
+        (primitive))
+      (dfn_statement
+        (dfn_identifier)
+        (identifier)
+        (dfn_identifier)))))
+
 ================
 eg: dfn guards
 ================
@@ -370,3 +412,98 @@ each←{              ⍝ Fast each:
         (primitive)
         (identifier))
       (comment))))
+
+===========
+eg: shy
+===========
+log←{                   ⍝ Append ⍵ to file ⍺.
+    tie←⍺ ⎕fstie 0      ⍝ tie number for file,
+    cno←⍵ ⎕fappend tie  ⍝ new component number,
+    tie←⎕funtie tie     ⍝ untie file,        
+    1:rslt←cno          ⍝ comp number, shy result.
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (dfn_identifier)
+        (system_command)
+        (number_literal))
+      (comment)
+      (dfn_statement
+        (identifier)
+        (primitive)
+        (dfn_identifier)
+        (system_command)
+        (identifier))
+      (comment)
+      (statement
+        (identifier)
+        (primitive)
+        (system_command)
+        (identifier))
+      (comment)
+      (guard
+        (guard_condition
+          (number_literal))
+        (guard_expression
+          (identifier)
+          (primitive)
+          (identifier)))
+      (comment))))
+
+===================
+eg: lexical scope
+===================
+which←{
+    type←'lexical' 
+    fn1←{        
+        type←'dynamic'
+        fn2 ⍵
+    }
+    fn2←{    
+        type ⍵ 
+    }
+    fn1 ⍵
+}
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (dfn_definition
+      (statement
+        (identifier)
+        (primitive)
+        (string_literal
+          (string_literal_content)))
+      (statement
+        (identifier)
+        (primitive)
+        (dfn_definition
+          (statement
+            (identifier)
+            (primitive)
+            (string_literal
+              (string_literal_content)))
+          (dfn_statement
+            (identifier)
+            (dfn_identifier))))
+      (statement
+        (identifier)
+        (primitive)
+        (dfn_definition
+          (dfn_statement
+            (identifier)
+            (dfn_identifier))))
+      (dfn_statement
+        (identifier)
+        (dfn_identifier)))))
