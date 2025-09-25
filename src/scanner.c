@@ -3,11 +3,8 @@
 #include <string.h>
 
 enum TokenType {
-  LEFT_ARG,
-  RIGHT_ARG,
   LEFT_OP,
   RIGHT_OP,
-  SELF_FN,
   SELF_OP,
   SYSTEM_COMMAND,
   INVALID_SYSTEM_COMMAND,
@@ -40,7 +37,7 @@ const char *SYSTEM_COMMANDS[] = {
 
 // valid first character of an identifier
 // TODO: https://help.dyalog.com/latest/index.htm#Language/Introduction/Variables/Names.htm
-int isidentifier0(const int32_t c) {
+bool isidentifier0(const int32_t c) {
   return
     L'A' <= c && c <= L'Z' ||
     L'a' <= c && c <= L'z' ||
@@ -49,8 +46,18 @@ int isidentifier0(const int32_t c) {
 }
 
 // valid following characters of an identifier
-int isidentifier1(const int32_t c) {
+bool isidentifier1(const int32_t c) {
   return isidentifier0(c) || iswdigit(c);
+}
+
+bool two(const int32_t c, const int32_t r, TSLexer *lexer) {
+  lexer->advance(lexer, false); // consume character
+  if (lexer->lookahead != c) {
+    return false;
+  }
+  lexer->advance(lexer, false); // consume another character
+  lexer->result_symbol = r;
+  return true;
 }
 
 void *tree_sitter_apl_external_scanner_create() { return NULL; }
@@ -58,89 +65,66 @@ void tree_sitter_apl_external_scanner_destroy(void *payload) {}
 unsigned tree_sitter_apl_external_scanner_serialize(void *payload, char *buffer) { return 0; }
 void tree_sitter_apl_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {}
 
-// The main scanning function
+// main scanning function
 bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+  // in error recovery mode
   if (valid_symbols[INVALID_SYSTEM_COMMAND]) {
     return false;
   }
 
-  // Skip any leading whitespace
+  // skip leading whitespace except newlines
   while (iswspace(lexer->lookahead) && !lexer->eof(lexer)) {
     if (lexer->lookahead == '\r' || lexer->lookahead =='\n') {
       return false;
     }
-    lexer->advance(lexer, true);
+    lexer->advance(lexer, true); // consume whitespace character
   }
   if (lexer->eof(lexer)) {
     return false;
   }
 
-  // We are interested in tokens that start with ⎕ or {,⍺,⍵,∇,}
+  // We are interested in tokens that start with ⍺,⍵,∇,⎕
   switch (lexer->lookahead) {
   case ALPHA:
-      lexer->result_symbol = LEFT_ARG;
-      break;
+    return two(ALPHA, LEFT_OP, lexer);
   case OMEGA:
-      lexer->result_symbol = RIGHT_ARG;
-      break;
+    return two(OMEGA, RIGHT_OP, lexer);
   case DEL:
-      lexer->result_symbol = SELF_FN;
-      break;
+    return two(DEL, SELF_OP, lexer);
   case QUAD:
-      lexer->result_symbol = SYSTEM_COMMAND;
-      break;
+    lexer->advance(lexer, false); // consume the character
+    break;
   default:
     return false;
   }
-  lexer->advance(lexer, false); // Consume the character
 
-  switch (lexer->result_symbol) {
-  case LEFT_ARG:
-    if (lexer->lookahead == ALPHA) {
-      lexer->result_symbol = LEFT_OP;
-      lexer->advance(lexer, false); // consume another alpha
-    }
-    return true;  
-  case RIGHT_ARG:
-    if (lexer->lookahead == OMEGA) {
-      lexer->result_symbol = RIGHT_OP;
-      lexer->advance(lexer, false); // consume another omega
-    }
-    return true;  
-  case SELF_FN:
-    if (lexer->lookahead == DEL) {
-      lexer->result_symbol = SELF_OP;
-      lexer->advance(lexer, false); // consume another del
-    }
-    return true;
-  case SYSTEM_COMMAND:
-    // If what comes after ⎕ is not a valid character,
-    // let the internal lexer handle it by returning false
-    if (!isidentifier0(lexer->lookahead)) {
-      return false;
-    }
-
-    // It's a command-like token. Read the rest of the name
-    // TODO: remove 32 chars limit
-    char command_name[32];
-    int i = 0;
-    while (isidentifier1(lexer->lookahead) && !lexer->eof(lexer) && i < 31) {
-      command_name[i++] = toupper(lexer->lookahead);
-      lexer->advance(lexer, false);
-    }
-    command_name[i] = '\0';
-
-    // Check if the command is in the list of system commands
-    int n = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
-    for (i = 0; i < n; i++) {
-      if (strcmp(command_name, SYSTEM_COMMANDS[i]) == 0) {
-        // It's a valid command!
-        return true;
-      }
-    }
-
-    // The command was not in the list
-    lexer->result_symbol = INVALID_SYSTEM_COMMAND;
-    return true;
+  // if what comes after the first one is not a valid character,
+  // let the internal lexer handle it by returning false
+  if (!isidentifier0(lexer->lookahead)) {
+    return false;
   }
+
+  // it's a command-like token; read the rest of the name
+  // TODO: remove 32 chars limit
+  char command_name[32];
+  int i = 0;
+  while (isidentifier1(lexer->lookahead) && !lexer->eof(lexer) && i < 31) {
+    command_name[i++] = toupper(lexer->lookahead);
+    lexer->advance(lexer, false);
+  }
+  command_name[i] = '\0';
+
+  // check if the command is in the list of system commands
+  int n = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
+  for (i = 0; i < n; i++) {
+    if (strcmp(command_name, SYSTEM_COMMANDS[i]) == 0) {
+      // it's a valid command
+      lexer->result_symbol = SYSTEM_COMMAND;
+      return true;
+    }
+  }
+
+  // the command was not in the list
+  lexer->result_symbol = INVALID_SYSTEM_COMMAND;
+  return true;
 }

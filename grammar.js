@@ -54,7 +54,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   externals: $ => [
-    '⍺', '⍵', '⍺⍺', '⍵⍵', '∇', '∇∇',
+    '⍺⍺', '⍵⍵', '∇∇',
     $._system_command,
     $._invalid_system_command,
   ],

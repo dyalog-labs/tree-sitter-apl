@@ -12,7 +12,7 @@
 #define SYMBOL_COUNT 104
 #define ALIAS_COUNT 29
 #define TOKEN_COUNT 28
-#define EXTERNAL_TOKEN_COUNT 8
+#define EXTERNAL_TOKEN_COUNT 5
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 7
 #define MAX_RESERVED_WORD_SET_SIZE 0
@@ -110728,22 +110728,16 @@ static const TSParseActionEntry ts_parse_actions[] = {
 };
 
 enum ts_external_scanner_symbol_identifiers {
-  ts_external_token_u237a = 0,
-  ts_external_token_u2375 = 1,
-  ts_external_token_u237au237a = 2,
-  ts_external_token_u2375u2375 = 3,
-  ts_external_token_u2207 = 4,
-  ts_external_token_u2207u2207 = 5,
-  ts_external_token__system_command = 6,
-  ts_external_token__invalid_system_command = 7,
+  ts_external_token_u237au237a = 0,
+  ts_external_token_u2375u2375 = 1,
+  ts_external_token_u2207u2207 = 2,
+  ts_external_token__system_command = 3,
+  ts_external_token__invalid_system_command = 4,
 };
 
 static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
-  [ts_external_token_u237a] = anon_sym_u237a,
-  [ts_external_token_u2375] = anon_sym_u2375,
   [ts_external_token_u237au237a] = anon_sym_u237au237a,
   [ts_external_token_u2375u2375] = anon_sym_u2375u2375,
-  [ts_external_token_u2207] = anon_sym_u2207,
   [ts_external_token_u2207u2207] = anon_sym_u2207u2207,
   [ts_external_token__system_command] = sym__system_command,
   [ts_external_token__invalid_system_command] = sym__invalid_system_command,
@@ -110751,11 +110745,8 @@ static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
 
 static const bool ts_external_scanner_states[9][EXTERNAL_TOKEN_COUNT] = {
   [1] = {
-    [ts_external_token_u237a] = true,
-    [ts_external_token_u2375] = true,
     [ts_external_token_u237au237a] = true,
     [ts_external_token_u2375u2375] = true,
-    [ts_external_token_u2207] = true,
     [ts_external_token_u2207u2207] = true,
     [ts_external_token__system_command] = true,
     [ts_external_token__invalid_system_command] = true,
@@ -110764,26 +110755,17 @@ static const bool ts_external_scanner_states[9][EXTERNAL_TOKEN_COUNT] = {
     [ts_external_token__system_command] = true,
   },
   [3] = {
-    [ts_external_token_u237a] = true,
-    [ts_external_token_u2375] = true,
     [ts_external_token_u237au237a] = true,
     [ts_external_token_u2375u2375] = true,
-    [ts_external_token_u2207] = true,
     [ts_external_token_u2207u2207] = true,
     [ts_external_token__system_command] = true,
   },
   [4] = {
-    [ts_external_token_u237a] = true,
-    [ts_external_token_u2375] = true,
     [ts_external_token_u237au237a] = true,
-    [ts_external_token_u2207] = true,
     [ts_external_token_u2207u2207] = true,
     [ts_external_token__system_command] = true,
   },
   [5] = {
-    [ts_external_token_u237a] = true,
-    [ts_external_token_u2375] = true,
-    [ts_external_token_u2207] = true,
     [ts_external_token_u2207u2207] = true,
     [ts_external_token__system_command] = true,
   },
