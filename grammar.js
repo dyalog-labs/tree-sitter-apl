@@ -29,7 +29,7 @@ const numberLiteral = seq(real, optional(imaginary));
 
 const stringContentLiteral = /(''|[^'\n])+/;
 
-const identifier = /⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
+const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
 const primitive = /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
 
@@ -51,10 +51,10 @@ module.exports = grammar({
     /\s/,
   ],
 
-  word: $ => $._identifier,
+  word: $ => $.identifier,
 
   externals: $ => [
-    $._left_arg, $._right_arg, $._left_op, '⍵⍵', $._self_fn, $._self_op, $._eval_io,
+    '⍺', '⍵', '⍺⍺', '⍵⍵', '∇', '∇∇',
     $._system_command,
     $._invalid_system_command,
   ],
@@ -167,12 +167,11 @@ module.exports = grammar({
     dop1_highrank: $ => seq('[', _statements($, DOP1), ']'),
     dop2_highrank: $ => seq('[', _statements($, DOP2), ']'),
 
-    _identifier: _ => identifier,
-    identifier: $ => choice($._eval_io, $._identifier),
-    dfn_identifier: $ => choice($._left_arg, $._right_arg, $._self_fn),
-    dop_identifier: $ => $._self_op,
-    dop1_identifier: $ => $._left_op,
-    dop2_identifier: _ => token('⍵⍵'),
+    identifier: _ => identifier,
+    dfn_identifier: _ => choice('⍺', '⍵', '∇'),
+    dop_identifier: _ => '∇∇',
+    dop1_identifier: _ => '⍺⍺',
+    dop2_identifier: _ => '⍵⍵',
 
     string_literal: $ => seq(
       "'",

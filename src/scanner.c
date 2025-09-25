@@ -9,7 +9,6 @@ enum TokenType {
   RIGHT_OP,
   SELF_FN,
   SELF_OP,
-  EVAL_IO,
   SYSTEM_COMMAND,
   INVALID_SYSTEM_COMMAND,
 };
@@ -88,7 +87,7 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
       lexer->result_symbol = SELF_FN;
       break;
   case QUAD:
-      lexer->result_symbol = EVAL_IO;
+      lexer->result_symbol = SYSTEM_COMMAND;
       break;
   default:
     return false;
@@ -114,11 +113,11 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
       lexer->advance(lexer, false); // consume another del
     }
     return true;
-  case EVAL_IO:
+  case SYSTEM_COMMAND:
     // If what comes after ⎕ is not a valid character,
     // let the internal lexer handle it by returning false
     if (!isidentifier0(lexer->lookahead)) {
-      return true;
+      return false;
     }
 
     // It's a command-like token. Read the rest of the name
@@ -136,7 +135,6 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
     for (i = 0; i < n; i++) {
       if (strcmp(command_name, SYSTEM_COMMANDS[i]) == 0) {
         // It's a valid command!
-        lexer->result_symbol = SYSTEM_COMMAND;
         return true;
       }
     }

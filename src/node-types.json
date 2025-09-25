@@ -3156,11 +3156,6 @@
     }
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "index",
     "named": true,
     "fields": {},
@@ -3311,11 +3306,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "member_identifier",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "namespace",
@@ -3484,6 +3474,14 @@
     "extra": true
   },
   {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "member_identifier",
+    "named": true
+  },
+  {
     "type": "number_literal",
     "named": true
   },
@@ -3504,11 +3502,31 @@
     "named": false
   },
   {
+    "type": "∇",
+    "named": false
+  },
+  {
+    "type": "∇∇",
+    "named": false
+  },
+  {
     "type": "⋄",
     "named": false
   },
   {
+    "type": "⍵",
+    "named": false
+  },
+  {
     "type": "⍵⍵",
+    "named": false
+  },
+  {
+    "type": "⍺",
+    "named": false
+  },
+  {
+    "type": "⍺⍺",
     "named": false
   }
 ]
