@@ -1,6 +1,7 @@
 #include <tree_sitter/parser.h>
 #include <wctype.h>
 #include <string.h>
+#include <ctype.h>
 
 enum TokenType {
   LEFT_OP,
