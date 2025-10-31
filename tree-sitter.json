@@ -14,6 +14,7 @@
         "apln",
         "dyalog"
       ],
+      "highlights": "queries/highlights.scm",
       "injection-regex": "^apl$",
       "class-name": "TreeSitterApl"
     }
