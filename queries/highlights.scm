@@ -1,5 +1,7 @@
 (system_command) @keyword
 
+(comment) @Comment
+
 ; Identifiers
 
 (identifier) @variable
