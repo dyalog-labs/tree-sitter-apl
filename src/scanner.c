@@ -1,7 +1,6 @@
 #include <tree_sitter/parser.h>
 #include <wctype.h>
 #include <string.h>
-#include <ctype.h>
 
 enum TokenType {
   LEFT_OP,
@@ -110,7 +109,7 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
   char command_name[32];
   int i = 0;
   while (isidentifier1(lexer->lookahead) && !lexer->eof(lexer) && i < 31) {
-    command_name[i++] = toupper(lexer->lookahead);
+    command_name[i++] = towupper(lexer->lookahead);
     lexer->advance(lexer, false);
   }
   command_name[i] = '\0';
