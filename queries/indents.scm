@@ -3,17 +3,17 @@
   (dop1_definition)
   (dop2_definition)
   (parenthesis)
+  (dfn_parenthesis)
+  (dop1_parenthesis)
+  (dop2_parenthesis)
   (highrank)
+  (dfn_highrank)
+  (dop1_highrank)
+  (dop2_highrank)
 ] @indent.begin
-(dfn_definition 
-  "}" @indent.branch)
-(dop1_definition
-  "}" @indent.branch)
-(dop2_definition
-  "}" @indent.branch)
 [
   "}"
   "]"
   ")"
-] @indent.end
+] @indent.branch @indent.end
 (comment) @indent.auto
