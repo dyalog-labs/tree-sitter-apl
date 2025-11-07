@@ -59,6 +59,12 @@ module.exports = grammar({
     $._invalid_system_command,
   ],
 
+  supertypes: $ => [
+    $.definition,
+    $.parens,
+    $.brackets,
+  ],
+
   conflicts: $ => [
     [$.dop2_definition, $.dop1_definition, $.dfn_definition],
     [$.dop2_definition, $.dop1_definition],
@@ -93,46 +99,69 @@ module.exports = grammar({
   ],
 
   rules: {
+    // a source_file is the whole code,
+    // it might be a file or a code fragment
     source_file: $ => optional(choice(
       _statements($, 0),
       terminator,
     )),
 
+    // outer scope statements can only be expressions,
+    // dfns and dops can have guards and error guards too
     _statement: $ => statement($, 0),
     _dfn_statement: $ => statement($, DFN),
     _dop1_statement: $ => statement($, DOP1),
     _dop2_statement: $ => statement($, DOP2),
 
+    // any _expression outer-scope valid expression
     _expression: $ => expression($, 0,
       ...definitions.map(d => $[d + '_definition']),
       ...literals.map(l => $[l + '_literal']),
       $.system_command,
       $.primitive,
     ),
+    // an _expression becomes a _dfn_expression with one of ⍺,⍵,∇,∇∇
+    // (∇∇ is valid in dfns, it will produce a SYNTAX ERROR when run)
     _dfn_expression: $ => expression($, DFN, $.dop_identifier),
-    _dop1_expression: $ => expression($, DOP1),
-    _dop2_expression: $ => expression($, DOP2),
+    _dop1_expression: $ => expression($, DOP1), // expression with ⍺⍺
+    _dop2_expression: $ => expression($, DOP2), // expression with ⍵⍵
 
+    // quad-commands returned by external scanner
     system_command: $ => $._system_command,
 
+    // a definition is a braced statement list
     dfn_definition: $ => seq('{', optional(choice(
       statements($, DFN),
       statements($, 0),
       terminator,
     )), '}'),
+    // if a definition includes a dop1 expression (and no dop2 expressions),
+    // it is a dop1
     dop1_definition: $ => seq('{', statements($, DOP1), '}'),
+    // if the definition includes any dop2 expression, it is a dop2
     dop2_definition: $ => seq('{', statements($, DOP2), '}'),
+    definition: $ => choice(
+      $.dfn_definition,
+      $.dop1_definition,
+      $.dop2_definition,
+    ),
 
+    // error guards are statements inside definitions,
+    // the result can be a dfn/dop expression
     error_guard: $ => error_guard_expression($, 0),
     dfn_error_guard: $ => error_guard_expression($, DFN),
     dop1_error_guard: $ => error_guard_expression($, DOP1),
     dop2_error_guard: $ => error_guard_expression($, DOP2),
 
+    // guards are statements inside definitions,
+    // either the condition or the result can be a dfn/dop expression
     guard: $ => guard_expression($, 0),
     dfn_guard: $ => guard_expression($, DFN),
     dop1_guard: $ => guard_expression($, DOP1),
     dop2_guard: $ => guard_expression($, DOP2),
 
+    // a namespace can also contains members,
+    // members can also be dfn, dop1 and dop2 members
     namespace: $ => seq('(', optional(choice(
       members($, 0),
       terminator,
@@ -141,6 +170,7 @@ module.exports = grammar({
     dop1_namespace: $ => seq('(', members($, DOP1), ')'),
     dop2_namespace: $ => seq('(', members($, DOP2), ')'),
 
+    // the value can be a dfn or dop expression
     member: $ => namespace_member($, 0),
     dfn_member: $ => namespace_member($, DFN),
     dop1_member: $ => namespace_member($, DOP1),
@@ -150,6 +180,12 @@ module.exports = grammar({
     dfn_parenthesis: $ => seq('(', _statements($, DFN), ')'),
     dop1_parenthesis: $ => seq('(', _statements($, DOP1), ')'),
     dop2_parenthesis: $ => seq('(', _statements($, DOP2), ')'),
+    parens: $ => choice(
+      $.parenthesis,
+      $.dfn_parenthesis,
+      $.dop1_parenthesis,
+      $.dop2_parenthesis,
+    ),
 
     indices: $ => seq('[', optional(choice(
       indices($, 0),
@@ -166,6 +202,12 @@ module.exports = grammar({
     dfn_highrank: $ => seq('[', _statements($, DFN), ']'),
     dop1_highrank: $ => seq('[', _statements($, DOP1), ']'),
     dop2_highrank: $ => seq('[', _statements($, DOP2), ']'),
+    brackets: $ => choice(
+      $.highrank,
+      $.dfn_highrank,
+      $.dop1_highrank,
+      $.dop2_highrank,
+    ),
 
     identifier: _ => identifier,
     dfn_identifier: _ => choice('⍺', '⍵', '∇'),
