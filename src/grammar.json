@@ -1219,6 +1219,23 @@
         }
       ]
     },
+    "definition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "dfn_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop1_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop2_definition"
+        }
+      ]
+    },
     "error_guard": {
       "type": "SEQ",
       "members": [
@@ -3354,6 +3371,27 @@
         }
       ]
     },
+    "parens": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "parenthesis"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dfn_parenthesis"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop1_parenthesis"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop2_parenthesis"
+        }
+      ]
+    },
     "indices": {
       "type": "SEQ",
       "members": [
@@ -4638,6 +4676,27 @@
         }
       ]
     },
+    "brackets": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "highrank"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dfn_highrank"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop1_highrank"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop2_highrank"
+        }
+      ]
+    },
     "identifier": {
       "type": "PATTERN",
       "value": "⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*"
@@ -5142,6 +5201,10 @@
     }
   ],
   "inline": [],
-  "supertypes": [],
+  "supertypes": [
+    "definition",
+    "parens",
+    "brackets"
+  ],
   "reserved": {}
 }
