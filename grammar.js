@@ -130,6 +130,12 @@ module.exports = grammar({
     system_command: $ => $._system_command,
 
     // a definition is a braced statement list
+    definition: $ => choice(
+      $.dfn_definition,
+      $.dop1_definition,
+      $.dop2_definition,
+    ),
+
     dfn_definition: $ => seq('{', optional(choice(
       statements($, DFN),
       statements($, 0),
@@ -140,11 +146,6 @@ module.exports = grammar({
     dop1_definition: $ => seq('{', statements($, DOP1), '}'),
     // if the definition includes any dop2 expression, it is a dop2
     dop2_definition: $ => seq('{', statements($, DOP2), '}'),
-    definition: $ => choice(
-      $.dfn_definition,
-      $.dop1_definition,
-      $.dop2_definition,
-    ),
 
     // error guards are statements inside definitions,
     // the result can be a dfn/dop expression
@@ -159,6 +160,17 @@ module.exports = grammar({
     dfn_guard: $ => guard_expression($, DFN),
     dop1_guard: $ => guard_expression($, DOP1),
     dop2_guard: $ => guard_expression($, DOP2),
+
+    parens: $ => choice(
+      $.namespace,
+      $.dfn_namespace,
+      $.dop1_namespace,
+      $.dop2_namespace,
+      $.parenthesis,
+      $.dfn_parenthesis,
+      $.dop1_parenthesis,
+      $.dop2_parenthesis,
+    ),
 
     // a namespace can also contains members,
     // members can also be dfn, dop1 and dop2 members
@@ -180,12 +192,6 @@ module.exports = grammar({
     dfn_parenthesis: $ => seq('(', _statements($, DFN), ')'),
     dop1_parenthesis: $ => seq('(', _statements($, DOP1), ')'),
     dop2_parenthesis: $ => seq('(', _statements($, DOP2), ')'),
-    parens: $ => choice(
-      $.parenthesis,
-      $.dfn_parenthesis,
-      $.dop1_parenthesis,
-      $.dop2_parenthesis,
-    ),
 
     indices: $ => seq('[', optional(choice(
       indices($, 0),
@@ -195,6 +201,13 @@ module.exports = grammar({
     dop1_indices: $ => seq('[', indices($, DOP1), ']'),
     dop2_indices: $ => seq('[', indices($, DOP2), ']'),
 
+    brackets: $ => choice(
+      $.highrank,
+      $.dfn_highrank,
+      $.dop1_highrank,
+      $.dop2_highrank,
+    ),
+
     highrank: $ => seq('[', choice(
       _statements($, 0),
       terminator,
@@ -202,12 +215,6 @@ module.exports = grammar({
     dfn_highrank: $ => seq('[', _statements($, DFN), ']'),
     dop1_highrank: $ => seq('[', _statements($, DOP1), ']'),
     dop2_highrank: $ => seq('[', _statements($, DOP2), ']'),
-    brackets: $ => choice(
-      $.highrank,
-      $.dfn_highrank,
-      $.dop1_highrank,
-      $.dop2_highrank,
-    ),
 
     identifier: _ => identifier,
     dfn_identifier: _ => choice('⍺', '⍵', '∇'),
