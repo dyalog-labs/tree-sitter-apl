@@ -1,7 +1,9 @@
 [
-  (dfn_definition)
-  (dop1_definition)
-  (dop2_definition)
+  (definition)
+  (namespace)
+  (dfn_namespace)
+  (dop1_namespace)
+  (dop2_namespace)
   (parenthesis)
   (dfn_parenthesis)
   (dop1_parenthesis)
@@ -13,7 +15,7 @@
 ] @indent.begin
 [
   "}"
-  "]"
   ")"
+  "]"
 ] @indent.branch @indent.end
 (comment) @indent.auto

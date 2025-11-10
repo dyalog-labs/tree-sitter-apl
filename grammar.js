@@ -33,13 +33,12 @@ const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
 const primitive = /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
 
-const definitions = [ 'dop2', 'dop1', 'dfn'];
 const literals = ['string', 'number'];
 const expressions = [
   'namespace',
-  'indices',
   'parenthesis',
   'highrank',
+  'indices',
   'identifier',
 ];
 
@@ -61,8 +60,6 @@ module.exports = grammar({
 
   supertypes: $ => [
     $.definition,
-    $.parens,
-    $.brackets,
   ],
 
   conflicts: $ => [
@@ -115,7 +112,7 @@ module.exports = grammar({
 
     // any _expression outer-scope valid expression
     _expression: $ => expression($, 0,
-      ...definitions.map(d => $[d + '_definition']),
+      $.definition,
       ...literals.map(l => $[l + '_literal']),
       $.system_command,
       $.primitive,
@@ -161,17 +158,6 @@ module.exports = grammar({
     dop1_guard: $ => guard_expression($, DOP1),
     dop2_guard: $ => guard_expression($, DOP2),
 
-    parens: $ => choice(
-      $.namespace,
-      $.dfn_namespace,
-      $.dop1_namespace,
-      $.dop2_namespace,
-      $.parenthesis,
-      $.dfn_parenthesis,
-      $.dop1_parenthesis,
-      $.dop2_parenthesis,
-    ),
-
     // a namespace can also contains members,
     // members can also be dfn, dop1 and dop2 members
     namespace: $ => seq('(', optional(choice(
@@ -201,7 +187,7 @@ module.exports = grammar({
     dop1_indices: $ => seq('[', indices($, DOP1), ']'),
     dop2_indices: $ => seq('[', indices($, DOP2), ']'),
 
-    brackets: $ => choice(
+    _highrank: $ => choice(
       $.highrank,
       $.dfn_highrank,
       $.dop1_highrank,

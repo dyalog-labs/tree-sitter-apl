@@ -1,5 +1,23 @@
 [
   {
+    "type": "definition",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "dfn_definition",
+        "named": true
+      },
+      {
+        "type": "dop1_definition",
+        "named": true
+      },
+      {
+        "type": "dop2_definition",
+        "named": true
+      }
+    ]
+  },
+  {
     "type": "dfn_definition",
     "named": true,
     "fields": {},
@@ -70,7 +88,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -91,14 +109,6 @@
         },
         {
           "type": "dfn_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -153,7 +163,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -174,14 +184,6 @@
         },
         {
           "type": "dfn_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -263,7 +265,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -284,14 +286,6 @@
         },
         {
           "type": "dfn_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -346,7 +340,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -367,14 +361,6 @@
         },
         {
           "type": "dfn_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -453,7 +439,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -474,14 +460,6 @@
         },
         {
           "type": "dfn_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -574,7 +552,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -595,14 +573,6 @@
         },
         {
           "type": "dfn_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -695,7 +665,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -716,14 +686,6 @@
         },
         {
           "type": "dfn_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -860,7 +822,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -884,10 +846,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -905,10 +863,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -963,7 +917,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -987,10 +941,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -1008,10 +958,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -1101,7 +1047,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1125,10 +1071,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -1146,10 +1088,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -1204,7 +1142,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1228,10 +1166,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -1249,10 +1183,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -1335,7 +1265,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1359,10 +1289,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -1380,10 +1306,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -1480,7 +1402,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1504,10 +1426,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -1525,10 +1443,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -1629,7 +1543,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1653,10 +1567,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -1674,10 +1584,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -1834,7 +1740,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1858,10 +1764,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -1879,10 +1781,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -1957,7 +1855,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -1981,10 +1879,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -2002,10 +1896,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -2123,7 +2013,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -2147,10 +2037,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -2168,10 +2054,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -2246,7 +2128,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -2270,10 +2152,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -2291,10 +2169,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -2401,7 +2275,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -2425,10 +2299,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -2446,10 +2316,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -2570,7 +2436,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -2594,10 +2460,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -2615,10 +2477,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -2747,7 +2605,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -2771,10 +2629,6 @@
           "named": true
         },
         {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
           "type": "dop1_highrank",
           "named": true
         },
@@ -2792,10 +2646,6 @@
         },
         {
           "type": "dop1_parenthesis",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
           "named": true
         },
         {
@@ -2894,15 +2744,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -2953,15 +2795,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -3031,15 +2865,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -3090,15 +2916,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -3164,15 +2982,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -3257,15 +3067,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
+          "type": "definition",
           "named": true
         },
         {
@@ -3362,15 +3164,7 @@
       "required": true,
       "types": [
         {
-          "type": "dfn_definition",
-          "named": true
-        },
-        {
-          "type": "dop1_definition",
-          "named": true
-        },
-        {
-          "type": "dop2_definition",
+          "type": "definition",
           "named": true
         },
         {

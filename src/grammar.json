@@ -261,10 +261,6 @@
             },
             {
               "type": "SYMBOL",
-              "name": "indices"
-            },
-            {
-              "type": "SYMBOL",
               "name": "parenthesis"
             },
             {
@@ -273,19 +269,15 @@
             },
             {
               "type": "SYMBOL",
+              "name": "indices"
+            },
+            {
+              "type": "SYMBOL",
               "name": "identifier"
             },
             {
               "type": "SYMBOL",
-              "name": "dop2_definition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "dop1_definition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "dfn_definition"
+              "name": "definition"
             },
             {
               "type": "SYMBOL",
@@ -337,15 +329,15 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "dfn_indices"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "dfn_parenthesis"
                 },
                 {
                   "type": "SYMBOL",
                   "name": "dfn_highrank"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "dfn_indices"
                 },
                 {
                   "type": "SYMBOL",
@@ -421,15 +413,15 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "dop1_indices"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "dop1_parenthesis"
                 },
                 {
                   "type": "SYMBOL",
                   "name": "dop1_highrank"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "dop1_indices"
                 },
                 {
                   "type": "SYMBOL",
@@ -519,15 +511,15 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "dop2_indices"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "dop2_parenthesis"
                 },
                 {
                   "type": "SYMBOL",
                   "name": "dop2_highrank"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "dop2_indices"
                 },
                 {
                   "type": "SYMBOL",
@@ -581,6 +573,23 @@
     "system_command": {
       "type": "SYMBOL",
       "name": "_system_command"
+    },
+    "definition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "dfn_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop1_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop2_definition"
+        }
+      ]
     },
     "dfn_definition": {
       "type": "SEQ",
@@ -1216,23 +1225,6 @@
         {
           "type": "STRING",
           "value": "}"
-        }
-      ]
-    },
-    "definition": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "dfn_definition"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dop1_definition"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dop2_definition"
         }
       ]
     },
@@ -3371,27 +3363,6 @@
         }
       ]
     },
-    "parens": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "parenthesis"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dfn_parenthesis"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dop1_parenthesis"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dop2_parenthesis"
-        }
-      ]
-    },
     "indices": {
       "type": "SEQ",
       "members": [
@@ -3931,6 +3902,27 @@
         {
           "type": "STRING",
           "value": "]"
+        }
+      ]
+    },
+    "_highrank": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "highrank"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dfn_highrank"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop1_highrank"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dop2_highrank"
         }
       ]
     },
@@ -4676,27 +4668,6 @@
         }
       ]
     },
-    "brackets": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "highrank"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dfn_highrank"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dop1_highrank"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "dop2_highrank"
-        }
-      ]
-    },
     "identifier": {
       "type": "PATTERN",
       "value": "⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*"
@@ -5202,9 +5173,7 @@
   ],
   "inline": [],
   "supertypes": [
-    "definition",
-    "parens",
-    "brackets"
+    "definition"
   ],
   "reserved": {}
 }
