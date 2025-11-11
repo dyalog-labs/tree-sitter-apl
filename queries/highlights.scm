@@ -1,6 +1,6 @@
 (system_command) @keyword
 
-(comment) @Comment
+(comment) @comment
 
 ; Identifiers
 
