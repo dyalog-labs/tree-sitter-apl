@@ -99,7 +99,7 @@ module.exports = grammar({
     // a source_file is the whole code,
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
-      _statements($, 0),
+      statements($, 0),
       terminator,
     )),
 
@@ -126,32 +126,14 @@ module.exports = grammar({
     // quad-commands returned by external scanner
     system_command: $ => $._system_command,
 
-    // a definition is a braced statement list
-    definition: $ => choice(
-      $.dfn_definition,
-      $.dop1_definition,
-      $.dop2_definition,
-    ),
-
-    // by default, definitions are function definitions
-    dfn_definition: $ => seq('{', optional(choice(
-      statements($, DFN),
-      statements($, 0),
-      terminator,
-    )), '}'),
-    // if a definition includes a dop1 expression (and no dop2 expressions),
-    // it is a dop1
-    dop1_definition: $ => seq('{', statements($, DOP1), '}'),
-    // if the definition includes any dop2 expression, it is a dop2
-    dop2_definition: $ => seq('{', statements($, DOP2), '}'),
-
-    // call factory function to generate rules for definition elements
+    // call factory function to generate rules for definitions
     ...def_rules(),
 
-    // additional identifiers are allowed inside definitions
+    // user defined identifiers
     identifier: _ => identifier,
+    // predefined identifiers allowed inside definitions
     dfn_identifier: _ => choice('⍺', '⍵', '∇'),
-    dop_identifier: _ => '∇∇',
+    dop_identifier: _ => '∇∇', // allowed inside dfn!
     dop1_identifier: _ => '⍺⍺',
     dop2_identifier: _ => '⍵⍵',
 
@@ -238,11 +220,11 @@ function _separated(separator, statements, d){
   );
 }
 
-function _statements($$, d){
+function statements($$, d){
   return _separated(terminator, _alias($$, 'statement'), d);
 }
 
-function statements($$, d){
+function _statements($$, d){
   return _separated(terminator, _def($$, '_statement'), d);
 }
 
@@ -259,16 +241,38 @@ function _guard_expression($$, conditions, colon, expressions, d){
 
 function def_rules() {
   const rules = {
+    // a definition is a braced statement list
+    definition($$, d) {
+      // definition supertype
+      if (d == 0) return choice(
+        $$.dfn_definition,
+        $$.dop1_definition,
+        $$.dop2_definition,
+      );
+      // by default, definitions are function definitions
+      if (d == 1) return seq('{', optional(choice(
+        _statements($$, DFN),
+        _statements($$, 0),
+        terminator,
+      )), '}');
+      // if a definition includes a dop1 or dop2 expression, it's a dop definition
+      return seq('{', _statements($$, d), '}');
+    },
+    // condition guards can include definition expressions either as
+    // condition (guard_condition) or as return expression (guard_expression)
     guard($$, d) {
       const conditions = _alias($$, 'guard_condition');
       const expressions = _alias($$, 'guard_expression');
       return _guard_expression($$, conditions, colon, expressions, d);
     },
+    // error guards can also include definition expressions either as
+    // condition (error_guard_condition) or as return expression (error_guard_expression)
     error_guard($$, d) {
       const conditions = _alias($$, 'error_guard_condition');
       const expressions = _alias($$, 'error_guard_expression');
       return _guard_expression($$, conditions, colons, expressions, d);
     },
+    // a namespace includes members separated by terminators, or could be empty
     namespace($$, d) {
       const members = _separated(terminator, _def($$, 'member'), d);
       if (d == 0) return seq('(', optional(choice(
@@ -277,14 +281,18 @@ function def_rules() {
       )), ')');
       return seq('(', members, ')');
     },
+    // namespace members can be definition expressions
     member($$, d) {
       const members = _alias($$, 'member_expression');
       const identifier = alias($$.identifier, $$.member_identifier);
       return seq(identifier, colon, members[d]);
     },
+    // a parenthesis might be a parenthesized expression
+    // or an APLAN vector definition (if there are separators)
     parenthesis($$, d) {
-      return seq('(', _statements($$, d), ')')
+      return seq('(', statements($$, d), ')')
     },
+    // indices might be separated by separators (;) or not
     indices($$, d) {
       const indices = _separated(separator, _alias($$, 'index'), d);
       if (d == 0) return seq('[', optional(choice(
@@ -293,12 +301,14 @@ function def_rules() {
       )), ']');
       return seq('[', indices, ']');
     },
+    // highrank APLAN definitions look like indices, but always
+    // include a separator
     highrank($$, d) {
       if (d == 0) return seq('[', optional(choice(
-        _statements($$, 0),
+        statements($$, 0),
         terminator,
       )), ']');
-      return seq('[', _statements($$, d), ']');
+      return seq('[', statements($$, d), ']');
     },
   };
   const keys = Object.keys(rules);
