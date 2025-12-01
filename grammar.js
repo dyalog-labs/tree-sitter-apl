@@ -133,6 +133,7 @@ module.exports = grammar({
       $.dop2_definition,
     ),
 
+    // by default, definitions are function definitions
     dfn_definition: $ => seq('{', optional(choice(
       statements($, DFN),
       statements($, 0),
@@ -144,70 +145,17 @@ module.exports = grammar({
     // if the definition includes any dop2 expression, it is a dop2
     dop2_definition: $ => seq('{', statements($, DOP2), '}'),
 
-    // error guards are statements inside definitions,
-    // the result can be a dfn/dop expression
-    error_guard: $ => error_guard_expression($, 0),
-    dfn_error_guard: $ => error_guard_expression($, DFN),
-    dop1_error_guard: $ => error_guard_expression($, DOP1),
-    dop2_error_guard: $ => error_guard_expression($, DOP2),
+    // call factory function to generate rules for definition elements
+    ...def_rules(),
 
-    // guards are statements inside definitions,
-    // either the condition or the result can be a dfn/dop expression
-    guard: $ => guard_expression($, 0),
-    dfn_guard: $ => guard_expression($, DFN),
-    dop1_guard: $ => guard_expression($, DOP1),
-    dop2_guard: $ => guard_expression($, DOP2),
-
-    // a namespace can also contains members,
-    // members can also be dfn, dop1 and dop2 members
-    namespace: $ => seq('(', optional(choice(
-      members($, 0),
-      terminator,
-    )), ')'),
-    dfn_namespace: $ => seq('(', members($, DFN), ')'),
-    dop1_namespace: $ => seq('(', members($, DOP1), ')'),
-    dop2_namespace: $ => seq('(', members($, DOP2), ')'),
-
-    // the value can be a dfn or dop expression
-    member: $ => namespace_member($, 0),
-    dfn_member: $ => namespace_member($, DFN),
-    dop1_member: $ => namespace_member($, DOP1),
-    dop2_member: $ => namespace_member($, DOP2),
-
-    parenthesis: $ => seq('(', _statements($, 0), ')'),
-    dfn_parenthesis: $ => seq('(', _statements($, DFN), ')'),
-    dop1_parenthesis: $ => seq('(', _statements($, DOP1), ')'),
-    dop2_parenthesis: $ => seq('(', _statements($, DOP2), ')'),
-
-    indices: $ => seq('[', optional(choice(
-      indices($, 0),
-      separator,
-    )), ']'),
-    dfn_indices: $ => seq('[', indices($, DFN), ']'),
-    dop1_indices: $ => seq('[', indices($, DOP1), ']'),
-    dop2_indices: $ => seq('[', indices($, DOP2), ']'),
-
-    _highrank: $ => choice(
-      $.highrank,
-      $.dfn_highrank,
-      $.dop1_highrank,
-      $.dop2_highrank,
-    ),
-
-    highrank: $ => seq('[', choice(
-      _statements($, 0),
-      terminator,
-    ), ']'),
-    dfn_highrank: $ => seq('[', _statements($, DFN), ']'),
-    dop1_highrank: $ => seq('[', _statements($, DOP1), ']'),
-    dop2_highrank: $ => seq('[', _statements($, DOP2), ']'),
-
+    // additional identifiers are allowed inside definitions
     identifier: _ => identifier,
     dfn_identifier: _ => choice('⍺', '⍵', '∇'),
     dop_identifier: _ => '∇∇',
     dop1_identifier: _ => '⍺⍺',
     dop2_identifier: _ => '⍵⍵',
 
+    // literals are strings, numbers, or primitives
     string_literal: $ => seq(
       "'",
       prec(1, optional($.string_literal_content)),
@@ -217,6 +165,7 @@ module.exports = grammar({
     number_literal: _ => token(numberLiteral),
     primitive: _ => primitive,
 
+    // ilumination
     comment: _ => token(seq(lamp, /.*/)),
   },
 });
@@ -297,20 +246,6 @@ function statements($$, d){
   return _separated(terminator, _def($$, '_statement'), d);
 }
 
-function indices($$, d){
-  return _separated(separator, _alias($$, 'index'), d);
-}
-
-function members($$, d){
-  return _separated(terminator, _def($$, 'member'), d);
-}
-
-function namespace_member($$, d){
-  const members = _alias($$, 'member_expression');
-  const identifier = alias($$.identifier, $$.member_identifier);
-  return seq(identifier, colon, members[d]);
-}
-
 function _guard_expression($$, conditions, colon, expressions, d){
   if (d == 0)
     return seq(conditions[0], colon, expressions[0]);
@@ -322,14 +257,58 @@ function _guard_expression($$, conditions, colon, expressions, d){
   );
 }
 
-function guard_expression($$, d){
-  const conditions = _alias($$, 'guard_condition');
-  const expressions = _alias($$, 'guard_expression');
-  return _guard_expression($$, conditions, colon, expressions, d);
-}
-
-function error_guard_expression($$, d){
-  const conditions = _alias($$, 'error_guard_condition');
-  const expressions = _alias($$, 'error_guard_expression');
-  return _guard_expression($$, conditions, colons, expressions, d);
+function def_rules() {
+  const rules = {
+    guard($$, d) {
+      const conditions = _alias($$, 'guard_condition');
+      const expressions = _alias($$, 'guard_expression');
+      return _guard_expression($$, conditions, colon, expressions, d);
+    },
+    error_guard($$, d) {
+      const conditions = _alias($$, 'error_guard_condition');
+      const expressions = _alias($$, 'error_guard_expression');
+      return _guard_expression($$, conditions, colons, expressions, d);
+    },
+    namespace($$, d) {
+      const members = _separated(terminator, _def($$, 'member'), d);
+      if (d == 0) return seq('(', optional(choice(
+        members,
+        terminator,
+      )), ')');
+      return seq('(', members, ')');
+    },
+    member($$, d) {
+      const members = _alias($$, 'member_expression');
+      const identifier = alias($$.identifier, $$.member_identifier);
+      return seq(identifier, colon, members[d]);
+    },
+    parenthesis($$, d) {
+      return seq('(', _statements($$, d), ')')
+    },
+    indices($$, d) {
+      const indices = _separated(separator, _alias($$, 'index'), d);
+      if (d == 0) return seq('[', optional(choice(
+        indices,
+        separator,
+      )), ']');
+      return seq('[', indices, ']');
+    },
+    highrank($$, d) {
+      if (d == 0) return seq('[', optional(choice(
+        _statements($$, 0),
+        terminator,
+      )), ']');
+      return seq('[', _statements($$, d), ']');
+    },
+  };
+  const keys = Object.keys(rules);
+  for (let i = 0; i < keys.length; i++) {
+    let k = keys[i];
+    let fn = rules[k];
+    rules[k] = $ => fn($, 0);
+    rules['dfn_' + k] = $ => fn($, DFN);
+    rules['dop1_' + k] = $ => fn($, DOP1);
+    rules['dop2_' + k] = $ => fn($, DOP2);
+  }
+  return rules;
 }
