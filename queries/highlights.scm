@@ -23,7 +23,6 @@
 
 [
   (primitive)
-  (assign)
 ] @operator
 
 [
