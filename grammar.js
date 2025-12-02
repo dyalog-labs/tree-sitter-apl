@@ -31,7 +31,7 @@ const stringContentLiteral = /(''|[^'\n])+/;
 
 const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
-const primitive = /[-←+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
+const primitive = /[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
 
 const literals = ['string', 'number'];
 const expressions = [
@@ -93,6 +93,9 @@ module.exports = grammar({
     [$.dop1_highrank, $.dop1_indices],
     [$.dfn_highrank, $.dfn_indices],
     [$.indices, $.highrank],
+    [$._expression],
+    [$._dfn_expression],
+    [$._dop1_expression],
   ],
 
   rules: {
@@ -111,11 +114,14 @@ module.exports = grammar({
     _dop2_statement: $ => statement($, DOP2),
 
     // any _expression outer-scope valid expression
-    _expression: $ => expression($, 0,
-      $.definition,
-      ...literals.map(l => $[l + '_literal']),
-      $.system_command,
-      $.primitive,
+    _expression: $ => choice(
+      expression($, 0,
+        $.definition,
+        ...literals.map(l => $[l + '_literal']),
+        $.system_command,
+        $.primitive,
+      ),
+      $.assignment,
     ),
     // an _expression becomes a _dfn_expression with one of ⍺,⍵,∇,∇∇
     // (∇∇ is valid in dfns, it will produce a SYNTAX ERROR when run)
@@ -146,6 +152,7 @@ module.exports = grammar({
     string_literal_content: _ => token.immediate(stringContentLiteral),
     number_literal: _ => token(numberLiteral),
     primitive: _ => primitive,
+    assign: _ => '←',
 
     // ilumination
     comment: _ => token(seq(lamp, /.*/)),
@@ -175,18 +182,22 @@ function _choice(choices){
 
 function expression($$, d, ...extra) {
   const prefix = ['', 'dfn_', 'dop1_', 'dop2_'][d];
+  const _assignment = _def($$, 'assignment')[d];
   const expression = choice(
     ...expressions.map((expression) => $$[prefix + expression]),
     ...extra,
   );
   if (d == 0)
-    return repeat1(prec.right(expression));
+    return repeat1(choice(expression, _assignment));
   const _expressions = _choice(_def($$, '_expression'));
-  return prec.right(seq(
-    optional(_expressions[d-1]),
-    prec(1, expression),
-    optional(_expressions[d]),
-  ));
+  return choice(
+    seq(
+      optional(_expressions[d-1]),
+      expression,
+      prec(1, optional(_expressions[d])),
+    ),
+    _assignment,
+  );
 }
 
 function statement($$, d) {
@@ -228,19 +239,25 @@ function _statements($$, d){
   return _separated(terminator, _def($$, '_statement'), d);
 }
 
-function _guard_expression($$, conditions, colon, expressions, d){
+function _left_right($$, left, middle, right, d){
   if (d == 0)
-    return seq(conditions[0], colon, expressions[0]);
-  const _conditions = _choice(conditions);
-  const _expressions = _choice(expressions);
+    return prec.right(seq(left[0], middle, right[0]));
+  const _left = _choice(left);
+  const _right = _choice(right);
   return choice(
-    seq(_conditions[d-1], colon, expressions[d]),
-    seq(conditions[d], colon, _expressions[d]),
+    prec.right(seq(_left[d-1], middle, right[d])),
+    prec.right(seq(left[d], middle, _right[d])),
   );
 }
 
 function def_rules() {
   const rules = {
+    // assignments have a left and a right expression
+    assignment($$, d) {
+      const left = _alias($$, 'assign_left');
+      const right = _alias($$, 'assign_right');
+      return _left_right($$, left, $$.assign, right, d);
+    },
     // a definition is a braced statement list
     definition($$, d) {
       // definition supertype
@@ -263,14 +280,14 @@ function def_rules() {
     guard($$, d) {
       const conditions = _alias($$, 'guard_condition');
       const expressions = _alias($$, 'guard_expression');
-      return _guard_expression($$, conditions, colon, expressions, d);
+      return _left_right($$, conditions, colon, expressions, d);
     },
     // error guards can also include definition expressions either as
     // condition (error_guard_condition) or as return expression (error_guard_expression)
     error_guard($$, d) {
       const conditions = _alias($$, 'error_guard_condition');
       const expressions = _alias($$, 'error_guard_expression');
-      return _guard_expression($$, conditions, colons, expressions, d);
+      return _left_right($$, conditions, colons, expressions, d);
     },
     // a namespace includes members separated by terminators, or could be empty
     namespace($$, d) {

@@ -21,7 +21,10 @@
 
 ; Operators
 
-(primitive) @operator
+[
+  (primitive)
+  (assign)
+] @operator
 
 [
   "⋄"
