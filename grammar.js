@@ -106,13 +106,6 @@ module.exports = grammar({
       terminator,
     )),
 
-    // outer scope statements can only be expressions,
-    // dfns and dops can have guards and error guards too
-    _statement: $ => statement($, 0),
-    _dfn_statement: $ => statement($, DFN),
-    _dop1_statement: $ => statement($, DOP1),
-    _dop2_statement: $ => statement($, DOP2),
-
     // any _expression outer-scope valid expression
     _expression: $ => choice(
       expression($, 0,
@@ -159,16 +152,21 @@ module.exports = grammar({
   },
 });
 
-function _def($$, name) {
+function defs(name) {
   const prefixes = ['', 'dfn_', 'dop1_', 'dop2_'];
   const private = name[0] == '_' ? '_' : '';
   const base = name[0] == '_' ? name.substring(1) : name;
-  return prefixes.map((prefix) => $$[private + prefix + base])
+  return prefixes.map((prefix) => [private + prefix + base]);
+}
+
+function _defs($$, name) {
+  const d = defs(name);
+  return d.map((di) => $$[di]);
 }
 
 function _alias($$, name){
-  const expressions = _def($$, '_expression');
-  const aliases = _def($$, name);
+  const expressions = _defs($$, '_expression');
+  const aliases = _defs($$, name);
   return expressions.map((ei, i) => alias(ei, aliases[i]));
 }
 
@@ -182,14 +180,14 @@ function _choice(choices){
 
 function expression($$, d, ...extra) {
   const prefix = ['', 'dfn_', 'dop1_', 'dop2_'][d];
-  const _assignment = _def($$, 'assignment')[d];
+  const _assignment = _defs($$, 'assignment')[d];
   const expression = choice(
     ...expressions.map((expression) => $$[prefix + expression]),
     ...extra,
   );
   if (d == 0)
     return repeat1(choice(expression, _assignment));
-  const _expressions = _choice(_def($$, '_expression'));
+  const _expressions = _choice(_defs($$, '_expression'));
   return choice(
     seq(
       optional(_expressions[d-1]),
@@ -198,19 +196,6 @@ function expression($$, d, ...extra) {
     ),
     _assignment,
   );
-}
-
-function statement($$, d) {
-  const prefix = ['', 'dfn_', 'dop1_', 'dop2_'][d];
-  const _expression = '_' + prefix + 'expression';
-  const statement = prefix + 'statement';
-  const error_guard = prefix + 'error_guard';
-  const guard = prefix + 'guard';
-  return prec.right(choice(...[
-    $$[error_guard],
-    $$[guard],
-    alias($$[_expression], $$[statement]),
-  ]));
 }
 
 function _separated(separator, statements, d){
@@ -236,7 +221,7 @@ function statements($$, d){
 }
 
 function _statements($$, d){
-  return _separated(terminator, _def($$, '_statement'), d);
+  return _separated(terminator, _defs($$, '_statement'), d);
 }
 
 function _left_right($$, left, middle, right, d){
@@ -252,6 +237,20 @@ function _left_right($$, left, middle, right, d){
 
 function def_rules() {
   const rules = {
+    // statements inside definitions can be expressions,
+    // guards or error guards
+    _statement($$, d) {
+      const prefix = ['', 'dfn_', 'dop1_', 'dop2_'][d];
+      const _expression = '_' + prefix + 'expression';
+      const statement = prefix + 'statement';
+      const error_guard = prefix + 'error_guard';
+      const guard = prefix + 'guard';
+      return prec.right(choice(...[
+        $$[error_guard],
+        $$[guard],
+        alias($$[_expression], $$[statement]),
+      ]));
+    },
     // assignments have a left and a right expression
     assignment($$, d) {
       const left = _alias($$, 'assign_left');
@@ -291,7 +290,7 @@ function def_rules() {
     },
     // a namespace includes members separated by terminators, or could be empty
     namespace($$, d) {
-      const members = _separated(terminator, _def($$, 'member'), d);
+      const members = _separated(terminator, _defs($$, 'member'), d);
       if (d == 0) return seq('(', optional(choice(
         members,
         terminator,
@@ -332,10 +331,10 @@ function def_rules() {
   for (let i = 0; i < keys.length; i++) {
     let k = keys[i];
     let fn = rules[k];
-    rules[k] = $ => fn($, 0);
-    rules['dfn_' + k] = $ => fn($, DFN);
-    rules['dop1_' + k] = $ => fn($, DOP1);
-    rules['dop2_' + k] = $ => fn($, DOP2);
+    let d = defs(k);
+    for (let j = 0; j < d.length; j++) {
+      rules[d[j]] = $ => fn($, j);
+    }
   }
   return rules;
 }

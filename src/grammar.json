@@ -143,110 +143,6 @@
         }
       ]
     },
-    "_statement": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "error_guard"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "guard"
-          },
-          {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
-            },
-            "named": true,
-            "value": "statement"
-          }
-        ]
-      }
-    },
-    "_dfn_statement": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "dfn_error_guard"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "dfn_guard"
-          },
-          {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_dfn_expression"
-            },
-            "named": true,
-            "value": "dfn_statement"
-          }
-        ]
-      }
-    },
-    "_dop1_statement": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "dop1_error_guard"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "dop1_guard"
-          },
-          {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_dop1_expression"
-            },
-            "named": true,
-            "value": "dop1_statement"
-          }
-        ]
-      }
-    },
-    "_dop2_statement": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "dop2_error_guard"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "dop2_guard"
-          },
-          {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_dop2_expression"
-            },
-            "named": true,
-            "value": "dop2_statement"
-          }
-        ]
-      }
-    },
     "_expression": {
       "type": "CHOICE",
       "members": [
@@ -602,6 +498,32 @@
     "system_command": {
       "type": "SYMBOL",
       "name": "_system_command"
+    },
+    "_statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "error_guard"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "guard"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            "named": true,
+            "value": "statement"
+          }
+        ]
+      }
     },
     "assignment": {
       "type": "PREC_RIGHT",
@@ -1256,6 +1178,84 @@
           "value": "]"
         }
       ]
+    },
+    "_dfn_statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "dfn_error_guard"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "dfn_guard"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_dfn_expression"
+            },
+            "named": true,
+            "value": "dfn_statement"
+          }
+        ]
+      }
+    },
+    "_dop1_statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "dop1_error_guard"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "dop1_guard"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_dop1_expression"
+            },
+            "named": true,
+            "value": "dop1_statement"
+          }
+        ]
+      }
+    },
+    "_dop2_statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "dop2_error_guard"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "dop2_guard"
+          },
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_dop2_expression"
+            },
+            "named": true,
+            "value": "dop2_statement"
+          }
+        ]
+      }
     },
     "dfn_assignment": {
       "type": "CHOICE",
