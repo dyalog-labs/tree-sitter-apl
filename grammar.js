@@ -97,8 +97,10 @@ module.exports = grammar({
     [$._expression],
     [$._dfn_expression],
     [$._dop1_expression],
-    [$._tradfn_header, $._expression],
-    [$._tradfn_header],
+    [$.tradop2, $.tradop1, $.tradfn],
+    [$.tradop2, $.tradop1, $.tradfn, $._expression],
+    [$.tradfn, $._expression],
+    [$.tradfn],
   ],
 
   rules: {
@@ -106,39 +108,15 @@ module.exports = grammar({
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
       alias($.statement_list, '_statement_list'),
+      $.tradop2,
+      $.tradop1,
       $.tradfn,
       terminator,
     )),
 
-    tradfn: $ => seq(
-      optional(del),
-      $._tradfn_header,
-      newline,
-      field('body', $.statement_list),
-      optional(del),
-    ),
-    _tradfn_header: $ => seq(
-      optional(field('result', seq(
-        choice(
-          $.identifier,
-          seq('(', repeat1($.identifier), ')'),
-          seq('{', $.identifier, '}'),
-        ),
-        '←',
-      ))),
-      optional(field('left_arg', choice(
-        $.identifier,
-        seq('(', repeat1($.identifier), ')'),
-        seq('{', $.identifier, '}'),
-      ))),
-      field('name', $.identifier),
-      optional(field('right_arg', choice(
-        $.identifier,
-        seq('(', repeat1($.identifier), ')'),
-      ))),
-      repeat(seq(repeat1(';'), field('local', $.identifier))),
-      repeat(';'),
-    ),
+    tradfn: $ => trad_def($, DFN),
+    tradop1: $ => trad_def($, DOP1),
+    tradop2: $ => trad_def($, DOP2),
     statement_list: $ => statements($, 0),
 
     // any _expression outer-scope valid expression
@@ -259,7 +237,7 @@ function _statements($$, d){
   return _separated(terminator, _defs($$, '_statement'), d);
 }
 
-function _left_right($$, left, middle, right, d){
+function _left_right(left, middle, right, d){
   if (d == 0)
     return prec.right(seq(left[0], middle, right[0]));
   const _left = _choice(left);
@@ -267,6 +245,46 @@ function _left_right($$, left, middle, right, d){
   return choice(
     prec.right(seq(_left[d-1], middle, right[d])),
     prec.right(seq(left[d], middle, _right[d])),
+  );
+}
+
+function trad_def($$, d) {
+  var center = [field('name', $$.identifier)];
+  if (d > DFN) {
+    center.splice(0, 0, '(', field('left_op', $$.identifier));
+    if (d == DOP2) {
+      center.push(field('right_op', $$.identifier));
+    }
+    center.push(')');
+  }
+  const trad_header = seq(
+    optional(field('result', seq(
+      choice(
+        $$.identifier,
+        seq('(', repeat1($$.identifier), ')'),
+        seq('{', $$.identifier, '}'),
+      ),
+      '←',
+    ))),
+    optional(field('left_arg', choice(
+      $$.identifier,
+      seq('(', repeat1($$.identifier), ')'),
+      seq('{', $$.identifier, '}'),
+    ))),
+    ...center,
+    optional(field('right_arg', choice(
+      $$.identifier,
+      seq('(', repeat1($$.identifier), ')'),
+    ))),
+    repeat(seq(repeat1(';'), field('local', $$.identifier))),
+    repeat(';'),
+  );
+  return seq(
+    optional(del),
+    trad_header,
+    newline,
+    field('body', $$.statement_list),
+    optional(del),
   );
 }
 
@@ -290,7 +308,7 @@ function def_rules() {
     assignment($$, d) {
       const left = _alias($$, 'assign_left');
       const right = _alias($$, 'assign_right');
-      return _left_right($$, left, $$.assign, right, d);
+      return _left_right(left, $$.assign, right, d);
     },
     // a definition is a braced statement list
     definition($$, d) {
@@ -314,14 +332,14 @@ function def_rules() {
     guard($$, d) {
       const conditions = _alias($$, 'guard_condition');
       const expressions = _alias($$, 'guard_expression');
-      return _left_right($$, conditions, colon, expressions, d);
+      return _left_right(conditions, colon, expressions, d);
     },
     // error guards can also include definition expressions either as
     // condition (error_guard_condition) or as return expression (error_guard_expression)
     error_guard($$, d) {
       const conditions = _alias($$, 'error_guard_condition');
       const expressions = _alias($$, 'error_guard_expression');
-      return _left_right($$, conditions, colons, expressions, d);
+      return _left_right(conditions, colons, expressions, d);
     },
     // a namespace includes members separated by terminators, or could be empty
     namespace($$, d) {
