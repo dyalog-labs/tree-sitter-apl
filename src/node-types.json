@@ -18,6 +18,26 @@
     ]
   },
   {
+    "type": "_statement_list",
+    "named": false,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assign",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "assign_left",
     "named": true,
     "fields": {},
@@ -4313,11 +4333,11 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "statement",
+          "type": "tradfn",
           "named": true
         }
       ]
@@ -4399,6 +4419,116 @@
     "fields": {}
   },
   {
+    "type": "tradfn",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_statement_list",
+            "named": false
+          }
+        ]
+      },
+      "left_arg": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "local": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "result": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          },
+          {
+            "type": "←",
+            "named": false
+          }
+        ]
+      },
+      "right_arg": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "\u0000",
     "named": false
   },
@@ -4435,10 +4565,6 @@
     "named": false
   },
   {
-    "type": "assign",
-    "named": true
-  },
-  {
     "type": "comment",
     "named": true,
     "extra": true
@@ -4469,6 +4595,10 @@
   },
   {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "←",
     "named": false
   },
   {

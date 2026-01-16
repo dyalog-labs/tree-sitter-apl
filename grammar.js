@@ -31,6 +31,7 @@ const stringContentLiteral = /(''|[^'\n])+/;
 
 const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
+const del = '∇';
 const primitive = /[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
 
 const literals = ['string', 'number'];
@@ -96,15 +97,49 @@ module.exports = grammar({
     [$._expression],
     [$._dfn_expression],
     [$._dop1_expression],
+    [$._tradfn_header, $._expression],
+    [$._tradfn_header],
   ],
 
   rules: {
     // a source_file is the whole code,
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
-      statements($, 0),
+      alias($.statement_list, '_statement_list'),
+      $.tradfn,
       terminator,
     )),
+
+    tradfn: $ => seq(
+      optional(del),
+      $._tradfn_header,
+      newline,
+      field('body', $.statement_list),
+      optional(del),
+    ),
+    _tradfn_header: $ => seq(
+      optional(field('result', seq(
+        choice(
+          $.identifier,
+          seq('(', repeat1($.identifier), ')'),
+          seq('{', $.identifier, '}'),
+        ),
+        '←',
+      ))),
+      optional(field('left_arg', choice(
+        $.identifier,
+        seq('(', repeat1($.identifier), ')'),
+        seq('{', $.identifier, '}'),
+      ))),
+      field('name', $.identifier),
+      optional(field('right_arg', choice(
+        $.identifier,
+        seq('(', repeat1($.identifier), ')'),
+      ))),
+      repeat(seq(repeat1(';'), field('local', $.identifier))),
+      repeat(';'),
+    ),
+    statement_list: $ => statements($, 0),
 
     // any _expression outer-scope valid expression
     _expression: $ => choice(
