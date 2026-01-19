@@ -43,6 +43,12 @@ const expressions = [
   'identifier',
 ];
 
+const If = /:[Ii][Ff]/;
+const Else = /:[Ee][Ll][Ss][Ee]/;
+const ElseIf = /:[Ee][Ll][Ss][Ee][Ii][Ff]/;
+const EndIf = /:[Ee][Nn][Dd][Ii][Ff]/;
+const End = /:[Ee][Nn][Dd]/;
+
 module.exports = grammar({
   name: 'apl',
 
@@ -100,14 +106,19 @@ module.exports = grammar({
     [$.tradop2, $.tradop1, $.tradfn],
     [$.tradop2, $.tradop1, $.tradfn, $._expression],
     [$.tradfn, $._expression],
+    [$.tradfn, $.statement_list],
+    [$.tradop1, $.statement_list],
+    [$.tradop2, $.statement_list],
     [$.tradfn],
+    [$.statement_list],
+    [$.if_block],
   ],
 
   rules: {
     // a source_file is the whole code,
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
-      alias($.statement_list, '_statement_list'),
+      statements($, 0),
       $.tradop2,
       $.tradop1,
       $.tradfn,
@@ -117,7 +128,39 @@ module.exports = grammar({
     tradfn: $ => trad_def($, DFN),
     tradop1: $ => trad_def($, DOP1),
     tradop2: $ => trad_def($, DOP2),
-    statement_list: $ => statements($, 0),
+    statement_list: $ => _separated(terminator, [choice(
+      alias($._expression, $.statement),
+      $.if_block,
+    )], 0),
+    if_block: $ => seq(
+      $.if_statement,
+      repeat1(prec.left(terminator)),
+      optional($.statement_list),
+      repeat(seq(
+        repeat1(prec.left(terminator)),
+        $.elseif_statement,
+        repeat1(prec.left(terminator)),
+        optional($.statement_list),
+      )),
+      optional(seq(
+        repeat1(prec.left(terminator)),
+        $.else_statement,
+        repeat1(prec.left(terminator)),
+        optional($.statement_list),
+      )),
+      repeat1(prec.left(terminator)),
+      $.endif_statement,
+    ),
+    if_statement: $ => seq(
+      If,
+      alias($._expression, $.if_condition),
+    ),
+    elseif_statement: $ => seq(
+      ElseIf,
+      alias($._expression, $.elseif_condition),
+    ),
+    else_statement: _ => Else,
+    endif_statement: _ => choice(EndIf, End),
 
     // any _expression outer-scope valid expression
     _expression: $ => choice(
@@ -283,7 +326,10 @@ function trad_def($$, d) {
     optional(del),
     trad_header,
     newline,
-    field('body', $$.statement_list),
+    field('body', choice(
+      $$.statement_list,
+      $$.if_block,
+    )),
     optional(del),
   );
 }

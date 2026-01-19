@@ -1,0 +1,293 @@
+==================
+if 1
+==================
+∇r←fn w
+ r←0
+ :if w>0
+  r←1
+ :endif
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (assign)
+          (assign_right
+            (number_literal))))
+      (if_block
+        (if_statement
+          (if_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (endif_statement)))))
+
+==================
+if 2
+==================
+∇r←fn w
+ r←0
+ :if w>0 ⋄ r←1 ⋄ :end
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (assign)
+          (assign_right
+            (number_literal))))
+      (if_block
+        (if_statement
+          (if_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (endif_statement)))))
+
+==================
+if elseif
+==================
+∇r←fn w
+ r←0
+ :if w>0 ⋄ r←1 ⋄ :elseif w<0 ⋄ r←¯1 ⋄ :end
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (assign)
+          (assign_right
+            (number_literal))))
+      (if_block
+        (if_statement
+          (if_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (elseif_statement
+          (elseif_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (endif_statement)))))
+
+==================
+if else
+==================
+∇r←fn w
+ :if w>0 ⋄ r←1 ⋄ :else ⋄ r←0 ⋄ :end
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement_list
+      (if_block
+        (if_statement
+          (if_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (else_statement)
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (endif_statement)))))
+
+==================
+if elseif else
+==================
+∇r←fn w
+ :if w>0 ⋄ r←1 ⋄ :elseif w<0 ⋄ r←¯1
+ :else ⋄ r←0 ⋄ :end
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement_list
+      (if_block
+        (if_statement
+          (if_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (elseif_statement
+          (elseif_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (else_statement)
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (assign)
+              (assign_right
+                (number_literal)))))
+        (endif_statement)))))
+
+==================
+if nested
+==================
+∇r←fn w
+ r←⍬
+ :if ~0∊⍴w
+ :if w>0 ⋄ r←1 ⋄ :elseif w<0 ⋄ r←¯1
+ :else ⋄ r←0 ⋄ :end
+ :end
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (assign)
+          (assign_right
+            (primitive))))
+      (if_block
+        (if_statement
+          (if_condition
+            (primitive)
+            (number_literal)
+            (primitive)
+            (primitive)
+            (identifier)))
+        (statement_list
+          (if_block
+            (if_statement
+              (if_condition
+                (identifier)
+                (primitive)
+                (number_literal)))
+            (statement_list
+              (statement
+                (assignment
+                  (assign_left
+                    (identifier))
+                  (assign)
+                  (assign_right
+                    (number_literal)))))
+            (elseif_statement
+              (elseif_condition
+                (identifier)
+                (primitive)
+                (number_literal)))
+            (statement_list
+              (statement
+                (assignment
+                  (assign_left
+                    (identifier))
+                  (assign)
+                  (assign_right
+                    (number_literal)))))
+            (else_statement)
+            (statement_list
+              (statement
+                (assignment
+                  (assign_left
+                    (identifier))
+                  (assign)
+                  (assign_right
+                    (number_literal)))))
+            (endif_statement)))
+        (endif_statement)))))
