@@ -77,6 +77,41 @@ if 2
         (endif_statement)))))
 
 ==================
+if 3
+==================
+∇r←fn w
+ r←0
+ :ifw>0 ⋄ r←1 ⋄ :end
+∇
+---
+
+(source_file
+    (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement_list
+        (statement
+        (assignment
+            (assign_left
+            (identifier))
+            (assign)
+            (assign_right
+            (number_literal))))
+        (ERROR)
+        (statement
+        (primitive)
+        (number_literal))
+        (statement
+        (assignment
+            (assign_left
+            (identifier))
+            (assign)
+            (assign_right
+            (number_literal))))
+        (ERROR))))
+
+==================
 if elseif
 ==================
 ∇r←fn w

@@ -3,6 +3,8 @@
 #include <string.h>
 
 enum TokenType {
+  IF, ELSEIF, ELSE, ENDIF,
+  END,
   LEFT_OP,
   RIGHT_OP,
   SELF_OP,
@@ -34,6 +36,13 @@ const char *SYSTEM_COMMANDS[] = {
   "TRACE", "TRAP", "TREQ", "TS", "TSYNC", "UCS", "USING", "VFI", "VR", "WA",
   "WC", "WG", "WN", "WS", "WSID", "WX", "XML", "XSI", "XT", "Á"
 };
+const int N_SYSTEM_COMMANDS = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
+
+const char *CONTROL_WORDS[] = {
+  "IF", "ELSEIF", "ELSE", "ENDIF",
+  "END"
+};
+const int N_CONTROL_WORDS = sizeof(CONTROL_WORDS) / sizeof(CONTROL_WORDS[0]);
 
 // valid first character of an identifier
 // TODO: https://help.dyalog.com/latest/index.htm#Language/Introduction/Variables/Names.htm
@@ -60,6 +69,14 @@ bool two(const int32_t c, const int32_t r, TSLexer *lexer) {
   return true;
 }
 
+bool control_valid(const bool *valid_symbols) {
+  for (int i = 0; i < N_CONTROL_WORDS; i++) {
+    if (valid_symbols[i])
+      return true;
+  }
+  return false;
+}
+
 void *tree_sitter_apl_external_scanner_create() { return NULL; }
 void tree_sitter_apl_external_scanner_destroy(void *payload) {}
 unsigned tree_sitter_apl_external_scanner_serialize(void *payload, char *buffer) { return 0; }
@@ -84,6 +101,7 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
   }
 
   // We are interested in tokens that start with ⍺,⍵,∇,⎕
+  bool control = false;
   switch (lexer->lookahead) {
   case ALPHA:
     return two(ALPHA, LEFT_OP, lexer);
@@ -91,6 +109,10 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
     return two(OMEGA, RIGHT_OP, lexer);
   case DEL:
     return two(DEL, SELF_OP, lexer);
+  case ':':
+    if (!control_valid(valid_symbols))
+      return false;
+    control = true;
   case QUAD:
     lexer->advance(lexer, false); // consume the character
     break;
@@ -114,9 +136,19 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
   }
   command_name[i] = '\0';
 
+  // check if control word is in the list of control words
+  if (control) {
+    for (i = 0; i < N_CONTROL_WORDS; i++) {
+      if (strcmp(command_name, CONTROL_WORDS[i]) == 0) {
+        // it's a valid command
+        lexer->result_symbol = i;
+        return true;
+      }
+    }
+  }
+
   // check if the command is in the list of system commands
-  int n = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
-  for (i = 0; i < n; i++) {
+  for (i = 0; i < N_SYSTEM_COMMANDS; i++) {
     if (strcmp(command_name, SYSTEM_COMMANDS[i]) == 0) {
       // it's a valid command
       lexer->result_symbol = SYSTEM_COMMAND;

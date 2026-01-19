@@ -18,6 +18,25 @@
     ]
   },
   {
+    "type": "_statement_list",
+    "named": false,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign",
     "named": true,
     "fields": {}
@@ -3866,6 +3885,11 @@
     "fields": {}
   },
   {
+    "type": "else_statement",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "elseif_condition",
     "named": true,
     "fields": {},
@@ -4494,13 +4518,9 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "statement",
-          "named": true
-        },
         {
           "type": "tradfn",
           "named": true
@@ -5022,10 +5042,6 @@
     "type": "comment",
     "named": true,
     "extra": true
-  },
-  {
-    "type": "else_statement",
-    "named": true
   },
   {
     "type": "identifier",
