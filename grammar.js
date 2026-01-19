@@ -54,7 +54,7 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   externals: $ => [
-    $._if, $._elseif, $._else, $._endif,
+    $._if, $._andif, $._orif, $._elseif, $._else, $._endif,
     $._end,
     '⍺⍺', '⍵⍵', '∇∇',
     $._system_command,
@@ -106,6 +106,7 @@ module.exports = grammar({
     [$.tradop1, $.statement_list],
     [$.tradop2, $.statement_list],
     [$.tradfn],
+    [$.statement_list, $.if_block],
     [$.statement_list],
   ],
 
@@ -132,11 +133,19 @@ module.exports = grammar({
     // control structures
     if_block: $ => seq(
       $.if_statement,
+      choice(
+        repeat(seq(terminator, $.andif_statement)),
+        repeat(seq(terminator, $.orif_statement)),
+      ),
       terminator, optional($.statement_list),
-      repeat(prec.left(seq(
+      repeat(seq(
         terminator, $.elseif_statement,
+        choice(
+          repeat(seq(terminator, $.andif_statement)),
+          repeat(seq(terminator, $.orif_statement)),
+        ),
         terminator, optional($.statement_list),
-      ))),
+      )),
       optional(seq(
         terminator, $.else_statement,
         terminator, optional($.statement_list),
@@ -147,6 +156,14 @@ module.exports = grammar({
     if_statement: $ => seq(
       $._if,
       alias($._expression, $.if_condition),
+    ),
+    andif_statement: $ => seq(
+      $._andif,
+      alias($._expression, $.andif_condition),
+    ),
+    orif_statement: $ => seq(
+      $._orif,
+      alias($._expression, $.orif_condition),
     ),
     elseif_statement: $ => seq(
       $._elseif,

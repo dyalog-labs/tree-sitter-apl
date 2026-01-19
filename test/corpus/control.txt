@@ -86,30 +86,30 @@ if 3
 ---
 
 (source_file
-    (tradfn
+  (tradfn
     (identifier)
     (identifier)
     (identifier)
     (statement_list
-        (statement
+      (statement
         (assignment
-            (assign_left
+          (assign_left
             (identifier))
-            (assign)
-            (assign_right
+          (assign)
+          (assign_right
             (number_literal))))
-        (ERROR)
-        (statement
+      (ERROR)
+      (statement
         (primitive)
         (number_literal))
-        (statement
+      (statement
         (assignment
-            (assign_left
+          (assign_left
             (identifier))
-            (assign)
-            (assign_right
+          (assign)
+          (assign_right
             (number_literal))))
-        (ERROR))))
+      (ERROR))))
 
 ==================
 if elseif
@@ -326,3 +326,75 @@ if nested
                     (number_literal)))))
             (endif_statement)))
         (endif_statement)))))
+
+==================
+if andif orif
+==================
+:If WINE.NAME≡'Chateau Lafitte'
+:AndIf WINE.YEAR∊1962 1967 1970
+    'The greatest?'
+:ElseIf WINE.NAME≡'Chateau Latour'
+:Orif WINE.NAME≡'Chateau Margaux'
+:Orif WINE.PRICE>100    
+    'Almost as good'
+:Else
+    'Everyday stuff'
+:EndIf
+---
+
+(source_file
+  (if_block
+    (if_statement
+      (if_condition
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (string_literal
+          (string_literal_content))))
+    (andif_statement
+      (andif_condition
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (number_literal)
+        (number_literal)
+        (number_literal)))
+    (statement_list
+      (statement
+        (string_literal
+          (string_literal_content))))
+    (elseif_statement
+      (elseif_condition
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (string_literal
+          (string_literal_content))))
+    (orif_statement
+      (orif_condition
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (string_literal
+          (string_literal_content))))
+    (orif_statement
+      (orif_condition
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (number_literal)))
+    (statement_list
+      (statement
+        (string_literal
+          (string_literal_content))))
+    (else_statement)
+    (statement_list
+      (statement
+        (string_literal
+          (string_literal_content))))
+    (endif_statement)))

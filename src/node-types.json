@@ -37,6 +37,76 @@
     }
   },
   {
+    "type": "andif_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "andif_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "andif_condition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assign",
     "named": true,
     "fields": {}
@@ -4246,6 +4316,10 @@
       "required": true,
       "types": [
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "else_statement",
           "named": true
         },
@@ -4259,6 +4333,10 @@
         },
         {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {
@@ -4492,6 +4570,76 @@
       "types": [
         {
           "type": "member",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "orif_condition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "orif_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "orif_condition",
           "named": true
         }
       ]

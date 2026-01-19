@@ -3,7 +3,7 @@
 #include <string.h>
 
 enum TokenType {
-  IF, ELSEIF, ELSE, ENDIF,
+  IF, ANDIF, ORIF, ELSEIF, ELSE, ENDIF,
   END,
   LEFT_OP,
   RIGHT_OP,
@@ -39,7 +39,7 @@ const char *SYSTEM_COMMANDS[] = {
 const int N_SYSTEM_COMMANDS = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
 
 const char *CONTROL_WORDS[] = {
-  "IF", "ELSEIF", "ELSE", "ENDIF",
+  "IF", "ANDIF", "ORIF", "ELSEIF", "ELSE", "ENDIF",
   "END"
 };
 const int N_CONTROL_WORDS = sizeof(CONTROL_WORDS) / sizeof(CONTROL_WORDS[0]);
