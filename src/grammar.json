@@ -7254,6 +7254,10 @@
       "name": "_end"
     },
     {
+      "type": "SYMBOL",
+      "name": "_invalid_control_word"
+    },
+    {
       "type": "STRING",
       "value": "⍺⍺"
     },

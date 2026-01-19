@@ -6,6 +6,7 @@ enum TokenType {
   IF, ELSEIF, ELSE, ENDIF,
   WHILE, UNTIL, ENDWHILE,
   ANDIF, ORIF, END,
+  INVALID_CONTROL_WORD,
   LEFT_OP,
   RIGHT_OP,
   SELF_OP,
@@ -128,30 +129,32 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
     return false;
   }
 
-  // it's a command-like token; read the rest of the name
+  // it's a control-word or command-like token; read the rest of the name
   // TODO: remove 32 chars limit
-  char command_name[32];
+  char name[32];
   int i = 0;
   while (isidentifier1(lexer->lookahead) && !lexer->eof(lexer) && i < 31) {
-    command_name[i++] = towupper(lexer->lookahead);
+    name[i++] = towupper(lexer->lookahead);
     lexer->advance(lexer, false);
   }
-  command_name[i] = '\0';
+  name[i] = '\0';
 
   // check if control word is in the list of control words
   if (control) {
     for (i = 0; i < N_CONTROL_WORDS; i++) {
-      if (strcmp(command_name, CONTROL_WORDS[i]) == 0) {
+      if (strcmp(name, CONTROL_WORDS[i]) == 0) {
         // it's a valid command
         lexer->result_symbol = i;
         return true;
       }
     }
+    lexer->result_symbol = INVALID_CONTROL_WORD;
+    return true;
   }
 
   // check if the command is in the list of system commands
   for (i = 0; i < N_SYSTEM_COMMANDS; i++) {
-    if (strcmp(command_name, SYSTEM_COMMANDS[i]) == 0) {
+    if (strcmp(name, SYSTEM_COMMANDS[i]) == 0) {
       // it's a valid command
       lexer->result_symbol = SYSTEM_COMMAND;
       return true;
