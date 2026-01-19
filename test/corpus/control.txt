@@ -398,3 +398,151 @@ if andif orif
         (string_literal
           (string_literal_content))))
     (endif_statement)))
+
+==================
+while
+==================
+I←0
+:While I<100
+    expr1
+    expr2
+    I←I+1
+:EndWhile
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (assign)
+      (assign_right
+        (number_literal))))
+  (while_block
+    (while_statement
+      (while_condition
+        (identifier)
+        (primitive)
+        (number_literal)))
+    (statement_list
+      (statement
+        (identifier))
+      (statement
+        (identifier))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (assign)
+          (assign_right
+            (identifier)
+            (primitive)
+            (number_literal)))))
+    (endwhile_statement)))
+
+==================
+while until
+==================
+I←0
+:While I<⎕NSIZE ¯1
+    REC←⎕NREAD ¯1 82 80
+    I←I+⍴REC
+:Until 'Widget'≡6⍴REC
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (assign)
+      (assign_right
+        (number_literal))))
+  (while_block
+    (while_statement
+      (while_condition
+        (identifier)
+        (primitive)
+        (system_command)
+        (number_literal)))
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (assign)
+          (assign_right
+            (system_command)
+            (number_literal)
+            (number_literal)
+            (number_literal))))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (assign)
+          (assign_right
+            (identifier)
+            (primitive)
+            (primitive)
+            (identifier)))))
+    (until_statement
+      (until_condition
+        (string_literal
+          (string_literal_content))
+        (primitive)
+        (number_literal)
+        (primitive)
+        (identifier)))))
+
+==================
+while andif orif
+==================
+:While 100>i
+:AndIf 100>j
+    i j←foo i j
+:Until 100<i+j
+:OrIf i<0
+:OrIf j<0
+---
+
+(source_file
+  (while_block
+    (while_statement
+      (while_condition
+        (number_literal)
+        (primitive)
+        (identifier)))
+    (andif_statement
+      (andif_condition
+        (number_literal)
+        (primitive)
+        (identifier)))
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (identifier))
+          (assign)
+          (assign_right
+            (identifier)
+            (identifier)
+            (identifier)))))
+    (until_statement
+      (until_condition
+        (number_literal)
+        (primitive)
+        (identifier)
+        (primitive)
+        (identifier)))
+    (orif_statement
+      (orif_condition
+        (identifier)
+        (primitive)
+        (number_literal)))
+    (orif_statement
+      (orif_condition
+        (identifier)
+        (primitive)
+        (number_literal)))))

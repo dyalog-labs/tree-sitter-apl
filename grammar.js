@@ -54,8 +54,9 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   externals: $ => [
-    $._if, $._andif, $._orif, $._elseif, $._else, $._endif,
-    $._end,
+    $._if, $._elseif, $._else, $._endif,
+    $._while, $._until, $._endwhile,
+    $._andif, $._orif, $._end,
     '⍺⍺', '⍵⍵', '∇∇',
     $._system_command,
     $._invalid_system_command,
@@ -108,6 +109,7 @@ module.exports = grammar({
     [$.tradfn],
     [$.statement_list, $.if_block],
     [$.statement_list],
+    [$.while_block],
   ],
 
   rules: {
@@ -129,6 +131,7 @@ module.exports = grammar({
     statement_list: $ => _separated(terminator, [choice(
       alias($._expression, $.statement),
       $.if_block,
+      $.while_block,
     )], 0),
     // control structures
     if_block: $ => seq(
@@ -152,25 +155,36 @@ module.exports = grammar({
       )),
       terminator, $.endif_statement,
     ),
+    while_block: $ => seq(
+      $.while_statement,
+      choice(
+        repeat(seq(terminator, $.andif_statement)),
+        repeat(seq(terminator, $.orif_statement)),
+      ),
+      terminator, optional($.statement_list),
+      choice(
+        seq(
+          terminator, $.until_statement,
+          choice(
+            repeat(seq(terminator, $.andif_statement)),
+            repeat(seq(terminator, $.orif_statement)),
+          ),
+        ),
+        seq(
+          terminator, $.endwhile_statement,
+        ),
+      ),
+    ),
     // control statements
-    if_statement: $ => seq(
-      $._if,
-      alias($._expression, $.if_condition),
-    ),
-    andif_statement: $ => seq(
-      $._andif,
-      alias($._expression, $.andif_condition),
-    ),
-    orif_statement: $ => seq(
-      $._orif,
-      alias($._expression, $.orif_condition),
-    ),
-    elseif_statement: $ => seq(
-      $._elseif,
-      alias($._expression, $.elseif_condition),
-    ),
+    if_statement: $ => condition_statement($, 'if'),
+    andif_statement: $ => condition_statement($, 'andif'),
+    orif_statement: $ => condition_statement($, 'orif'),
+    elseif_statement: $ => condition_statement($, 'elseif'),
     else_statement: $ => $._else,
     endif_statement: $ => choice($._endif, $._end),
+    while_statement: $ => condition_statement($, 'while'),
+    until_statement: $ => condition_statement($, 'until'),
+    endwhile_statement: $ => choice($._endwhile, $._end),
 
     // any _expression outer-scope valid expression
     _expression: $ => choice(
@@ -341,6 +355,13 @@ function trad_def($$, d) {
       $$.if_block,
     )),
     optional(del),
+  );
+}
+
+function condition_statement($$, name) {
+  return seq(
+    $$['_' + name],
+    alias($$._expression, $$[name + '_condition']),
   );
 }
 
