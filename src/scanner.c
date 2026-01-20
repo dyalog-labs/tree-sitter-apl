@@ -3,16 +3,11 @@
 #include <string.h>
 
 enum TokenType {
-  GOTO,
-  IF, ELSEIF, ELSE, ENDIF,
-  WHILE, UNTIL, ENDWHILE,
-  ANDIF, ORIF, END,
-  INVALID_CONTROL_WORD,
   LEFT_OP,
   RIGHT_OP,
   SELF_OP,
   SYSTEM_COMMAND,
-  INVALID_SYSTEM_COMMAND,
+  INVALID,
 };
 
 #define ALPHA L'⍺'
@@ -76,7 +71,7 @@ bool two(const int32_t c, const int32_t r, TSLexer *lexer) {
 
 bool control_valid(const bool *valid_symbols) {
   for (int i = 0; i < N_CONTROL_WORDS; i++) {
-    if (valid_symbols[i])
+    if (valid_symbols[INVALID + i + 1])
       return true;
   }
   return false;
@@ -90,7 +85,7 @@ void tree_sitter_apl_external_scanner_deserialize(void *payload, const char *buf
 // main scanning function
 bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   // in error recovery mode
-  if (valid_symbols[INVALID_SYSTEM_COMMAND]) {
+  if (valid_symbols[INVALID]) {
     return false;
   }
 
@@ -140,17 +135,17 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
     lexer->advance(lexer, false);
   }
   name[i] = '\0';
+  lexer->result_symbol = INVALID;
 
-  // check if control word is in the list of control words
+    // check if control word is in the list of control words
   if (control) {
     for (i = 0; i < N_CONTROL_WORDS; i++) {
       if (strcmp(name, CONTROL_WORDS[i]) == 0) {
         // it's a valid command
-        lexer->result_symbol = i;
-        return true;
+        lexer->result_symbol += i + 1;
+        break;
       }
     }
-    lexer->result_symbol = INVALID_CONTROL_WORD;
     return true;
   }
 
@@ -163,7 +158,6 @@ bool tree_sitter_apl_external_scanner_scan(void *payload, TSLexer *lexer, const 
     }
   }
 
-  // the command was not in the list
-  lexer->result_symbol = INVALID_SYSTEM_COMMAND;
+  // the command was not in the list (INVALID_SYSTEM_COMMAND)
   return true;
 }

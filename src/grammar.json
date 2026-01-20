@@ -7298,6 +7298,26 @@
   "precedences": [],
   "externals": [
     {
+      "type": "STRING",
+      "value": "⍺⍺"
+    },
+    {
+      "type": "STRING",
+      "value": "⍵⍵"
+    },
+    {
+      "type": "STRING",
+      "value": "∇∇"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_system_command"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_invalid"
+    },
+    {
       "type": "SYMBOL",
       "name": "_goto"
     },
@@ -7340,30 +7360,6 @@
     {
       "type": "SYMBOL",
       "name": "_end"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_invalid_control_word"
-    },
-    {
-      "type": "STRING",
-      "value": "⍺⍺"
-    },
-    {
-      "type": "STRING",
-      "value": "⍵⍵"
-    },
-    {
-      "type": "STRING",
-      "value": "∇∇"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_system_command"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_invalid_system_command"
     }
   ],
   "inline": [],

@@ -54,17 +54,17 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   externals: $ => [
+    // dop identifiers
+    '⍺⍺', '⍵⍵', '∇∇',
+    // system commands
+    $._system_command,
+    // ilegal tokens
+    $._invalid,
     // control words
     $._goto,
     $._if, $._elseif, $._else, $._endif,
     $._while, $._until, $._endwhile,
     $._andif, $._orif, $._end,
-    $._invalid_control_word,
-    // dop identifiers
-    '⍺⍺', '⍵⍵', '∇∇',
-    // system commands
-    $._system_command,
-    $._invalid_system_command,
   ],
 
   supertypes: $ => [
