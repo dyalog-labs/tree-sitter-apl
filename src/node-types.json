@@ -26,7 +26,15 @@
       "required": true,
       "types": [
         {
+          "type": "branch",
+          "named": true
+        },
+        {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -243,6 +251,61 @@
         },
         {
           "type": "assign_right",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "branch",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
           "named": true
         }
       ]
@@ -4757,7 +4820,15 @@
       "required": true,
       "types": [
         {
+          "type": "branch",
+          "named": true
+        },
+        {
           "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -5384,6 +5455,10 @@
     "named": true
   },
   {
+    "type": "label",
+    "named": true
+  },
+  {
     "type": "member_identifier",
     "named": true
   },
@@ -5409,6 +5484,10 @@
   },
   {
     "type": "←",
+    "named": false
+  },
+  {
+    "type": "→",
     "named": false
   },
   {

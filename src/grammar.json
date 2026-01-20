@@ -918,6 +918,37 @@
               "value": "statement"
             },
             {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  "named": true,
+                  "value": "label"
+                },
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_expression"
+                  },
+                  "named": true,
+                  "value": "statement"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "branch"
+            },
+            {
               "type": "SYMBOL",
               "name": "if_block"
             },
@@ -965,6 +996,37 @@
                     "value": "statement"
                   },
                   {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "identifier"
+                        },
+                        "named": true,
+                        "value": "label"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": ":"
+                      },
+                      {
+                        "type": "ALIAS",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_expression"
+                        },
+                        "named": true,
+                        "value": "statement"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "branch"
+                  },
+                  {
                     "type": "SYMBOL",
                     "name": "if_block"
                   },
@@ -1004,6 +1066,28 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "branch": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "→"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_goto"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
         }
       ]
     },
@@ -7213,6 +7297,10 @@
   ],
   "precedences": [],
   "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_goto"
+    },
     {
       "type": "SYMBOL",
       "name": "_if"

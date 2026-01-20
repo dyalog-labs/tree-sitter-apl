@@ -1,4 +1,93 @@
 ==================
+goto 1
+==================
+∇ TEST
+  1
+  →FOUR
+  3
+  FOUR:4
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (statement_list
+      (statement
+        (number_literal))
+      (branch
+        (identifier))
+      (statement
+        (number_literal))
+      (label)
+      (statement
+        (number_literal)))))
+
+==================
+goto 2
+==================
+→Exit
+:GoTo Exit
+
+→(N<I←I+1)/End
+:GoTo (N<I←I+1)/End
+
+→1+⎕LC
+:GoTo 1+⎕LC
+
+→10
+:GoTo 10
+---
+
+(source_file
+  (branch
+    (identifier))
+  (branch
+    (identifier))
+  (branch
+    (parenthesis
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (primitive)
+            (identifier))
+          (assign)
+          (assign_right
+            (identifier)
+            (primitive)
+            (number_literal)))))
+    (primitive)
+    (identifier))
+  (branch
+    (parenthesis
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (primitive)
+            (identifier))
+          (assign)
+          (assign_right
+            (identifier)
+            (primitive)
+            (number_literal)))))
+    (primitive)
+    (identifier))
+  (branch
+    (number_literal)
+    (primitive)
+    (system_command))
+  (branch
+    (number_literal)
+    (primitive)
+    (system_command))
+  (branch
+    (number_literal))
+  (branch
+    (number_literal)))
+
+==================
 if 1
 ==================
 ∇r←fn w

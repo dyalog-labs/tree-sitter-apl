@@ -55,6 +55,7 @@ module.exports = grammar({
 
   externals: $ => [
     // control words
+    $._goto,
     $._if, $._elseif, $._else, $._endif,
     $._while, $._until, $._endwhile,
     $._andif, $._orif, $._end,
@@ -134,10 +135,23 @@ module.exports = grammar({
     // statements inside trad-defs
     statement_list: $ => _separated(terminator, [choice(
       alias($._expression, $.statement),
+      seq(
+        alias($.identifier, $.label),
+        ':',
+        alias($._expression, $.statement),
+      ),
+      $.branch,
       $.if_block,
       $.while_block,
     )], 0),
     // control structures
+    branch: $ => seq(
+      choice(
+        '→',
+        $._goto,
+      ),
+      $._expression,
+    ),
     if_block: $ => seq(
       $.if_statement,
       choice(
