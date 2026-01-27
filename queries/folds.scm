@@ -1,7 +1,5 @@
 [
-  (dfn_definition)
-  (dop1_definition)
-  (dop2_definition)
+  (definition)
   (namespace)
   (dfn_namespace)
   (dop1_namespace)
@@ -14,4 +12,9 @@
   (dfn_highrank)
   (dop1_highrank)
   (dop2_highrank)
+  (tradfn)
+  (tradop1)
+  (tradop2)
+  (if_block)
+  (while_block)
 ] @fold

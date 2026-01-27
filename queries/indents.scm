@@ -12,10 +12,25 @@
   (dfn_highrank)
   (dop1_highrank)
   (dop2_highrank)
+  (tradfn)
+  (tradop1)
+  (tradop2)
+  (if_block)
+  (while_block)
 ] @indent.begin
+[
+  (elseif)
+  (else)
+  (end)
+] @indent.branch
 [
   "}"
   ")"
   "]"
+  "∇"
+  (endif)
+  (until)
+  (endwhile)
+  (end)
 ] @indent.branch @indent.end
 (comment) @indent.auto

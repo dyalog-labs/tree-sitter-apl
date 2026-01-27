@@ -1,4 +1,17 @@
-(system_command) @keyword
+[
+  (goto)
+  (if)
+  (elseif)
+  (else)
+  (endif)
+  (andif)
+  (orif)
+  (while)
+  (until)
+  (endwhile)
+  (end)
+  (system_command)
+] @keyword
 
 (comment) @comment
 
@@ -23,6 +36,8 @@
 
 [
   (primitive)
+  (left_arrow)
+  (right_arrow)
 ] @operator
 
 [
