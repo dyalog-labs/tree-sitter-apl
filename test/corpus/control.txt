@@ -16,6 +16,7 @@ goto 1
       (statement
         (number_literal))
       (branch
+        (right_arrow)
         (identifier))
       (statement
         (number_literal))
@@ -41,10 +42,14 @@ goto 2
 
 (source_file
   (branch
+    (right_arrow)
     (identifier))
   (branch
-    (identifier))
+    (goto_statement
+      (goto)
+      (identifier)))
   (branch
+    (right_arrow)
     (parenthesis
       (statement
         (assignment
@@ -52,7 +57,7 @@ goto 2
             (identifier)
             (primitive)
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (identifier)
             (primitive)
@@ -60,32 +65,40 @@ goto 2
     (primitive)
     (identifier))
   (branch
-    (parenthesis
-      (statement
-        (assignment
-          (assign_left
-            (identifier)
-            (primitive)
-            (identifier))
-          (assign)
-          (assign_right
-            (identifier)
-            (primitive)
-            (number_literal)))))
-    (primitive)
-    (identifier))
+    (goto_statement
+      (goto)
+      (parenthesis
+        (statement
+          (assignment
+            (assign_left
+              (identifier)
+              (primitive)
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (primitive)
+              (number_literal)))))
+      (primitive)
+      (identifier)))
   (branch
+    (right_arrow)
     (number_literal)
     (primitive)
     (system_command))
   (branch
-    (number_literal)
-    (primitive)
-    (system_command))
+    (goto_statement
+      (goto)
+      (number_literal)
+      (primitive)
+      (system_command)))
   (branch
+    (right_arrow)
     (number_literal))
   (branch
-    (number_literal)))
+    (goto_statement
+      (goto)
+      (number_literal))))
 
 ==================
 if 1
@@ -108,11 +121,12 @@ if 1
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (number_literal))))
       (if_block
         (if_statement
+          (if)
           (if_condition
             (identifier)
             (primitive)
@@ -122,10 +136,11 @@ if 1
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
-        (endif_statement)))))
+        (endif_statement
+          (endif))))))
 
 ==================
 if 2
@@ -146,11 +161,12 @@ if 2
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (number_literal))))
       (if_block
         (if_statement
+          (if)
           (if_condition
             (identifier)
             (primitive)
@@ -160,10 +176,11 @@ if 2
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
-        (endif_statement)))))
+        (endif_statement
+          (end))))))
 
 ==================
 if 3
@@ -184,7 +201,7 @@ if 3
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (number_literal))))
       (ERROR)
@@ -195,10 +212,11 @@ if 3
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (number_literal))))
-      (ERROR))))
+      (ERROR
+        (end)))))
 
 ==================
 if elseif
@@ -219,11 +237,12 @@ if elseif
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (number_literal))))
       (if_block
         (if_statement
+          (if)
           (if_condition
             (identifier)
             (primitive)
@@ -233,10 +252,11 @@ if elseif
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
         (elseif_statement
+          (elseif)
           (elseif_condition
             (identifier)
             (primitive)
@@ -246,10 +266,11 @@ if elseif
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
-        (endif_statement)))))
+        (endif_statement
+          (end))))))
 
 ==================
 if else
@@ -267,6 +288,7 @@ if else
     (statement_list
       (if_block
         (if_statement
+          (if)
           (if_condition
             (identifier)
             (primitive)
@@ -276,19 +298,21 @@ if else
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
-        (else_statement)
+        (else_statement
+          (else))
         (statement_list
           (statement
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
-        (endif_statement)))))
+        (endif_statement
+          (end))))))
 
 ==================
 if elseif else
@@ -307,6 +331,7 @@ if elseif else
     (statement_list
       (if_block
         (if_statement
+          (if)
           (if_condition
             (identifier)
             (primitive)
@@ -316,10 +341,11 @@ if elseif else
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
         (elseif_statement
+          (elseif)
           (elseif_condition
             (identifier)
             (primitive)
@@ -329,19 +355,21 @@ if elseif else
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
-        (else_statement)
+        (else_statement
+          (else))
         (statement_list
           (statement
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal)))))
-        (endif_statement)))))
+        (endif_statement
+          (end))))))
 
 ==================
 if nested
@@ -365,11 +393,12 @@ if nested
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (primitive))))
       (if_block
         (if_statement
+          (if)
           (if_condition
             (primitive)
             (number_literal)
@@ -379,6 +408,7 @@ if nested
         (statement_list
           (if_block
             (if_statement
+              (if)
               (if_condition
                 (identifier)
                 (primitive)
@@ -388,10 +418,11 @@ if nested
                 (assignment
                   (assign_left
                     (identifier))
-                  (assign)
+                  (left_arrow)
                   (assign_right
                     (number_literal)))))
             (elseif_statement
+              (elseif)
               (elseif_condition
                 (identifier)
                 (primitive)
@@ -401,20 +432,23 @@ if nested
                 (assignment
                   (assign_left
                     (identifier))
-                  (assign)
+                  (left_arrow)
                   (assign_right
                     (number_literal)))))
-            (else_statement)
+            (else_statement
+              (else))
             (statement_list
               (statement
                 (assignment
                   (assign_left
                     (identifier))
-                  (assign)
+                  (left_arrow)
                   (assign_right
                     (number_literal)))))
-            (endif_statement)))
-        (endif_statement)))))
+            (endif_statement
+              (end))))
+        (endif_statement
+          (end))))))
 
 ==================
 if andif orif
@@ -434,6 +468,7 @@ if andif orif
 (source_file
   (if_block
     (if_statement
+      (if)
       (if_condition
         (identifier)
         (primitive)
@@ -442,6 +477,7 @@ if andif orif
         (string_literal
           (string_literal_content))))
     (andif_statement
+      (andif)
       (andif_condition
         (identifier)
         (primitive)
@@ -455,6 +491,7 @@ if andif orif
         (string_literal
           (string_literal_content))))
     (elseif_statement
+      (elseif)
       (elseif_condition
         (identifier)
         (primitive)
@@ -463,6 +500,7 @@ if andif orif
         (string_literal
           (string_literal_content))))
     (orif_statement
+      (orif)
       (orif_condition
         (identifier)
         (primitive)
@@ -471,6 +509,7 @@ if andif orif
         (string_literal
           (string_literal_content))))
     (orif_statement
+      (orif)
       (orif_condition
         (identifier)
         (primitive)
@@ -481,12 +520,14 @@ if andif orif
       (statement
         (string_literal
           (string_literal_content))))
-    (else_statement)
+    (else_statement
+      (else))
     (statement_list
       (statement
         (string_literal
           (string_literal_content))))
-    (endif_statement)))
+    (endif_statement
+      (endif))))
 
 ==================
 while
@@ -504,11 +545,12 @@ I←0
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (number_literal))))
   (while_block
     (while_statement
+      (while)
       (while_condition
         (identifier)
         (primitive)
@@ -522,12 +564,13 @@ I←0
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (identifier)
             (primitive)
             (number_literal)))))
-    (endwhile_statement)))
+    (endwhile_statement
+      (endwhile))))
 
 ==================
 while until
@@ -544,11 +587,12 @@ I←0
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (number_literal))))
   (while_block
     (while_statement
+      (while)
       (while_condition
         (identifier)
         (primitive)
@@ -559,7 +603,7 @@ I←0
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (system_command)
             (number_literal)
@@ -569,13 +613,14 @@ I←0
         (assignment
           (assign_left
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (identifier)
             (primitive)
             (primitive)
             (identifier)))))
     (until_statement
+      (until)
       (until_condition
         (string_literal
           (string_literal_content))
@@ -598,11 +643,13 @@ while andif orif
 (source_file
   (while_block
     (while_statement
+      (while)
       (while_condition
         (number_literal)
         (primitive)
         (identifier)))
     (andif_statement
+      (andif)
       (andif_condition
         (number_literal)
         (primitive)
@@ -613,12 +660,13 @@ while andif orif
           (assign_left
             (identifier)
             (identifier))
-          (assign)
+          (left_arrow)
           (assign_right
             (identifier)
             (identifier)
             (identifier)))))
     (until_statement
+      (until)
       (until_condition
         (number_literal)
         (primitive)
@@ -626,11 +674,13 @@ while andif orif
         (primitive)
         (identifier)))
     (orif_statement
+      (orif)
       (orif_condition
         (identifier)
         (primitive)
         (number_literal)))
     (orif_statement
+      (orif)
       (orif_condition
         (identifier)
         (primitive)

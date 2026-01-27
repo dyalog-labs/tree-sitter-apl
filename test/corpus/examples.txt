@@ -19,7 +19,7 @@ rms←{                ⍝ Root Mean Square
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (comment)
@@ -27,7 +27,7 @@ rms←{                ⍝ Root Mean Square
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (primitive)
                 (primitive)
@@ -37,7 +37,7 @@ rms←{                ⍝ Root Mean Square
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (primitive)
                 (dfn_identifier))))
@@ -51,7 +51,7 @@ rms←{                ⍝ Root Mean Square
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (comment)
@@ -59,7 +59,7 @@ rms←{                ⍝ Root Mean Square
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (dfn_definition
                   (dfn_statement
@@ -71,7 +71,7 @@ rms←{                ⍝ Root Mean Square
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (dfn_definition
                   (dfn_statement
@@ -88,7 +88,7 @@ rms←{                ⍝ Root Mean Square
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (dfn_definition
                   (dfn_statement
@@ -120,7 +120,7 @@ foo←{
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (comment)
@@ -128,7 +128,7 @@ foo←{
             (dfn_assignment
               (dfn_assign_left
                 (dfn_identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal))))
           (comment)
@@ -141,14 +141,14 @@ foo←{
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (dfn_statement
             (dfn_assignment
               (dfn_assign_left
                 (dfn_identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (primitive))))
           (dfn_statement
@@ -171,7 +171,7 @@ sign←{
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (dfn_guard
@@ -220,7 +220,7 @@ div←{                  ⍝ Tolerant division:: ⍺÷0 → ⍺.
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (comment)
@@ -256,7 +256,7 @@ div←{                  ⍝ Tolerant division:: ⍺÷0 → ⍺.
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (comment)
@@ -264,7 +264,7 @@ div←{                  ⍝ Tolerant division:: ⍺÷0 → ⍺.
             (dfn_assignment
               (dfn_assign_left
                 (dfn_identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (number_literal))))
           (comment)
@@ -332,7 +332,7 @@ each←{              ⍝ Fast each:
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dop2_definition
           (dop1_guard
@@ -350,14 +350,14 @@ each←{              ⍝ Fast each:
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dop1_definition
           (dop1_statement
             (dop1_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dop1_assign_right
                 (dop1_identifier)
                 (primitive)
@@ -366,7 +366,7 @@ each←{              ⍝ Fast each:
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dop1_definition
           (comment)
@@ -374,7 +374,7 @@ each←{              ⍝ Fast each:
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (primitive)
                 (dfn_identifier))))
@@ -383,7 +383,7 @@ each←{              ⍝ Fast each:
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (primitive)
                 (dfn_identifier))))
@@ -392,7 +392,7 @@ each←{              ⍝ Fast each:
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (primitive)
                 (identifier))))
@@ -401,7 +401,7 @@ each←{              ⍝ Fast each:
             (dop1_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dop1_assign_right
                 (dop1_identifier)
                 (primitive)
@@ -411,7 +411,7 @@ each←{              ⍝ Fast each:
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (identifier)
                 (primitive)
@@ -430,7 +430,7 @@ each←{              ⍝ Fast each:
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dop1_definition
           (comment)
@@ -438,7 +438,7 @@ each←{              ⍝ Fast each:
             (dop1_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dop1_assign_right
                 (dop1_identifier)
                 (primitive)
@@ -448,7 +448,7 @@ each←{              ⍝ Fast each:
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (identifier)
                 (primitive)
@@ -467,7 +467,7 @@ each←{              ⍝ Fast each:
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dop1_definition
           (comment)
@@ -475,7 +475,7 @@ each←{              ⍝ Fast each:
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (primitive)
                 (dfn_identifier))))
@@ -484,7 +484,7 @@ each←{              ⍝ Fast each:
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (primitive)
                 (dfn_identifier))))
@@ -493,7 +493,7 @@ each←{              ⍝ Fast each:
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (primitive)
                 (identifier))))
@@ -502,7 +502,7 @@ each←{              ⍝ Fast each:
             (dop1_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dop1_assign_right
                 (dop1_identifier)
                 (primitive)
@@ -525,7 +525,7 @@ log←{                   ⍝ Append ⍵ to file ⍺.
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (comment)
@@ -533,7 +533,7 @@ log←{                   ⍝ Append ⍵ to file ⍺.
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (dfn_identifier)
                 (system_command)
@@ -543,7 +543,7 @@ log←{                   ⍝ Append ⍵ to file ⍺.
             (dfn_assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (dfn_assign_right
                 (dfn_identifier)
                 (system_command)
@@ -553,7 +553,7 @@ log←{                   ⍝ Append ⍵ to file ⍺.
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (system_command)
                 (identifier))))
@@ -565,7 +565,7 @@ log←{                   ⍝ Append ⍵ to file ⍺.
               (assignment
                 (assign_left
                   (identifier))
-                (assign)
+                (left_arrow)
                 (assign_right
                   (identifier)))))
           (comment))))))
@@ -591,14 +591,14 @@ which←{
     (assignment
       (assign_left
         (identifier))
-      (assign)
+      (left_arrow)
       (assign_right
         (dfn_definition
           (statement
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (string_literal
                   (string_literal_content)))))
@@ -606,14 +606,14 @@ which←{
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (dfn_definition
                   (statement
                     (assignment
                       (assign_left
                         (identifier))
-                      (assign)
+                      (left_arrow)
                       (assign_right
                         (string_literal
                           (string_literal_content)))))
@@ -624,7 +624,7 @@ which←{
             (assignment
               (assign_left
                 (identifier))
-              (assign)
+              (left_arrow)
               (assign_right
                 (dfn_definition
                   (dfn_statement
