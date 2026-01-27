@@ -57,6 +57,23 @@
         }
       ]
     },
+    "trad": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "tradfn"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tradop1"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tradop2"
+        }
+      ]
+    },
     "tradfn": {
       "type": "SEQ",
       "members": [
@@ -1066,6 +1083,55 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "control": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_goto"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_if"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_elseif"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_else"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_endif"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_while"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_until"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_endwhile"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_andif"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_orif"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_end"
         }
       ]
     },
@@ -7364,7 +7430,9 @@
   ],
   "inline": [],
   "supertypes": [
-    "definition"
+    "definition",
+    "trad",
+    "control"
   ],
   "reserved": {}
 }

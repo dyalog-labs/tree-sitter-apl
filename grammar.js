@@ -27,6 +27,13 @@ const real = seq(decimal, optional(exponent));
 const imaginary = seq(choice("J", "j"), real);
 const numberLiteral = seq(real, optional(imaginary));
 
+const controlWords = $ => [
+      $._goto,
+    $._if, $._elseif, $._else, $._endif,
+    $._while, $._until, $._endwhile,
+    $._andif, $._orif, $._end,
+];
+
 const stringContentLiteral = /(''|[^'\n])+/;
 
 const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
@@ -61,14 +68,13 @@ module.exports = grammar({
     // ilegal tokens
     $._invalid,
     // control words
-    $._goto,
-    $._if, $._elseif, $._else, $._endif,
-    $._while, $._until, $._endwhile,
-    $._andif, $._orif, $._end,
+    ...controlWords($),
   ],
 
   supertypes: $ => [
     $.definition,
+    $.trad,
+    $.control,
   ],
 
   conflicts: $ => [
@@ -129,6 +135,7 @@ module.exports = grammar({
     )),
 
     // traditional definitions
+    trad: $ => choice($.tradfn, $.tradop1, $.tradop2),
     tradfn: $ => trad_def($, DFN),
     tradop1: $ => trad_def($, DOP1),
     tradop2: $ => trad_def($, DOP2),
@@ -145,6 +152,7 @@ module.exports = grammar({
       $.while_block,
     )], 0),
     // control structures
+    control: $ => choice(...controlWords($)),
     branch: $ => seq(
       choice(
         '→',
