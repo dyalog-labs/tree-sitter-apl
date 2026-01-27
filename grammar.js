@@ -27,13 +27,6 @@ const real = seq(decimal, optional(exponent));
 const imaginary = seq(choice("J", "j"), real);
 const numberLiteral = seq(real, optional(imaginary));
 
-const controlWords = $ => [
-      $._goto,
-    $._if, $._elseif, $._else, $._endif,
-    $._while, $._until, $._endwhile,
-    $._andif, $._orif, $._end,
-];
-
 const stringContentLiteral = /(''|[^'\n])+/;
 
 const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
@@ -68,13 +61,16 @@ module.exports = grammar({
     // ilegal tokens
     $._invalid,
     // control words
-    ...controlWords($),
+    $.goto,
+    $.if, $.elseif, $.else, $.endif,
+    $.while, $.until, $.endwhile,
+    $.andif, $.orif, $.end,
+
   ],
 
   supertypes: $ => [
     $.definition,
     $.trad,
-    $.control,
   ],
 
   conflicts: $ => [
@@ -128,9 +124,7 @@ module.exports = grammar({
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
       alias($.statement_list, '_statement_list'),
-      $.tradop2,
-      $.tradop1,
-      $.tradfn,
+      $.trad,
       terminator,
     )),
 
@@ -152,13 +146,9 @@ module.exports = grammar({
       $.while_block,
     )], 0),
     // control structures
-    control: $ => choice(...controlWords($)),
-    branch: $ => seq(
-      choice(
-        '→',
-        $._goto,
-      ),
-      $._expression,
+    branch: $ => choice(
+      seq($.right_arrow, $._expression),
+      $.goto_statement,
     ),
     if_block: $ => seq(
       $.if_statement,
@@ -202,15 +192,16 @@ module.exports = grammar({
       ),
     ),
     // control statements
+    goto_statement: $ => seq($.goto, $._expression),
     if_statement: $ => condition_statement($, 'if'),
     andif_statement: $ => condition_statement($, 'andif'),
     orif_statement: $ => condition_statement($, 'orif'),
     elseif_statement: $ => condition_statement($, 'elseif'),
-    else_statement: $ => $._else,
-    endif_statement: $ => choice($._endif, $._end),
+    else_statement: $ => $.else,
+    endif_statement: $ => choice($.endif, $.end),
     while_statement: $ => condition_statement($, 'while'),
     until_statement: $ => condition_statement($, 'until'),
-    endwhile_statement: $ => choice($._endwhile, $._end),
+    endwhile_statement: $ => choice($.endwhile, $.end),
 
     // any _expression outer-scope valid expression
     _expression: $ => choice(
@@ -251,7 +242,8 @@ module.exports = grammar({
     string_literal_content: _ => token.immediate(stringContentLiteral),
     number_literal: _ => token(numberLiteral),
     primitive: _ => primitive,
-    assign: _ => '←',
+    left_arrow: _ => '←',
+    right_arrow: _ => '→',
 
     // ilumination
     comment: _ => token(seq(lamp, /.*/)),
@@ -386,7 +378,7 @@ function trad_def($$, d) {
 
 function condition_statement($$, name) {
   return seq(
-    $$['_' + name],
+    $$[name],
     alias($$._expression, $$[name + '_condition']),
   );
 }
@@ -411,7 +403,7 @@ function def_rules() {
     assignment($$, d) {
       const left = _alias($$, 'assign_left');
       const right = _alias($$, 'assign_right');
-      return _left_right(left, $$.assign, right, d);
+      return _left_right(left, $$.left_arrow, right, d);
     },
     // a definition is a braced statement list
     definition($$, d) {
