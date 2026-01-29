@@ -66,7 +66,7 @@ module.exports = grammar({
     $.while, $.endwhile, $.repeat, $.until,
     $.for, $.in, $.ineach, $.endfor,
     $.andif, $.orif, $.end,
-
+    $.continue, $.leave, $.return,
   ],
 
   supertypes: $ => [
@@ -141,7 +141,9 @@ module.exports = grammar({
     // statements inside trad-defs
     _trad_stataments: $ => choice(
       alias(trad_statement($, $._expression), $.statement),
-      $.branch,
+      $.branch_statement,
+      $.goto_statement,
+      $.return_statement,
       $.if_block,
       $.while_block,
       $.repeat_block,
@@ -154,10 +156,6 @@ module.exports = grammar({
       $.continue_statement,
     ], 0),
     // control structures
-    branch: $ => choice(
-      $.branch_statement,
-      $.goto_statement,
-    ),
     if_block: $ => seq(
       $.if_statement,
       choice(
@@ -230,6 +228,9 @@ module.exports = grammar({
       field('control_array', $._expression),
     )),
     endfor_statement: $ => trad_statement($, choice($.endfor, $.end)),
+    continue_statement: $ => trad_statement($, $.continue),
+    leave_statement: $ => trad_statement($, $.leave),
+    return_statement: $ => trad_statement($, $.return),
 
     // any _expression outer-scope valid expression
     _expression: $ => choice(

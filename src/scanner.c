@@ -41,7 +41,8 @@ const char *CONTROL_WORDS[] = {
   "IF", "ELSEIF", "ELSE", "ENDIF",
   "WHILE", "ENDWHILE", "REPEAT", "UNTIL",
   "FOR", "IN", "INEACH", "ENDFOR",
-  "ANDIF", "ORIF", "END"
+  "ANDIF", "ORIF", "END",
+  "CONTINUE", "LEAVE", "RETURN",
 };
 const int N_CONTROL_WORDS = sizeof(CONTROL_WORDS) / sizeof(CONTROL_WORDS[0]);
 

@@ -14,10 +14,9 @@ goto 1
     (identifier)
     (statement
       (number_literal))
-    (branch
-      (branch_statement
-        (right_arrow)
-        (identifier)))
+    (branch_statement
+      (right_arrow)
+      (identifier))
     (statement
       (number_literal))
     (label)
@@ -42,68 +41,60 @@ goto 2
 ---
 
 (source_file
-  (branch
-    (branch_statement
-      (right_arrow)
-      (identifier)))
-  (branch
-    (goto_statement
-      (goto)
-      (identifier)))
-  (branch
-    (branch_statement
-      (right_arrow)
-      (parenthesis
-        (statement
-          (assignment
-            (assign_left
-              (identifier)
-              (primitive)
-              (identifier))
-            (left_arrow)
-            (assign_right
-              (identifier)
-              (primitive)
-              (number_literal)))))
-      (primitive)
-      (identifier)))
-  (branch
-    (goto_statement
-      (goto)
-      (parenthesis
-        (statement
-          (assignment
-            (assign_left
-              (identifier)
-              (primitive)
-              (identifier))
-            (left_arrow)
-            (assign_right
-              (identifier)
-              (primitive)
-              (number_literal)))))
-      (primitive)
-      (identifier)))
-  (branch
-    (branch_statement
-      (right_arrow)
-      (number_literal)
-      (primitive)
-      (system_command)))
-  (branch
-    (goto_statement
-      (goto)
-      (number_literal)
-      (primitive)
-      (system_command)))
-  (branch
-    (branch_statement
-      (right_arrow)
-      (number_literal)))
-  (branch
-    (goto_statement
-      (goto)
-      (number_literal))))
+  (branch_statement
+    (right_arrow)
+    (identifier))
+  (goto_statement
+    (goto)
+    (identifier))
+  (branch_statement
+    (right_arrow)
+    (parenthesis
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (primitive)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (primitive)
+            (number_literal)))))
+    (primitive)
+    (identifier))
+  (goto_statement
+    (goto)
+    (parenthesis
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (primitive)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (primitive)
+            (number_literal)))))
+    (primitive)
+    (identifier))
+  (branch_statement
+    (right_arrow)
+    (number_literal)
+    (primitive)
+    (system_command))
+  (goto_statement
+    (goto)
+    (number_literal)
+    (primitive)
+    (system_command))
+  (branch_statement
+    (right_arrow)
+    (number_literal))
+  (goto_statement
+    (goto)
+    (number_literal)))
 
 ==================
 if 1
