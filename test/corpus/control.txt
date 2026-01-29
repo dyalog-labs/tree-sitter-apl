@@ -12,17 +12,18 @@ goto 1
 (source_file
   (tradfn
     (identifier)
-    (statement_list
-      (statement
-        (number_literal))
-      (branch
+    (statement
+      (number_literal))
+    (branch
+      (branch_statement
         (right_arrow)
-        (identifier))
-      (statement
-        (number_literal))
-      (label)
-      (statement
-        (number_literal)))))
+        (identifier)))
+    (statement
+      (number_literal))
+    (label)
+    (statement)
+    (statement
+      (number_literal))))
 
 ==================
 goto 2
@@ -42,28 +43,30 @@ goto 2
 
 (source_file
   (branch
-    (right_arrow)
-    (identifier))
+    (branch_statement
+      (right_arrow)
+      (identifier)))
   (branch
     (goto_statement
       (goto)
       (identifier)))
   (branch
-    (right_arrow)
-    (parenthesis
-      (statement
-        (assignment
-          (assign_left
-            (identifier)
-            (primitive)
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (number_literal)))))
-    (primitive)
-    (identifier))
+    (branch_statement
+      (right_arrow)
+      (parenthesis
+        (statement
+          (assignment
+            (assign_left
+              (identifier)
+              (primitive)
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (primitive)
+              (number_literal)))))
+      (primitive)
+      (identifier)))
   (branch
     (goto_statement
       (goto)
@@ -82,10 +85,11 @@ goto 2
       (primitive)
       (identifier)))
   (branch
-    (right_arrow)
-    (number_literal)
-    (primitive)
-    (system_command))
+    (branch_statement
+      (right_arrow)
+      (number_literal)
+      (primitive)
+      (system_command)))
   (branch
     (goto_statement
       (goto)
@@ -93,8 +97,9 @@ goto 2
       (primitive)
       (system_command)))
   (branch
-    (right_arrow)
-    (number_literal))
+    (branch_statement
+      (right_arrow)
+      (number_literal)))
   (branch
     (goto_statement
       (goto)
@@ -116,7 +121,20 @@ if 1
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
       (statement
         (assignment
           (assign_left
@@ -124,23 +142,8 @@ if 1
           (left_arrow)
           (assign_right
             (number_literal))))
-      (if_block
-        (if_statement
-          (if)
-          (if_condition
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (endif_statement
-          (endif))))))
+      (endif_statement
+        (endif)))))
 
 ==================
 if 2
@@ -156,7 +159,20 @@ if 2
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
       (statement
         (assignment
           (assign_left
@@ -164,23 +180,8 @@ if 2
           (left_arrow)
           (assign_right
             (number_literal))))
-      (if_block
-        (if_statement
-          (if)
-          (if_condition
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (endif_statement
-          (end))))))
+      (endif_statement
+        (end)))))
 
 ==================
 if 3
@@ -196,27 +197,26 @@ if 3
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (number_literal))))
-      (ERROR)
-      (statement
-        (primitive)
-        (number_literal))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (number_literal))))
-      (ERROR
-        (end)))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (ERROR)
+    (statement
+      (primitive)
+      (number_literal))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (ERROR
+      (end))))
 
 ==================
 if elseif
@@ -232,7 +232,20 @@ if elseif
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
       (statement
         (assignment
           (assign_left
@@ -240,37 +253,21 @@ if elseif
           (left_arrow)
           (assign_right
             (number_literal))))
-      (if_block
-        (if_statement
-          (if)
-          (if_condition
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (elseif_statement
-          (elseif)
-          (elseif_condition
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (endif_statement
-          (end))))))
+      (elseif_statement
+        (elseif)
+        (elseif_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal))))
+      (endif_statement
+        (end)))))
 
 ==================
 if else
@@ -285,34 +282,31 @@ if else
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (if_block
-        (if_statement
-          (if)
-          (if_condition
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (else_statement
-          (else))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (endif_statement
-          (end))))))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal))))
+      (else_statement
+        (else))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal))))
+      (endif_statement
+        (end)))))
 
 ==================
 if elseif else
@@ -328,48 +322,44 @@ if elseif else
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (if_block
-        (if_statement
-          (if)
-          (if_condition
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (elseif_statement
-          (elseif)
-          (elseif_condition
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (else_statement
-          (else))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier))
-              (left_arrow)
-              (assign_right
-                (number_literal)))))
-        (endif_statement
-          (end))))))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal))))
+      (elseif_statement
+        (elseif)
+        (elseif_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal))))
+      (else_statement
+        (else))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal))))
+      (endif_statement
+        (end)))))
 
 ==================
 if nested
@@ -388,67 +378,62 @@ if nested
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (primitive))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (primitive))))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (primitive)
+          (number_literal)
+          (primitive)
+          (primitive)
+          (identifier)))
       (if_block
         (if_statement
           (if)
           (if_condition
+            (identifier)
             (primitive)
-            (number_literal)
+            (number_literal)))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (number_literal))))
+        (elseif_statement
+          (elseif)
+          (elseif_condition
+            (identifier)
             (primitive)
-            (primitive)
-            (identifier)))
-        (statement_list
-          (if_block
-            (if_statement
-              (if)
-              (if_condition
-                (identifier)
-                (primitive)
-                (number_literal)))
-            (statement_list
-              (statement
-                (assignment
-                  (assign_left
-                    (identifier))
-                  (left_arrow)
-                  (assign_right
-                    (number_literal)))))
-            (elseif_statement
-              (elseif)
-              (elseif_condition
-                (identifier)
-                (primitive)
-                (number_literal)))
-            (statement_list
-              (statement
-                (assignment
-                  (assign_left
-                    (identifier))
-                  (left_arrow)
-                  (assign_right
-                    (number_literal)))))
-            (else_statement
-              (else))
-            (statement_list
-              (statement
-                (assignment
-                  (assign_left
-                    (identifier))
-                  (left_arrow)
-                  (assign_right
-                    (number_literal)))))
-            (endif_statement
-              (end))))
+            (number_literal)))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (number_literal))))
+        (else_statement
+          (else))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (number_literal))))
         (endif_statement
-          (end))))))
+          (end)))
+      (endif_statement
+        (end)))))
 
 ==================
 if andif orif
@@ -486,10 +471,9 @@ if andif orif
         (number_literal)
         (number_literal)
         (number_literal)))
-    (statement_list
-      (statement
-        (string_literal
-          (string_literal_content))))
+    (statement
+      (string_literal
+        (string_literal_content)))
     (elseif_statement
       (elseif)
       (elseif_condition
@@ -516,16 +500,14 @@ if andif orif
         (identifier)
         (primitive)
         (number_literal)))
-    (statement_list
-      (statement
-        (string_literal
-          (string_literal_content))))
+    (statement
+      (string_literal
+        (string_literal_content)))
     (else_statement
       (else))
-    (statement_list
-      (statement
-        (string_literal
-          (string_literal_content))))
+    (statement
+      (string_literal
+        (string_literal_content)))
     (endif_statement
       (endif))))
 
@@ -555,20 +537,19 @@ I←0
         (identifier)
         (primitive)
         (number_literal)))
-    (statement_list
-      (statement
-        (identifier))
-      (statement
-        (identifier))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (number_literal)))))
+    (statement
+      (identifier))
+    (statement
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (number_literal))))
     (endwhile_statement
       (endwhile))))
 
@@ -598,27 +579,26 @@ I←0
         (primitive)
         (system_command)
         (number_literal)))
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (system_command)
-            (number_literal)
-            (number_literal)
-            (number_literal))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (primitive)
-            (identifier)))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (system_command)
+          (number_literal)
+          (number_literal)
+          (number_literal))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (primitive)
+          (identifier))))
     (until_statement
       (until)
       (until_condition
@@ -654,17 +634,16 @@ while andif orif
         (number_literal)
         (primitive)
         (identifier)))
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier)
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (identifier)
-            (identifier)))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier)
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
     (until_statement
       (until)
       (until_condition
@@ -708,20 +687,19 @@ I←0
   (repeat_block
     (repeat_statement
       (repeat))
-    (statement_list
-      (statement
-        (identifier))
-      (statement
-        (identifier))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (number_literal)))))
+    (statement
+      (identifier))
+    (statement
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (number_literal))))
     (until_statement
       (until)
       (until_condition
@@ -742,17 +720,16 @@ reapeat 2
   (repeat_block
     (repeat_statement
       (repeat))
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (system_command)
-            (number_literal)
-            (number_literal)
-            (number_literal)))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (system_command)
+          (number_literal)
+          (number_literal)
+          (number_literal))))
     (until_statement
       (until)
       (until_condition
@@ -788,13 +765,12 @@ for 1
       (number_literal)
       (number_literal)
       (number_literal))
-    (statement_list
-      (statement
-        (identifier)
-        (identifier))
-      (statement
-        (identifier)
-        (identifier)))
+    (statement
+      (identifier)
+      (identifier))
+    (statement
+      (identifier)
+      (identifier))
     (endfor_statement
       (endfor))))
 
@@ -823,17 +799,16 @@ for 2
       (primitive)
       (string_literal
         (string_literal_content)))
-    (statement_list
-      (statement
-        (identifier)
-        (system_command)
-        (number_literal))
-      (statement
-        (system_command)
-        (number_literal))
-      (statement
-        (system_command)
-        (number_literal)))
+    (statement
+      (identifier)
+      (system_command)
+      (number_literal))
+    (statement
+      (system_command)
+      (number_literal))
+    (statement
+      (system_command)
+      (number_literal))
     (endfor_statement
       (endfor))))
 
@@ -873,55 +848,53 @@ TS←0
       (primitive)
       (string_literal
         (string_literal_content)))
-    (statement_list
-      (statement
+    (statement
+      (identifier)
+      (system_command)
+      (number_literal))
+    (statement
+      (assignment
+        (assign_left
+          (identifier)
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal)
+          (primitive)
+          (system_command)
+          (number_literal))))
+    (for_block
+      (for_statement
+        (for)
         (identifier)
-        (system_command)
+        (in)
+        (parenthesis
+          (statement
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (primitive)
+        (primitive)
+        (identifier)
+        (primitive)
         (number_literal))
       (statement
         (assignment
           (assign_left
             (identifier)
-            (identifier))
+            (primitive))
           (left_arrow)
           (assign_right
             (number_literal)
             (primitive)
             (system_command)
-            (number_literal))))
-      (for_block
-        (for_statement
-          (for)
-          (identifier)
-          (in)
-          (parenthesis
-            (statement
-              (identifier)
-              (primitive)
-              (number_literal)))
-          (primitive)
-          (primitive)
-          (identifier)
-          (primitive)
-          (number_literal))
-        (statement_list
-          (statement
-            (assignment
-              (assign_left
-                (identifier)
-                (primitive))
-              (left_arrow)
-              (assign_right
-                (number_literal)
-                (primitive)
-                (system_command)
-                (identifier)
-                (identifier)))))
-        (endfor_statement
-          (endfor)))
-      (statement
-        (system_command)
-        (number_literal)))
+            (identifier)
+            (identifier))))
+      (endfor_statement
+        (endfor)))
+    (statement
+      (system_command)
+      (number_literal))
     (endfor_statement
       (endfor))))
 
@@ -959,15 +932,14 @@ for 4
           (number_literal)
           (number_literal)
           (number_literal))))
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (identifier)
-            (identifier)))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
     (endfor_statement
       (endfor))))

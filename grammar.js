@@ -111,12 +111,16 @@ module.exports = grammar({
     [$.tradop2, $.tradop1, $.tradfn],
     [$.tradop2, $.tradop1, $.tradfn, $._expression],
     [$.tradfn, $._expression],
-    [$.tradfn, $.statement_list],
-    [$.tradop1, $.statement_list],
-    [$.tradop2, $.statement_list],
     [$.tradfn],
-    [$.statement_list, $.if_block],
-    [$.statement_list],
+    [$.tradfn, $._trad_stataments],
+    [$.tradop1, $._trad_stataments],
+    [$.tradop2, $._trad_stataments],
+    [$._statement_list, $.if_block],
+    [$._statement_list],
+    [$._loop_statement_list],
+    [$._loop_statement_list, $.while_block, $._until],
+    [$._loop_statement_list, $._until],
+    [$._loop_statement_list, $.for_block],
     [$._until],
   ],
 
@@ -124,7 +128,7 @@ module.exports = grammar({
     // a source_file is the whole code,
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
-      alias($.statement_list, '_statement_list'),
+      $._statement_list,
       $.trad,
       terminator,
     )),
@@ -135,22 +139,23 @@ module.exports = grammar({
     tradop1: $ => trad_def($, DOP1),
     tradop2: $ => trad_def($, DOP2),
     // statements inside trad-defs
-    statement_list: $ => _separated(terminator, [choice(
-      alias($._expression, $.statement),
-      seq(
-        alias($.identifier, $.label),
-        ':',
-        alias($._expression, $.statement),
-      ),
+    _trad_stataments: $ => choice(
+      alias(trad_statement($, $._expression), $.statement),
       $.branch,
       $.if_block,
       $.while_block,
       $.repeat_block,
       $.for_block,
-    )], 0),
+    ),
+    _statement_list: $ => _separated(terminator, [$._trad_stataments], 0),
+    _loop_statement_list: $ => _separated(terminator, [
+      $._trad_stataments,
+      $.leave_statement,
+      $.continue_statement,
+    ], 0),
     // control structures
     branch: $ => choice(
-      seq($.right_arrow, $._expression),
+      $.branch_statement,
       $.goto_statement,
     ),
     if_block: $ => seq(
@@ -159,18 +164,18 @@ module.exports = grammar({
         repeat(seq(terminator, $.andif_statement)),
         repeat(seq(terminator, $.orif_statement)),
       ),
-      terminator, optional($.statement_list),
+      terminator, optional($._statement_list),
       repeat(seq(
         terminator, $.elseif_statement,
         choice(
           repeat(seq(terminator, $.andif_statement)),
           repeat(seq(terminator, $.orif_statement)),
         ),
-        terminator, optional($.statement_list),
+        terminator, optional($._statement_list),
       )),
       optional(seq(
         terminator, $.else_statement,
-        terminator, optional($.statement_list),
+        terminator, optional($._statement_list),
       )),
       terminator, $.endif_statement,
     ),
@@ -180,7 +185,7 @@ module.exports = grammar({
         repeat(seq(terminator, $.andif_statement)),
         repeat(seq(terminator, $.orif_statement)),
       ),
-      terminator, optional($.statement_list),
+      terminator, optional($._loop_statement_list),
       choice(
         $._until,
         seq(
@@ -190,7 +195,7 @@ module.exports = grammar({
     ),
     repeat_block: $ => seq(
       $.repeat_statement,
-      terminator, optional($.statement_list),
+      terminator, optional($._loop_statement_list),
       $._until,
     ),
     _until: $ => seq(
@@ -202,28 +207,29 @@ module.exports = grammar({
     ),
     for_block: $ => seq(
       $.for_statement,
-      terminator, optional($.statement_list),
+      terminator, optional($._loop_statement_list),
       terminator, $.endfor_statement,
     ),
     // control statements
-    goto_statement: $ => seq($.goto, $._expression),
-    if_statement: $ => condition_statement($, 'if'),
-    andif_statement: $ => condition_statement($, 'andif'),
-    orif_statement: $ => condition_statement($, 'orif'),
-    elseif_statement: $ => condition_statement($, 'elseif'),
-    else_statement: $ => $.else,
-    endif_statement: $ => choice($.endif, $.end),
-    while_statement: $ => condition_statement($, 'while'),
-    until_statement: $ => condition_statement($, 'until'),
-    endwhile_statement: $ => choice($.endwhile, $.end),
-    repeat_statement: $ => $.repeat,
-    for_statement: $ => seq(
+    branch_statement: $ => trad_statement($, seq($.right_arrow, $._expression)),
+    goto_statement: $ => trad_statement($, seq($.goto, $._expression)),
+    if_statement: $ => trad_statement($, condition_statement($, 'if')),
+    andif_statement: $ => trad_statement($, condition_statement($, 'andif')),
+    orif_statement: $ => trad_statement($, condition_statement($, 'orif')),
+    elseif_statement: $ => trad_statement($, condition_statement($, 'elseif')),
+    else_statement: $ => trad_statement($, $.else),
+    endif_statement: $ => trad_statement($, choice($.endif, $.end)),
+    while_statement: $ => trad_statement($, condition_statement($, 'while')),
+    until_statement: $ => trad_statement($, condition_statement($, 'until')),
+    endwhile_statement: $ => trad_statement($, choice($.endwhile, $.end)),
+    repeat_statement: $ => trad_statement($, $.repeat),
+    for_statement: $ => trad_statement($, seq(
       $.for,
       repeat1(field('control_var', $.identifier)),
       choice($.in, $.ineach),
       field('control_array', $._expression),
-    ),
-    endfor_statement: $ => choice($.endfor, $.end),
+    )),
+    endfor_statement: $ => trad_statement($, choice($.endfor, $.end)),
 
     // any _expression outer-scope valid expression
     _expression: $ => choice(
@@ -336,6 +342,17 @@ function _separated(separator, statements, d){
   );
 }
 
+function trad_statement($$, statement){
+    return choice(
+      statement,
+      seq(
+        alias($$.identifier, $$.label),
+        ':',
+        statement,
+      ),
+    );
+}
+
 function statements($$, d){
   return _separated(terminator, _alias($$, 'statement'), d);
 }
@@ -391,7 +408,7 @@ function trad_def($$, d) {
     trad_header,
     newline,
     field('body', choice(
-      $$.statement_list,
+      $$._statement_list,
       $$.if_block,
     )),
     optional(del),

@@ -36,45 +36,6 @@
     ]
   },
   {
-    "type": "_statement_list",
-    "named": false,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "branch",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "label",
-          "named": true
-        },
-        {
-          "type": "repeat_block",
-          "named": true
-        },
-        {
-          "type": "statement",
-          "named": true
-        },
-        {
-          "type": "while_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "andif_condition",
     "named": true,
     "fields": {},
@@ -143,6 +104,10 @@
         },
         {
           "type": "andif_condition",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         }
       ]
@@ -286,6 +251,25 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "goto_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "branch_statement",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": true,
       "required": true,
       "types": [
@@ -298,10 +282,6 @@
           "named": true
         },
         {
-          "type": "goto_statement",
-          "named": true
-        },
-        {
           "type": "highrank",
           "named": true
         },
@@ -311,6 +291,10 @@
         },
         {
           "type": "indices",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -4059,11 +4043,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "else",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         }
       ]
@@ -4139,6 +4127,10 @@
         {
           "type": "elseif_condition",
           "named": true
+        },
+        {
+          "type": "label",
+          "named": true
         }
       ]
     }
@@ -4148,7 +4140,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -4157,6 +4149,10 @@
         },
         {
           "type": "endfor",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         }
       ]
@@ -4167,7 +4163,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -4176,6 +4172,10 @@
         },
         {
           "type": "endif",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         }
       ]
@@ -4186,7 +4186,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -4195,6 +4195,10 @@
         },
         {
           "type": "endwhile",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         }
       ]
@@ -4338,7 +4342,15 @@
       "required": true,
       "types": [
         {
+          "type": "branch",
+          "named": true
+        },
+        {
           "type": "endfor_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
           "named": true
         },
         {
@@ -4346,7 +4358,23 @@
           "named": true
         },
         {
-          "type": "statement_list",
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -4432,6 +4460,10 @@
         {
           "type": "ineach",
           "named": true
+        },
+        {
+          "type": "label",
+          "named": true
         }
       ]
     }
@@ -4466,6 +4498,10 @@
         },
         {
           "type": "indices",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -4652,6 +4688,10 @@
           "named": true
         },
         {
+          "type": "branch",
+          "named": true
+        },
+        {
           "type": "else_statement",
           "named": true
         },
@@ -4664,7 +4704,19 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
           "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -4672,7 +4724,15 @@
           "named": true
         },
         {
-          "type": "statement_list",
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -4747,6 +4807,10 @@
         },
         {
           "type": "if_condition",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         }
       ]
@@ -4980,6 +5044,10 @@
       "required": true,
       "types": [
         {
+          "type": "label",
+          "named": true
+        },
+        {
           "type": "orif",
           "named": true
         },
@@ -5018,7 +5086,27 @@
           "named": true
         },
         {
+          "type": "branch",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
           "type": "orif_statement",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
           "named": true
         },
         {
@@ -5026,11 +5114,15 @@
           "named": true
         },
         {
-          "type": "statement_list",
+          "type": "statement",
           "named": true
         },
         {
           "type": "until_statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -5041,9 +5133,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "label",
+          "named": true
+        },
         {
           "type": "repeat",
           "named": true
@@ -5057,11 +5153,39 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
+          "type": "branch",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
           "type": "trad",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         }
       ]
@@ -5073,7 +5197,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "assignment",
@@ -5123,45 +5247,6 @@
     }
   },
   {
-    "type": "statement_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "branch",
-          "named": true
-        },
-        {
-          "type": "for_block",
-          "named": true
-        },
-        {
-          "type": "if_block",
-          "named": true
-        },
-        {
-          "type": "label",
-          "named": true
-        },
-        {
-          "type": "repeat_block",
-          "named": true
-        },
-        {
-          "type": "statement",
-          "named": true
-        },
-        {
-          "type": "while_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "string_literal",
     "named": true,
     "fields": {},
@@ -5186,16 +5271,44 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "\u0000",
+            "named": false
+          },
+          {
+            "type": "branch",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
           {
             "type": "if_block",
             "named": true
           },
           {
-            "type": "statement_list",
+            "type": "label",
             "named": true
+          },
+          {
+            "type": "repeat_block",
+            "named": true
+          },
+          {
+            "type": "statement",
+            "named": true
+          },
+          {
+            "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "⋄",
+            "named": false
           }
         ]
       },
@@ -5300,16 +5413,44 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "\u0000",
+            "named": false
+          },
+          {
+            "type": "branch",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
           {
             "type": "if_block",
             "named": true
           },
           {
-            "type": "statement_list",
+            "type": "label",
             "named": true
+          },
+          {
+            "type": "repeat_block",
+            "named": true
+          },
+          {
+            "type": "statement",
+            "named": true
+          },
+          {
+            "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "⋄",
+            "named": false
           }
         ]
       },
@@ -5424,16 +5565,44 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "\u0000",
+            "named": false
+          },
+          {
+            "type": "branch",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
           {
             "type": "if_block",
             "named": true
           },
           {
-            "type": "statement_list",
+            "type": "label",
             "named": true
+          },
+          {
+            "type": "repeat_block",
+            "named": true
+          },
+          {
+            "type": "statement",
+            "named": true
+          },
+          {
+            "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "⋄",
+            "named": false
           }
         ]
       },
@@ -5617,6 +5786,10 @@
       "required": true,
       "types": [
         {
+          "type": "label",
+          "named": true
+        },
+        {
           "type": "until",
           "named": true
         },
@@ -5640,7 +5813,23 @@
           "named": true
         },
         {
+          "type": "branch",
+          "named": true
+        },
+        {
           "type": "endwhile_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -5648,11 +5837,19 @@
           "named": true
         },
         {
-          "type": "statement_list",
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "statement",
           "named": true
         },
         {
           "type": "until_statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
           "named": true
         },
         {
@@ -5725,6 +5922,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "label",
+          "named": true
+        },
         {
           "type": "while",
           "named": true

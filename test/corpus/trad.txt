@@ -10,14 +10,13 @@ tradfn nilladic
   (tradfn
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (number_literal)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))))
 
 ==================
 tradfn monadic
@@ -32,14 +31,13 @@ tradfn monadic
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier))))))
 
 ==================
 tradfn dyadic
@@ -55,16 +53,15 @@ tradfn dyadic
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
 
 ==================
 tradfn ambivalent
@@ -81,35 +78,34 @@ tradfn ambivalent
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (dfn_definition
-              (dfn_guard
-                (guard_condition
-                  (number_literal)
-                  (primitive)
-                  (system_command)
-                  (string_literal
-                    (string_literal_content)))
-                (dfn_guard_expression
-                  (dfn_identifier)))
-              (statement
-                (identifier)))
-            (primitive))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (dfn_definition
+            (dfn_guard
+              (guard_condition
+                (number_literal)
+                (primitive)
+                (system_command)
+                (string_literal
+                  (string_literal_content)))
+              (dfn_guard_expression
+                (dfn_identifier)))
+            (statement
+              (identifier)))
+          (primitive))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
 
 ==================
 tradfn no result
@@ -124,16 +120,15 @@ tradfn no result
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
 
 ==================
 tradfn shy result
@@ -149,16 +144,15 @@ tradfn shy result
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
 
 ==================
 tradfn locals
@@ -178,34 +172,33 @@ tradfn locals
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
 
 ==================
 tradop1
@@ -226,34 +219,33 @@ tradop1
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (identifier)
-            (identifier))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
 
 ==================
 tradop2
@@ -275,31 +267,30 @@ tradop2
     (identifier)
     (identifier)
     (identifier)
-    (statement_list
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (identifier)
-            (identifier))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (identifier)
-            (identifier))))
-      (statement
-        (assignment
-          (assign_left
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (identifier)))))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
