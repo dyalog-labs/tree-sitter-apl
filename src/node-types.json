@@ -310,6 +310,25 @@
     }
   },
   {
+    "type": "continue_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dfn_assign_left",
     "named": true,
     "fields": {},
@@ -4327,6 +4346,10 @@
           "named": true
         },
         {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
           "type": "endfor_statement",
           "named": true
         },
@@ -4348,6 +4371,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
           "named": true
         },
         {
@@ -4681,6 +4708,10 @@
           "named": true
         },
         {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
           "type": "else_statement",
           "named": true
         },
@@ -4710,6 +4741,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
           "named": true
         },
         {
@@ -4878,6 +4913,25 @@
       "types": [
         {
           "type": "index",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "leave_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave",
           "named": true
         }
       ]
@@ -5087,6 +5141,10 @@
           "named": true
         },
         {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
           "type": "for_block",
           "named": true
         },
@@ -5100,6 +5158,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
           "named": true
         },
         {
@@ -5873,6 +5935,10 @@
           "named": true
         },
         {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
           "type": "endwhile_statement",
           "named": true
         },
@@ -5890,6 +5956,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
           "named": true
         },
         {
@@ -6047,6 +6117,10 @@
     "extra": true
   },
   {
+    "type": "continue",
+    "named": true
+  },
+  {
     "type": "else",
     "named": true
   },
@@ -6096,6 +6170,10 @@
   },
   {
     "type": "label",
+    "named": true
+  },
+  {
+    "type": "leave",
     "named": true
   },
   {

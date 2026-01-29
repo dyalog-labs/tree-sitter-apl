@@ -122,6 +122,10 @@ module.exports = grammar({
     [$._loop_statement_list, $._until],
     [$._loop_statement_list, $.for_block],
     [$._until],
+    [$._loop_if_block, $.if_block],
+    [$._loop_statement_list, $._loop_if_block],
+    [$._loop_statement_list, $._statement_list],
+    [$._loop_statement_list, $._statement_list, $._loop_if_block, $.if_block],
   ],
 
   rules: {
@@ -141,42 +145,24 @@ module.exports = grammar({
     // statements inside trad-defs
     _trad_stataments: $ => choice(
       alias(trad_statement($, $._expression), $.statement),
+      $.if_block,
       $.branch_statement,
       $.goto_statement,
       $.return_statement,
-      $.if_block,
       $.while_block,
       $.repeat_block,
       $.for_block,
     ),
-    _statement_list: $ => _separated(terminator, [$._trad_stataments], 0),
-    _loop_statement_list: $ => _separated(terminator, [
+    _loop_statement_list: $ => _separated(terminator, [choice(
       $._trad_stataments,
+      alias($._loop_if_block, $.if_block),
       $.leave_statement,
       $.continue_statement,
-    ], 0),
+    )], 0),
+    _statement_list: $ => _separated(terminator, [$._trad_stataments], 0),
     // control structures
-    if_block: $ => seq(
-      $.if_statement,
-      choice(
-        repeat(seq(terminator, $.andif_statement)),
-        repeat(seq(terminator, $.orif_statement)),
-      ),
-      terminator, optional($._statement_list),
-      repeat(seq(
-        terminator, $.elseif_statement,
-        choice(
-          repeat(seq(terminator, $.andif_statement)),
-          repeat(seq(terminator, $.orif_statement)),
-        ),
-        terminator, optional($._statement_list),
-      )),
-      optional(seq(
-        terminator, $.else_statement,
-        terminator, optional($._statement_list),
-      )),
-      terminator, $.endif_statement,
-    ),
+    if_block: $ => if_block($, $._statement_list),
+    _loop_if_block: $ => if_block($, $._loop_statement_list),
     while_block: $ => seq(
       $.while_statement,
       choice(
@@ -351,6 +337,30 @@ function trad_statement($$, statement){
         ':',
         statement,
       ),
+    );
+}
+
+function if_block($$, statement_list){
+    return seq(
+      $$.if_statement,
+      choice(
+        repeat(seq(terminator, $$.andif_statement)),
+        repeat(seq(terminator, $$.orif_statement)),
+      ),
+      terminator, optional(statement_list),
+      repeat(seq(
+        terminator, $$.elseif_statement,
+        choice(
+          repeat(seq(terminator, $$.andif_statement)),
+          repeat(seq(terminator, $$.orif_statement)),
+        ),
+        terminator, optional(statement_list),
+      )),
+      optional(seq(
+        terminator, $$.else_statement,
+        terminator, optional(statement_list),
+      )),
+      terminator, $$.endif_statement,
     );
 }
 

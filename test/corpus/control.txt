@@ -934,3 +934,56 @@ for 4
           (identifier))))
     (endfor_statement
       (endfor))))
+
+==================
+for 5
+==================
+:For i :In I
+     :If i<10 ⋄ :Continue ⋄ :EndIf
+     :If i=20 ⋄ :Return ⋄ :EndIf
+     :If i>30 ⋄ :Leave ⋄ :EndIf
+:EndFor
+---
+
+(source_file
+  (for_block
+    (for_statement
+      (for)
+      (identifier)
+      (in)
+      (identifier))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
+      (continue_statement
+        (continue))
+      (endif_statement
+        (endif)))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
+      (return_statement
+        (return))
+      (endif_statement
+        (endif)))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)
+          (primitive)
+          (number_literal)))
+      (leave_statement
+        (leave))
+      (endif_statement
+        (endif)))
+    (endfor_statement
+      (endfor))))
