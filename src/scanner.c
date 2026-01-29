@@ -39,7 +39,8 @@ const int N_SYSTEM_COMMANDS = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0
 const char *CONTROL_WORDS[] = {
   "GOTO",
   "IF", "ELSEIF", "ELSE", "ENDIF",
-  "WHILE", "UNTIL", "ENDWHILE",
+  "WHILE", "ENDWHILE", "REPEAT", "UNTIL",
+  "FOR", "IN", "INEACH", "ENDFOR",
   "ANDIF", "ORIF", "END"
 };
 const int N_CONTROL_WORDS = sizeof(CONTROL_WORDS) / sizeof(CONTROL_WORDS[0]);

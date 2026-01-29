@@ -63,7 +63,8 @@ module.exports = grammar({
     // control words
     $.goto,
     $.if, $.elseif, $.else, $.endif,
-    $.while, $.until, $.endwhile,
+    $.while, $.endwhile, $.repeat, $.until,
+    $.for, $.in, $.ineach, $.endfor,
     $.andif, $.orif, $.end,
 
   ],
@@ -116,7 +117,7 @@ module.exports = grammar({
     [$.tradfn],
     [$.statement_list, $.if_block],
     [$.statement_list],
-    [$.while_block],
+    [$._until],
   ],
 
   rules: {
@@ -144,6 +145,8 @@ module.exports = grammar({
       $.branch,
       $.if_block,
       $.while_block,
+      $.repeat_block,
+      $.for_block,
     )], 0),
     // control structures
     branch: $ => choice(
@@ -179,17 +182,28 @@ module.exports = grammar({
       ),
       terminator, optional($.statement_list),
       choice(
-        seq(
-          terminator, $.until_statement,
-          choice(
-            repeat(seq(terminator, $.andif_statement)),
-            repeat(seq(terminator, $.orif_statement)),
-          ),
-        ),
+        $._until,
         seq(
           terminator, $.endwhile_statement,
         ),
       ),
+    ),
+    repeat_block: $ => seq(
+      $.repeat_statement,
+      terminator, optional($.statement_list),
+      $._until,
+    ),
+    _until: $ => seq(
+      terminator, $.until_statement,
+      choice(
+        repeat(seq(terminator, $.andif_statement)),
+        repeat(seq(terminator, $.orif_statement)),
+      ),
+    ),
+    for_block: $ => seq(
+      $.for_statement,
+      terminator, optional($.statement_list),
+      terminator, $.endfor_statement,
     ),
     // control statements
     goto_statement: $ => seq($.goto, $._expression),
@@ -202,6 +216,14 @@ module.exports = grammar({
     while_statement: $ => condition_statement($, 'while'),
     until_statement: $ => condition_statement($, 'until'),
     endwhile_statement: $ => choice($.endwhile, $.end),
+    repeat_statement: $ => $.repeat,
+    for_statement: $ => seq(
+      $.for,
+      repeat1(field('control_var', $.identifier)),
+      choice($.in, $.ineach),
+      field('control_array', $._expression),
+    ),
+    endfor_statement: $ => choice($.endfor, $.end),
 
     // any _expression outer-scope valid expression
     _expression: $ => choice(

@@ -685,3 +685,289 @@ while andif orif
         (identifier)
         (primitive)
         (number_literal)))))
+
+==================
+reapeat 1
+==================
+I←0
+:Repeat
+    expr1
+    expr2
+    I←I+1
+:Until I=100
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (number_literal))))
+  (repeat_block
+    (repeat_statement
+      (repeat))
+    (statement_list
+      (statement
+        (identifier))
+      (statement
+        (identifier))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (primitive)
+            (number_literal)))))
+    (until_statement
+      (until)
+      (until_condition
+        (identifier)
+        (primitive)
+        (number_literal)))))
+
+==================
+reapeat 2
+==================
+:Repeat
+    REC←⎕NREAD ¯1 82 80
+:Until 'Widget'≡6⍴REC
+:OrIf 0=⍴REC
+---
+
+(source_file
+  (repeat_block
+    (repeat_statement
+      (repeat))
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (system_command)
+            (number_literal)
+            (number_literal)
+            (number_literal)))))
+    (until_statement
+      (until)
+      (until_condition
+        (string_literal
+          (string_literal_content))
+        (primitive)
+        (number_literal)
+        (primitive)
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (number_literal)
+        (primitive)
+        (primitive)
+        (identifier)))))
+
+==================
+for 1
+==================
+:For I :In 3 4 5
+    expr1 I
+    expr2 I
+:EndFor
+---
+
+(source_file
+  (for_block
+    (for_statement
+      (for)
+      (identifier)
+      (in)
+      (number_literal)
+      (number_literal)
+      (number_literal))
+    (statement_list
+      (statement
+        (identifier)
+        (identifier))
+      (statement
+        (identifier)
+        (identifier)))
+    (endfor_statement
+      (endfor))))
+
+==================
+for 2
+==================
+:For FILE :In (↓⎕FLIB '')~¨' '
+    FILE ⎕FTIE 1
+    ⎕FRESIZE 1
+    ⎕FUNTIE 1
+:EndFor
+---
+
+(source_file
+  (for_block
+    (for_statement
+      (for)
+      (identifier)
+      (in)
+      (parenthesis
+        (statement
+          (primitive)
+          (system_command)
+          (string_literal)))
+      (primitive)
+      (primitive)
+      (string_literal
+        (string_literal_content)))
+    (statement_list
+      (statement
+        (identifier)
+        (system_command)
+        (number_literal))
+      (statement
+        (system_command)
+        (number_literal))
+      (statement
+        (system_command)
+        (number_literal)))
+    (endfor_statement
+      (endfor))))
+
+==================
+for 3
+==================
+TS←0
+:For FILE :In (↓⎕FLIB '')~¨' '
+    FILE ⎕FTIE 1
+    START END←2⍴⎕FSIZE 1
+    :For COMP :In (START-1)↓⍳END-1
+        TS⌈←¯1↑⎕FREAD FILE COMP
+    :EndFor
+    ⎕FUNTIE 1
+:EndFor
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (number_literal))))
+  (for_block
+    (for_statement
+      (for)
+      (identifier)
+      (in)
+      (parenthesis
+        (statement
+          (primitive)
+          (system_command)
+          (string_literal)))
+      (primitive)
+      (primitive)
+      (string_literal
+        (string_literal_content)))
+    (statement_list
+      (statement
+        (identifier)
+        (system_command)
+        (number_literal))
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal)
+            (primitive)
+            (system_command)
+            (number_literal))))
+      (for_block
+        (for_statement
+          (for)
+          (identifier)
+          (in)
+          (parenthesis
+            (statement
+              (identifier)
+              (primitive)
+              (number_literal)))
+          (primitive)
+          (primitive)
+          (identifier)
+          (primitive)
+          (number_literal))
+        (statement_list
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (primitive))
+              (left_arrow)
+              (assign_right
+                (number_literal)
+                (primitive)
+                (system_command)
+                (identifier)
+                (identifier)))))
+        (endfor_statement
+          (endfor)))
+      (statement
+        (system_command)
+        (number_literal)))
+    (endfor_statement
+      (endfor))))
+
+==================
+for 4
+==================
+:For a b c :InEach (1 3 5 7)(2 4 6 8)(3 5 7 9)
+     ⎕←a b c
+:EndFor
+---
+
+(source_file
+  (for_block
+    (for_statement
+      (for)
+      (identifier)
+      (identifier)
+      (identifier)
+      (ineach)
+      (parenthesis
+        (statement
+          (number_literal)
+          (number_literal)
+          (number_literal)
+          (number_literal)))
+      (parenthesis
+        (statement
+          (number_literal)
+          (number_literal)
+          (number_literal)
+          (number_literal)))
+      (parenthesis
+        (statement
+          (number_literal)
+          (number_literal)
+          (number_literal)
+          (number_literal))))
+    (statement_list
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (identifier)
+            (identifier)))))
+    (endfor_statement
+      (endfor))))
