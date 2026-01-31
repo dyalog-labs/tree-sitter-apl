@@ -63,6 +63,12 @@ module.exports = grammar({
     // control words
     $.goto,
     $.if, $.elseif, $.else, $.endif,
+    // $.select, $.case, $.caselist, $.endselect,
+    // $.trap, $.endtrap,
+    $.hold, $.endhold,
+    $.section, $.endsection,
+    $.with, $.endwith,
+    $.disposable, $.enddisposable,
     $.while, $.endwhile, $.repeat, $.until,
     $.for, $.in, $.ineach, $.endfor,
     $.andif, $.orif, $.end,
@@ -115,17 +121,29 @@ module.exports = grammar({
     [$.tradfn, $._trad_stataments],
     [$.tradop1, $._trad_stataments],
     [$.tradop2, $._trad_stataments],
+    [$._until],
     [$._statement_list, $.if_block],
+    [$._statement_list, $.hold_block],
+    [$._statement_list, $.section_block],
+    [$._statement_list, $.with_block],
+    [$._statement_list, $.disposable_block],
     [$._statement_list],
     [$._loop_statement_list],
     [$._loop_statement_list, $.while_block, $._until],
     [$._loop_statement_list, $._until],
     [$._loop_statement_list, $.for_block],
-    [$._until],
     [$._loop_if_block, $.if_block],
+    [$._loop_hold_block, $.hold_block],
+    [$._loop_section_block, $.section_block],
+    [$._loop_with_block, $.with_block],
+    [$._loop_disposable_block, $.disposable_block],
     [$._loop_statement_list, $._loop_if_block],
     [$._loop_statement_list, $._statement_list],
     [$._loop_statement_list, $._statement_list, $._loop_if_block, $.if_block],
+    [$._loop_statement_list, $._statement_list, $._loop_hold_block, $.hold_block],
+    [$._loop_statement_list, $._statement_list, $._loop_section_block, $.section_block],
+    [$._loop_statement_list, $._statement_list, $._loop_with_block, $.with_block],
+    [$._loop_statement_list, $._statement_list, $._loop_disposable_block, $.disposable_block],
   ],
 
   rules: {
@@ -146,6 +164,12 @@ module.exports = grammar({
     _trad_stataments: $ => choice(
       alias(trad_statement($, $._expression), $.statement),
       $.if_block,
+      // $.select_block,
+      // $.trap_block,
+      $.hold_block,
+      $.section_block,
+      $.with_block,
+      $.disposable_block,
       $.branch_statement,
       $.goto_statement,
       $.return_statement,
@@ -156,13 +180,20 @@ module.exports = grammar({
     _loop_statement_list: $ => _separated(terminator, [choice(
       $._trad_stataments,
       alias($._loop_if_block, $.if_block),
+      // alias($._loop_select_block, $.select_block),
+      // alias($._loop_trap_block, $.trap_block),
+      alias($._loop_hold_block, $.hold_block),
+      alias($._loop_section_block, $.section_block),
+      alias($._loop_with_block, $.with_block),
+      alias($._loop_disposable_block, $.disposable_block),
       $.leave_statement,
       $.continue_statement,
     )], 0),
     _statement_list: $ => _separated(terminator, [$._trad_stataments], 0),
     // control structures
-    if_block: $ => if_block($, $._statement_list),
-    _loop_if_block: $ => if_block($, $._loop_statement_list),
+    ...block_rules(),
+    // if_block: $ => if_block($, $._statement_list),
+    // _loop_if_block: $ => if_block($, $._loop_statement_list),
     while_block: $ => seq(
       $.while_statement,
       choice(
@@ -203,6 +234,14 @@ module.exports = grammar({
     elseif_statement: $ => trad_statement($, condition_statement($, 'elseif')),
     else_statement: $ => trad_statement($, $.else),
     endif_statement: $ => trad_statement($, choice($.endif, $.end)),
+    hold_statement: $ => trad_statement($, seq($.hold, $._expression)),
+    endhold_statement: $ => trad_statement($, choice($.endhold, $.end)),
+    section_statement: $ => trad_statement($, seq($.section, $.identifier)),
+    endsection_statement: $ => trad_statement($, choice($.endsection, $.end)),
+    with_statement: $ => trad_statement($, seq($.with, $._expression)),
+    endwith_statement: $ => trad_statement($, choice($.endwith, $.end)),
+    disposable_statement: $ => trad_statement($, seq($.disposable, $._expression)),
+    enddisposable_statement: $ => trad_statement($, choice($.enddisposable, $.end)),
     while_statement: $ => trad_statement($, condition_statement($, 'while')),
     until_statement: $ => trad_statement($, condition_statement($, 'until')),
     endwhile_statement: $ => trad_statement($, choice($.endwhile, $.end)),
@@ -218,7 +257,7 @@ module.exports = grammar({
     leave_statement: $ => trad_statement($, $.leave),
     return_statement: $ => trad_statement($, $.return),
 
-    // any _expression outer-scope valid expression
+    // an _expression is any non-dfn/dop valid expression
     _expression: $ => choice(
       expression($, 0,
         $.definition,
@@ -340,28 +379,51 @@ function trad_statement($$, statement){
     );
 }
 
-function if_block($$, statement_list){
-    return seq(
-      $$.if_statement,
+function block_rules(){
+  function block(name){
+    return ($, statement_list) => seq(
+      $[name + '_statement'],
+      terminator, optional(statement_list),
+      terminator, $['end' + name + '_statement'],
+    );
+  }
+  const rules = {
+    if_block: ($, statement_list) => seq(
+      $.if_statement,
       choice(
-        repeat(seq(terminator, $$.andif_statement)),
-        repeat(seq(terminator, $$.orif_statement)),
+        repeat(seq(terminator, $.andif_statement)),
+        repeat(seq(terminator, $.orif_statement)),
       ),
       terminator, optional(statement_list),
       repeat(seq(
-        terminator, $$.elseif_statement,
+        terminator, $.elseif_statement,
         choice(
-          repeat(seq(terminator, $$.andif_statement)),
-          repeat(seq(terminator, $$.orif_statement)),
+          repeat(seq(terminator, $.andif_statement)),
+          repeat(seq(terminator, $.orif_statement)),
         ),
         terminator, optional(statement_list),
       )),
       optional(seq(
-        terminator, $$.else_statement,
+        terminator, $.else_statement,
         terminator, optional(statement_list),
       )),
-      terminator, $$.endif_statement,
-    );
+      terminator, $.endif_statement,
+    ),
+    // select_block,
+    // trap_block,
+    hold_block: block('hold'),
+    section_block: block('section'),
+    with_block: block('with'),
+    disposable_block: block('disposable'),
+  }
+  const keys = Object.keys(rules);
+  for (let i = 0; i < keys.length; i++) {
+    let k = keys[i];
+    let fn = rules[k];
+    rules[k] = $ => fn($, $._statement_list);
+    rules['_loop_' + k] = $ => fn($, $._loop_statement_list);
+  }
+  return rules;
 }
 
 function statements($$, d){

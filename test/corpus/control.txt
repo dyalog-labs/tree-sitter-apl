@@ -987,3 +987,266 @@ for 5
         (endif)))
     (endfor_statement
       (endfor))))
+
+==================
+hold 1
+==================
+:Hold ⍕¨to fm
+    :If >/vec[fm to]
+        vec[fm to]←vec[to fm]
+    :End
+:End
+---
+
+(source_file
+  (hold_block
+    (hold_statement
+      (hold)
+      (primitive)
+      (primitive)
+      (identifier)
+      (identifier))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (primitive)
+          (primitive)
+          (identifier)
+          (indices
+            (index
+              (identifier)
+              (identifier)))))
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (indices
+              (index
+                (identifier)
+                (identifier))))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (indices
+              (index
+                (identifier)
+                (identifier))))))
+      (endif_statement
+        (end)))
+    (endhold_statement
+      (end))))
+
+==================
+hold 2
+==================
+:Hold '⎕FNUMS'
+    tie←1+⌈/0,⎕FNUMS
+    fname ⎕FSTIE tie
+:End
+---
+
+(source_file
+  (hold_block
+    (hold_statement
+      (hold)
+      (string_literal
+        (string_literal_content)))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal)
+          (primitive)
+          (primitive)
+          (primitive)
+          (number_literal)
+          (primitive)
+          (system_command))))
+    (statement
+      (identifier)
+      (system_command)
+      (identifier))
+    (endhold_statement
+      (end))))
+
+==================
+section 1
+==================
+:Section rows
+    RowTitles←'North' 'South' 'East' 'West'
+:EndSection
+:Section cols
+    ColTitles←'Cakes' 'Buns' 'Biscuits'
+:EndSection
+---
+
+(source_file
+  (section_block
+    (section_statement
+      (section)
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content)))))
+    (endsection_statement
+      (endsection)))
+  (section_block
+    (section_statement
+      (section)
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content)))))
+    (endsection_statement
+      (endsection))))
+
+==================
+with 1
+==================
+:With F.G
+    Values←4 3⍴0
+    RowTitles←'North' 'South' 'East' 'West'
+    ColTitles←'Cakes' 'Buns' 'Biscuits'
+:EndWith
+---
+
+(source_file
+  (with_block
+    (with_statement
+      (with)
+      (identifier)
+      (primitive)
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal)
+          (number_literal)
+          (primitive)
+          (number_literal))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content)))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content))
+          (string_literal
+            (string_literal_content)))))
+    (endwith_statement
+      (endwith))))
+
+==================
+with 2
+==================
+:With 'x'           ⍝ Change to #.x
+    :With 'y'       ⍝ Change to #.x.y
+        :With ⎕SE   ⍝ Change to ⎕SE
+            a b c   ⍝ ... in ⎕SE
+        :EndWith    ⍝ Back to #.x.y
+    :EndWith        ⍝ Back to #.x
+:EndWith            ⍝ Back to #
+---
+
+(source_file
+  (with_block
+    (with_statement
+      (with)
+      (string_literal
+        (string_literal_content)))
+    (comment)
+    (with_block
+      (with_statement
+        (with)
+        (string_literal
+          (string_literal_content)))
+      (comment)
+      (with_block
+        (with_statement
+          (with)
+          (system_command))
+        (comment)
+        (statement
+          (identifier)
+          (identifier)
+          (identifier))
+        (comment)
+        (endwith_statement
+          (endwith)))
+      (comment)
+      (endwith_statement
+        (endwith)))
+    (comment)
+    (endwith_statement
+      (endwith)))
+  (comment))
+
+==================
+disposable 1
+==================
+:Disposable fonts←⎕NEW ¨Font Font
+→0
+:EndDisposable
+---
+
+(source_file
+  (disposable_block
+    (disposable_statement
+      (disposable)
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (system_command)
+          (primitive)
+          (identifier)
+          (identifier))))
+    (branch_statement
+      (right_arrow)
+      (number_literal))
+    (enddisposable_statement
+      (enddisposable))))

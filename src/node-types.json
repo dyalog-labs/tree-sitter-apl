@@ -1296,6 +1296,148 @@
     }
   },
   {
+    "type": "disposable_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
+          "type": "disposable_statement",
+          "named": true
+        },
+        {
+          "type": "enddisposable_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "disposable_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "disposable",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "dop1_assign_left",
     "named": true,
     "fields": {},
@@ -4136,6 +4278,29 @@
     }
   },
   {
+    "type": "enddisposable_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "enddisposable",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "endfor_statement",
     "named": true,
     "fields": {},
@@ -4149,6 +4314,29 @@
         },
         {
           "type": "endfor",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "endhold_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "endhold",
           "named": true
         },
         {
@@ -4182,6 +4370,29 @@
     }
   },
   {
+    "type": "endsection_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "endsection",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "endwhile_statement",
     "named": true,
     "fields": {},
@@ -4195,6 +4406,29 @@
         },
         {
           "type": "endwhile",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "endwith_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "endwith",
           "named": true
         },
         {
@@ -4350,6 +4584,10 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "endfor_statement",
           "named": true
         },
@@ -4363,6 +4601,10 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
           "named": true
         },
         {
@@ -4386,11 +4628,19 @@
           "named": true
         },
         {
+          "type": "section_block",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         },
         {
           "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -4692,6 +4942,148 @@
     }
   },
   {
+    "type": "hold_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
+          "type": "endhold_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "hold_statement",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hold_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "hold",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "if_block",
     "named": true,
     "fields": {},
@@ -4712,6 +5104,10 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "else_statement",
           "named": true
         },
@@ -4729,6 +5125,10 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
           "named": true
         },
         {
@@ -4760,11 +5160,19 @@
           "named": true
         },
         {
+          "type": "section_block",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         },
         {
           "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -5145,11 +5553,19 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "for_block",
           "named": true
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
           "named": true
         },
         {
@@ -5181,6 +5597,10 @@
           "named": true
         },
         {
+          "type": "section_block",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         },
@@ -5190,6 +5610,10 @@
         },
         {
           "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -5234,6 +5658,108 @@
     }
   },
   {
+    "type": "section_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
+          "type": "endsection_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "section_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "section_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "section",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -5247,11 +5773,19 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "for_block",
           "named": true
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
           "named": true
         },
         {
@@ -5271,6 +5805,10 @@
           "named": true
         },
         {
+          "type": "section_block",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         },
@@ -5280,6 +5818,10 @@
         },
         {
           "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -5377,11 +5919,19 @@
             "named": true
           },
           {
+            "type": "disposable_block",
+            "named": true
+          },
+          {
             "type": "for_block",
             "named": true
           },
           {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "hold_block",
             "named": true
           },
           {
@@ -5401,11 +5951,19 @@
             "named": true
           },
           {
+            "type": "section_block",
+            "named": true
+          },
+          {
             "type": "statement",
             "named": true
           },
           {
             "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "with_block",
             "named": true
           },
           {
@@ -5527,11 +6085,19 @@
             "named": true
           },
           {
+            "type": "disposable_block",
+            "named": true
+          },
+          {
             "type": "for_block",
             "named": true
           },
           {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "hold_block",
             "named": true
           },
           {
@@ -5551,11 +6117,19 @@
             "named": true
           },
           {
+            "type": "section_block",
+            "named": true
+          },
+          {
             "type": "statement",
             "named": true
           },
           {
             "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "with_block",
             "named": true
           },
           {
@@ -5687,11 +6261,19 @@
             "named": true
           },
           {
+            "type": "disposable_block",
+            "named": true
+          },
+          {
             "type": "for_block",
             "named": true
           },
           {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "hold_block",
             "named": true
           },
           {
@@ -5711,11 +6293,19 @@
             "named": true
           },
           {
+            "type": "section_block",
+            "named": true
+          },
+          {
             "type": "statement",
             "named": true
           },
           {
             "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "with_block",
             "named": true
           },
           {
@@ -5939,6 +6529,10 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "endwhile_statement",
           "named": true
         },
@@ -5948,6 +6542,10 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
           "named": true
         },
         {
@@ -5975,6 +6573,10 @@
           "named": true
         },
         {
+          "type": "section_block",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         },
@@ -5988,6 +6590,10 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -6072,6 +6678,148 @@
     }
   },
   {
+    "type": "with_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
+          "type": "endwith_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
+          "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
+          "named": true
+        },
+        {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
+          "named": true
+        },
+        {
+          "type": "with_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "with_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        },
+        {
+          "type": "with",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\u0000",
     "named": false
   },
@@ -6121,6 +6869,10 @@
     "named": true
   },
   {
+    "type": "disposable",
+    "named": true
+  },
+  {
     "type": "else",
     "named": true
   },
@@ -6133,7 +6885,15 @@
     "named": true
   },
   {
+    "type": "enddisposable",
+    "named": true
+  },
+  {
     "type": "endfor",
+    "named": true
+  },
+  {
+    "type": "endhold",
     "named": true
   },
   {
@@ -6141,7 +6901,15 @@
     "named": true
   },
   {
+    "type": "endsection",
+    "named": true
+  },
+  {
     "type": "endwhile",
+    "named": true
+  },
+  {
+    "type": "endwith",
     "named": true
   },
   {
@@ -6150,6 +6918,10 @@
   },
   {
     "type": "goto",
+    "named": true
+  },
+  {
+    "type": "hold",
     "named": true
   },
   {
@@ -6205,6 +6977,10 @@
     "named": true
   },
   {
+    "type": "section",
+    "named": true
+  },
+  {
     "type": "string_literal_content",
     "named": true
   },
@@ -6214,6 +6990,10 @@
   },
   {
     "type": "while",
+    "named": true
+  },
+  {
+    "type": "with",
     "named": true
   },
   {
