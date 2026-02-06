@@ -15,6 +15,5 @@
   (tradfn)
   (tradop1)
   (tradop2)
-  (if_block)
-  (while_block)
+  (block)
 ] @fold

@@ -15,12 +15,13 @@
   (tradfn)
   (tradop1)
   (tradop2)
-  (if_block)
-  (while_block)
+  (block)
 ] @indent.begin
 [
   (elseif)
   (else)
+  (case)
+  (caselist)
   (end)
 ] @indent.branch
 [
@@ -29,7 +30,13 @@
   "]"
   "∇"
   (endif)
+  (endselect)
+  (endwith)
+  (endsection)
+  (endhold)
+  (enddisposable)
   (until)
+  (endfor)
   (endwhile)
   (end)
 ] @indent.branch @indent.end
