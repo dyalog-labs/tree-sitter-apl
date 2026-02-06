@@ -503,6 +503,130 @@ if andif orif
       (endif))))
 
 ==================
+select 1
+==================
+:Select I
+:Case 1
+    'I is 1'
+:EndSelect
+:Select I
+:Case 1
+    'I is 1'
+:Case 2
+    'I is 2'
+:Else
+    'I is neither 1 nor 2'
+:EndSelect
+---
+
+(source_file
+  (select_block
+    (select_statement
+      (select)
+      (identifier))
+    (case_statement
+      (case)
+      (number_literal))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (endselect_statement
+      (endselect)))
+  (select_block
+    (select_statement
+      (select)
+      (identifier))
+    (case_statement
+      (case)
+      (number_literal))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (case_statement
+      (case)
+      (number_literal))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (else_statement
+      (else))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (endselect_statement
+      (endselect))))
+
+==================
+select 2
+==================
+:Select ?6 6
+:Case 6 6
+    'Box Cars'
+:Case 1 1
+    'Snake Eyes'
+:CaseList 2⍴¨⍳6
+    'Pair'
+:CaseList (⍳6),¨⌽⍳6
+    'Seven'
+:Else
+    'Unlucky'
+:EndSelect
+---
+
+(source_file
+  (select_block
+    (select_statement
+      (select)
+      (primitive)
+      (number_literal)
+      (number_literal))
+    (case_statement
+      (case)
+      (number_literal)
+      (number_literal))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (case_statement
+      (case)
+      (number_literal)
+      (number_literal))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (caselist_statement
+      (caselist)
+      (number_literal)
+      (primitive)
+      (primitive)
+      (primitive)
+      (number_literal))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (caselist_statement
+      (caselist)
+      (parenthesis
+        (statement
+          (primitive)
+          (number_literal)))
+      (primitive)
+      (primitive)
+      (primitive)
+      (primitive)
+      (number_literal))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (else_statement
+      (else))
+    (statement
+      (string_literal
+        (string_literal_content)))
+    (endselect_statement
+      (endselect))))
+
+==================
 while
 ==================
 I←0
