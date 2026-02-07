@@ -5425,11 +5425,6 @@
     }
   },
   {
-    "type": "left_arrow",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "member",
     "named": true,
     "fields": {},
@@ -6128,15 +6123,15 @@
             "named": true
           },
           {
+            "type": "left_arrow",
+            "named": true
+          },
+          {
             "type": "{",
             "named": false
           },
           {
             "type": "}",
-            "named": false
-          },
-          {
-            "type": "←",
             "named": false
           }
         ]
@@ -6276,15 +6271,15 @@
             "named": true
           },
           {
+            "type": "left_arrow",
+            "named": true
+          },
+          {
             "type": "{",
             "named": false
           },
           {
             "type": "}",
-            "named": false
-          },
-          {
-            "type": "←",
             "named": false
           }
         ]
@@ -6424,15 +6419,15 @@
             "named": true
           },
           {
+            "type": "left_arrow",
+            "named": true
+          },
+          {
             "type": "{",
             "named": false
           },
           {
             "type": "}",
-            "named": false
-          },
-          {
-            "type": "←",
             "named": false
           }
         ]
@@ -6942,6 +6937,10 @@
     "named": true
   },
   {
+    "type": "left_arrow",
+    "named": true
+  },
+  {
     "type": "member_identifier",
     "named": true
   },
@@ -6999,10 +6998,6 @@
   },
   {
     "type": "}",
-    "named": false
-  },
-  {
-    "type": "←",
     "named": false
   },
   {

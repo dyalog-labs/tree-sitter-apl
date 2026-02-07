@@ -484,7 +484,7 @@ function trad_def($$, d) {
         seq('(', repeat1($$.identifier), ')'),
         seq('{', $$.identifier, '}'),
       ),
-      '←',
+      $$.left_arrow,
     ))),
     optional(field('left_arg', choice(
       $$.identifier,

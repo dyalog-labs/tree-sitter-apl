@@ -135,8 +135,8 @@
                         ]
                       },
                       {
-                        "type": "STRING",
-                        "value": "←"
+                        "type": "SYMBOL",
+                        "name": "left_arrow"
                       }
                     ]
                   }
@@ -394,8 +394,8 @@
                         ]
                       },
                       {
-                        "type": "STRING",
-                        "value": "←"
+                        "type": "SYMBOL",
+                        "name": "left_arrow"
                       }
                     ]
                   }
@@ -669,8 +669,8 @@
                         ]
                       },
                       {
-                        "type": "STRING",
-                        "value": "←"
+                        "type": "SYMBOL",
+                        "name": "left_arrow"
                       }
                     ]
                   }

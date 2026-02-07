@@ -9,6 +9,7 @@ tradfn nilladic
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (statement
       (assignment
@@ -29,6 +30,7 @@ tradfn monadic
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (statement
@@ -50,6 +52,7 @@ tradfn dyadic
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (identifier)
@@ -75,6 +78,7 @@ tradfn ambivalent
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (identifier)
@@ -141,6 +145,7 @@ tradfn shy result
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (identifier)
@@ -167,6 +172,7 @@ tradfn locals
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (identifier)
@@ -213,6 +219,7 @@ tradop1
 (source_file
   (tradop1
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (identifier)
@@ -260,6 +267,7 @@ tradop2
 (source_file
   (tradop2
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (identifier)

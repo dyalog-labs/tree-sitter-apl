@@ -110,6 +110,7 @@ if 1
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (statement
@@ -148,6 +149,7 @@ if 2
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (statement
@@ -186,6 +188,7 @@ if 3
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (statement
@@ -221,6 +224,7 @@ if elseif
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (statement
@@ -271,6 +275,7 @@ if else
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (if_block
@@ -311,6 +316,7 @@ if elseif else
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (if_block
@@ -367,6 +373,7 @@ if nested
 (source_file
   (tradfn
     (identifier)
+    (left_arrow)
     (identifier)
     (identifier)
     (statement
