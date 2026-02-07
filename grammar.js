@@ -32,7 +32,7 @@ const stringContentLiteral = /(''|[^'\n])+/;
 const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
 const del = '∇';
-const primitive = /[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕→&⍬]/;
+const primitive = /[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕&⍬]/;
 
 const literals = ['string', 'number'];
 const expressions = [
@@ -119,36 +119,18 @@ module.exports = grammar({
     [$.tradop2, $.tradop1, $.tradfn, $._expression],
     [$.tradfn, $._expression],
     [$.tradfn],
-    [$.tradfn, $.block],
-    [$.tradop1, $.block],
-    [$.tradop2, $.block],
-    [$._until],
-    [$._statement_list, $.if_block],
-    [$._statement_list, $.select_block],
-    [$._statement_list, $.hold_block],
-    [$._statement_list, $.section_block],
-    [$._statement_list, $.with_block],
-    [$._statement_list, $.disposable_block],
     [$._statement_list],
     [$._loop_statement_list],
-    [$._loop_statement_list, $.while_block, $._until],
-    [$._loop_statement_list, $._until],
-    [$._loop_statement_list, $.for_block],
+    [$._loop_statement_list, $._statement_list],
     [$._loop_if_block, $.if_block],
     [$._loop_select_block, $.select_block],
     [$._loop_hold_block, $.hold_block],
     [$._loop_section_block, $.section_block],
     [$._loop_with_block, $.with_block],
     [$._loop_disposable_block, $.disposable_block],
-    [$._loop_statement_list, $._loop_if_block],
-    [$._loop_statement_list, $._loop_select_block],
-    [$._loop_statement_list, $._statement_list],
-    [$._loop_statement_list, $._statement_list, $._loop_if_block, $.if_block],
-    [$._loop_statement_list, $._statement_list, $._loop_select_block, $.select_block],
-    [$._loop_statement_list, $._statement_list, $._loop_hold_block, $.hold_block],
-    [$._loop_statement_list, $._statement_list, $._loop_section_block, $.section_block],
-    [$._loop_statement_list, $._statement_list, $._loop_with_block, $.with_block],
-    [$._loop_statement_list, $._statement_list, $._loop_disposable_block, $.disposable_block],
+    [$.select_block],
+    [$._loop_select_block],
+    [$._until],
   ],
 
   rules: {
@@ -200,15 +182,13 @@ module.exports = grammar({
     _statement_list: $ => _separated(terminator, [$._trad_stataments], 0),
     // control structures
     ...block_rules(),
-    // if_block: $ => if_block($, $._statement_list),
-    // _loop_if_block: $ => if_block($, $._loop_statement_list),
     while_block: $ => seq(
       $.while_statement,
       choice(
         repeat(seq(terminator, $.andif_statement)),
         repeat(seq(terminator, $.orif_statement)),
       ),
-      terminator, optional($._loop_statement_list),
+      optional(seq(terminator, $._loop_statement_list)),
       choice(
         $._until,
         seq(
@@ -218,7 +198,7 @@ module.exports = grammar({
     ),
     repeat_block: $ => seq(
       $.repeat_statement,
-      terminator, optional($._loop_statement_list),
+      optional(seq(terminator, $._loop_statement_list)),
       $._until,
     ),
     _until: $ => seq(
@@ -230,7 +210,7 @@ module.exports = grammar({
     ),
     for_block: $ => seq(
       $.for_statement,
-      terminator, optional($._loop_statement_list),
+      optional(seq(terminator, $._loop_statement_list)),
       terminator, $.endfor_statement,
     ),
     // control statements
@@ -395,44 +375,51 @@ function block_rules(){
   function block(name){
     return ($, statement_list) => seq(
       $[name + '_statement'],
-      terminator, optional(statement_list),
+      optional(seq(terminator, statement_list)),
       terminator, $['end' + name + '_statement'],
     );
   }
   const rules = {
     if_block: ($, statement_list) => seq(
       $.if_statement,
-      choice(
-        repeat(seq(terminator, $.andif_statement)),
-        repeat(seq(terminator, $.orif_statement)),
-      ),
-      terminator, optional(statement_list),
       repeat(seq(
-        terminator, $.elseif_statement,
         choice(
           repeat(seq(terminator, $.andif_statement)),
           repeat(seq(terminator, $.orif_statement)),
         ),
-        terminator, optional(statement_list),
+        optional(seq(terminator, statement_list)),
+        terminator, $.elseif_statement,
       )),
+      choice(
+        repeat(seq(terminator, $.andif_statement)),
+        repeat(seq(terminator, $.orif_statement)),
+      ),
       optional(seq(
+        optional(seq(terminator, statement_list)),
         terminator, $.else_statement,
-        terminator, optional(statement_list),
       )),
+      optional(seq(terminator, statement_list)),
       terminator, $.endif_statement,
     ),
-    select_block: ($, statement_list) => seq(
+    select_block: ($, statement_list) => prec.right(seq(
       $.select_statement,
       repeat(seq(
-        terminator, choice($.case_statement, $.caselist_statement),
-        terminator, optional(statement_list),
+        terminator, choice(
+          $.case_statement,
+          $.caselist_statement
+        ),
+        optional(seq(terminator, statement_list)),
       )),
       optional(seq(
-        terminator, $.else_statement,
-        terminator, optional(statement_list),
+        terminator, choice(
+          $.case_statement,
+          $.caselist_statement,
+          $.else_statement,
+        ),
+        optional(seq(terminator, statement_list)),
       )),
       terminator, $.endselect_statement,
-    ),
+    )),
     // trap_block,
     hold_block: block('hold'),
     section_block: block('section'),
@@ -503,10 +490,7 @@ function trad_def($$, d) {
     optional(del),
     trad_header,
     newline,
-    field('body', choice(
-      $$._statement_list,
-      $$.if_block,
-    )),
+    optional(field('body', $$._statement_list)),
     optional(del),
   );
 }

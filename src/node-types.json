@@ -6024,7 +6024,7 @@
     "fields": {
       "body": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "\u0000",
@@ -6162,7 +6162,7 @@
     "fields": {
       "body": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "\u0000",
@@ -6310,7 +6310,7 @@
     "fields": {
       "body": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "\u0000",

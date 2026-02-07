@@ -510,6 +510,30 @@ if andif orif
       (endif))))
 
 ==================
+if empty
+==================
+:if a
+:elseif b
+:else
+:end
+---
+
+(source_file
+  (if_block
+    (if_statement
+      (if)
+      (if_condition
+        (identifier)))
+    (elseif_statement
+      (elseif)
+      (elseif_condition
+        (identifier)))
+    (else_statement
+      (else))
+    (endif_statement
+      (end))))
+
+==================
 select 1
 ==================
 :Select I
@@ -632,6 +656,37 @@ select 2
         (string_literal_content)))
     (endselect_statement
       (endselect))))
+
+==================
+select empty
+==================
+:select var
+:case a
+:case b
+:caselist c d
+:else
+:end
+---
+
+(source_file
+  (select_block
+    (select_statement
+      (select)
+      (identifier))
+    (case_statement
+      (case)
+      (identifier))
+    (case_statement
+      (case)
+      (identifier))
+    (caselist_statement
+      (caselist)
+      (identifier)
+      (identifier))
+    (else_statement
+      (else))
+    (endselect_statement
+      (end))))
 
 ==================
 while
@@ -788,6 +843,22 @@ while andif orif
         (number_literal)))))
 
 ==================
+while empty
+==================
+:while a
+:end
+---
+
+(source_file
+  (while_block
+    (while_statement
+      (while)
+      (while_condition
+        (identifier)))
+    (endwhile_statement
+      (end))))
+
+==================
 reapeat 1
 ==================
 I←0
@@ -867,6 +938,22 @@ reapeat 2
         (number_literal)
         (primitive)
         (primitive)
+        (identifier)))))
+
+==================
+repeat empty
+==================
+:repeat
+:until a
+---
+
+(source_file
+  (repeat_block
+    (repeat_statement
+      (repeat))
+    (until_statement
+      (until)
+      (until_condition
         (identifier)))))
 
 ==================
@@ -1118,6 +1205,23 @@ for 5
         (endif)))
     (endfor_statement
       (endfor))))
+
+==================
+for empty
+==================
+:for i :in is
+:end
+---
+
+(source_file
+  (for_block
+    (for_statement
+      (for)
+      (identifier)
+      (in)
+      (identifier))
+    (endfor_statement
+      (end))))
 
 ==================
 hold 1
