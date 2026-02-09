@@ -64,7 +64,7 @@ module.exports = grammar({
     $.goto,
     $.if, $.elseif, $.else, $.endif,
     $.select, $.case, $.caselist, $.endselect,
-    // $.trap, $.endtrap,
+    $.trap, $.endtrap,
     $.hold, $.endhold,
     $.section, $.endsection,
     $.with, $.endwith,
@@ -124,12 +124,15 @@ module.exports = grammar({
     [$._loop_statement_list, $._statement_list],
     [$._loop_if_block, $.if_block],
     [$._loop_select_block, $.select_block],
+    [$._loop_trap_block, $.trap_block],
     [$._loop_hold_block, $.hold_block],
     [$._loop_section_block, $.section_block],
     [$._loop_with_block, $.with_block],
     [$._loop_disposable_block, $.disposable_block],
     [$.select_block],
+    [$.trap_block],
     [$._loop_select_block],
+    [$._loop_trap_block],
     [$._until],
   ],
 
@@ -151,7 +154,7 @@ module.exports = grammar({
     block: $ => choice(
       $.if_block,
       $.select_block,
-      // $.trap_block,
+      $.trap_block,
       $.hold_block,
       $.section_block,
       $.with_block,
@@ -171,7 +174,7 @@ module.exports = grammar({
       $._trad_stataments,
       alias($._loop_if_block, $.if_block),
       alias($._loop_select_block, $.select_block),
-      // alias($._loop_trap_block, $.trap_block),
+      alias($._loop_trap_block, $.trap_block),
       alias($._loop_hold_block, $.hold_block),
       alias($._loop_section_block, $.section_block),
       alias($._loop_with_block, $.with_block),
@@ -226,6 +229,8 @@ module.exports = grammar({
     case_statement: $ => trad_statement($, seq($.case, $._expression)),
     caselist_statement: $ => trad_statement($, seq($.caselist, $._expression)),
     endselect_statement: $ => trad_statement($, choice($.endselect, $.end)),
+    trap_statement: $ => trad_statement($, seq($.trap, $._expression)),
+    endtrap_statement: $ => trad_statement($, choice($.endtrap, $.end)),
     hold_statement: $ => trad_statement($, seq($.hold, $._expression)),
     endhold_statement: $ => trad_statement($, choice($.endhold, $.end)),
     section_statement: $ => trad_statement($, seq($.section, $.identifier)),
@@ -379,6 +384,27 @@ function block_rules(){
       terminator, $['end' + name + '_statement'],
     );
   }
+  function case_block(name){
+    return ($, statement_list) => prec.right(seq(
+      $[name + '_statement'],
+      repeat(seq(
+        terminator, choice(
+          $.case_statement,
+          $.caselist_statement
+        ),
+        optional(seq(terminator, statement_list)),
+      )),
+      optional(seq(
+        terminator, choice(
+          $.case_statement,
+          $.caselist_statement,
+          $.else_statement,
+        ),
+        optional(seq(terminator, statement_list)),
+      )),
+      terminator, $['end' + name + '_statement'],
+    ));
+  }
   const rules = {
     if_block: ($, statement_list) => seq(
       $.if_statement,
@@ -420,7 +446,26 @@ function block_rules(){
       )),
       terminator, $.endselect_statement,
     )),
-    // trap_block,
+    trap_block: ($, statement_list) => prec.right(seq(
+      $.trap_statement,
+      optional(seq(terminator, statement_list)),
+      repeat(seq(
+        terminator, choice(
+          $.case_statement,
+          $.caselist_statement
+        ),
+        optional(seq(terminator, statement_list)),
+      )),
+      optional(seq(
+        terminator, choice(
+          $.case_statement,
+          $.caselist_statement,
+          $.else_statement,
+        ),
+        optional(seq(terminator, statement_list)),
+      )),
+      terminator, $.endtrap_statement,
+    )),
     hold_block: block('hold'),
     section_block: block('section'),
     with_block: block('with'),

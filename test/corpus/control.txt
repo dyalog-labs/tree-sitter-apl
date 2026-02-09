@@ -1308,6 +1308,229 @@ hold 2
       (end))))
 
 ==================
+trap 1
+==================
+∇ lx
+  :Trap 1000        ⍝ Cutback and exit on interrupt
+      Main
+  :EndTrap
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (trap_block
+      (trap_statement
+        (trap)
+        (number_literal))
+      (comment)
+      (statement
+        (identifier))
+      (endtrap_statement
+        (endtrap)))))
+
+==================
+trap 2
+==================
+∇ ftie←Fcreate file        ⍝ Create null component file
+  :Trap 22                 ⍝ Trap FILE NAME ERROR
+      ftie←file ⎕FCREATE 0 ⍝ Try to create file.
+  :Else
+      ftie←file ⎕FTIE 0    ⍝ Tie the file.
+      file ⎕FERASE ftie    ⍝ Drop the file.
+      file ⎕FCREATE ftie   ⍝ Create new file.
+  :EndTrap
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (comment)
+    (trap_block
+      (trap_statement
+        (trap)
+        (number_literal))
+      (comment)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (system_command)
+            (number_literal))))
+      (comment)
+      (else_statement
+        (else))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (system_command)
+            (number_literal))))
+      (comment)
+      (statement
+        (identifier)
+        (system_command)
+        (identifier))
+      (comment)
+      (statement
+        (identifier)
+        (system_command)
+        (identifier))
+      (comment)
+      (endtrap_statement
+        (endtrap)))))
+
+==================
+trap 3
+==================
+∇ lx ⍝ Distinguish various cases
+  :Trap 0 1000 
+      'Main ...'
+  :Case 1002 
+      'Interrupted ...' 
+  :CaseList 1 10 72 76 
+      'Not enough resources' 
+  :CaseList 17+⍳20 
+      'File System Problem' 
+  :Else 
+      'Unexpected Error' 
+  :EndTrap 
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (comment)
+    (trap_block
+      (trap_statement
+        (trap)
+        (number_literal)
+        (number_literal))
+      (statement
+        (string_literal
+          (string_literal_content)))
+      (case_statement
+        (case)
+        (number_literal))
+      (statement
+        (string_literal
+          (string_literal_content)))
+      (caselist_statement
+        (caselist)
+        (number_literal)
+        (number_literal)
+        (number_literal)
+        (number_literal))
+      (statement
+        (string_literal
+          (string_literal_content)))
+      (caselist_statement
+        (caselist)
+        (number_literal)
+        (primitive)
+        (primitive)
+        (number_literal))
+      (statement
+        (string_literal
+          (string_literal_content)))
+      (else_statement
+        (else))
+      (statement
+        (string_literal
+          (string_literal_content)))
+      (endtrap_statement
+        (endtrap)))))
+
+==================
+trap nested
+==================
+∇ ntie←Ntie file                    ⍝ Tie native file
+  :Trap 22                          ⍝ Trap FILE NAME ERROR
+      ntie←file ⎕NTIE 0             ⍝ Try to tie file
+  :Else
+      :Trap 22                      ⍝ Trap FILE NAME ERROR
+          ntie←(file,'.txt')⎕NTIE 0 ⍝ Try with .txt extn
+      :Else
+          ntie←file ⎕NCREATE 0      ⍝ Create null file.
+      :EndTrap
+  :EndTrap
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (comment)
+    (trap_block
+      (trap_statement
+        (trap)
+        (number_literal))
+      (comment)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (system_command)
+            (number_literal))))
+      (comment)
+      (else_statement
+        (else))
+      (trap_block
+        (trap_statement
+          (trap)
+          (number_literal))
+        (comment)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (parenthesis
+                (statement
+                  (identifier)
+                  (primitive)
+                  (string_literal
+                    (string_literal_content))))
+              (system_command)
+              (number_literal))))
+        (comment)
+        (else_statement
+          (else))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (system_command)
+              (number_literal))))
+        (comment)
+        (endtrap_statement
+          (endtrap)))
+      (endtrap_statement
+        (endtrap)))))
+
+==================
 section 1
 ==================
 :Section rows

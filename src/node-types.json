@@ -32,6 +32,10 @@
         "named": true
       },
       {
+        "type": "trap_block",
+        "named": true
+      },
+      {
         "type": "while_block",
         "named": true
       },
@@ -4556,6 +4560,29 @@
     }
   },
   {
+    "type": "endtrap_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "endtrap",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "endwhile_statement",
     "named": true,
     "fields": {},
@@ -6463,6 +6490,132 @@
     }
   },
   {
+    "type": "trap_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "case_statement",
+          "named": true
+        },
+        {
+          "type": "caselist_statement",
+          "named": true
+        },
+        {
+          "type": "continue_statement",
+          "named": true
+        },
+        {
+          "type": "else_statement",
+          "named": true
+        },
+        {
+          "type": "endtrap_statement",
+          "named": true
+        },
+        {
+          "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "leave_statement",
+          "named": true
+        },
+        {
+          "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trap_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "label",
+          "named": true
+        },
+        {
+          "type": "namespace",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        },
+        {
+          "type": "trap",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "until_condition",
     "named": true,
     "fields": {},
@@ -6893,6 +7046,10 @@
     "named": true
   },
   {
+    "type": "endtrap",
+    "named": true
+  },
+  {
     "type": "endwhile",
     "named": true
   },
@@ -6978,6 +7135,10 @@
   },
   {
     "type": "string_literal_content",
+    "named": true
+  },
+  {
+    "type": "trap",
     "named": true
   },
   {

@@ -40,7 +40,7 @@ const char *CONTROL_WORDS[] = {
   "GOTO",
   "IF", "ELSEIF", "ELSE", "ENDIF",
   "SELECT", "CASE", "CASELIST", "ENDSELECT",
-  // "TRAP", "ENDTRAP",
+  "TRAP", "ENDTRAP",
   "HOLD", "ENDHOLD",
   "SECTION", "ENDSECTION",
   "WITH", "ENDWITH",
