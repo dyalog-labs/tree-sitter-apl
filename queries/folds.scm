@@ -1,9 +1,9 @@
 [
   (definition)
-  (namespace)
-  (dfn_namespace)
-  (dop1_namespace)
-  (dop2_namespace)
+  (names)
+  (dfn_names)
+  (dop1_names)
+  (dop2_names)
   (parenthesis)
   (dfn_parenthesis)
   (dop1_parenthesis)
@@ -16,4 +16,5 @@
   (tradop1)
   (tradop2)
   (block)
+  (namespace_script)
 ] @fold

@@ -302,3 +302,45 @@ tradop2
           (identifier)
           (primitive)
           (identifier))))))
+
+==================
+tradfn nested
+==================
+∇r←fn1 a
+ ∇r←fn2 a
+  r←2×a
+ ∇
+ r←3×fn2 a
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (identifier)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal)
+            (primitive)
+            (identifier)))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal)
+          (primitive)
+          (identifier)
+          (identifier))))))

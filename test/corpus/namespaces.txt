@@ -1,0 +1,188 @@
+==================
+namespace 1
+==================
+:Namespace ns
+    ∇ foo
+      1
+    ∇
+:EndNamespace
+---
+
+(source_file
+  (namespace_script
+    (namespace_statement
+      (namespace)
+      (identifier))
+    (tradfn
+      (identifier)
+      (statement
+        (number_literal)))
+    (endnamespace_statement
+      (endnamespace))))
+
+==================
+namespace 2
+==================
+:Namespace ns
+a←10
+b←30
+b+←10   
+3+2
+⎕←'b'b
+c←100+d←1000
+∇ r←fn s
+  r←⍟a
+∇
+:EndNamespace
+---
+
+(source_file
+  (namespace_script
+    (namespace_statement
+      (namespace)
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier)
+          (primitive))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (statement
+      (number_literal)
+      (primitive)
+      (number_literal))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal
+            (string_literal_content))
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (number_literal)
+              (primitive)))
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (identifier)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (primitive)
+            (identifier)))))
+    (endnamespace_statement
+      (endnamespace))))
+
+==================
+namespace nested
+==================
+:Namespace a
+
+    d←⎕NEW a1
+    e←⎕NEW bb2 
+
+    ∇ r←goo
+      r←a1.foo
+    ∇
+
+    ∇ r←foo
+      r←⎕NEW¨b1 b2
+    ∇
+
+    :Namespace b
+    :EndNamespace ⍝ b
+
+:EndNamespace ⍝ a
+---
+
+(source_file
+  (namespace_script
+    (namespace_statement
+      (namespace)
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (system_command)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (system_command)
+          (identifier))))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (primitive)
+            (identifier)))))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (system_command)
+            (primitive)
+            (identifier)
+            (identifier)))))
+    (namespace_script
+      (namespace_statement
+        (namespace)
+        (identifier))
+      (endnamespace_statement
+        (endnamespace)))
+    (comment)
+    (endnamespace_statement
+      (endnamespace)))
+  (comment))
