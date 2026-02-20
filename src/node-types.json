@@ -82,6 +82,41 @@
     ]
   },
   {
+    "type": "access_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "access",
+          "named": true
+        },
+        {
+          "type": "overridable",
+          "named": true
+        },
+        {
+          "type": "override",
+          "named": true
+        },
+        {
+          "type": "sharing",
+          "named": true
+        },
+        {
+          "type": "visibility",
+          "named": true
+        },
+        {
+          "type": "webmethod",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "andif_condition",
     "named": true,
     "fields": {},
@@ -293,6 +328,48 @@
     }
   },
   {
+    "type": "attribute_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "base",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "branch_statement",
     "named": true,
     "fields": {},
@@ -476,6 +553,92 @@
         },
         {
           "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
+          "named": true
+        },
+        {
+          "type": "class_statement",
+          "named": true
+        },
+        {
+          "type": "endclass_statement",
+          "named": true
+        },
+        {
+          "type": "field_statement",
+          "named": true
+        },
+        {
+          "type": "include_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
+          "named": true
+        },
+        {
+          "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "property_section",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trad",
+          "named": true
+        },
+        {
+          "type": "using_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -1476,11 +1639,23 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
         {
           "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -1500,6 +1675,14 @@
           "named": true
         },
         {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
+          "named": true
+        },
+        {
           "type": "label",
           "named": true
         },
@@ -1516,11 +1699,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         }
       ]
@@ -4430,6 +4613,25 @@
     }
   },
   {
+    "type": "endclass_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "endclass",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "enddisposable_statement",
     "named": true,
     "fields": {},
@@ -4522,11 +4724,30 @@
     }
   },
   {
+    "type": "endinterface_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "endinterface",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "endnamespace_statement",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4536,9 +4757,24 @@
         {
           "type": "endnamespace",
           "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "endproperty_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
         },
         {
-          "type": "label",
+          "type": "endproperty",
           "named": true
         }
       ]
@@ -4789,6 +5025,41 @@
     }
   },
   {
+    "type": "field_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "field",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "readonly",
+          "named": true
+        },
+        {
+          "type": "sharing",
+          "named": true
+        },
+        {
+          "type": "visibility",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "for_block",
     "named": true,
     "fields": {},
@@ -4797,11 +5068,23 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
         {
           "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -4821,6 +5104,14 @@
           "named": true
         },
         {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
+          "named": true
+        },
+        {
           "type": "label",
           "named": true
         },
@@ -4837,11 +5128,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         }
       ]
@@ -5151,11 +5442,23 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
         {
           "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -5175,6 +5478,14 @@
           "named": true
         },
         {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
+          "named": true
+        },
+        {
           "type": "label",
           "named": true
         },
@@ -5191,11 +5502,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         }
       ]
@@ -5265,6 +5576,21 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "if_block",
     "named": true,
     "fields": {},
@@ -5273,7 +5599,15 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
           "type": "andif_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
           "named": true
         },
         {
@@ -5282,6 +5616,10 @@
         },
         {
           "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -5309,6 +5647,14 @@
           "named": true
         },
         {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
+          "named": true
+        },
+        {
           "type": "label",
           "named": true
         },
@@ -5329,11 +5675,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         }
       ]
@@ -5418,6 +5764,104 @@
     }
   },
   {
+    "type": "implements_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "base",
+          "named": true
+        },
+        {
+          "type": "constructor",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "destructor",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "implements",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "method",
+          "named": true
+        },
+        {
+          "type": "names",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        },
+        {
+          "type": "trigger",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "include_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "include",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "index",
     "named": true,
     "fields": {},
@@ -5482,6 +5926,165 @@
       "types": [
         {
           "type": "index",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "endinterface_statement",
+          "named": true
+        },
+        {
+          "type": "interface_method",
+          "named": true
+        },
+        {
+          "type": "interface_property",
+          "named": true
+        },
+        {
+          "type": "interface_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_method",
+    "named": true,
+    "fields": {
+      "left_arg": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "result": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "left_arrow",
+            "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
+          }
+        ]
+      },
+      "right_arg": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "interface_property",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "endproperty_statement",
+          "named": true
+        },
+        {
+          "type": "property_statement",
+          "named": true
+        },
+        {
+          "type": "tradfn",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interface_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "interface",
           "named": true
         }
       ]
@@ -5581,6 +6184,21 @@
     }
   },
   {
+    "type": "member_identifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "names",
     "named": true,
     "fields": {},
@@ -5603,6 +6221,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "class_definition",
+          "named": true
+        },
         {
           "type": "endnamespace_statement",
           "named": true
@@ -5636,10 +6258,6 @@
       "types": [
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -5743,6 +6361,68 @@
     }
   },
   {
+    "type": "property_section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "endproperty_statement",
+          "named": true
+        },
+        {
+          "type": "property_statement",
+          "named": true
+        },
+        {
+          "type": "trad",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "default",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "keyed",
+          "named": true
+        },
+        {
+          "type": "numbered",
+          "named": true
+        },
+        {
+          "type": "property",
+          "named": true
+        },
+        {
+          "type": "simple",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "repeat_block",
     "named": true,
     "fields": {},
@@ -5751,7 +6431,15 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
           "type": "andif_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
           "named": true
         },
         {
@@ -5763,11 +6451,23 @@
           "named": true
         },
         {
+          "type": "class_definition",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
           "named": true
         },
         {
@@ -5795,11 +6495,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         },
         {
@@ -5856,11 +6556,23 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
         {
           "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -5873,6 +6585,14 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
           "named": true
         },
         {
@@ -5896,11 +6616,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         }
       ]
@@ -5938,6 +6658,14 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
@@ -5954,6 +6682,10 @@
           "named": true
         },
         {
+          "type": "class_definition",
+          "named": true
+        },
+        {
           "type": "continue_statement",
           "named": true
         },
@@ -5967,6 +6699,14 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
           "named": true
         },
         {
@@ -5990,11 +6730,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         }
       ]
@@ -6064,6 +6804,26 @@
     }
   },
   {
+    "type": "sharing",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "signature_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -6077,11 +6837,11 @@
           "named": true
         },
         {
-          "type": "branch_statement",
+          "type": "class_definition",
           "named": true
         },
         {
-          "type": "goto_statement",
+          "type": "interface_definition",
           "named": true
         },
         {
@@ -6090,10 +6850,6 @@
         },
         {
           "type": "namespace_script",
-          "named": true
-        },
-        {
-          "type": "return_statement",
           "named": true
         },
         {
@@ -6195,6 +6951,14 @@
             "named": false
           },
           {
+            "type": "access_statement",
+            "named": true
+          },
+          {
+            "type": "attribute_statement",
+            "named": true
+          },
+          {
             "type": "block",
             "named": true
           },
@@ -6203,7 +6967,19 @@
             "named": true
           },
           {
+            "type": "class_definition",
+            "named": true
+          },
+          {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "implements_statement",
+            "named": true
+          },
+          {
+            "type": "interface_definition",
             "named": true
           },
           {
@@ -6219,16 +6995,12 @@
             "named": true
           },
           {
+            "type": "signature_statement",
+            "named": true
+          },
+          {
             "type": "statement",
             "named": true
-          },
-          {
-            "type": "trad",
-            "named": true
-          },
-          {
-            "type": "∇",
-            "named": false
           },
           {
             "type": "⋄",
@@ -6345,6 +7117,14 @@
             "named": false
           },
           {
+            "type": "access_statement",
+            "named": true
+          },
+          {
+            "type": "attribute_statement",
+            "named": true
+          },
+          {
             "type": "block",
             "named": true
           },
@@ -6353,7 +7133,19 @@
             "named": true
           },
           {
+            "type": "class_definition",
+            "named": true
+          },
+          {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "implements_statement",
+            "named": true
+          },
+          {
+            "type": "interface_definition",
             "named": true
           },
           {
@@ -6369,16 +7161,12 @@
             "named": true
           },
           {
+            "type": "signature_statement",
+            "named": true
+          },
+          {
             "type": "statement",
             "named": true
-          },
-          {
-            "type": "trad",
-            "named": true
-          },
-          {
-            "type": "∇",
-            "named": false
           },
           {
             "type": "⋄",
@@ -6414,7 +7202,7 @@
       },
       "left_op": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -6434,7 +7222,7 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -6505,6 +7293,14 @@
             "named": false
           },
           {
+            "type": "access_statement",
+            "named": true
+          },
+          {
+            "type": "attribute_statement",
+            "named": true
+          },
+          {
             "type": "block",
             "named": true
           },
@@ -6513,7 +7309,19 @@
             "named": true
           },
           {
+            "type": "class_definition",
+            "named": true
+          },
+          {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "implements_statement",
+            "named": true
+          },
+          {
+            "type": "interface_definition",
             "named": true
           },
           {
@@ -6529,16 +7337,12 @@
             "named": true
           },
           {
+            "type": "signature_statement",
+            "named": true
+          },
+          {
             "type": "statement",
             "named": true
-          },
-          {
-            "type": "trad",
-            "named": true
-          },
-          {
-            "type": "∇",
-            "named": false
           },
           {
             "type": "⋄",
@@ -6574,7 +7378,7 @@
       },
       "left_op": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -6594,7 +7398,7 @@
       },
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -6652,7 +7456,7 @@
       },
       "right_op": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -6671,6 +7475,14 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
@@ -6684,6 +7496,10 @@
         },
         {
           "type": "caselist_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -6703,6 +7519,14 @@
           "named": true
         },
         {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
+          "named": true
+        },
+        {
           "type": "label",
           "named": true
         },
@@ -6719,11 +7543,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         },
         {
@@ -6875,6 +7699,34 @@
     }
   },
   {
+    "type": "using_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assembly",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "using",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "visibility",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "while_block",
     "named": true,
     "fields": {},
@@ -6883,7 +7735,15 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
           "type": "andif_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
           "named": true
         },
         {
@@ -6892,6 +7752,10 @@
         },
         {
           "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -6904,6 +7768,14 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
           "named": true
         },
         {
@@ -6927,11 +7799,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         },
         {
@@ -7032,11 +7904,23 @@
       "required": true,
       "types": [
         {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
           "type": "block",
           "named": true
         },
         {
           "type": "branch_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
           "named": true
         },
         {
@@ -7049,6 +7933,14 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "implements_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
           "named": true
         },
         {
@@ -7068,11 +7960,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "signature_statement",
           "named": true
         },
         {
-          "type": "trad",
+          "type": "statement",
           "named": true
         },
         {
@@ -7162,6 +8054,18 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -7182,7 +8086,19 @@
     "named": false
   },
   {
+    "type": "access",
+    "named": true
+  },
+  {
     "type": "andif",
+    "named": true
+  },
+  {
+    "type": "assembly",
+    "named": true
+  },
+  {
+    "type": "attribute",
     "named": true
   },
   {
@@ -7194,12 +8110,28 @@
     "named": true
   },
   {
+    "type": "class",
+    "named": true
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true
   },
   {
+    "type": "constructor",
+    "named": true
+  },
+  {
     "type": "continue",
+    "named": true
+  },
+  {
+    "type": "default",
+    "named": true
+  },
+  {
+    "type": "destructor",
     "named": true
   },
   {
@@ -7219,6 +8151,10 @@
     "named": true
   },
   {
+    "type": "endclass",
+    "named": true
+  },
+  {
     "type": "enddisposable",
     "named": true
   },
@@ -7235,7 +8171,15 @@
     "named": true
   },
   {
+    "type": "endinterface",
+    "named": true
+  },
+  {
     "type": "endnamespace",
+    "named": true
+  },
+  {
+    "type": "endproperty",
     "named": true
   },
   {
@@ -7259,6 +8203,10 @@
     "named": true
   },
   {
+    "type": "field",
+    "named": true
+  },
+  {
     "type": "for",
     "named": true
   },
@@ -7271,11 +8219,11 @@
     "named": true
   },
   {
-    "type": "identifier",
+    "type": "if",
     "named": true
   },
   {
-    "type": "if",
+    "type": "implements",
     "named": true
   },
   {
@@ -7283,7 +8231,19 @@
     "named": true
   },
   {
+    "type": "include",
+    "named": true
+  },
+  {
     "type": "ineach",
+    "named": true
+  },
+  {
+    "type": "interface",
+    "named": true
+  },
+  {
+    "type": "keyed",
     "named": true
   },
   {
@@ -7299,7 +8259,7 @@
     "named": true
   },
   {
-    "type": "member_identifier",
+    "type": "method",
     "named": true
   },
   {
@@ -7311,11 +8271,31 @@
     "named": true
   },
   {
+    "type": "numbered",
+    "named": true
+  },
+  {
     "type": "orif",
     "named": true
   },
   {
+    "type": "overridable",
+    "named": true
+  },
+  {
+    "type": "override",
+    "named": true
+  },
+  {
     "type": "primitive",
+    "named": true
+  },
+  {
+    "type": "property",
+    "named": true
+  },
+  {
+    "type": "readonly",
     "named": true
   },
   {
@@ -7339,6 +8319,14 @@
     "named": true
   },
   {
+    "type": "signature",
+    "named": true
+  },
+  {
+    "type": "simple",
+    "named": true
+  },
+  {
     "type": "string_literal_content",
     "named": true
   },
@@ -7347,7 +8335,19 @@
     "named": true
   },
   {
+    "type": "trigger",
+    "named": true
+  },
+  {
     "type": "until",
+    "named": true
+  },
+  {
+    "type": "using",
+    "named": true
+  },
+  {
+    "type": "webmethod",
     "named": true
   },
   {

@@ -1,0 +1,304 @@
+==================
+tradfn nilladic
+==================
+∇R←FOO
+ R←10
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))))
+
+==================
+tradfn monadic
+==================
+∇R←FOO right
+ R←right
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier))))))
+
+==================
+tradfn dyadic
+==================
+∇R←left FOO right
+ R←left,right
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
+
+==================
+tradfn ambivalent
+==================
+∇R←{left}FOO right
+ left←{0=⎕NC'left':⍵ ⋄ left}⍬
+ R←left,right
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (dfn_definition
+            (dfn_guard
+              (guard_condition
+                (number_literal)
+                (primitive)
+                (system_command)
+                (string_literal
+                  (string_literal_content)))
+              (dfn_guard_expression
+                (dfn_identifier)))
+            (statement
+              (identifier)))
+          (primitive))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
+
+==================
+tradfn no result
+==================
+∇left FOO right
+ ⎕←left,right
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
+
+==================
+tradfn shy result
+==================
+∇{R}←left FOO right
+ R←left,right
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
+
+==================
+tradfn locals
+==================
+∇R←left FOO right;a;b
+ a←left+right
+ b←left×right
+ R←a,b
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
+
+==================
+tradop1
+==================
+∇R←left (op1 FOO) right;a;b
+ a←left op1 right
+ b←left×right
+ R←a,b
+∇
+---
+
+(source_file
+  (tradop1
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))
+
+==================
+tradop2
+==================
+∇R←left (op1 FOO op2) right;a;b
+ a←left op1 right
+ b←left op2 right
+ R←a,b
+∇
+---
+
+(source_file
+  (tradop2
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (identifier)
+          (identifier))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (identifier)
+          (primitive)
+          (identifier))))))

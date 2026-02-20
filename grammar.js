@@ -74,6 +74,11 @@ module.exports = grammar({
     $.andif, $.orif, $.end,
     $.continue, $.leave, $.return,
     $.namespace, $.endnamespace,
+    $.class, $.endclass,
+    $.field, $.include, $.using,
+    $.interface, $.endinterface,
+    $.property, $.endproperty,
+    $.require, $.attribute, $.signature, $.implements, $.access,
   ],
 
   supertypes: $ => [
@@ -113,12 +118,15 @@ module.exports = grammar({
     [$.dop1_highrank, $.dop1_indices],
     [$.dfn_highrank, $.dfn_indices],
     [$.indices, $.highrank],
+    [$._expression, $.__identifier],
     [$._expression],
     [$._dfn_expression],
     [$._dop1_expression],
+    [$.tradop2, $.tradop1, $.tradfn, $._expression, $.__identifier],
     [$.tradop2, $.tradop1, $.tradfn],
-    [$.tradop2, $.tradop1, $.tradfn, $._expression],
-    [$.tradfn, $._expression],
+    [$.tradop2, $.tradop1, $._statement_list],
+    [$.tradop2, $.tradop1],
+    [$.tradfn, $._expression, $.__identifier],
     [$.tradfn],
     [$._statement_list],
     [$._loop_statement_list],
@@ -135,23 +143,30 @@ module.exports = grammar({
     [$._loop_select_block],
     [$._loop_trap_block],
     [$._until],
-    [$.namespace_script],
     [$.tradfn],
     [$.tradop1],
     [$.tradop2],
-    [$.source_file, $._trad_stataments],
   ],
 
   rules: {
     // a source_file is the whole code,
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
-      $._statement_list,
-      seq(optional(del), $.trad, optional(del)),
+      $.trad,
+      $._main_statements,
       terminator,
     )),
+    _main_statements: $ => _separated(terminator, [choice(
+      alias(trad_statement($, $._expression), $.statement),
+      $.namespace_script,
+      $.class_definition,
+      $.interface_definition,
+      $._trad,
+      $.block,
+    )], 0),
 
     // traditional definitions
+    _trad: $ => seq(del, $.trad, newline, del),
     trad: $ => choice($.tradfn, $.tradop1, $.tradop2),
     tradfn: $ => trad_def($, DFN),
     tradop1: $ => trad_def($, DOP1),
@@ -171,13 +186,17 @@ module.exports = grammar({
     ),
     _trad_stataments: $ => choice(
       alias(trad_statement($, $._expression), $.statement),
-      seq(del, $.trad, del),
+      $.namespace_script,
+      $.class_definition,
+      $.interface_definition,
+      $.access_statement,
+      $.attribute_statement,
+      $.implements_statement,
+      $.signature_statement,
       $.block,
       $.branch_statement,
       $.goto_statement,
       $.return_statement,
-      $.namespace_script,
-      //$.class_def,
     ),
     _loop_statement_list: $ => _separated(terminator, [choice(
       $._trad_stataments,
@@ -254,7 +273,7 @@ module.exports = grammar({
     repeat_statement: $ => trad_statement($, $.repeat),
     for_statement: $ => trad_statement($, seq(
       $.for,
-      repeat1(field('control_var', $.identifier)),
+      repeat1(field('control_var', $._identifier)),
       choice($.in, $.ineach),
       field('control_array', $._expression),
     )),
@@ -265,17 +284,157 @@ module.exports = grammar({
 
     namespace_script: $ => seq(
       $.namespace_statement,
-      optional(seq(terminator, _separated(terminator, [choice(
+      repeat(seq(terminator, choice(
         alias($._expression, $.statement),
+        $._trad,
         $.namespace_script,
-        // $.class_definition,
-        seq(del, $.trad, del),
-      )], 0))),
+        $.class_definition,
+      ))),
       terminator, $.endnamespace_statement,
     ),
-    namespace_statement: $ => trad_statement($, seq($.namespace, $.identifier)),
-    endnamespace_statement: $ => trad_statement($, choice($.endnamespace, $.end)),
-    
+    namespace_statement: $ => seq($.namespace, $.identifier),
+    endnamespace_statement: $ => choice($.endnamespace, $.end),
+
+    class_definition: $ => seq(
+      $.class_statement,
+      repeat(seq(terminator, choice(
+        alias($._expression, $.statement),
+        $._trad,
+        $.namespace_script,
+        $.class_definition,
+        $.interface_definition,
+        $.access_statement,
+        $.attribute_statement,
+        $.include_statement,
+        $.using_statement,
+        $.field_statement,
+        $.property_section,
+      ))),
+      terminator, $.endclass_statement,
+    ),
+    property_section: $ => choice(
+      seq(
+        $.property_statement,
+        optional(seq(terminator, $.access_statement)),
+        repeat(seq(terminator, $._trad)),  // TODO: get/set
+        terminator, $.endproperty_statement,
+      ),
+      $._numbered_property_section,
+    ),
+    _numbered_property_section: $ => seq(
+      alias($._numbered_property_statement, $.property_statement),
+      optional(seq(terminator, $.access_statement)),
+      repeat(seq(terminator, $._trad)),  // TODO: get/set/shape
+      terminator, $.endproperty_statement,
+    ),
+    class_statement: $ => seq(
+      $.class,
+      $.identifier,
+      optional(seq(colon, choice($._identifier, $.string_literal))),
+      repeat(seq(',', choice($._identifier, $.string_literal))),
+    ),
+    endclass_statement: $ => choice($.endclass, $.end),
+    field_statement: $ => seq(
+      $.field,
+      optional($.visibility),
+      optional($.sharing),
+      optional($.readonly),
+      // optional(type), // TODO
+      choice($._identifier, $.assignment), // TODO
+    ),
+    include_statement: $ => seq($.include, $._identifier),
+    using_statement: $ => seq(
+      $.using,
+      choice(
+        $._identifier,
+        seq(optional($._identifier), ',', choice(
+          optional($.assembly),
+          seq($.assembly, repeat1(seq(',', $.assembly))),
+        )),
+      ),
+    ),
+    assembly: _ => /\w+\.[Dd][Ll][Ll]/,  // TODO
+    property_statement: $ => seq(
+      $.property,
+      optional(choice($.simple, $.keyed)),
+      optional($.default),
+      $.identifier,
+      repeat(seq(',', $._identifier)),
+    ),
+    _numbered_property_statement: $ => seq(
+      $.property,
+      $.numbered,
+      optional($.default),
+      $.identifier,
+      repeat(seq(',', $._identifier)),
+    ),
+    endproperty_statement: $ => choice($.endproperty, $.end),
+    require_statement: $ => seq($.require, $.path),
+    path: _ => /\w+/,  // TODO
+    attribute_statement: $ => seq(
+      $.attribute,
+      $.identifier,
+      repeat(choice($.string_literal, $.number_literal)), // TODO
+    ),
+    signature_statement: $ => seq(
+      $.signature,
+      /.*/, // TODO
+    ),
+    type: _ => /\w+/,  // TODO
+    implements_statement: $ => seq(
+      $.implements,
+      choice(
+        seq($.constructor, optional(seq($.base, $._expression))),
+        $.destructor,
+        seq($.method, $._identifier),
+        seq($.trigger, choice(
+          seq($._identifier, repeat(seq(',', $._identifier))),
+          '*',
+        )),
+      ),
+    ),
+    base: $ => seq(colon, $._identifier),
+    access_statement: $ => seq(
+      $.access,
+      choice(
+        seq($.visibility, optional($.sharing)),
+        $.sharing,
+        $.webmethod,
+      ),
+      optional($.override),
+      optional($.overridable),
+    ),
+    visibility: _ => choice(/private/i, /public/i),
+    sharing: _ => choice(/instance/i, /shared/i),
+    readonly: _ => /readonly/i,
+    simple: _ => /simple/i,
+    numbered: _ => /numbered/i,
+    keyed: _ => /keyed/i,
+    default: _ => /default/i,
+    constructor: _ => /constructor/i,
+    destructor: _ => /destructor/i,
+    method: _ => /method/i,
+    trigger: _ => /trigger/i,
+    webmethod: _ => /webmethod/i,
+    override: _ => /override/i,
+    overridable: _ => /overridable/i,
+
+    interface_definition: $ => seq(
+      $.interface_statement,
+      repeat(seq(newline, choice(
+        $.interface_method,
+        $.interface_property,
+      ))),
+      newline, $.endinterface_statement,
+    ),
+    interface_method: $ => seq(del, trad_header($, DFN), newline, del),
+    interface_property: $ => seq(
+      $.property_statement,
+      repeat1(seq(terminator, alias($.interface_method, $.tradfn))),
+      newline, $.endproperty_statement,
+    ),
+    interface_statement: $ => seq($.interface, $.identifier),
+    endinterface_statement: $ => choice($.endinterface, $.end),
 
     // an _expression is any non-dfn/dop valid expression
     _expression: $ => choice(
@@ -284,6 +443,7 @@ module.exports = grammar({
         ...literals.map(l => $[l + '_literal']),
         $.system_command,
         $.primitive,
+        $._identifier,
       ),
       $.assignment,
     ),
@@ -301,6 +461,12 @@ module.exports = grammar({
 
     // user defined identifiers
     identifier: _ => identifier,
+    _identifier: $ => choice(
+      $.__identifier,
+      alias($._dot_identifier, $.identifier),
+    ),
+    _dot_identifier: $ => seq($.__identifier, repeat1(seq('.', $.__identifier))),
+    __identifier: $ => alias(choice($.identifier, '#', '##'), $.identifier),
     // predefined identifiers allowed inside definitions
     dfn_identifier: _ => choice('⍺', '⍵', '∇'),
     dop_identifier: _ => '∇∇', // allowed inside dfn!
@@ -393,7 +559,7 @@ function trad_statement($$, statement){
       statement,
       seq(
         alias($$.identifier, $$.label),
-        ':',
+        colon,
         statement,
       ),
     );
@@ -502,7 +668,7 @@ function _left_right(left, middle, right, d){
   );
 }
 
-function trad_def($$, d) {
+function trad_header($$, d) {
   var center = [field('name', $$.identifier)];
   if (d > DFN) {
     center.splice(0, 0, '(', field('left_op', $$.identifier));
@@ -511,7 +677,16 @@ function trad_def($$, d) {
     }
     center.push(')');
   }
-  const trad_header = seq(
+  const left_arg = choice(
+    $$.identifier,
+    seq('(', repeat1($$.identifier), ')'),
+    seq('{', $$.identifier, '}'),
+  );
+  const right_arg = choice(
+    $$.identifier,
+    seq('(', repeat1($$.identifier), ')'),
+  );
+  return seq(
     optional(field('result', seq(
       choice(
         $$.identifier,
@@ -520,21 +695,22 @@ function trad_def($$, d) {
       ),
       $$.left_arrow,
     ))),
-    optional(field('left_arg', choice(
-      $$.identifier,
-      seq('(', repeat1($$.identifier), ')'),
-      seq('{', $$.identifier, '}'),
-    ))),
-    ...center,
-    optional(field('right_arg', choice(
-      $$.identifier,
-      seq('(', repeat1($$.identifier), ')'),
-    ))),
+    choice(
+      ...center,
+      seq(
+        optional(field('left_arg', left_arg)),
+        ...center,
+        field('right_arg', right_arg),
+      ),
+    ),
+  );
+}
+
+function trad_def($$, d) {
+  return seq(
+    trad_header($$, d),
     repeat(seq(repeat1(';'), field('local', $$.identifier))),
     repeat(';'),
-  );
-  return seq(
-    trad_header,
     newline,
     optional(field('body', $$._statement_list)),
   );
@@ -612,7 +788,7 @@ function def_rules() {
     // names members can be definition expressions
     member($$, d) {
       const members = _alias($$, 'member_expression');
-      const identifier = alias($$.identifier, $$.member_identifier);
+      const identifier = alias($$._identifier, $$.member_identifier);
       return seq(identifier, colon, members[d]);
     },
     // a parenthesis might be a parenthesized expression

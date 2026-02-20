@@ -27,6 +27,7 @@ goto 1
 ==================
 goto 2
 ==================
+TEST
 →Exit
 :GoTo Exit
 
@@ -41,60 +42,62 @@ goto 2
 ---
 
 (source_file
-  (branch_statement
-    (right_arrow)
-    (identifier))
-  (goto_statement
-    (goto)
-    (identifier))
-  (branch_statement
-    (right_arrow)
-    (parenthesis
-      (statement
-        (assignment
-          (assign_left
-            (identifier)
-            (primitive)
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (number_literal)))))
-    (primitive)
-    (identifier))
-  (goto_statement
-    (goto)
-    (parenthesis
-      (statement
-        (assignment
-          (assign_left
-            (identifier)
-            (primitive)
-            (identifier))
-          (left_arrow)
-          (assign_right
-            (identifier)
-            (primitive)
-            (number_literal)))))
-    (primitive)
-    (identifier))
-  (branch_statement
-    (right_arrow)
-    (number_literal)
-    (primitive)
-    (system_command))
-  (goto_statement
-    (goto)
-    (number_literal)
-    (primitive)
-    (system_command))
-  (branch_statement
-    (right_arrow)
-    (number_literal))
-  (goto_statement
-    (goto)
-    (number_literal)))
+  (tradfn
+    (identifier)
+    (branch_statement
+      (right_arrow)
+      (identifier))
+    (goto_statement
+      (goto)
+      (identifier))
+    (branch_statement
+      (right_arrow)
+      (parenthesis
+        (statement
+          (assignment
+            (assign_left
+              (identifier)
+              (primitive)
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (primitive)
+              (number_literal)))))
+      (primitive)
+      (identifier))
+    (goto_statement
+      (goto)
+      (parenthesis
+        (statement
+          (assignment
+            (assign_left
+              (identifier)
+              (primitive)
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (primitive)
+              (number_literal)))))
+      (primitive)
+      (identifier))
+    (branch_statement
+      (right_arrow)
+      (number_literal)
+      (primitive)
+      (system_command))
+    (goto_statement
+      (goto)
+      (number_literal)
+      (primitive)
+      (system_command))
+    (branch_statement
+      (right_arrow)
+      (number_literal))
+    (goto_statement
+      (goto)
+      (number_literal))))
 
 ==================
 if 1
@@ -186,31 +189,31 @@ if 3
 ---
 
 (source_file
-  (tradfn
-    (identifier)
-    (left_arrow)
-    (identifier)
-    (identifier)
-    (statement
-      (assignment
-        (assign_left
-          (identifier))
-        (left_arrow)
-        (assign_right
-          (number_literal))))
-    (ERROR)
-    (statement
-      (primitive)
-      (number_literal))
-    (statement
-      (assignment
-        (assign_left
-          (identifier))
-        (left_arrow)
-        (assign_right
-          (number_literal))))
-    (ERROR
-      (end))))
+  (ERROR
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (identifier)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal))))
+      (ERROR)
+      (statement
+        (primitive)
+        (number_literal))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal)))))
+    (end)))
 
 ==================
 if elseif
@@ -453,18 +456,18 @@ if andif orif
     (if_statement
       (if)
       (if_condition
-        (identifier)
-        (primitive)
-        (identifier)
+        (identifier
+          (identifier)
+          (identifier))
         (primitive)
         (string_literal
           (string_literal_content))))
     (andif_statement
       (andif)
       (andif_condition
-        (identifier)
-        (primitive)
-        (identifier)
+        (identifier
+          (identifier)
+          (identifier))
         (primitive)
         (number_literal)
         (number_literal)
@@ -475,27 +478,27 @@ if andif orif
     (elseif_statement
       (elseif)
       (elseif_condition
-        (identifier)
-        (primitive)
-        (identifier)
-        (primitive)
-        (string_literal
-          (string_literal_content))))
-    (orif_statement
-      (orif)
-      (orif_condition
-        (identifier)
-        (primitive)
-        (identifier)
+        (identifier
+          (identifier)
+          (identifier))
         (primitive)
         (string_literal
           (string_literal_content))))
     (orif_statement
       (orif)
       (orif_condition
-        (identifier)
+        (identifier
+          (identifier)
+          (identifier))
         (primitive)
-        (identifier)
+        (string_literal
+          (string_literal_content))))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier
+          (identifier)
+          (identifier))
         (primitive)
         (number_literal)))
     (statement
@@ -1595,9 +1598,9 @@ with 1
   (with_block
     (with_statement
       (with)
-      (identifier)
-      (primitive)
-      (identifier))
+      (identifier
+        (identifier)
+        (identifier)))
     (statement
       (assignment
         (assign_left

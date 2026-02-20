@@ -214,7 +214,8 @@ Namespace
   (statement
     (names
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (number_literal)
           (number_literal)
@@ -222,7 +223,8 @@ Namespace
   (statement
     (names
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (dfn_definition
             (dfn_statement
@@ -234,7 +236,8 @@ Namespace
           (dfn_statement
             (dfn_names
               (dfn_member
-                (member_identifier)
+                (member_identifier
+                  (identifier))
                 (dfn_member_expression
                   (dfn_identifier)))))))))
   (statement
@@ -244,12 +247,14 @@ Namespace
           (dfn_statement
             (dfn_names
               (dfn_member
-                (member_identifier)
+                (member_identifier
+                  (identifier))
                 (dfn_member_expression
                   (dfn_identifier)
                   (dfn_names
                     (dfn_member
-                      (member_identifier)
+                      (member_identifier
+                        (identifier))
                       (dfn_member_expression
                         (dfn_identifier))))
                   (identifier)))))))))
@@ -258,7 +263,8 @@ Namespace
       (dfn_statement
         (names
           (member
-            (member_identifier)
+            (member_identifier
+              (identifier))
             (member_expression
               (number_literal))))
         (dfn_identifier))
@@ -271,7 +277,8 @@ Namespace
       (dfn_statement
         (dfn_names
           (dfn_member
-            (member_identifier)
+            (member_identifier
+              (identifier))
             (dfn_member_expression
               (dfn_identifier)))))))
   (statement
@@ -279,7 +286,8 @@ Namespace
       (dfn_statement
         (dfn_names
           (dfn_member
-            (member_identifier)
+            (member_identifier
+              (identifier))
             (dfn_member_expression
               (dfn_identifier)))))
       (statement
@@ -287,21 +295,25 @@ Namespace
   (statement
     (names
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (number_literal)))
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (number_literal)))
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (number_literal)))))
   (statement
     (names
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (number_literal)
           (identifier)
@@ -309,7 +321,8 @@ Namespace
   (statement
     (names
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (number_literal)
           (number_literal)
@@ -317,7 +330,8 @@ Namespace
   (statement
     (names
       (member
-        (member_identifier)
+        (member_identifier
+          (identifier))
         (member_expression
           (dfn_definition
             (dfn_statement
@@ -333,11 +347,13 @@ Namespace
                 (dfn_identifier)
                 (dfn_names
                   (member
-                    (member_identifier)
+                    (member_identifier
+                      (identifier))
                     (member_expression
                       (number_literal)))
                   (dfn_member
-                    (member_identifier)
+                    (member_identifier
+                      (identifier))
                     (dfn_member_expression
                       (dfn_identifier))))
                 (identifier))))))))
@@ -346,11 +362,13 @@ Namespace
       (dfn_statement
         (names
           (member
-            (member_identifier)
+            (member_identifier
+              (identifier))
             (member_expression
               (number_literal)))
           (member
-            (member_identifier)
+            (member_identifier
+              (identifier))
             (member_expression
               (number_literal))))
         (dfn_identifier))
@@ -361,7 +379,8 @@ Namespace
       (dop1_statement
         (dop1_names
           (dop1_member
-            (member_identifier)
+            (member_identifier
+              (identifier))
             (dop1_member_expression
               (dop1_identifier))))
         (dfn_identifier))))
@@ -372,10 +391,12 @@ Namespace
           (dop1_statement
             (dop1_names
               (dfn_member
-                (member_identifier)
+                (member_identifier
+                  (identifier))
                 (dfn_member_expression
                   (dfn_identifier)))
               (dop1_member
-                (member_identifier)
+                (member_identifier
+                  (identifier))
                 (dop1_member_expression
                   (dop1_identifier))))))))))

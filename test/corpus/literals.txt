@@ -46,10 +46,8 @@ multiline'
   (statement
     (string_literal
       (string_literal_content)
-      (MISSING "'")))
-  (statement
-    (identifier))
-  (ERROR)
+      (ERROR
+        (identifier))))
   (statement
     (string_literal
       (string_literal_content)))

@@ -1,0 +1,2234 @@
+==================
+class
+==================
+:Class Animal
+:EndClass
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (endclass_statement
+      (endclass))))
+
+==================
+class derived
+==================
+:Class CLASS2: CLASS1
+:EndClass
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (endclass_statement
+      (endclass))))
+
+==================
+class using
+==================
+:Class APLGreg: GregorianCalendar
+:Using System.Globalization
+:EndClass
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (using_statement
+      (using)
+      (identifier
+        (identifier)
+        (identifier)))
+    (endclass_statement
+      (endclass))))
+
+==================
+class gui
+==================
+:Class Duck:'Poly'
+:EndClass
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (string_literal
+        (string_literal_content)))
+    (endclass_statement
+      (endclass))))
+
+=====================
+constructor 1
+=====================
+:Class DomesticParrot: Parrot
+    :Field Public Name
+    
+    ∇ egg name
+      :Implements Constructor
+      :Access Public
+      Name←name
+    ∇
+:EndClass ⍝ DomesticParrot
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (implements_statement
+        (implements)
+        (constructor))
+      (access_statement
+        (access)
+        (visibility))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+constructor 2
+=====================
+:Class Bird
+    :Field Public Species
+
+    ∇ egg spec
+      :Access Public Instance
+      :Implements Constructor
+      Species←spec
+    ∇
+    ∇ default
+      :Access Public Instance
+      :Implements Constructor
+      Species←'Default Bird'
+    ∇
+    ∇ R←Speak
+      :Access Public
+      R←'Tweet, tweet!'
+    ∇
+
+:EndClass ⍝ Bird
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+constructor 3
+=====================
+:Class Cheese
+    :Field Public Name←''
+    :Field Public Strength←⍬
+    ∇ make2(name strength)
+      :Access Public
+      :Implements Constructor
+      Name Strength←name strength
+    ∇
+    ∇ make1 name
+      :Access Public
+      :Implements Constructor
+      Name Strength←name 1
+    ∇
+    ∇ make_excuse
+      :Access Public
+      :Implements Constructor
+      ⎕←'The cat ate the last one!'
+    ∇
+:EndClass
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal))))
+    (field_statement
+      (field)
+      (visibility)
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (primitive))))
+    (tradfn
+      (identifier)
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (identifier)))))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (number_literal)))))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (endclass_statement
+      (endclass))))
+
+=====================
+constructor 4
+=====================
+:Class Bird
+    :Field Public Species
+
+    ∇ egg spec
+      :Access Public Instance
+      :Implements Constructor
+      ⎕DF Species←spec
+    ∇
+    ∇ default
+      :Access Public Instance
+      :Implements Constructor
+      ⎕DF Species←'Default Bird'
+      #.DISPLAY Species
+    ∇
+    ∇ R←Speak
+      :Access Public
+      #.DISPLAY R←'Tweet, Tweet, Tweet'
+    ∇
+
+:EndClass ⍝ Bird
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (system_command)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (system_command)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content)))))
+      (statement
+        (identifier
+          (identifier)
+          (identifier))
+        (identifier)))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (statement
+        (assignment
+          (assign_left
+            (identifier
+              (identifier)
+              (identifier))
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+constructor 5
+=====================
+:Class Bird
+    :Field Public Desc
+    ∇ egg0
+      :Access Public
+      :Implements Constructor
+      Desc←'Bird'
+    ∇
+:EndClass ⍝ Bird
+
+:Class Parrot: Bird
+    ∇ egg0
+      :Access Public
+      :Implements Constructor
+      Desc,←'→Parrot'
+    ∇
+:EndClass ⍝ Parrot
+
+:Class DomesticParrot: Parrot
+    ∇ egg0
+      :Access Public
+      :Implements Constructor
+      Desc,←'→DomesticParrot'
+    ∇
+:EndClass ⍝ DomesticParrot
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (endclass_statement
+      (endclass)))
+  (comment)
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (primitive))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (endclass_statement
+      (endclass)))
+  (comment)
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier)
+            (primitive))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+constructor 6
+=====================
+:Class Bird
+    :Field Public Species
+    ∇ egg spec
+      :Access Public Instance
+      :Implements Constructor
+      Species←spec
+    ∇
+:EndClass ⍝ Bird
+
+:Class Parrot: Bird
+    ∇ egg species
+      :Access Public Instance
+      :Implements Constructor :Base 'Parrot: ',species
+    ∇
+:EndClass ⍝ Parrot
+
+:Class DomesticParrot: Parrot
+    :Field Public Name
+    ∇ egg(name species)
+      :Access Public Instance
+      :Implements Constructor :Base species
+      ⎕DF Name←name
+    ∇
+:EndClass ⍝ DomesticParrot
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (endclass_statement
+      (endclass)))
+  (comment)
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (implements_statement
+        (implements)
+        (constructor)
+        (base
+          (identifier))
+        (string_literal
+          (string_literal_content))
+        (primitive)
+        (identifier)))
+    (endclass_statement
+      (endclass)))
+  (comment)
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (implements_statement
+        (implements)
+        (constructor)
+        (base
+          (identifier))
+        (identifier))
+      (statement
+        (assignment
+          (assign_left
+            (system_command)
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+destructor
+=====================
+:Class Parrot
+    ∇ kill
+      :Implements Destructor
+      'This Parrot is dead'
+    ∇
+:EndClass ⍝ Parrot
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (tradfn
+      (identifier)
+      (implements_statement
+        (implements)
+        (destructor))
+      (statement
+        (string_literal
+          (string_literal_content))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+fields 1
+=====================
+:Class DomesticParrot: Parrot
+    :Field Public Name
+
+    ∇ egg nm
+      :Access Public
+      :Implements Constructor
+      Name←nm
+    ∇
+:EndClass ⍝ DomesticParrot
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+fields 2
+=====================
+:Class DomesticParrot: Parrot
+    :Field Public Name
+
+    ∇ egg nm
+      :Access Public
+      :Implements Constructor
+      Name←nm
+    ∇
+:EndClass ⍝ DomesticParrot
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+fields 3
+=====================
+:Class ComponentFile
+    :Field Private Instance tie    
+
+    ∇ Open filename
+      :Implements Constructor
+      :Access Public Instance
+      :Trap 0
+          tie←filename ⎕FTIE 0
+      :Else
+          tie←filename ⎕FCREATE 0
+      :EndTrap
+      ⎕DF filename,'(Component File)'
+    ∇
+:End
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (sharing)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (implements_statement
+        (implements)
+        (constructor))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (trap_block
+        (trap_statement
+          (trap)
+          (number_literal))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (system_command)
+              (number_literal))))
+        (else_statement
+          (else))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (system_command)
+              (number_literal))))
+        (endtrap_statement
+          (endtrap)))
+      (statement
+        (system_command)
+        (identifier)
+        (primitive)
+        (string_literal
+          (string_literal_content))))
+    (endclass_statement
+      (end))))
+
+=====================
+fields 4
+=====================
+:Class Example
+    :Using System.Globalization
+    :Field Public Shared ReadOnly Months←12↑(⎕NEW DateTimeFormatInfo).AbbreviatedMonthNames
+:EndClass ⍝ Example
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (using_statement
+      (using)
+      (identifier
+        (identifier)
+        (identifier)))
+    (field_statement
+      (field)
+      (visibility)
+      (sharing)
+      (readonly)
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal)
+          (primitive)
+          (parenthesis
+            (statement
+              (system_command)
+              (identifier)))
+          (primitive)
+          (identifier))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=====================
+fields 5
+=====================
+:Class MyClass
+    :Field Public Name
+    :Field Public Country←'England'
+    ∇ ctor nm
+      :Access Public
+      :Implements Constructor
+      Name←nm
+    ∇
+    ∇ format
+      :Implements Trigger Name,Country
+      ⎕DF'My name is ',Name,' and I live in ',Country
+    ∇
+:EndClass ⍝ MyClass
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal
+            (string_literal_content)))))
+    (tradfn
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)))))
+    (tradfn
+      (identifier)
+      (implements_statement
+        (implements)
+        (trigger)
+        (identifier)
+        (identifier))
+      (statement
+        (system_command)
+        (string_literal
+          (string_literal_content))
+        (primitive)
+        (identifier)
+        (primitive)
+        (string_literal
+          (string_literal_content))
+        (primitive)
+        (identifier)))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=========================
+overrides
+=========================
+∇ ErrorHandler
+  :Access Public Overridable
+  ⎕←↑⎕DM
+∇
+∇ ErrorHandler;TN
+  :Access Public Override
+  ⎕←↑⎕DM
+  TN←'ErrorLog'⎕FSTIE 0
+  ⎕DM ⎕FAPPEND TN
+  ⎕FUNTIE TN
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (access_statement
+      (access)
+      (visibility)
+      (overridable))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (primitive)
+          (system_command)))))
+  (tradfn
+    (identifier)
+    (identifier)
+    (access_statement
+      (access)
+      (visibility)
+      (override))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (primitive)
+          (system_command))))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (string_literal
+            (string_literal_content))
+          (system_command)
+          (number_literal))))
+    (statement
+      (system_command)
+      (system_command)
+      (identifier))
+    (statement
+      (system_command)
+      (identifier))))
+
+=========================
+properties 1
+=========================
+:Class ComponentFile
+    :Field Private Instance tie
+    
+    ∇ Open filename
+      :Implements Constructor
+      :Access Public Instance
+      :Trap 0
+          tie←filename ⎕FTIE 0
+      :Else
+          tie←filename ⎕FCREATE 0
+      :EndTrap
+      ⎕DF filename,'(Component File)'
+    ∇
+    
+    ∇ Close
+      :Access Public Instance
+      ⎕FUNTIE tie
+    ∇
+    
+    ∇ r←Append data
+      :Access Public Instance
+      r←data ⎕FAPPEND tie
+    ∇
+    
+    ∇ Replace(comp data)
+      :Access Public Instance
+      data ⎕FREPLACE tie,comp
+    ∇
+    
+    :Property Count
+    :Access Public Instance
+        ∇ r←get
+          r←¯1+2⊃⎕FSIZE tie
+        ∇
+    :EndProperty ⍝ Count
+        
+    :Property Access
+    :Access Public Instance
+        ∇ r←get arg
+          r←⎕FRDAC tie
+        ∇
+        ∇ set am;mat;OK
+          mat←am.NewValue
+          :Trap 0
+              OK←(2=⍴⍴mat)∧(3=2⊃⍴mat)∧∧/,mat=⌊mat
+          :Else
+              OK←0
+          :EndTrap
+          'bad arg'⎕SIGNAL(~OK)/11
+          mat ⎕FSTAC tie
+        ∇
+    :EndProperty ⍝ Access
+    
+    :Property Files
+    :Access Public Shared
+        ∇ r←get
+          r←⎕FLIB''
+        ∇
+    :EndProperty
+    
+    :Property Numbered Default Component
+    :Access Public Instance
+        ∇ r←shape args
+          r←¯1+2⊃⎕FSIZE tie
+        ∇
+        ∇ r←get arg
+          r←⊂⎕FREAD tie,arg.Indexers
+        ∇
+        ∇ set arg
+          (⊃arg.NewValue)⎕FREPLACE tie,arg.Indexers
+        ∇
+    :EndProperty
+    
+    ∇ Delete file;tie
+      :Access Public Shared
+      tie←file ⎕FTIE 0
+      file ⎕FERASE tie
+    ∇
+:EndClass ⍝ Class ComponentFile
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (sharing)
+      (identifier))
+    (tradfn
+      (identifier)
+      (identifier)
+      (implements_statement
+        (implements)
+        (constructor))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (trap_block
+        (trap_statement
+          (trap)
+          (number_literal))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (system_command)
+              (number_literal))))
+        (else_statement
+          (else))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (system_command)
+              (number_literal))))
+        (endtrap_statement
+          (endtrap)))
+      (statement
+        (system_command)
+        (identifier)
+        (primitive)
+        (string_literal
+          (string_literal_content))))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (statement
+        (system_command)
+        (identifier)))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (system_command)
+            (identifier)))))
+    (tradfn
+      (identifier)
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (statement
+        (identifier)
+        (system_command)
+        (identifier)
+        (primitive)
+        (identifier)))
+    (property_section
+      (property_statement
+        (property)
+        (identifier))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (tradfn
+        (identifier)
+        (left_arrow)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (number_literal)
+              (primitive)
+              (number_literal)
+              (primitive)
+              (system_command)
+              (identifier)))))
+      (endproperty_statement
+        (endproperty)))
+    (comment)
+    (property_section
+      (property_statement
+        (property)
+        (identifier))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (tradfn
+        (identifier)
+        (left_arrow)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (system_command)
+              (identifier)))))
+      (tradfn
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier
+                (identifier)
+                (identifier)))))
+        (trap_block
+          (trap_statement
+            (trap)
+            (number_literal))
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (left_arrow)
+              (assign_right
+                (parenthesis
+                  (statement
+                    (number_literal)
+                    (primitive)
+                    (primitive)
+                    (primitive)
+                    (identifier)))
+                (primitive)
+                (parenthesis
+                  (statement
+                    (number_literal)
+                    (primitive)
+                    (number_literal)
+                    (primitive)
+                    (primitive)
+                    (identifier)))
+                (primitive)
+                (primitive)
+                (primitive)
+                (primitive)
+                (identifier)
+                (primitive)
+                (primitive)
+                (identifier))))
+          (else_statement
+            (else))
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (left_arrow)
+              (assign_right
+                (number_literal))))
+          (endtrap_statement
+            (endtrap)))
+        (statement
+          (string_literal
+            (string_literal_content))
+          (system_command)
+          (parenthesis
+            (statement
+              (primitive)
+              (identifier)))
+          (primitive)
+          (number_literal))
+        (statement
+          (identifier)
+          (system_command)
+          (identifier)))
+      (endproperty_statement
+        (endproperty)))
+    (comment)
+    (property_section
+      (property_statement
+        (property)
+        (identifier))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (tradfn
+        (identifier)
+        (left_arrow)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (system_command)
+              (string_literal)))))
+      (endproperty_statement
+        (endproperty)))
+    (property_section
+      (property_statement
+        (property)
+        (numbered)
+        (default)
+        (identifier))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (tradfn
+        (identifier)
+        (left_arrow)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (number_literal)
+              (primitive)
+              (number_literal)
+              (primitive)
+              (system_command)
+              (identifier)))))
+      (tradfn
+        (identifier)
+        (left_arrow)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (primitive)
+              (system_command)
+              (identifier)
+              (primitive)
+              (identifier
+                (identifier)
+                (identifier))))))
+      (tradfn
+        (identifier)
+        (identifier)
+        (statement
+          (parenthesis
+            (statement
+              (primitive)
+              (identifier
+                (identifier)
+                (identifier))))
+          (system_command)
+          (identifier)
+          (primitive)
+          (identifier
+            (identifier)
+            (identifier))))
+      (endproperty_statement
+        (endproperty)))
+    (tradfn
+      (identifier)
+      (identifier)
+      (identifier)
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (identifier)
+            (system_command)
+            (number_literal))))
+      (statement
+        (identifier)
+        (system_command)
+        (identifier)))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=========================
+keyed properties 1
+=========================
+:Class Sparse2  ⍝ 2D Sparse Array
+    :Field Private keys
+    :Field Private values
+    ∇ make
+      :Access Public
+      :Implements Constructor
+      keys←0⍴⊂'' ''
+      values←⍬
+    ∇
+    :Property Keyed Values
+    :Access Public Instance
+        ∇ v←get arg;k
+          k←arg.Indexers
+          ⎕SIGNAL(2≠⍴k)/4
+          k←fixkeys k
+          v←(values,0)[keys⍳k]
+        ∇
+        ∇ set arg;new;k;v;n
+          v←arg.NewValue
+          k←arg.Indexers
+          ⎕SIGNAL(2≠⍴k)/4
+          k←fixkeys k
+          v←(⍴k)(⍴⍣(⊃1=⍴,v))v
+          ⎕SIGNAL((⍴k)≠⍴v)/5
+          k v←,¨k v
+          :If ∨/new←~k∊keys
+              values,←new/v
+              keys,←new/k
+              k v/⍨←⊂~new
+          :EndIf
+          :If 0<⍴k
+              values[keys⍳k]←v
+          :EndIf
+        ∇
+    :EndProperty
+    
+    ∇ k←fixkeys k
+      k←(2≠≡¨k){,(⊂⍣⍺)⍵}¨k
+      k←⊃(∘.{⊃,/⊂¨⍺ ⍵})/k
+    ∇
+:EndClass ⍝ 2D Sparse Array
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (comment)
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (tradfn
+      (identifier)
+      (access_statement
+        (access)
+        (visibility))
+      (implements_statement
+        (implements)
+        (constructor))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (number_literal)
+            (primitive)
+            (primitive)
+            (string_literal)
+            (string_literal))))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (primitive)))))
+    (property_section
+      (property_statement
+        (property)
+        (keyed)
+        (identifier))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (tradfn
+        (identifier)
+        (left_arrow)
+        (identifier)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier
+                (identifier)
+                (identifier)))))
+        (statement
+          (system_command)
+          (parenthesis
+            (statement
+              (number_literal)
+              (primitive)
+              (primitive)
+              (identifier)))
+          (primitive)
+          (number_literal))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (identifier))))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (parenthesis
+                (statement
+                  (identifier)
+                  (primitive)
+                  (number_literal)))
+              (indices
+                (index
+                  (identifier)
+                  (primitive)
+                  (identifier)))))))
+      (tradfn
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier
+                (identifier)
+                (identifier)))))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier
+                (identifier)
+                (identifier)))))
+        (statement
+          (system_command)
+          (parenthesis
+            (statement
+              (number_literal)
+              (primitive)
+              (primitive)
+              (identifier)))
+          (primitive)
+          (number_literal))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier)
+              (identifier))))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (parenthesis
+                (statement
+                  (primitive)
+                  (identifier)))
+              (parenthesis
+                (statement
+                  (primitive)
+                  (primitive)
+                  (parenthesis
+                    (statement
+                      (primitive)
+                      (number_literal)
+                      (primitive)
+                      (primitive)
+                      (primitive)
+                      (identifier)))))
+              (identifier))))
+        (statement
+          (system_command)
+          (parenthesis
+            (statement
+              (parenthesis
+                (statement
+                  (primitive)
+                  (identifier)))
+              (primitive)
+              (primitive)
+              (identifier)))
+          (primitive)
+          (number_literal))
+        (statement
+          (assignment
+            (assign_left
+              (identifier)
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (primitive)
+              (primitive)
+              (identifier)
+              (identifier))))
+        (if_block
+          (if_statement
+            (if)
+            (if_condition
+              (assignment
+                (assign_left
+                  (primitive)
+                  (primitive)
+                  (identifier))
+                (left_arrow)
+                (assign_right
+                  (primitive)
+                  (identifier)
+                  (primitive)
+                  (identifier)))))
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (primitive))
+              (left_arrow)
+              (assign_right
+                (identifier)
+                (primitive)
+                (identifier))))
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (primitive))
+              (left_arrow)
+              (assign_right
+                (identifier)
+                (primitive)
+                (identifier))))
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (identifier)
+                (primitive)
+                (primitive))
+              (left_arrow)
+              (assign_right
+                (primitive)
+                (primitive)
+                (identifier))))
+          (endif_statement
+            (endif)))
+        (if_block
+          (if_statement
+            (if)
+            (if_condition
+              (number_literal)
+              (primitive)
+              (primitive)
+              (identifier)))
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (indices
+                  (index
+                    (identifier)
+                    (primitive)
+                    (identifier))))
+              (left_arrow)
+              (assign_right
+                (identifier))))
+          (endif_statement
+            (endif))))
+      (endproperty_statement
+        (endproperty)))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (identifier)
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (parenthesis
+              (statement
+                (number_literal)
+                (primitive)
+                (primitive)
+                (primitive)
+                (identifier)))
+            (dfn_definition
+              (dfn_statement
+                (primitive)
+                (dfn_parenthesis
+                  (dfn_statement
+                    (primitive)
+                    (primitive)
+                    (dfn_identifier)))
+                (dfn_identifier)))
+            (primitive)
+            (identifier))))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (primitive)
+            (parenthesis
+              (statement
+                (primitive)
+                (primitive)
+                (dfn_definition
+                  (dfn_statement
+                    (primitive)
+                    (primitive)
+                    (primitive)
+                    (primitive)
+                    (primitive)
+                    (dfn_identifier)
+                    (dfn_identifier)))))
+            (primitive)
+            (identifier)))))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=========================
+keyed properties 2
+=========================
+:Class KeyedFile: ComponentFile
+    :Field Public Keys
+    ⎕ML←0
+
+    ∇ Open filename
+      :Implements Constructor :Base filename
+      :Access Public Instance
+      :If Count>0
+          Keys←{⊃⍵⊃⎕BASE.Component}¨⍳Count
+      :Else
+          Keys←0⍴⊂''
+      :EndIf
+    ∇
+
+    :Property Keyed Component
+    :Access Public Instance
+        ∇ r←get arg;keys;sink
+          keys←⊃arg.Indexers
+          ⎕SIGNAL(~∧/keys∊Keys)/3
+          r←{2⊃⍵⊃⎕BASE.Component}¨Keys⍳keys
+        ∇
+        ∇ set arg;new;keys;vals
+          vals←arg.NewValue
+          keys←⊃arg.Indexers
+          ⎕SIGNAL((⍴,keys)≠⍴,vals)/5
+          :If ∨/new←~keys∊Keys
+              sink←Append¨↓⍉↑(⊂new)/¨keys vals
+              Keys,←new/keys
+              keys vals/⍨←⊂~new
+          :EndIf
+          :If 0<⍴,keys
+              Replace¨↓⍉↑(Keys⍳keys)(↓⍉↑keys vals)
+          :EndIf
+        ∇
+    :EndProperty
+
+:EndClass ⍝ Class KeyedFile
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (identifier))
+    (statement
+      (assignment
+        (assign_left
+          (system_command))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (tradfn
+      (identifier)
+      (identifier)
+      (implements_statement
+        (implements)
+        (constructor)
+        (base
+          (identifier))
+        (identifier))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (if_block
+        (if_statement
+          (if)
+          (if_condition
+            (identifier)
+            (primitive)
+            (number_literal)))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (dfn_definition
+                (dfn_statement
+                  (primitive)
+                  (dfn_identifier)
+                  (primitive)
+                  (system_command)
+                  (primitive)
+                  (identifier)))
+              (primitive)
+              (primitive)
+              (identifier))))
+        (else_statement
+          (else))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (number_literal)
+              (primitive)
+              (primitive)
+              (string_literal))))
+        (endif_statement
+          (endif))))
+    (property_section
+      (property_statement
+        (property)
+        (keyed)
+        (identifier))
+      (access_statement
+        (access)
+        (visibility)
+        (sharing))
+      (tradfn
+        (identifier)
+        (left_arrow)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (primitive)
+              (identifier
+                (identifier)
+                (identifier)))))
+        (statement
+          (system_command)
+          (parenthesis
+            (statement
+              (primitive)
+              (primitive)
+              (primitive)
+              (identifier)
+              (primitive)
+              (identifier)))
+          (primitive)
+          (number_literal))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (dfn_definition
+                (dfn_statement
+                  (number_literal)
+                  (primitive)
+                  (dfn_identifier)
+                  (primitive)
+                  (system_command)
+                  (primitive)
+                  (identifier)))
+              (primitive)
+              (identifier)
+              (primitive)
+              (identifier)))))
+      (tradfn
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (identifier
+                (identifier)
+                (identifier)))))
+        (statement
+          (assignment
+            (assign_left
+              (identifier))
+            (left_arrow)
+            (assign_right
+              (primitive)
+              (identifier
+                (identifier)
+                (identifier)))))
+        (statement
+          (system_command)
+          (parenthesis
+            (statement
+              (parenthesis
+                (statement
+                  (primitive)
+                  (primitive)
+                  (identifier)))
+              (primitive)
+              (primitive)
+              (primitive)
+              (identifier)))
+          (primitive)
+          (number_literal))
+        (if_block
+          (if_statement
+            (if)
+            (if_condition
+              (assignment
+                (assign_left
+                  (primitive)
+                  (primitive)
+                  (identifier))
+                (left_arrow)
+                (assign_right
+                  (primitive)
+                  (identifier)
+                  (primitive)
+                  (identifier)))))
+          (statement
+            (assignment
+              (assign_left
+                (identifier))
+              (left_arrow)
+              (assign_right
+                (identifier)
+                (primitive)
+                (primitive)
+                (primitive)
+                (primitive)
+                (parenthesis
+                  (statement
+                    (primitive)
+                    (identifier)))
+                (primitive)
+                (primitive)
+                (identifier)
+                (identifier))))
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (primitive))
+              (left_arrow)
+              (assign_right
+                (identifier)
+                (primitive)
+                (identifier))))
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (identifier)
+                (primitive)
+                (primitive))
+              (left_arrow)
+              (assign_right
+                (primitive)
+                (primitive)
+                (identifier))))
+          (endif_statement
+            (endif)))
+        (if_block
+          (if_statement
+            (if)
+            (if_condition
+              (number_literal)
+              (primitive)
+              (primitive)
+              (primitive)
+              (identifier)))
+          (statement
+            (identifier)
+            (primitive)
+            (primitive)
+            (primitive)
+            (primitive)
+            (parenthesis
+              (statement
+                (identifier)
+                (primitive)
+                (identifier)))
+            (parenthesis
+              (statement
+                (primitive)
+                (primitive)
+                (primitive)
+                (identifier)
+                (identifier))))
+          (endif_statement
+            (endif))))
+      (endproperty_statement
+        (endproperty)))
+    (endclass_statement
+      (endclass)))
+  (comment))
+
+=========================
+interface 1
+=========================
+:Interface FishBehaviour
+∇ R←Swim ⍝ Returns description of swimming capability
+∇
+:EndInterface ⍝ FishBehaviour
+---
+
+(source_file
+  (interface_definition
+    (interface_statement
+      (interface)
+      (identifier))
+    (interface_method
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (comment))
+    (endinterface_statement
+      (endinterface)))
+  (comment))
+
+=========================
+interface 2
+=========================
+:Interface BirdBehaviour
+∇ R←Fly ⍝ Returns description of flying capability
+∇
+∇ R←Lay ⍝ Returns description of egg-laying behaviour
+∇
+∇ R←Sing ⍝ Returns description of bird-song
+∇
+:EndInterface ⍝ BirdBehaviour
+---
+
+(source_file
+  (interface_definition
+    (interface_statement
+      (interface)
+      (identifier))
+    (interface_method
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (comment))
+    (interface_method
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (comment))
+    (interface_method
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (comment))
+    (endinterface_statement
+      (endinterface)))
+  (comment))
+
+=========================
+implements
+=========================
+:Class Penguin: Animal,BirdBehaviour,FishBehaviour
+    ∇ R←NoCanFly
+      :Implements Method BirdBehaviour.Fly
+      R←'Although I am a bird, I cannot fly'
+    ∇
+    ∇ R←LayOneEgg
+      :Implements Method BirdBehaviour.Lay
+      R←'I lay one egg every year'
+    ∇
+    ∇ R←Croak
+      :Implements Method BirdBehaviour.Sing
+      R←'Croak, Croak!'
+    ∇
+    ∇ R←Dive
+      :Implements Method FishBehaviour.Swim
+      R←'I can dive and swim like a fish'
+    ∇
+:EndClass ⍝ Penguin
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier)
+      (identifier)
+      (identifier)
+      (identifier))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (implements_statement
+        (implements)
+        (method)
+        (identifier
+          (identifier)
+          (identifier)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (implements_statement
+        (implements)
+        (method)
+        (identifier
+          (identifier)
+          (identifier)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (implements_statement
+        (implements)
+        (method)
+        (identifier
+          (identifier)
+          (identifier)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (tradfn
+      (identifier)
+      (left_arrow)
+      (identifier)
+      (implements_statement
+        (implements)
+        (method)
+        (identifier
+          (identifier)
+          (identifier)))
+      (statement
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (string_literal
+              (string_literal_content))))))
+    (endclass_statement
+      (endclass)))
+  (comment))
