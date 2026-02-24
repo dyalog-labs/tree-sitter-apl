@@ -145,7 +145,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -228,7 +228,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -283,7 +283,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -403,7 +403,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -470,7 +470,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -533,7 +533,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -674,7 +674,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -752,7 +752,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -776,7 +776,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -835,7 +835,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -859,7 +859,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1011,7 +1011,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1035,7 +1035,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1094,7 +1094,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1118,7 +1118,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1204,7 +1204,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1228,7 +1228,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1287,7 +1287,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1311,7 +1311,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1394,7 +1394,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1418,7 +1418,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1515,7 +1515,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1539,7 +1539,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1566,7 +1566,7 @@
     }
   },
   {
-    "type": "dfn_names",
+    "type": "dfn_namespace_literal",
     "named": true,
     "fields": {},
     "children": {
@@ -1636,7 +1636,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1660,7 +1660,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1802,7 +1802,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1861,7 +1861,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1885,7 +1885,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -1909,7 +1909,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -1968,7 +1968,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -1992,7 +1992,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -2016,7 +2016,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -2196,7 +2196,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -2220,7 +2220,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -2244,7 +2244,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -2303,7 +2303,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -2327,7 +2327,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -2351,7 +2351,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -2445,7 +2445,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -2469,7 +2469,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -2493,7 +2493,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -2552,7 +2552,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -2576,7 +2576,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -2600,7 +2600,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -2687,7 +2687,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -2711,7 +2711,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -2735,7 +2735,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -2836,7 +2836,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -2860,7 +2860,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -2884,7 +2884,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -2911,7 +2911,7 @@
     }
   },
   {
-    "type": "dop1_names",
+    "type": "dop1_namespace_literal",
     "named": true,
     "fields": {},
     "children": {
@@ -2989,7 +2989,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -3013,7 +3013,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -3037,7 +3037,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -3096,7 +3096,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -3120,7 +3120,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -3144,7 +3144,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -3168,7 +3168,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -3227,7 +3227,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -3251,7 +3251,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -3275,7 +3275,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -3299,7 +3299,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -3507,7 +3507,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -3531,7 +3531,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -3555,7 +3555,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -3579,7 +3579,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -3638,7 +3638,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -3662,7 +3662,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -3686,7 +3686,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -3710,7 +3710,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -3812,7 +3812,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -3836,7 +3836,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -3860,7 +3860,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -3884,7 +3884,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -3943,7 +3943,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -3967,7 +3967,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -3991,7 +3991,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -4015,7 +4015,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -4106,7 +4106,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -4130,7 +4130,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -4154,7 +4154,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -4178,7 +4178,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -4283,7 +4283,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -4307,7 +4307,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -4331,7 +4331,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -4355,7 +4355,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -4382,7 +4382,7 @@
     }
   },
   {
-    "type": "dop2_names",
+    "type": "dop2_namespace_literal",
     "named": true,
     "fields": {},
     "children": {
@@ -4468,7 +4468,7 @@
           "named": true
         },
         {
-          "type": "dfn_names",
+          "type": "dfn_namespace_literal",
           "named": true
         },
         {
@@ -4492,7 +4492,7 @@
           "named": true
         },
         {
-          "type": "dop1_names",
+          "type": "dop1_namespace_literal",
           "named": true
         },
         {
@@ -4516,7 +4516,7 @@
           "named": true
         },
         {
-          "type": "dop2_names",
+          "type": "dop2_namespace_literal",
           "named": true
         },
         {
@@ -4540,7 +4540,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -4619,7 +4619,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -4999,7 +4999,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5054,7 +5054,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5227,7 +5227,7 @@
             "named": true
           },
           {
-            "type": "names",
+            "type": "namespace_literal",
             "named": true
           },
           {
@@ -5323,7 +5323,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5397,7 +5397,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5452,7 +5452,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5609,7 +5609,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5774,7 +5774,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5872,7 +5872,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -5950,7 +5950,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -6217,7 +6217,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -6259,7 +6259,7 @@
     }
   },
   {
-    "type": "names",
+    "type": "namespace_literal",
     "named": true,
     "fields": {},
     "children": {
@@ -6356,7 +6356,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -6833,7 +6833,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -6948,7 +6948,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -7646,7 +7646,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -7705,7 +7705,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -7902,7 +7902,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {
@@ -8063,7 +8063,7 @@
           "named": true
         },
         {
-          "type": "names",
+          "type": "namespace_literal",
           "named": true
         },
         {

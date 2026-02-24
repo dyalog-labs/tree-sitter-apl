@@ -7201,7 +7201,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "names"
+                    "name": "namespace_literal"
                   },
                   {
                     "type": "SYMBOL",
@@ -7281,7 +7281,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "dfn_names"
+                  "name": "dfn_namespace_literal"
                 },
                 {
                   "type": "SYMBOL",
@@ -7370,7 +7370,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "dop1_names"
+                  "name": "dop1_namespace_literal"
                 },
                 {
                   "type": "SYMBOL",
@@ -7473,7 +7473,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "dop2_names"
+                  "name": "dop2_namespace_literal"
                 },
                 {
                   "type": "SYMBOL",
@@ -7684,7 +7684,7 @@
         ]
       }
     },
-    "names": {
+    "namespace_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -9924,7 +9924,7 @@
         }
       ]
     },
-    "dfn_names": {
+    "dfn_namespace_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -10075,7 +10075,7 @@
         }
       ]
     },
-    "dop1_names": {
+    "dop1_namespace_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -10244,7 +10244,7 @@
         }
       ]
     },
-    "dop2_names": {
+    "dop2_namespace_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -12600,32 +12600,32 @@
       "parenthesis"
     ],
     [
-      "dop2_names",
-      "dop1_names",
-      "dfn_names",
-      "names"
+      "dop2_namespace_literal",
+      "dop1_namespace_literal",
+      "dfn_namespace_literal",
+      "namespace_literal"
     ],
     [
-      "dop2_names",
-      "dop1_names",
-      "dfn_names"
+      "dop2_namespace_literal",
+      "dop1_namespace_literal",
+      "dfn_namespace_literal"
     ],
     [
-      "dop2_names",
-      "dop1_names"
+      "dop2_namespace_literal",
+      "dop1_namespace_literal"
     ],
     [
-      "dop1_names",
-      "dfn_names",
-      "names"
+      "dop1_namespace_literal",
+      "dfn_namespace_literal",
+      "namespace_literal"
     ],
     [
-      "dop1_names",
-      "dfn_names"
+      "dop1_namespace_literal",
+      "dfn_namespace_literal"
     ],
     [
-      "dfn_names",
-      "names"
+      "dfn_namespace_literal",
+      "namespace_literal"
     ],
     [
       "dop2_highrank",

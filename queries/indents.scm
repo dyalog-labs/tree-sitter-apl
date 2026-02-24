@@ -1,9 +1,9 @@
 [
   (definition)
-  (names)
-  (dfn_names)
-  (dop1_names)
-  (dop2_names)
+  (namespace_literal)
+  (dfn_namespace_literal)
+  (dop1_namespace_literal)
+  (dop2_namespace_literal)
   (parenthesis)
   (dfn_parenthesis)
   (dop1_parenthesis)
