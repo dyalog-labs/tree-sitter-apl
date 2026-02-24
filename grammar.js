@@ -429,7 +429,7 @@ module.exports = grammar({
     interface_method: $ => seq(del, trad_header($, DFN), newline, del),
     interface_property: $ => seq(
       $.property_statement,
-      repeat1(seq(terminator, alias($.interface_method, $.tradfn))),
+      repeat1(seq(terminator, alias($.interface_method, $.property_method))),
       newline, $.endproperty_statement,
     ),
     interface_statement: $ => seq($.interface, $.identifier),
@@ -791,8 +791,8 @@ function def_rules() {
     // namespace members can be definition expressions
     member($$, d) {
       const members = _alias($$, 'member_expression');
-      const identifier = alias($$._identifier, $$.member_identifier);
-      return seq(identifier, colon, members[d]);
+      const name = field('member_name', $$._identifier);
+      return seq(name, colon, members[d]);
     },
     // a parenthesis might be a parenthesized expression
     // or an APLAN vector definition (if there are separators)

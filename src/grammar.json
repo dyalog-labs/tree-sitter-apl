@@ -7147,7 +7147,7 @@
                   "name": "interface_method"
                 },
                 "named": true,
-                "value": "tradfn"
+                "value": "property_method"
               }
             ]
           }
@@ -7831,13 +7831,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "member_name",
           "content": {
             "type": "SYMBOL",
             "name": "_identifier"
-          },
-          "named": true,
-          "value": "member_identifier"
+          }
         },
         {
           "type": "STRING",
@@ -10435,13 +10434,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "member_name",
           "content": {
             "type": "SYMBOL",
             "name": "_identifier"
-          },
-          "named": true,
-          "value": "member_identifier"
+          }
         },
         {
           "type": "STRING",
@@ -10462,13 +10460,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "member_name",
           "content": {
             "type": "SYMBOL",
             "name": "_identifier"
-          },
-          "named": true,
-          "value": "member_identifier"
+          }
         },
         {
           "type": "STRING",
@@ -10489,13 +10486,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "member_name",
           "content": {
             "type": "SYMBOL",
             "name": "_identifier"
-          },
-          "named": true,
-          "value": "member_identifier"
+          }
         },
         {
           "type": "STRING",
