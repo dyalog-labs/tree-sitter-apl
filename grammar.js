@@ -312,19 +312,10 @@ module.exports = grammar({
       ))),
       terminator, $.endclass_statement,
     ),
-    property_section: $ => choice(
-      seq(
-        $.property_statement,
-        optional(seq(terminator, $.access_statement)),
-        repeat(seq(terminator, $._trad)),  // TODO: get/set
-        terminator, $.endproperty_statement,
-      ),
-      $._numbered_property_section,
-    ),
-    _numbered_property_section: $ => seq(
-      alias($._numbered_property_statement, $.property_statement),
+    property_section: $ => seq(
+      $.property_statement,
       optional(seq(terminator, $.access_statement)),
-      repeat(seq(terminator, $._trad)),  // TODO: get/set/shape
+      repeat1(seq(terminator, del, $.tradfn, terminator, del)),
       terminator, $.endproperty_statement,
     ),
     class_statement: $ => seq(
@@ -362,7 +353,7 @@ module.exports = grammar({
     assembly: _ => /.*/,
     property_statement: $ => seq(
       $.property,
-      optional(choice($.simple, $.keyed)),
+      optional(choice($.simple, $.keyed, $.numbered)),
       optional($.default),
       $.identifier,
       repeat(seq(',', $._identifier)),

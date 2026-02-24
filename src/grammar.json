@@ -5870,127 +5870,11 @@
       ]
     },
     "property_section": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "property_statement"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "PATTERN",
-                            "value": "\\n"
-                          },
-                          {
-                            "type": "STRING",
-                            "value": "⋄"
-                          },
-                          {
-                            "type": "STRING",
-                            "value": "\u0000"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "access_statement"
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "REPEAT1",
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "PATTERN",
-                          "value": "\\n"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "⋄"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "\u0000"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_trad"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "REPEAT1",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "\\n"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "⋄"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "\u0000"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "SYMBOL",
-              "name": "endproperty_statement"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_numbered_property_section"
-        }
-      ]
-    },
-    "_numbered_property_section": {
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_numbered_property_statement"
-          },
-          "named": true,
-          "value": "property_statement"
+          "type": "SYMBOL",
+          "name": "property_statement"
         },
         {
           "type": "CHOICE",
@@ -6030,7 +5914,7 @@
           ]
         },
         {
-          "type": "REPEAT",
+          "type": "REPEAT1",
           "content": {
             "type": "SEQ",
             "members": [
@@ -6055,8 +5939,36 @@
                 }
               },
               {
+                "type": "STRING",
+                "value": "∇"
+              },
+              {
                 "type": "SYMBOL",
-                "name": "_trad"
+                "name": "tradfn"
+              },
+              {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "\\n"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "⋄"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "\u0000"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "STRING",
+                "value": "∇"
               }
             ]
           }
@@ -6362,6 +6274,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "keyed"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "numbered"
                 }
               ]
             },
