@@ -339,21 +339,27 @@ module.exports = grammar({
       optional($.visibility),
       optional($.sharing),
       optional($.readonly),
-      // optional(type), // TODO
-      choice($._identifier, $.assignment), // TODO
+      optional($.type),
+      choice(
+        $.identifier,
+        alias($._field_assignment, $.assignment)),
     ),
     include_statement: $ => seq($.include, $._identifier),
     using_statement: $ => seq(
       $.using,
       choice(
         $._identifier,
-        seq(optional($._identifier), ',', choice(
-          optional($.assembly),
-          seq($.assembly, repeat1(seq(',', $.assembly))),
-        )),
+        seq(optional($._identifier), ',', optional($.assembly)),
       ),
     ),
-    assembly: _ => /\w+\.[Dd][Ll][Ll]/,  // TODO
+    // like assignment, but left side must be an identifier
+    _field_assignment: $ => seq(
+      alias($._field_assign_left, $.assign_left),
+      $.left_arrow,
+      alias($._expression, $.assign_right),
+    ),
+    _field_assign_left: $ => $.identifier,
+    assembly: _ => /.*/,
     property_statement: $ => seq(
       $.property,
       optional(choice($.simple, $.keyed)),
@@ -370,17 +376,16 @@ module.exports = grammar({
     ),
     endproperty_statement: $ => choice($.endproperty, $.end),
     require_statement: $ => seq($.require, $.path),
-    path: _ => /\w+/,  // TODO
+    path: _ => /.*/,
     attribute_statement: $ => seq(
       $.attribute,
       $.identifier,
-      repeat(choice($.string_literal, $.number_literal)), // TODO
+      optional(alias($._expression, $.constructor_args)),
     ),
     signature_statement: $ => seq(
       $.signature,
       /.*/, // TODO
     ),
-    type: _ => /\w+/,  // TODO
     implements_statement: $ => seq(
       $.implements,
       choice(
@@ -407,6 +412,7 @@ module.exports = grammar({
     visibility: _ => choice(/private/i, /public/i),
     sharing: _ => choice(/instance/i, /shared/i),
     readonly: _ => /readonly/i,
+    type: _ => /type/i,
     simple: _ => /simple/i,
     numbered: _ => /numbered/i,
     keyed: _ => /keyed/i,

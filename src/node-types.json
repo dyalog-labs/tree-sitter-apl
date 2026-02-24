@@ -195,6 +195,11 @@
     }
   },
   {
+    "type": "assembly",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "assign_left",
     "named": true,
     "fields": {},
@@ -340,15 +345,11 @@
           "named": true
         },
         {
+          "type": "constructor_args",
+          "named": true
+        },
+        {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "number_literal",
-          "named": true
-        },
-        {
-          "type": "string_literal",
           "named": true
         }
       ]
@@ -639,6 +640,61 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constructor_args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "names",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
           "named": true
         }
       ]
@@ -5053,6 +5109,10 @@
           "named": true
         },
         {
+          "type": "type",
+          "named": true
+        },
+        {
           "type": "visibility",
           "named": true
         }
@@ -8094,10 +8154,6 @@
     "named": true
   },
   {
-    "type": "assembly",
-    "named": true
-  },
-  {
     "type": "attribute",
     "named": true
   },
@@ -8336,6 +8392,10 @@
   },
   {
     "type": "trigger",
+    "named": true
+  },
+  {
+    "type": "type",
     "named": true
   },
   {

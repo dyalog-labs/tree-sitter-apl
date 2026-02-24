@@ -6216,11 +6216,28 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_identifier"
+              "name": "type"
             },
             {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SYMBOL",
-              "name": "assignment"
+              "name": "identifier"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_field_assignment"
+              },
+              "named": true,
+              "value": "assignment"
             }
           ]
         }
@@ -6276,41 +6293,11 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "assembly"
-                        },
-                        {
-                          "type": "BLANK"
-                        }
-                      ]
+                      "type": "SYMBOL",
+                      "name": "assembly"
                     },
                     {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "assembly"
-                        },
-                        {
-                          "type": "REPEAT1",
-                          "content": {
-                            "type": "SEQ",
-                            "members": [
-                              {
-                                "type": "STRING",
-                                "value": ","
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "assembly"
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                      "type": "BLANK"
                     }
                   ]
                 }
@@ -6320,9 +6307,40 @@
         }
       ]
     },
+    "_field_assignment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_field_assign_left"
+          },
+          "named": true,
+          "value": "assign_left"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "left_arrow"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          },
+          "named": true,
+          "value": "assign_right"
+        }
+      ]
+    },
+    "_field_assign_left": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
     "assembly": {
       "type": "PATTERN",
-      "value": "\\w+\\.[Dd][Ll][Ll]"
+      "value": ".*"
     },
     "property_statement": {
       "type": "SEQ",
@@ -6459,7 +6477,7 @@
     },
     "path": {
       "type": "PATTERN",
-      "value": "\\w+"
+      "value": ".*"
     },
     "attribute_statement": {
       "type": "SEQ",
@@ -6473,20 +6491,21 @@
           "name": "identifier"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
                 "type": "SYMBOL",
-                "name": "string_literal"
+                "name": "_expression"
               },
-              {
-                "type": "SYMBOL",
-                "name": "number_literal"
-              }
-            ]
-          }
+              "named": true,
+              "value": "constructor_args"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -6502,10 +6521,6 @@
           "value": ".*"
         }
       ]
-    },
-    "type": {
-      "type": "PATTERN",
-      "value": "\\w+"
     },
     "implements_statement": {
       "type": "SEQ",
@@ -6724,6 +6739,11 @@
     "readonly": {
       "type": "PATTERN",
       "value": "readonly",
+      "flags": "i"
+    },
+    "type": {
+      "type": "PATTERN",
+      "value": "type",
       "flags": "i"
     },
     "simple": {
