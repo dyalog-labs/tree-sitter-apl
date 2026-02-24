@@ -12,9 +12,10 @@
   (dfn_highrank)
   (dop1_highrank)
   (dop2_highrank)
-  (tradfn)
-  (tradop1)
-  (tradop2)
+  (trad)
   (block)
   (namespace_script)
+  (class_definition)
+  (interface_definition)
+  (property_section)
 ] @fold

@@ -43,6 +43,27 @@ const expressions = [
   'identifier',
 ];
 
+const control = [
+  'goto',
+  'if', 'elseif', 'else', 'endif',
+  'select', 'case', 'caselist', 'endselect',
+  'trap', 'endtrap',
+  'hold', 'endhold',
+  'section', 'endsection',
+  'with', 'endwith',
+  'disposable', 'enddisposable',
+  'while', 'endwhile', 'repeat', 'until',
+  'for', 'in', 'ineach', 'endfor',
+  'andif', 'orif', 'end',
+  'continue', 'leave', 'return',
+  'namespace', 'endnamespace',
+  'class', 'endclass',
+  'field', 'include', 'using',
+  'interface', 'endinterface',
+  'property', 'endproperty',
+  'require', 'attribute', 'signature', 'implements', 'access',
+];
+
 module.exports = grammar({
   name: 'apl',
 
@@ -54,34 +75,14 @@ module.exports = grammar({
   word: $ => $.identifier,
 
   externals: $ => [
-    // dop identifiers
-    '⍺⍺', '⍵⍵', '∇∇',
-    // system commands
+    '⍺⍺', '⍵⍵', '∇∇',  // dop identifiers
     $._system_command,
-    // ilegal tokens
-    $._invalid,
-    // control words
-    $.goto,
-    $.if, $.elseif, $.else, $.endif,
-    $.select, $.case, $.caselist, $.endselect,
-    $.trap, $.endtrap,
-    $.hold, $.endhold,
-    $.section, $.endsection,
-    $.with, $.endwith,
-    $.disposable, $.enddisposable,
-    $.while, $.endwhile, $.repeat, $.until,
-    $.for, $.in, $.ineach, $.endfor,
-    $.andif, $.orif, $.end,
-    $.continue, $.leave, $.return,
-    $.namespace, $.endnamespace,
-    $.class, $.endclass,
-    $.field, $.include, $.using,
-    $.interface, $.endinterface,
-    $.property, $.endproperty,
-    $.require, $.attribute, $.signature, $.implements, $.access,
+    $._invalid,  // ilegal tokens
+    ... control.map(word => $[word]), // control words
   ],
 
   supertypes: $ => [
+    $.control,
     $.definition,
     $.trad,
     $.block,
@@ -153,17 +154,16 @@ module.exports = grammar({
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
       $.trad,
-      $._main_statements,
+      separated(choice(
+        alias($._expression, $.statement),
+        $.namespace_script,
+        $.class_definition,
+        $.interface_definition,
+        $._trad,
+        $.block,
+      )),
       terminator,
     )),
-    _main_statements: $ => _separated(terminator, [choice(
-      alias(trad_statement($, $._expression), $.statement),
-      $.namespace_script,
-      $.class_definition,
-      $.interface_definition,
-      $._trad,
-      $.block,
-    )], 0),
 
     // traditional definitions
     _trad: $ => seq(del, $.trad, newline, del),
@@ -198,7 +198,7 @@ module.exports = grammar({
       $.goto_statement,
       $.return_statement,
     ),
-    _loop_statement_list: $ => _separated(terminator, [choice(
+    _loop_statement_list: $ => separated(choice(
       $._trad_stataments,
       alias($._loop_if_block, $.if_block),
       alias($._loop_select_block, $.select_block),
@@ -209,8 +209,10 @@ module.exports = grammar({
       alias($._loop_disposable_block, $.disposable_block),
       $.leave_statement,
       $.continue_statement,
-    )], 0),
-    _statement_list: $ => _separated(terminator, [$._trad_stataments], 0),
+    )),
+    _statement_list: $ => separated($._trad_stataments),
+    // control words
+    control: $ => choice(... control.map(word => $[word])),
     // control structures
     ...block_rules(),
     while_block: $ => seq(
@@ -303,12 +305,12 @@ module.exports = grammar({
         $.namespace_script,
         $.class_definition,
         $.interface_definition,
+        $.property_section,
         $.access_statement,
         $.attribute_statement,
         $.include_statement,
         $.using_statement,
         $.field_statement,
-        $.property_section,
       ))),
       terminator, $.endclass_statement,
     ),
@@ -535,18 +537,22 @@ function expression($$, d, ...extra) {
 
 function _separated(separator, statements, d){
   if (d == 0)
-    return seq(
-      optional(separator),
-      statements[0],
-      repeat(seq(separator, statements[0])),
-      optional(separator),
-    );
+    return separated(statements[0], separator);
   const _statements = _choice(statements);
   return seq(
     optional(separator),
     repeat(seq(_statements[d-1], separator)),
     statements[d],
     repeat(seq(separator, _statements[d])),
+    optional(separator),
+  );
+}
+
+function separated(statements, separator=terminator){
+  return seq(
+    optional(separator),
+    statements,
+    repeat(seq(separator, statements)),
     optional(separator),
   );
 }

@@ -12,11 +12,12 @@
   (dfn_highrank)
   (dop1_highrank)
   (dop2_highrank)
-  (tradfn)
-  (tradop1)
-  (tradop2)
+  (trad)
   (block)
   (namespace_script)
+  (class_definition)
+  (interface_definition)
+  (property_section)
 ] @indent.begin
 [
   (elseif)
@@ -24,6 +25,11 @@
   (case)
   (caselist)
   (end)
+  (access_statement)
+  (attribute_statement)
+  (include_statement)
+  (using_statement)
+  (field_statement)
 ] @indent.branch
 [
   "}"
@@ -40,6 +46,9 @@
   (endfor)
   (endwhile)
   (endnamespace)
+  (endclass)
+  (endinterface)
+  (endproperty)
   (end)
 ] @indent.branch @indent.end
 (comment) @indent.auto

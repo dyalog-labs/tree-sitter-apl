@@ -6905,10 +6905,6 @@
           "named": true
         },
         {
-          "type": "label",
-          "named": true
-        },
-        {
           "type": "namespace_script",
           "named": true
         },
