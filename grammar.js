@@ -210,37 +210,11 @@ module.exports = grammar({
       ... blocks.map(block => $[block]),
       ... loop_blocks.map(block => $[block]),
     ),
-    // _trad_statements: $ => choice(
-    //   alias(trad_statement($, $._expression), $.statement),
-    //   $.namespace_script,
-    //   $.class_definition,
-    //   $.interface_definition,
-    //   $.access_statement,
-    //   $.attribute_statement,
-    //   $.implements_statement,
-    //   $.signature_statement,
-    //   $.block,
-    //   $.branch_statement,
-    //   $.goto_statement,
-    //   $.return_statement,
-    // ),
     // bodies (terminator-separated lists of statements)
     _body: $ => body($, false),
-    _loop_body: $ => body($, true),
     // inside loops, there can be additional control words,
     // or blocks including those control words
-    // _trad_loop_body: $ => separated(choice(
-    //   $._trad_statements,
-    //   alias($._loop_if_block, $.if_block),
-    //   alias($._loop_select_block, $.select_block),
-    //   alias($._loop_trap_block, $.trap_block),
-    //   alias($._loop_hold_block, $.hold_block),
-    //   alias($._loop_section_block, $.section_block),
-    //   alias($._loop_with_block, $.with_block),
-    //   alias($._loop_disposable_block, $.disposable_block),
-    //   $.leave_statement,
-    //   $.continue_statement,
-    // )),
+    _loop_body: $ => body($, true),
 
     // control words
     control: $ => choice(... control.map(word => $[word])),
@@ -800,18 +774,6 @@ function trad_header($$, d) {
     ),
   );
 }
-
-// // inside trad-fns, a statement might be preceded by a label
-// function trad_statement($$, statement){
-//     return choice(
-//       statement,
-//       seq(
-//         alias($$.identifier, $$.label),
-//         colon,
-//         statement,
-//       ),
-//     );
-// }
 
 // rules for dfns and dops
 function def_rules() {
