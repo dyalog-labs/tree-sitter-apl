@@ -186,10 +186,6 @@
         {
           "type": "andif_condition",
           "named": true
-        },
-        {
-          "type": "label",
-          "named": true
         }
       ]
     }
@@ -399,10 +395,6 @@
           "named": true
         },
         {
-          "type": "label",
-          "named": true
-        },
-        {
           "type": "namespace_literal",
           "named": true
         },
@@ -466,10 +458,6 @@
           "named": true
         },
         {
-          "type": "label",
-          "named": true
-        },
-        {
           "type": "namespace_literal",
           "named": true
         },
@@ -526,10 +514,6 @@
         },
         {
           "type": "indices",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -705,15 +689,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "continue",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -1710,10 +1690,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -1726,6 +1702,10 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "disposable_statement",
           "named": true
         },
@@ -1734,7 +1714,19 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -1758,7 +1750,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -1767,6 +1771,18 @@
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -1802,10 +1818,6 @@
         },
         {
           "type": "indices",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -4597,15 +4609,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "else",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4681,10 +4689,6 @@
         {
           "type": "elseif_condition",
           "named": true
-        },
-        {
-          "type": "label",
-          "named": true
         }
       ]
     }
@@ -4713,7 +4717,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4722,10 +4726,6 @@
         },
         {
           "type": "enddisposable",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4736,7 +4736,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4745,10 +4745,6 @@
         },
         {
           "type": "endfor",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4759,7 +4755,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4768,10 +4764,6 @@
         },
         {
           "type": "endhold",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4782,7 +4774,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4791,10 +4783,6 @@
         },
         {
           "type": "endif",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4862,7 +4850,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4871,10 +4859,6 @@
         },
         {
           "type": "endsection",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4885,7 +4869,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4894,10 +4878,6 @@
         },
         {
           "type": "endselect",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4908,7 +4888,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4917,10 +4897,6 @@
         },
         {
           "type": "endtrap",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4931,7 +4907,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4940,10 +4916,6 @@
         },
         {
           "type": "endwhile",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -4954,7 +4926,7 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -4963,10 +4935,6 @@
         },
         {
           "type": "endwith",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -5157,10 +5125,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -5173,7 +5137,15 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "endfor_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
           "named": true
         },
         {
@@ -5182,6 +5154,14 @@
         },
         {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -5205,7 +5185,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -5214,6 +5206,18 @@
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -5299,10 +5303,6 @@
         {
           "type": "ineach",
           "named": true
-        },
-        {
-          "type": "label",
-          "named": true
         }
       ]
     }
@@ -5337,10 +5337,6 @@
         },
         {
           "type": "indices",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -5531,10 +5527,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -5547,7 +5539,15 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "endhold_statement",
+          "named": true
+        },
+        {
+          "type": "for_block",
           "named": true
         },
         {
@@ -5555,7 +5555,15 @@
           "named": true
         },
         {
+          "type": "hold_block",
+          "named": true
+        },
+        {
           "type": "hold_statement",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -5579,7 +5587,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -5588,6 +5608,18 @@
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -5623,10 +5655,6 @@
         },
         {
           "type": "indices",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -5692,10 +5720,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -5705,6 +5729,10 @@
         },
         {
           "type": "continue_statement",
+          "named": true
+        },
+        {
+          "type": "disposable_block",
           "named": true
         },
         {
@@ -5720,7 +5748,19 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -5752,7 +5792,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -5761,6 +5813,18 @@
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -5835,10 +5899,6 @@
         },
         {
           "type": "if_condition",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         }
       ]
@@ -6176,13 +6236,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "label",
-          "named": true
-        },
         {
           "type": "leave",
           "named": true
@@ -6404,10 +6460,6 @@
       "required": true,
       "types": [
         {
-          "type": "label",
-          "named": true
-        },
-        {
           "type": "orif",
           "named": true
         },
@@ -6606,10 +6658,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -6622,7 +6670,23 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -6650,11 +6714,23 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "repeat_statement",
           "named": true
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -6666,7 +6742,19 @@
           "named": true
         },
         {
+          "type": "trap_block",
+          "named": true
+        },
+        {
           "type": "until_statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -6677,13 +6765,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "label",
-          "named": true
-        },
         {
           "type": "repeat",
           "named": true
@@ -6696,13 +6780,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "label",
-          "named": true
-        },
         {
           "type": "return",
           "named": true
@@ -6727,10 +6807,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -6743,11 +6819,27 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "endsection_statement",
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -6771,11 +6863,23 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
           "named": true
         },
         {
+          "type": "section_block",
+          "named": true
+        },
+        {
           "type": "section_statement",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -6784,6 +6888,18 @@
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -6799,10 +6915,6 @@
       "types": [
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -6829,10 +6941,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -6853,6 +6961,10 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "else_statement",
           "named": true
         },
@@ -6861,7 +6973,19 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -6885,7 +7009,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -6898,6 +7034,18 @@
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -6929,10 +7077,6 @@
         },
         {
           "type": "indices",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -7110,15 +7254,15 @@
             "named": false
           },
           {
+            "type": ":",
+            "named": false
+          },
+          {
             "type": "access_statement",
             "named": true
           },
           {
             "type": "attribute_statement",
-            "named": true
-          },
-          {
-            "type": "block",
             "named": true
           },
           {
@@ -7130,7 +7274,23 @@
             "named": true
           },
           {
+            "type": "disposable_block",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
+          {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "hold_block",
+            "named": true
+          },
+          {
+            "type": "if_block",
             "named": true
           },
           {
@@ -7150,7 +7310,19 @@
             "named": true
           },
           {
+            "type": "repeat_block",
+            "named": true
+          },
+          {
             "type": "return_statement",
+            "named": true
+          },
+          {
+            "type": "section_block",
+            "named": true
+          },
+          {
+            "type": "select_block",
             "named": true
           },
           {
@@ -7159,6 +7331,18 @@
           },
           {
             "type": "statement",
+            "named": true
+          },
+          {
+            "type": "trap_block",
+            "named": true
+          },
+          {
+            "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "with_block",
             "named": true
           },
           {
@@ -7276,15 +7460,15 @@
             "named": false
           },
           {
+            "type": ":",
+            "named": false
+          },
+          {
             "type": "access_statement",
             "named": true
           },
           {
             "type": "attribute_statement",
-            "named": true
-          },
-          {
-            "type": "block",
             "named": true
           },
           {
@@ -7296,7 +7480,23 @@
             "named": true
           },
           {
+            "type": "disposable_block",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
+          {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "hold_block",
+            "named": true
+          },
+          {
+            "type": "if_block",
             "named": true
           },
           {
@@ -7316,7 +7516,19 @@
             "named": true
           },
           {
+            "type": "repeat_block",
+            "named": true
+          },
+          {
             "type": "return_statement",
+            "named": true
+          },
+          {
+            "type": "section_block",
+            "named": true
+          },
+          {
+            "type": "select_block",
             "named": true
           },
           {
@@ -7325,6 +7537,18 @@
           },
           {
             "type": "statement",
+            "named": true
+          },
+          {
+            "type": "trap_block",
+            "named": true
+          },
+          {
+            "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "with_block",
             "named": true
           },
           {
@@ -7452,15 +7676,15 @@
             "named": false
           },
           {
+            "type": ":",
+            "named": false
+          },
+          {
             "type": "access_statement",
             "named": true
           },
           {
             "type": "attribute_statement",
-            "named": true
-          },
-          {
-            "type": "block",
             "named": true
           },
           {
@@ -7472,7 +7696,23 @@
             "named": true
           },
           {
+            "type": "disposable_block",
+            "named": true
+          },
+          {
+            "type": "for_block",
+            "named": true
+          },
+          {
             "type": "goto_statement",
+            "named": true
+          },
+          {
+            "type": "hold_block",
+            "named": true
+          },
+          {
+            "type": "if_block",
             "named": true
           },
           {
@@ -7492,7 +7732,19 @@
             "named": true
           },
           {
+            "type": "repeat_block",
+            "named": true
+          },
+          {
             "type": "return_statement",
+            "named": true
+          },
+          {
+            "type": "section_block",
+            "named": true
+          },
+          {
+            "type": "select_block",
             "named": true
           },
           {
@@ -7501,6 +7753,18 @@
           },
           {
             "type": "statement",
+            "named": true
+          },
+          {
+            "type": "trap_block",
+            "named": true
+          },
+          {
+            "type": "while_block",
+            "named": true
+          },
+          {
+            "type": "with_block",
             "named": true
           },
           {
@@ -7642,10 +7906,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -7666,6 +7926,10 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "else_statement",
           "named": true
         },
@@ -7674,7 +7938,19 @@
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -7698,7 +7974,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -7710,7 +7998,19 @@
           "named": true
         },
         {
+          "type": "trap_block",
+          "named": true
+        },
+        {
           "type": "trap_statement",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -7742,10 +8042,6 @@
         },
         {
           "type": "indices",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
@@ -7843,10 +8139,6 @@
       "required": true,
       "types": [
         {
-          "type": "label",
-          "named": true
-        },
-        {
           "type": "until",
           "named": true
         },
@@ -7906,10 +8198,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -7922,11 +8210,27 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "endwhile_statement",
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -7954,7 +8258,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -7966,11 +8282,23 @@
           "named": true
         },
         {
+          "type": "trap_block",
+          "named": true
+        },
+        {
           "type": "until_statement",
           "named": true
         },
         {
+          "type": "while_block",
+          "named": true
+        },
+        {
           "type": "while_statement",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         }
       ]
@@ -8040,10 +8368,6 @@
       "required": true,
       "types": [
         {
-          "type": "label",
-          "named": true
-        },
-        {
           "type": "while",
           "named": true
         },
@@ -8071,10 +8395,6 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "branch_statement",
           "named": true
         },
@@ -8087,11 +8407,27 @@
           "named": true
         },
         {
+          "type": "disposable_block",
+          "named": true
+        },
+        {
           "type": "endwith_statement",
           "named": true
         },
         {
+          "type": "for_block",
+          "named": true
+        },
+        {
           "type": "goto_statement",
+          "named": true
+        },
+        {
+          "type": "hold_block",
+          "named": true
+        },
+        {
+          "type": "if_block",
           "named": true
         },
         {
@@ -8115,7 +8451,19 @@
           "named": true
         },
         {
+          "type": "repeat_block",
+          "named": true
+        },
+        {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "select_block",
           "named": true
         },
         {
@@ -8124,6 +8472,18 @@
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trap_block",
+          "named": true
+        },
+        {
+          "type": "while_block",
+          "named": true
+        },
+        {
+          "type": "with_block",
           "named": true
         },
         {
@@ -8159,10 +8519,6 @@
         },
         {
           "type": "indices",
-          "named": true
-        },
-        {
-          "type": "label",
           "named": true
         },
         {
