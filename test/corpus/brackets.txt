@@ -1,5 +1,5 @@
 ================
-High rank
+high rank
 ================
 [1⋄2⋄3]
 [1 b 3⋄]
@@ -99,7 +99,7 @@ High rank
         (number_literal)))))
 
 ================
-Indices
+indices
 ================
 a[]
 a[1]
