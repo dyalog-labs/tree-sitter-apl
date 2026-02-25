@@ -1,5 +1,5 @@
 ================
-Parenthesis
+parenthesis
 ================
 (1 2 3)
 (1 b 3)
@@ -89,7 +89,7 @@ Parenthesis
         (number_literal)))))
 
 ================
-Vector
+vector
 ================
 (1⋄2⋄3)
 (1 b 3⋄)
@@ -188,7 +188,7 @@ Vector
         (number_literal)))))
 
 ================
-Namespace
+namespace
 ================
 ()
 (a:1 2 3)

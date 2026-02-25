@@ -1,5 +1,5 @@
 ================
-Identifiers
+identifiers
 ================
 a b ab a1b 1ab 1e3e
 ab'cde'fg
@@ -29,7 +29,7 @@ ab'cde'fg
         (identifier)))))
 
 ================
-Quads
+quads
 ================
 ⎕A ⋄ ⎕csv ⋄ ⎕CSV ⋄ ⎕WsId ⋄ ⎕nop
 ⎕A⎕A ⋄ ⎕ A ⋄ ⎕⎕A⎕

@@ -1,5 +1,5 @@
 ================
-Definitions
+definitions
 ================
 {}
 {1 b 3}
@@ -32,7 +32,7 @@ Definitions
         (number_literal)))))
 
 ================
-Functions
+functions
 ================
 {}
 {1 2 3}
@@ -126,7 +126,7 @@ Functions
         (number_literal)))))
 
 ================
-Monadic Operator
+monadic operator
 ================
 {⍺⍺}
 {⍺⍺⍵}
@@ -194,7 +194,7 @@ Monadic Operator
         (dop1_identifier)))))
 
 ================
-Dyadic Operator
+dyadic operator
 ================
 {⍵ ⋄ ⍵⍵ ⋄ ⍵⍵⍵ ⋄ ⍵⍵⍵⍵ ⋄ ⍵⍵⍵⍵⍵}
 {⍺⍺⍵⍵}
@@ -232,7 +232,7 @@ Dyadic Operator
         (number_literal)))))
 
 ================
-Guards
+guards
 ================
 {a:0}
 {a:1 2 3}
@@ -365,7 +365,7 @@ Guards
           (number_literal))))))
 
 ================
-Error Guards
+error guards
 ================
 {a::0}
 {a::1 2 3}

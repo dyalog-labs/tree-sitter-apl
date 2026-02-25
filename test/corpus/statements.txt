@@ -1,5 +1,5 @@
 ================
-Empty
+empty
 ================
 
 ---
@@ -7,7 +7,7 @@ Empty
 (source_file)
 
 ================
-Terminator
+terminator
 ================
 ⋄
 ---
@@ -15,7 +15,7 @@ Terminator
 (source_file)
 
 ================
-Statements
+statements
 ================
 0
 
@@ -42,7 +42,7 @@ Statements
     (number_literal)))
 
 ================
-Comments
+comments
 ================
 ⍝
 ⍝ a comment
@@ -65,7 +65,7 @@ Comments
   (comment))
 
 ================
-Primitives
+primitives
 ================
 1+3
 ab×∘!c ⋄ ⌈ ⋄ ⌊/ab

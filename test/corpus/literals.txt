@@ -1,5 +1,5 @@
 ================
-Numbers
+numbers
 ================
 1 ¯23
 4.5 6.7e8 9E¯1
@@ -19,7 +19,7 @@ Numbers
     (number_literal)))
 
 ================
-Strings
+strings
 ================
 'a string'
 'a string with ''quotes'' inside'
