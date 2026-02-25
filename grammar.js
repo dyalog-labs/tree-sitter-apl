@@ -125,13 +125,13 @@ module.exports = grammar({
     [$._dop1_expression],
     [$.tradop2, $.tradop1, $.tradfn, $._expression, $.__identifier],
     [$.tradop2, $.tradop1, $.tradfn],
-    [$.tradop2, $.tradop1, $._statement_list],
+    [$.tradop2, $.tradop1, $._trad_body],
     [$.tradop2, $.tradop1],
     [$.tradfn, $._expression, $.__identifier],
     [$.tradfn],
-    [$._statement_list],
-    [$._loop_statement_list],
-    [$._loop_statement_list, $._statement_list],
+    [$._trad_body],
+    [$._trad_loop_body],
+    [$._trad_loop_body, $._trad_body],
     [$._loop_if_block, $.if_block],
     [$._loop_select_block, $.select_block],
     [$._loop_trap_block, $.trap_block],
@@ -165,12 +165,15 @@ module.exports = grammar({
       terminator,
     )),
 
-    // traditional definitions
+    // TRADITIONAL FUNCTIONS
+
+    // trad definitions
     _trad: $ => seq(del, $.trad, newline, del),
     trad: $ => choice($.tradfn, $.tradop1, $.tradop2),
     tradfn: $ => trad_def($, DFN),
     tradop1: $ => trad_def($, DOP1),
     tradop2: $ => trad_def($, DOP2),
+
     // statements inside trad-defs
     block: $ => choice(
       $.if_block,
@@ -184,7 +187,7 @@ module.exports = grammar({
       $.repeat_block,
       $.for_block,
     ),
-    _trad_stataments: $ => choice(
+    _trad_statements: $ => choice(
       alias(trad_statement($, $._expression), $.statement),
       $.namespace_script,
       $.class_definition,
@@ -198,8 +201,12 @@ module.exports = grammar({
       $.goto_statement,
       $.return_statement,
     ),
-    _loop_statement_list: $ => separated(choice(
-      $._trad_stataments,
+    // bodies (terminator-separated lists of statements)
+    _trad_body: $ => separated($._trad_statements),
+    // inside loops, there can be additional control words,
+    // or blocks including those control words
+    _trad_loop_body: $ => separated(choice(
+      $._trad_statements,
       alias($._loop_if_block, $.if_block),
       alias($._loop_select_block, $.select_block),
       alias($._loop_trap_block, $.trap_block),
@@ -210,18 +217,20 @@ module.exports = grammar({
       $.leave_statement,
       $.continue_statement,
     )),
-    _statement_list: $ => separated($._trad_stataments),
+
     // control words
     control: $ => choice(... control.map(word => $[word])),
-    // control structures
+
+    // control structures (blocks)
     ...block_rules(),
+    // stinking loops!
     while_block: $ => seq(
       $.while_statement,
       choice(
         repeat(seq(terminator, $.andif_statement)),
         repeat(seq(terminator, $.orif_statement)),
       ),
-      optional(seq(terminator, $._loop_statement_list)),
+      optional(seq(terminator, $._trad_loop_body)),
       choice(
         $._until,
         seq(
@@ -231,7 +240,7 @@ module.exports = grammar({
     ),
     repeat_block: $ => seq(
       $.repeat_statement,
-      optional(seq(terminator, $._loop_statement_list)),
+      optional(seq(terminator, $._trad_loop_body)),
       $._until,
     ),
     _until: $ => seq(
@@ -243,9 +252,10 @@ module.exports = grammar({
     ),
     for_block: $ => seq(
       $.for_statement,
-      optional(seq(terminator, $._loop_statement_list)),
+      optional(seq(terminator, $._trad_loop_body)),
       terminator, $.endfor_statement,
     ),
+
     // control statements
     branch_statement: $ => trad_statement($, seq($.right_arrow, $._expression)),
     goto_statement: $ => trad_statement($, seq($.goto, $._expression)),
@@ -284,6 +294,10 @@ module.exports = grammar({
     leave_statement: $ => trad_statement($, $.leave),
     return_statement: $ => trad_statement($, $.return),
 
+    // NAMESPACES AND OBJECT ORIENTED PROGRAMMING
+
+    // namespace scripts can include statements, but
+    // no blocks or control flow words (neither labels)
     namespace_script: $ => seq(
       $.namespace_statement,
       repeat(seq(terminator, choice(
@@ -317,6 +331,7 @@ module.exports = grammar({
     property_section: $ => seq(
       $.property_statement,
       optional(seq(terminator, $.access_statement)),
+      // (!) allow any tradfn, not only get/set/shape methods
       repeat1(seq(terminator, del, $.tradfn, terminator, del)),
       terminator, $.endproperty_statement,
     ),
@@ -360,13 +375,6 @@ module.exports = grammar({
       $.identifier,
       repeat(seq(',', $._identifier)),
     ),
-    _numbered_property_statement: $ => seq(
-      $.property,
-      $.numbered,
-      optional($.default),
-      $.identifier,
-      repeat(seq(',', $._identifier)),
-    ),
     endproperty_statement: $ => choice($.endproperty, $.end),
     require_statement: $ => seq($.require, $.path),
     path: _ => /.*/,
@@ -402,6 +410,7 @@ module.exports = grammar({
       optional($.override),
       optional($.overridable),
     ),
+    // other elements of class-related statements
     visibility: _ => choice(/private/i, /public/i),
     sharing: _ => choice(/instance/i, /shared/i),
     readonly: _ => /readonly/i,
@@ -426,6 +435,7 @@ module.exports = grammar({
       ))),
       newline, $.endinterface_statement,
     ),
+    // interface methods are tradfns without bodies
     interface_method: $ => seq(del, trad_header($, DFN), newline, del),
     interface_property: $ => seq(
       $.property_statement,
@@ -434,6 +444,8 @@ module.exports = grammar({
     ),
     interface_statement: $ => seq($.interface, $.identifier),
     endinterface_statement: $ => choice($.endinterface, $.end),
+
+    // APL
 
     // an _expression is any non-dfn/dop valid expression
     _expression: $ => choice(
@@ -489,6 +501,9 @@ module.exports = grammar({
   },
 });
 
+// build names list, with dXX prefixes
+// 'name' will give ['name', 'dfn_name', ...]
+// '_name' will give ['_name', '_dfn_name', ...]
 function defs(name) {
   const prefixes = ['', 'dfn_', 'dop1_', 'dop2_'];
   const private = name[0] == '_' ? '_' : '';
@@ -496,17 +511,22 @@ function defs(name) {
   return prefixes.map((prefix) => [private + prefix + base]);
 }
 
+// return naked and definition nodes for given name
 function _defs($$, name) {
   const d = defs(name);
   return d.map((di) => $$[di]);
 }
 
+// return naked and definition aliases for given name of
+// each corresponding _expression (eg: $.dfn_expression
+// is aliased as $.name_expression)
 function _alias($$, name){
   const expressions = _defs($$, '_expression');
   const aliases = _defs($$, name);
   return expressions.map((ei, i) => alias(ei, aliases[i]));
 }
 
+// for given choices, return "scan" of choice
 function _choice(choices){
   const c0 = choices[0];
   const c1 = choice(choices[1], c0);
@@ -515,6 +535,11 @@ function _choice(choices){
   return [c0, c1, c2, c3];
 }
 
+// return expression for given definition d (0 for naked)
+// and possible extra elements (an expression might be
+// composed of other expressions, if those subexpressions
+// contain identifiers of dfn, dop1 or dop2, the expression
+// will be a dfn, dop1 or dop2)
 function expression($$, d, ...extra) {
   const prefix = ['', 'dfn_', 'dop1_', 'dop2_'][d];
   const _assignment = _defs($$, 'assignment')[d];
@@ -535,9 +560,19 @@ function expression($$, d, ...extra) {
   );
 }
 
-function _separated(separator, statements, d){
-  if (d == 0)
-    return separated(statements[0], separator);
+// for a list of statements for different definitions,
+// a separator and a definition d (0 for naked), return
+// a list of statements separated by separator including
+// any statements up to d. If d < 0, statements should
+// contain only the naked statements (d == 0)
+function separated(statements, separator=terminator, d=-1){
+  if (d == 0) statements = statements[0];
+  if (d <= 0) return seq(
+    optional(separator),
+    statements,
+    repeat(seq(separator, statements)),
+    optional(separator),
+  );
   const _statements = _choice(statements);
   return seq(
     optional(separator),
@@ -548,26 +583,34 @@ function _separated(separator, statements, d){
   );
 }
 
-function separated(statements, separator=terminator){
-  return seq(
-    optional(separator),
-    statements,
-    repeat(seq(separator, statements)),
-    optional(separator),
+// return terminator-separed list of statements including at least one
+// identifier for given definition d
+function statements($$, d){
+  return separated(_alias($$, 'statement'), terminator, d);
+}
+
+// return terminator-separed list of _statements including at least one
+// identifier for given definition d
+function _statements($$, d){
+  return separated(_defs($$, '_statement'), terminator, d);
+}
+
+// return sequence where at least one of the left or right elements
+// include an identifier for given definition d
+function _left_right(left, middle, right, d){
+  if (d == 0)
+    return prec.right(seq(left[0], middle, right[0]));
+  const _left = _choice(left);
+  const _right = _choice(right);
+  return choice(
+    prec.right(seq(_left[d-1], middle, right[d])),
+    prec.right(seq(left[d], middle, _right[d])),
   );
 }
 
-function trad_statement($$, statement){
-    return choice(
-      statement,
-      seq(
-        alias($$.identifier, $$.label),
-        colon,
-        statement,
-      ),
-    );
-}
-
+// create rules for all blocks inside trad-defs, taking into
+// account that loop blocks can contain additional statements,
+// as well as other blocks inside loop blocks
 function block_rules(){
   function block(name){
     return ($, statement_list) => seq(
@@ -646,31 +689,32 @@ function block_rules(){
   for (let i = 0; i < keys.length; i++) {
     let k = keys[i];
     let fn = rules[k];
-    rules[k] = $ => fn($, $._statement_list);
-    rules['_loop_' + k] = $ => fn($, $._loop_statement_list);
+    rules[k] = $ => fn($, $._trad_body);
+    rules['_loop_' + k] = $ => fn($, $._trad_loop_body);
   }
   return rules;
 }
 
-function statements($$, d){
-  return _separated(terminator, _alias($$, 'statement'), d);
-}
-
-function _statements($$, d){
-  return _separated(terminator, _defs($$, '_statement'), d);
-}
-
-function _left_right(left, middle, right, d){
-  if (d == 0)
-    return prec.right(seq(left[0], middle, right[0]));
-  const _left = _choice(left);
-  const _right = _choice(right);
-  return choice(
-    prec.right(seq(_left[d-1], middle, right[d])),
-    prec.right(seq(left[d], middle, _right[d])),
+// conditions in blocks
+function condition_statement($$, name) {
+  return seq(
+    $$[name],
+    alias($$._expression, $$[name + '_condition']),
   );
 }
 
+// trad-fns and trad-ops definitons
+function trad_def($$, d) {
+  return seq(
+    trad_header($$, d),
+    repeat(seq(repeat1(';'), field('local', $$.identifier))),
+    repeat(';'),
+    newline,
+    optional(field('body', $$._trad_body)),
+  );
+}
+
+// trad-fns and trad-ops headers
 function trad_header($$, d) {
   var center = [field('name', $$.identifier)];
   if (d > DFN) {
@@ -709,23 +753,19 @@ function trad_header($$, d) {
   );
 }
 
-function trad_def($$, d) {
-  return seq(
-    trad_header($$, d),
-    repeat(seq(repeat1(';'), field('local', $$.identifier))),
-    repeat(';'),
-    newline,
-    optional(field('body', $$._statement_list)),
-  );
+// inside trad-fns, a statement might be preceded by a label
+function trad_statement($$, statement){
+    return choice(
+      statement,
+      seq(
+        alias($$.identifier, $$.label),
+        colon,
+        statement,
+      ),
+    );
 }
 
-function condition_statement($$, name) {
-  return seq(
-    $$[name],
-    alias($$._expression, $$[name + '_condition']),
-  );
-}
-
+// rules for dfns and dops
 function def_rules() {
   const rules = {
     // statements inside definitions can be expressions,
@@ -781,7 +821,7 @@ function def_rules() {
     },
     // a namespace_literal includes members separated by terminators, or could be empty
     namespace_literal($$, d) {
-      const members = _separated(terminator, _defs($$, 'member'), d);
+      const members = separated(_defs($$, 'member'), terminator, d);
       if (d == 0) return seq('(', optional(choice(
         members,
         terminator,
@@ -801,7 +841,7 @@ function def_rules() {
     },
     // indices might be separated by separators (;) or not
     indices($$, d) {
-      const indices = _separated(separator, _alias($$, 'index'), d);
+      const indices = separated(_alias($$, 'index'), separator, d);
       if (d == 0) return seq('[', optional(choice(
         indices,
         separator,
