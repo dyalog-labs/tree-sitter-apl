@@ -16,7 +16,8 @@ goto 1
       (number_literal))
     (branch_statement
       (right_arrow)
-      (identifier))
+      (branch_expression
+        (identifier)))
     (statement
       (number_literal))
     (label)
@@ -46,58 +47,66 @@ TEST
     (identifier)
     (branch_statement
       (right_arrow)
-      (identifier))
+      (branch_expression
+        (identifier)))
     (goto_statement
       (goto)
-      (identifier))
+      (goto_expression
+        (identifier)))
     (branch_statement
       (right_arrow)
-      (parenthesis
-        (statement
-          (assignment
-            (assign_left
-              (identifier)
-              (primitive)
-              (identifier))
-            (left_arrow)
-            (assign_right
-              (identifier)
-              (primitive)
-              (number_literal)))))
-      (primitive)
-      (identifier))
+      (branch_expression
+        (parenthesis
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (primitive)
+                (identifier))
+              (left_arrow)
+              (assign_right
+                (identifier)
+                (primitive)
+                (number_literal)))))
+        (primitive)
+        (identifier)))
     (goto_statement
       (goto)
-      (parenthesis
-        (statement
-          (assignment
-            (assign_left
-              (identifier)
-              (primitive)
-              (identifier))
-            (left_arrow)
-            (assign_right
-              (identifier)
-              (primitive)
-              (number_literal)))))
-      (primitive)
-      (identifier))
+      (goto_expression
+        (parenthesis
+          (statement
+            (assignment
+              (assign_left
+                (identifier)
+                (primitive)
+                (identifier))
+              (left_arrow)
+              (assign_right
+                (identifier)
+                (primitive)
+                (number_literal)))))
+        (primitive)
+        (identifier)))
     (branch_statement
       (right_arrow)
-      (number_literal)
-      (primitive)
-      (system_command))
+      (branch_expression
+        (number_literal)
+        (primitive)
+        (system_command)))
     (goto_statement
       (goto)
-      (number_literal)
-      (primitive)
-      (system_command))
+      (goto_expression
+        (number_literal)
+        (primitive)
+        (system_command)))
     (branch_statement
       (right_arrow)
-      (number_literal))
+      (branch_expression
+        (number_literal)))
     (goto_statement
       (goto)
-      (number_literal))))
+      (goto_expression
+        (number_literal)))))
 
 ==================
 if 1
@@ -557,10 +566,12 @@ select 1
   (select_block
     (select_statement
       (select)
-      (identifier))
+      (select_expression
+        (identifier)))
     (case_statement
       (case)
-      (number_literal))
+      (case_expression
+        (number_literal)))
     (statement
       (string_literal
         (string_literal_content)))
@@ -569,16 +580,19 @@ select 1
   (select_block
     (select_statement
       (select)
-      (identifier))
+      (select_expression
+        (identifier)))
     (case_statement
       (case)
-      (number_literal))
+      (case_expression
+        (number_literal)))
     (statement
       (string_literal
         (string_literal_content)))
     (case_statement
       (case)
-      (number_literal))
+      (case_expression
+        (number_literal)))
     (statement
       (string_literal
         (string_literal_content)))
@@ -611,44 +625,49 @@ select 2
   (select_block
     (select_statement
       (select)
-      (primitive)
-      (number_literal)
-      (number_literal))
+      (select_expression
+        (primitive)
+        (number_literal)
+        (number_literal)))
     (case_statement
       (case)
-      (number_literal)
-      (number_literal))
+      (case_expression
+        (number_literal)
+        (number_literal)))
     (statement
       (string_literal
         (string_literal_content)))
     (case_statement
       (case)
-      (number_literal)
-      (number_literal))
+      (case_expression
+        (number_literal)
+        (number_literal)))
     (statement
       (string_literal
         (string_literal_content)))
     (caselist_statement
       (caselist)
-      (number_literal)
-      (primitive)
-      (primitive)
-      (primitive)
-      (number_literal))
+      (caselist_expression
+        (number_literal)
+        (primitive)
+        (primitive)
+        (primitive)
+        (number_literal)))
     (statement
       (string_literal
         (string_literal_content)))
     (caselist_statement
       (caselist)
-      (parenthesis
-        (statement
-          (primitive)
-          (number_literal)))
-      (primitive)
-      (primitive)
-      (primitive)
-      (primitive)
-      (number_literal))
+      (caselist_expression
+        (parenthesis
+          (statement
+            (primitive)
+            (number_literal)))
+        (primitive)
+        (primitive)
+        (primitive)
+        (primitive)
+        (number_literal)))
     (statement
       (string_literal
         (string_literal_content)))
@@ -675,17 +694,21 @@ select empty
   (select_block
     (select_statement
       (select)
-      (identifier))
+      (select_expression
+        (identifier)))
     (case_statement
       (case)
-      (identifier))
+      (case_expression
+        (identifier)))
     (case_statement
       (case)
-      (identifier))
+      (case_expression
+        (identifier)))
     (caselist_statement
       (caselist)
-      (identifier)
-      (identifier))
+      (caselist_expression
+        (identifier)
+        (identifier)))
     (else_statement
       (else))
     (endselect_statement
@@ -972,11 +995,13 @@ for 1
   (for_block
     (for_statement
       (for)
-      (identifier)
+      (for_var_names
+        (identifier))
       (in)
-      (number_literal)
-      (number_literal)
-      (number_literal))
+      (for_array_expression
+        (number_literal)
+        (number_literal)
+        (number_literal)))
     (statement
       (identifier)
       (identifier))
@@ -1000,17 +1025,19 @@ for 2
   (for_block
     (for_statement
       (for)
-      (identifier)
+      (for_var_names
+        (identifier))
       (in)
-      (parenthesis
-        (statement
-          (primitive)
-          (system_command)
-          (string_literal)))
-      (primitive)
-      (primitive)
-      (string_literal
-        (string_literal_content)))
+      (for_array_expression
+        (parenthesis
+          (statement
+            (primitive)
+            (system_command)
+            (string_literal)))
+        (primitive)
+        (primitive)
+        (string_literal
+          (string_literal_content))))
     (statement
       (identifier)
       (system_command)
@@ -1049,17 +1076,19 @@ TS←0
   (for_block
     (for_statement
       (for)
-      (identifier)
+      (for_var_names
+        (identifier))
       (in)
-      (parenthesis
-        (statement
-          (primitive)
-          (system_command)
-          (string_literal)))
-      (primitive)
-      (primitive)
-      (string_literal
-        (string_literal_content)))
+      (for_array_expression
+        (parenthesis
+          (statement
+            (primitive)
+            (system_command)
+            (string_literal)))
+        (primitive)
+        (primitive)
+        (string_literal
+          (string_literal_content))))
     (statement
       (identifier)
       (system_command)
@@ -1078,18 +1107,20 @@ TS←0
     (for_block
       (for_statement
         (for)
-        (identifier)
+        (for_var_names
+          (identifier))
         (in)
-        (parenthesis
-          (statement
-            (identifier)
-            (primitive)
-            (number_literal)))
-        (primitive)
-        (primitive)
-        (identifier)
-        (primitive)
-        (number_literal))
+        (for_array_expression
+          (parenthesis
+            (statement
+              (identifier)
+              (primitive)
+              (number_literal)))
+          (primitive)
+          (primitive)
+          (identifier)
+          (primitive)
+          (number_literal)))
       (statement
         (assignment
           (assign_left
@@ -1122,28 +1153,30 @@ for 4
   (for_block
     (for_statement
       (for)
-      (identifier)
-      (identifier)
-      (identifier)
+      (for_var_names
+        (identifier)
+        (identifier)
+        (identifier))
       (ineach)
-      (parenthesis
-        (statement
-          (number_literal)
-          (number_literal)
-          (number_literal)
-          (number_literal)))
-      (parenthesis
-        (statement
-          (number_literal)
-          (number_literal)
-          (number_literal)
-          (number_literal)))
-      (parenthesis
-        (statement
-          (number_literal)
-          (number_literal)
-          (number_literal)
-          (number_literal))))
+      (for_array_expression
+        (parenthesis
+          (statement
+            (number_literal)
+            (number_literal)
+            (number_literal)
+            (number_literal)))
+        (parenthesis
+          (statement
+            (number_literal)
+            (number_literal)
+            (number_literal)
+            (number_literal)))
+        (parenthesis
+          (statement
+            (number_literal)
+            (number_literal)
+            (number_literal)
+            (number_literal)))))
     (statement
       (assignment
         (assign_left
@@ -1170,9 +1203,11 @@ for 5
   (for_block
     (for_statement
       (for)
-      (identifier)
+      (for_var_names
+        (identifier))
       (in)
-      (identifier))
+      (for_array_expression
+        (identifier)))
     (if_block
       (if_statement
         (if)
@@ -1220,9 +1255,11 @@ for empty
   (for_block
     (for_statement
       (for)
-      (identifier)
+      (for_var_names
+        (identifier))
       (in)
-      (identifier))
+      (for_array_expression
+        (identifier)))
     (endfor_statement
       (end))))
 
@@ -1240,10 +1277,11 @@ hold 1
   (hold_block
     (hold_statement
       (hold)
-      (primitive)
-      (primitive)
-      (identifier)
-      (identifier))
+      (hold_expression
+        (primitive)
+        (primitive)
+        (identifier)
+        (identifier)))
     (if_block
       (if_statement
         (if)
@@ -1288,8 +1326,9 @@ hold 2
   (hold_block
     (hold_statement
       (hold)
-      (string_literal
-        (string_literal_content)))
+      (hold_expression
+        (string_literal
+          (string_literal_content))))
     (statement
       (assignment
         (assign_left
@@ -1326,7 +1365,8 @@ trap 1
     (trap_block
       (trap_statement
         (trap)
-        (number_literal))
+        (trap_expression
+          (number_literal)))
       (comment)
       (statement
         (identifier))
@@ -1357,7 +1397,8 @@ trap 2
     (trap_block
       (trap_statement
         (trap)
-        (number_literal))
+        (trap_expression
+          (number_literal)))
       (comment)
       (statement
         (assignment
@@ -1419,32 +1460,36 @@ trap 3
     (trap_block
       (trap_statement
         (trap)
-        (number_literal)
-        (number_literal))
+        (trap_expression
+          (number_literal)
+          (number_literal)))
       (statement
         (string_literal
           (string_literal_content)))
       (case_statement
         (case)
-        (number_literal))
+        (case_expression
+          (number_literal)))
       (statement
         (string_literal
           (string_literal_content)))
       (caselist_statement
         (caselist)
-        (number_literal)
-        (number_literal)
-        (number_literal)
-        (number_literal))
+        (caselist_expression
+          (number_literal)
+          (number_literal)
+          (number_literal)
+          (number_literal)))
       (statement
         (string_literal
           (string_literal_content)))
       (caselist_statement
         (caselist)
-        (number_literal)
-        (primitive)
-        (primitive)
-        (number_literal))
+        (caselist_expression
+          (number_literal)
+          (primitive)
+          (primitive)
+          (number_literal)))
       (statement
         (string_literal
           (string_literal_content)))
@@ -1482,7 +1527,8 @@ trap nested
     (trap_block
       (trap_statement
         (trap)
-        (number_literal))
+        (trap_expression
+          (number_literal)))
       (comment)
       (statement
         (assignment
@@ -1499,7 +1545,8 @@ trap nested
       (trap_block
         (trap_statement
           (trap)
-          (number_literal))
+          (trap_expression
+            (number_literal)))
         (comment)
         (statement
           (assignment
@@ -1598,9 +1645,10 @@ with 1
   (with_block
     (with_statement
       (with)
-      (identifier
-        (identifier)
-        (identifier)))
+      (with_expression
+        (identifier
+          (identifier)
+          (identifier))))
     (statement
       (assignment
         (assign_left
@@ -1656,19 +1704,22 @@ with 2
   (with_block
     (with_statement
       (with)
-      (string_literal
-        (string_literal_content)))
+      (with_expression
+        (string_literal
+          (string_literal_content))))
     (comment)
     (with_block
       (with_statement
         (with)
-        (string_literal
-          (string_literal_content)))
+        (with_expression
+          (string_literal
+            (string_literal_content))))
       (comment)
       (with_block
         (with_statement
           (with)
-          (system_command))
+          (with_expression
+            (system_command)))
         (comment)
         (statement
           (identifier)
@@ -1697,17 +1748,19 @@ disposable 1
   (disposable_block
     (disposable_statement
       (disposable)
-      (assignment
-        (assign_left
-          (identifier))
-        (left_arrow)
-        (assign_right
-          (system_command)
-          (primitive)
-          (identifier)
-          (identifier))))
+      (disposable_expression
+        (assignment
+          (assign_left
+            (identifier))
+          (left_arrow)
+          (assign_right
+            (system_command)
+            (primitive)
+            (identifier)
+            (identifier)))))
     (branch_statement
       (right_arrow)
-      (number_literal))
+      (branch_expression
+        (number_literal)))
     (enddisposable_statement
       (enddisposable))))

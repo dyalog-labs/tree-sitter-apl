@@ -781,7 +781,8 @@ fields 3
       (trap_block
         (trap_statement
           (trap)
-          (number_literal))
+          (trap_expression
+            (number_literal)))
         (statement
           (assignment
             (assign_left
@@ -1100,7 +1101,8 @@ properties 1
       (trap_block
         (trap_statement
           (trap)
-          (number_literal))
+          (trap_expression
+            (number_literal)))
         (statement
           (assignment
             (assign_left
@@ -1235,7 +1237,8 @@ properties 1
         (trap_block
           (trap_statement
             (trap)
-            (number_literal))
+            (trap_expression
+              (number_literal)))
           (statement
             (assignment
               (assign_left

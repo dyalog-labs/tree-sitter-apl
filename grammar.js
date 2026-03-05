@@ -184,7 +184,6 @@ module.exports = grammar({
     // it might be a file or a code fragment
     source_file: $ => optional(choice(
       $.trad,
-      // $._body,
       separated(choice(
         alias($._expression, $.statement),
         $.namespace_script,
@@ -255,27 +254,27 @@ module.exports = grammar({
     ),
 
     // control statements
-    branch_statement: $ => seq($.right_arrow, $._expression),
-    goto_statement: $ => seq($.goto, $._expression),
+    branch_statement: $ => seq($.right_arrow, alias($._expression, $.branch_expression)),
+    goto_statement: $ => expression_statement($, 'goto'),
     if_statement: $ => condition_statement($, 'if'),
     andif_statement: $ => condition_statement($, 'andif'),
     orif_statement: $ => condition_statement($, 'orif'),
     elseif_statement: $ => condition_statement($, 'elseif'),
     else_statement: $ => $.else,
     endif_statement: $ => choice($.endif, $.end),
-    select_statement: $ => seq($.select, $._expression),
-    case_statement: $ => seq($.case, $._expression),
-    caselist_statement: $ => seq($.caselist, $._expression),
+    select_statement: $ => expression_statement($, 'select'),
+    case_statement: $ => expression_statement($, 'case'),
+    caselist_statement: $ => expression_statement($, 'caselist'),
     endselect_statement: $ => choice($.endselect, $.end),
-    trap_statement: $ => seq($.trap, $._expression),
+    trap_statement: $ => expression_statement($, 'trap'),
     endtrap_statement: $ => choice($.endtrap, $.end),
-    hold_statement: $ => seq($.hold, $._expression),
+    hold_statement: $ => expression_statement($, 'hold'),
     endhold_statement: $ => choice($.endhold, $.end),
     section_statement: $ => seq($.section, $.identifier),
     endsection_statement: $ => choice($.endsection, $.end),
-    with_statement: $ => seq($.with, $._expression),
+    with_statement: $ => expression_statement($, 'with'),
     endwith_statement: $ => choice($.endwith, $.end),
-    disposable_statement: $ => seq($.disposable, $._expression),
+    disposable_statement: $ => expression_statement($, 'disposable'),
     enddisposable_statement: $ => choice($.enddisposable, $.end),
     while_statement: $ => condition_statement($, 'while'),
     until_statement: $ => condition_statement($, 'until'),
@@ -283,9 +282,9 @@ module.exports = grammar({
     repeat_statement: $ => $.repeat,
     for_statement: $ => seq(
       $.for,
-      repeat1(field('control_var', $._identifier)),
+      alias(repeat1($._identifier), $.for_var_names),
       choice($.in, $.ineach),
-      field('control_array', $._expression),
+      alias($._expression, $.for_array_expression),
     ),
     endfor_statement: $ => choice($.endfor, $.end),
     continue_statement: $ => $.continue,
@@ -556,6 +555,11 @@ function expression($$, d, ...extra) {
     ),
     _assignment,
   );
+}
+
+// statements followed by simple expressions
+function expression_statement($$, statement){
+  return seq($$[statement], alias($$._expression, $$[statement+'_expression']));
 }
 
 // for a list of statements for different definitions,

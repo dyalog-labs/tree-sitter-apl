@@ -367,7 +367,7 @@
     }
   },
   {
-    "type": "branch_statement",
+    "type": "branch_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -411,7 +411,77 @@
           "named": true
         },
         {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "branch_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "branch_expression",
+          "named": true
+        },
+        {
           "type": "right_arrow",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "case_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace_literal",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
           "named": true
         },
         {
@@ -434,11 +504,26 @@
       "required": true,
       "types": [
         {
-          "type": "assignment",
+          "type": "case",
           "named": true
         },
         {
-          "type": "case",
+          "type": "case_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "caselist_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
           "named": true
         },
         {
@@ -493,51 +578,11 @@
       "required": true,
       "types": [
         {
-          "type": "assignment",
-          "named": true
-        },
-        {
           "type": "caselist",
           "named": true
         },
         {
-          "type": "definition",
-          "named": true
-        },
-        {
-          "type": "highrank",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "indices",
-          "named": true
-        },
-        {
-          "type": "namespace_literal",
-          "named": true
-        },
-        {
-          "type": "number_literal",
-          "named": true
-        },
-        {
-          "type": "parenthesis",
-          "named": true
-        },
-        {
-          "type": "primitive",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "system_command",
+          "type": "caselist_expression",
           "named": true
         }
       ]
@@ -1789,7 +1834,7 @@
     }
   },
   {
-    "type": "disposable_statement",
+    "type": "disposable_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -1802,10 +1847,6 @@
         },
         {
           "type": "definition",
-          "named": true
-        },
-        {
-          "type": "disposable",
           "named": true
         },
         {
@@ -1842,6 +1883,25 @@
         },
         {
           "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "disposable_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "disposable",
+          "named": true
+        },
+        {
+          "type": "disposable_expression",
           "named": true
         }
       ]
@@ -5109,6 +5169,61 @@
     }
   },
   {
+    "type": "for_array_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "definition",
+          "named": true
+        },
+        {
+          "type": "highrank",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "indices",
+          "named": true
+        },
+        {
+          "type": "namespace_literal",
+          "named": true
+        },
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesis",
+          "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "for_block",
     "named": true,
     "fields": {},
@@ -5226,74 +5341,21 @@
   {
     "type": "for_statement",
     "named": true,
-    "fields": {
-      "control_array": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "assignment",
-            "named": true
-          },
-          {
-            "type": "definition",
-            "named": true
-          },
-          {
-            "type": "highrank",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "indices",
-            "named": true
-          },
-          {
-            "type": "namespace_literal",
-            "named": true
-          },
-          {
-            "type": "number_literal",
-            "named": true
-          },
-          {
-            "type": "parenthesis",
-            "named": true
-          },
-          {
-            "type": "primitive",
-            "named": true
-          },
-          {
-            "type": "string_literal",
-            "named": true
-          },
-          {
-            "type": "system_command",
-            "named": true
-          }
-        ]
-      },
-      "control_var": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
           "type": "for",
+          "named": true
+        },
+        {
+          "type": "for_array_expression",
+          "named": true
+        },
+        {
+          "type": "for_var_names",
           "named": true
         },
         {
@@ -5308,7 +5370,22 @@
     }
   },
   {
-    "type": "goto_statement",
+    "type": "for_var_names",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "goto_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -5321,10 +5398,6 @@
         },
         {
           "type": "definition",
-          "named": true
-        },
-        {
-          "type": "goto",
           "named": true
         },
         {
@@ -5361,6 +5434,25 @@
         },
         {
           "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "goto_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "goto",
+          "named": true
+        },
+        {
+          "type": "goto_expression",
           "named": true
         }
       ]
@@ -5626,7 +5718,7 @@
     }
   },
   {
-    "type": "hold_statement",
+    "type": "hold_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -5643,10 +5735,6 @@
         },
         {
           "type": "highrank",
-          "named": true
-        },
-        {
-          "type": "hold",
           "named": true
         },
         {
@@ -5679,6 +5767,25 @@
         },
         {
           "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hold_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "hold",
+          "named": true
+        },
+        {
+          "type": "hold_expression",
           "named": true
         }
       ]
@@ -7052,7 +7159,7 @@
     }
   },
   {
-    "type": "select_statement",
+    "type": "select_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -7096,15 +7203,30 @@
           "named": true
         },
         {
-          "type": "select",
-          "named": true
-        },
-        {
           "type": "string_literal",
           "named": true
         },
         {
           "type": "system_command",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "select_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "select",
+          "named": true
+        },
+        {
+          "type": "select_expression",
           "named": true
         }
       ]
@@ -8017,7 +8139,7 @@
     }
   },
   {
-    "type": "trap_statement",
+    "type": "trap_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -8067,9 +8189,24 @@
         {
           "type": "system_command",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "trap_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
         {
           "type": "trap",
+          "named": true
+        },
+        {
+          "type": "trap_expression",
           "named": true
         }
       ]
@@ -8494,7 +8631,7 @@
     }
   },
   {
-    "type": "with_statement",
+    "type": "with_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -8544,9 +8681,24 @@
         {
           "type": "system_command",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "with_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
         {
           "type": "with",
+          "named": true
+        },
+        {
+          "type": "with_expression",
           "named": true
         }
       ]
