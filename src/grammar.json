@@ -6870,8 +6870,12 @@
           "name": "section"
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "FIELD",
+          "name": "section_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         }
       ]
     },
@@ -7079,58 +7083,16 @@
           "name": "namespace_statement"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "REPEAT1",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "\\n"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "⋄"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "\u0000"
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    },
-                    "named": true,
-                    "value": "statement"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_trad"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "namespace_script"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "class_definition"
-                  }
-                ]
-              }
-            ]
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_namespace_body"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "REPEAT1",
@@ -7155,6 +7117,89 @@
         {
           "type": "SYMBOL",
           "name": "endnamespace_statement"
+        }
+      ]
+    },
+    "_namespace_body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "\\n"
+                },
+                {
+                  "type": "STRING",
+                  "value": "⋄"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\u0000"
+                }
+              ]
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                "named": true,
+                "value": "statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_trad"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "namespace_script"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "namespace_section"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "class_definition"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "namespace_section": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "section_statement"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_namespace_body"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "endsection_statement"
         }
       ]
     },
@@ -7196,86 +7241,16 @@
           "name": "class_statement"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "REPEAT1",
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "\\n"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "⋄"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "\u0000"
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_expression"
-                    },
-                    "named": true,
-                    "value": "statement"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_trad"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "namespace_script"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "class_definition"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "interface_definition"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "property_section"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "access_statement"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "attribute_statement"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "include_statement"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "using_statement"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "field_statement"
-                  }
-                ]
-              }
-            ]
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_class_body"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "REPEAT1",
@@ -7300,6 +7275,117 @@
         {
           "type": "SYMBOL",
           "name": "endclass_statement"
+        }
+      ]
+    },
+    "_class_body": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "\\n"
+                },
+                {
+                  "type": "STRING",
+                  "value": "⋄"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\u0000"
+                }
+              ]
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                "named": true,
+                "value": "statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_trad"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "namespace_script"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "class_definition"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "class_section"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "interface_definition"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "property_section"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "access_statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "include_statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "using_statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "field_statement"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "class_section": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "section_statement"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_class_body"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "endsection_statement"
         }
       ]
     },

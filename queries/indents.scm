@@ -15,7 +15,9 @@
   (trad)
   (block)
   (namespace_script)
+  (namespace_section)
   (class_definition)
+  (class_section)
   (interface_definition)
   (property_section)
 ] @indent.begin

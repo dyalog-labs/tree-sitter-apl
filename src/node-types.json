@@ -627,6 +627,10 @@
           "named": true
         },
         {
+          "type": "class_section",
+          "named": true
+        },
+        {
           "type": "class_statement",
           "named": true
         },
@@ -652,6 +656,73 @@
         },
         {
           "type": "property_section",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trad",
+          "named": true
+        },
+        {
+          "type": "using_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "access_statement",
+          "named": true
+        },
+        {
+          "type": "attribute_statement",
+          "named": true
+        },
+        {
+          "type": "class_definition",
+          "named": true
+        },
+        {
+          "type": "class_section",
+          "named": true
+        },
+        {
+          "type": "endsection_statement",
+          "named": true
+        },
+        {
+          "type": "field_statement",
+          "named": true
+        },
+        {
+          "type": "include_statement",
+          "named": true
+        },
+        {
+          "type": "interface_definition",
+          "named": true
+        },
+        {
+          "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "property_section",
+          "named": true
+        },
+        {
+          "type": "section_statement",
           "named": true
         },
         {
@@ -6513,7 +6584,50 @@
           "named": true
         },
         {
+          "type": "namespace_section",
+          "named": true
+        },
+        {
           "type": "namespace_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "trad",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespace_section",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "class_definition",
+          "named": true
+        },
+        {
+          "type": "endsection_statement",
+          "named": true
+        },
+        {
+          "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "namespace_section",
+          "named": true
+        },
+        {
+          "type": "section_statement",
           "named": true
         },
         {
@@ -7076,15 +7190,22 @@
   {
     "type": "section_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "section_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
         {
           "type": "section",
           "named": true
