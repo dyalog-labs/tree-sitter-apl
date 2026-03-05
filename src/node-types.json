@@ -198,10 +198,21 @@
   {
     "type": "assign_left",
     "named": true,
-    "fields": {},
+    "fields": {
+      "field_name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "assignment",
@@ -331,7 +342,18 @@
   {
     "type": "attribute_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "attribute_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -342,10 +364,6 @@
         },
         {
           "type": "constructor_args",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         }
       ]
@@ -654,7 +672,18 @@
   {
     "type": "class_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "class_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -5132,7 +5161,18 @@
   {
     "type": "field_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "field_name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -5143,10 +5183,6 @@
         },
         {
           "type": "field",
-          "named": true
-        },
-        {
-          "type": "identifier",
           "named": true
         },
         {
@@ -6322,15 +6358,22 @@
   {
     "type": "interface_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "interface_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
         {
           "type": "interface",
           "named": true
@@ -6487,15 +6530,22 @@
   {
     "type": "namespace_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "namespace_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
         {
           "type": "namespace",
           "named": true
@@ -6712,7 +6762,18 @@
   {
     "type": "property_statement",
     "named": true,
-    "fields": {},
+    "fields": {
+      "property_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,

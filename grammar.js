@@ -305,7 +305,7 @@ module.exports = grammar({
       ))),
       terminator, $.endnamespace_statement,
     ),
-    namespace_statement: $ => seq($.namespace, $.identifier),
+    namespace_statement: $ => seq($.namespace, field('namespace_name', $.identifier)),
     endnamespace_statement: $ => choice($.endnamespace, $.end),
 
     class_definition: $ => seq(
@@ -334,7 +334,7 @@ module.exports = grammar({
     ),
     class_statement: $ => seq(
       $.class,
-      $.identifier,
+      field('class_name', $.identifier),
       optional(seq(colon, choice($._identifier, $.string_literal))),
       repeat(seq(',', choice($._identifier, $.string_literal))),
     ),
@@ -346,7 +346,7 @@ module.exports = grammar({
       optional($.readonly),
       optional($.type),
       choice(
-        $.identifier,
+        field('field_name', $.identifier),
         alias($._field_assignment, $.assignment)),
     ),
     include_statement: $ => seq($.include, $._identifier),
@@ -363,13 +363,13 @@ module.exports = grammar({
       $.left_arrow,
       alias($._expression, $.assign_right),
     ),
-    _field_assign_left: $ => $.identifier,
+    _field_assign_left: $ => field('field_name', $.identifier),
     assembly: _ => /.*/,
     property_statement: $ => seq(
       $.property,
       optional(choice($.simple, $.keyed, $.numbered)),
       optional($.default),
-      $.identifier,
+      field('property_name', $.identifier),
       repeat(seq(',', $._identifier)),
     ),
     endproperty_statement: $ => choice($.endproperty, $.end),
@@ -377,7 +377,7 @@ module.exports = grammar({
     path: _ => /.*/,
     attribute_statement: $ => seq(
       $.attribute,
-      $.identifier,
+      field('attribute_name', $.identifier),
       optional(alias($._expression, $.constructor_args)),
     ),
     signature_statement: $ => seq(
@@ -439,7 +439,7 @@ module.exports = grammar({
       repeat1(seq(terminator, alias($.interface_method, $.property_method))),
       newline, $.endproperty_statement,
     ),
-    interface_statement: $ => seq($.interface, $.identifier),
+    interface_statement: $ => seq($.interface, field('interface_name', $.identifier)),
     endinterface_statement: $ => choice($.endinterface, $.end),
 
     // APL
