@@ -379,3 +379,68 @@ namespace
                 (identifier)
                 (dop1_member_expression
                   (dop1_identifier))))))))))
+
+====================
+dotted identifiers
+====================
+a.() ⋄ ().b
+ns.(ab cde fg)
+ns.ns2.(ab cde fg).h
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (namespace_literal))
+  (statement
+    (namespace_literal)
+    (primitive)
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (parenthesis
+      (statement
+        (identifier)
+        (identifier)
+        (identifier))))
+  (statement
+    (identifier)
+    (primitive)
+    (identifier)
+    (primitive)
+    (parenthesis
+      (statement
+        (identifier)
+        (identifier)
+        (identifier)))
+    (primitive)
+    (identifier)))
+
+====================
+dotted expression
+====================
+a.(b+c)
+ns.(ab-cde×fg)
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (parenthesis
+      (statement
+        (identifier)
+        (primitive)
+        (identifier))))
+  (statement
+    (identifier)
+    (primitive)
+    (parenthesis
+      (statement
+        (identifier)
+        (primitive)
+        (identifier)
+        (primitive)
+        (identifier)))))

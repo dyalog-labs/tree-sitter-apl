@@ -57,3 +57,96 @@ quads
     (system_command)
     (identifier))
   (ERROR))
+
+================
+paths
+================
+# ⋄ ##
+#.## ⋄ ##.# ⋄ ##.##.##
+---
+
+(source_file
+  (statement
+    (identifier))
+  (statement
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (identifier)
+    (primitive)
+    (identifier)))
+
+====================
+member identifiers
+====================
+a.b ⋄ a.bc.d ⋄ a.(b cd e)
+a.##.b ⋄ #.abc.##.d
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (identifier)
+    (primitive)
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (parenthesis
+      (statement
+        (identifier)
+        (identifier)
+        (identifier))))
+  (statement
+    (identifier)
+    (primitive)
+    (identifier)
+    (primitive)
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (identifier)
+    (primitive)
+    (identifier)
+    (primitive)
+    (identifier)))
+
+====================
+member quads
+====================
+a.⎕ ⋄ ns.⎕VGET'a'
+a.⎕NS.whatever
+---
+
+(source_file
+  (statement
+    (identifier)
+    (primitive)
+    (identifier))
+  (statement
+    (identifier)
+    (primitive)
+    (system_command)
+    (string_literal
+      (string_literal_content)))
+  (statement
+    (identifier)
+    (primitive)
+    (system_command)
+    (primitive)
+    (identifier)))
