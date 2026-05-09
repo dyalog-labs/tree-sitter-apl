@@ -31,7 +31,7 @@ const char *SYSTEM_COMMANDS[] = {
   "SAVE", "SD", "SE", "SH", "SHADOW", "SI", "SIGNAL", "SIZE", "SM", "SR",
   "SRC", "STACK", "STATE", "STOP", "SVC", "SVO", "SVQ", "SVR", "SVS", "TALLOC",
   "TC", "TCNUMS", "TGET", "THIS", "TID", "TKILL", "TNAME", "TNUMS", "TPOOL", "TPUT",
-  "TRACE", "TRAP", "TREQ", "TS", "TSYNC", "UCS", "USING", "VFI", "VR", "WA",
+  "TRACE", "TRAP", "TREQ", "TS", "TSYNC", "UCS", "USING", "VFI", "VGET", "VR", "VSET", "WA",
   "WC", "WG", "WN", "WS", "WSID", "WX", "XML", "XSI", "XT", "Á"
 };
 const int N_SYSTEM_COMMANDS = sizeof(SYSTEM_COMMANDS) / sizeof(SYSTEM_COMMANDS[0]);
