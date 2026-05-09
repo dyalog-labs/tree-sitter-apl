@@ -29,10 +29,10 @@ const numberLiteral = seq(real, optional(imaginary));
 
 const stringContentLiteral = /(''|[^'\n])+/;
 
-const identifier = /⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
+const identifier = /#|##|⎕|⍞|[a-zA-ZⒶ-Ⓩ_∆⍙][a-zA-ZⒶ-Ⓩ_∆⍙0-9]*/;
 
 const del = '∇';
-const primitive = /[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕&⍬]/;
+const primitive = /[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\/⌿⍀\.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕&⍬]/;
 
 const literals = ['string', 'number'];
 
@@ -157,15 +157,12 @@ module.exports = grammar({
     [$.dop1_highrank, $.dop1_indices],
     [$.dfn_highrank, $.dfn_indices],
     [$.indices, $.highrank],
-    [$._expression, $.__identifier],
     [$._expression],
     [$._dfn_expression],
     [$._dop1_expression],
-    [$.tradop2, $.tradop1, $.tradfn, $._expression, $.__identifier],
     [$.tradop2, $.tradop1, $.tradfn],
     [$.tradop2, $.tradop1, $._body],
     [$.tradop2, $.tradop1],
-    [$.tradfn, $._expression, $.__identifier],
     [$.tradfn],
     [$._body],
     [$._loop_body],
@@ -177,6 +174,18 @@ module.exports = grammar({
     [$.tradfn],
     [$.tradop1],
     [$.tradop2],
+    [$._dfn_expression, $.assignment, $.dfn_assignment],
+    [$._dfn_expression, $.dfn_assignment],
+    [$._dfn_expression, $._dop1_expression],
+    [$._dop1_expression, $.assignment, $.dfn_assignment, $.dop1_assignment],
+    [$._dop1_expression, $.dfn_assignment, $.dop1_assignment],
+    [$._dop1_expression, $.dop1_assignment],
+    [$._dop2_expression, $.assignment, $.dfn_assignment, $.dop1_assignment, $.dop2_assignment],
+    [$._dop2_expression, $.dfn_assignment, $.dop1_assignment, $.dop2_assignment],
+    [$._dop2_expression, $.dop1_assignment, $.dop2_assignment],
+    [$._dop2_expression, $.dop2_assignment],
+    [$.tradfn, $.tradop1, $.tradop2, $._expression],
+    [$.tradfn, $._expression],
   ],
 
   rules: {
@@ -465,7 +474,7 @@ module.exports = grammar({
         ...literals.map(l => $[l + '_literal']),
         $.system_command,
         $.primitive,
-        $._identifier,
+        $.identifier,
       ),
       $.assignment,
     ),
@@ -484,11 +493,9 @@ module.exports = grammar({
     // user defined identifiers
     identifier: _ => identifier,
     _identifier: $ => choice(
-      $.__identifier,
-      alias($._dot_identifier, $.identifier),
+      $.identifier,
+      seq($.identifier, repeat1(seq(alias('.', $.primitive), $.identifier))),
     ),
-    _dot_identifier: $ => seq($.__identifier, repeat1(seq('.', $.__identifier))),
-    __identifier: $ => alias(choice($.identifier, '#', '##'), $.identifier),
     // predefined identifiers allowed inside definitions
     dfn_identifier: _ => choice('⍺', '⍵', '∇'),
     dop_identifier: _ => '∇∇', // allowed inside dfn!
@@ -565,7 +572,7 @@ function expression($$, d, ...extra) {
     seq(
       optional(_expressions[d-1]),
       expression,
-      prec(1, optional(_expressions[d])),
+      optional(_expressions[d]),
     ),
     _assignment,
   );

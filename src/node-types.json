@@ -374,11 +374,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "primitive",
           "named": true
         }
       ]
@@ -765,6 +769,10 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "primitive",
           "named": true
         },
         {
@@ -1593,11 +1601,15 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "primitive",
             "named": true
           }
         ]
@@ -2968,11 +2980,15 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "primitive",
             "named": true
           }
         ]
@@ -4422,11 +4438,15 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "primitive",
             "named": true
           }
         ]
@@ -5487,6 +5507,10 @@
         {
           "type": "identifier",
           "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
         }
       ]
     }
@@ -5899,21 +5923,6 @@
     }
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "if_block",
     "named": true,
     "fields": {},
@@ -6212,6 +6221,10 @@
         {
           "type": "include",
           "named": true
+        },
+        {
+          "type": "primitive",
+          "named": true
         }
       ]
     }
@@ -6472,11 +6485,15 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "primitive",
             "named": true
           }
         ]
@@ -6906,6 +6923,10 @@
         },
         {
           "type": "numbered",
+          "named": true
+        },
+        {
+          "type": "primitive",
           "named": true
         },
         {
@@ -8485,6 +8506,10 @@
           "named": true
         },
         {
+          "type": "primitive",
+          "named": true
+        },
+        {
           "type": "using",
           "named": true
         }
@@ -8911,10 +8936,6 @@
     "named": false
   },
   {
-    "type": ".",
-    "named": false
-  },
-  {
     "type": ":",
     "named": false
   },
@@ -9061,6 +9082,10 @@
   },
   {
     "type": "hold",
+    "named": true
+  },
+  {
+    "type": "identifier",
     "named": true
   },
   {

@@ -45,9 +45,9 @@ class using
       (identifier))
     (using_statement
       (using)
-      (identifier
-        (identifier)
-        (identifier)))
+      (identifier)
+      (primitive)
+      (identifier))
     (endclass_statement
       (endclass))))
 
@@ -372,9 +372,9 @@ constructor 4
             (string_literal
               (string_literal_content)))))
       (statement
-        (identifier
-          (identifier)
-          (identifier))
+        (identifier)
+        (primitive)
+        (identifier)
         (identifier)))
     (tradfn
       (identifier)
@@ -386,9 +386,9 @@ constructor 4
       (statement
         (assignment
           (assign_left
-            (identifier
-              (identifier)
-              (identifier))
+            (identifier)
+            (primitive)
+            (identifier)
             (identifier))
           (left_arrow)
           (assign_right
@@ -830,9 +830,9 @@ fields 4
       (identifier))
     (using_statement
       (using)
-      (identifier
-        (identifier)
-        (identifier)))
+      (identifier)
+      (primitive)
+      (identifier))
     (field_statement
       (field)
       (visibility)
@@ -1231,9 +1231,9 @@ properties 1
               (identifier))
             (left_arrow)
             (assign_right
-              (identifier
-                (identifier)
-                (identifier)))))
+              (identifier)
+              (primitive)
+              (identifier))))
         (trap_block
           (trap_statement
             (trap)
@@ -1361,9 +1361,9 @@ properties 1
               (system_command)
               (identifier)
               (primitive)
-              (identifier
-                (identifier)
-                (identifier))))))
+              (identifier)
+              (primitive)
+              (identifier)))))
       (tradfn
         (identifier)
         (identifier)
@@ -1371,15 +1371,15 @@ properties 1
           (parenthesis
             (statement
               (primitive)
-              (identifier
-                (identifier)
-                (identifier))))
+              (identifier)
+              (primitive)
+              (identifier)))
           (system_command)
           (identifier)
           (primitive)
-          (identifier
-            (identifier)
-            (identifier))))
+          (identifier)
+          (primitive)
+          (identifier)))
       (endproperty_statement
         (endproperty)))
     (tradfn
@@ -1514,9 +1514,9 @@ keyed properties 1
               (identifier))
             (left_arrow)
             (assign_right
-              (identifier
-                (identifier)
-                (identifier)))))
+              (identifier)
+              (primitive)
+              (identifier))))
         (statement
           (system_command)
           (parenthesis
@@ -1564,18 +1564,18 @@ keyed properties 1
               (identifier))
             (left_arrow)
             (assign_right
-              (identifier
-                (identifier)
-                (identifier)))))
+              (identifier)
+              (primitive)
+              (identifier))))
         (statement
           (assignment
             (assign_left
               (identifier))
             (left_arrow)
             (assign_right
-              (identifier
-                (identifier)
-                (identifier)))))
+              (identifier)
+              (primitive)
+              (identifier))))
         (statement
           (system_command)
           (parenthesis
@@ -1902,9 +1902,9 @@ keyed properties 2
             (left_arrow)
             (assign_right
               (primitive)
-              (identifier
-                (identifier)
-                (identifier)))))
+              (identifier)
+              (primitive)
+              (identifier))))
         (statement
           (system_command)
           (parenthesis
@@ -1948,9 +1948,9 @@ keyed properties 2
               (identifier))
             (left_arrow)
             (assign_right
-              (identifier
-                (identifier)
-                (identifier)))))
+              (identifier)
+              (primitive)
+              (identifier))))
         (statement
           (assignment
             (assign_left
@@ -1958,9 +1958,9 @@ keyed properties 2
             (left_arrow)
             (assign_right
               (primitive)
-              (identifier
-                (identifier)
-                (identifier)))))
+              (identifier)
+              (primitive)
+              (identifier))))
         (statement
           (system_command)
           (parenthesis
@@ -2167,9 +2167,9 @@ implements
       (implements_statement
         (implements)
         (method)
-        (identifier
-          (identifier)
-          (identifier)))
+        (identifier)
+        (primitive)
+        (identifier))
       (statement
         (assignment
           (assign_left
@@ -2185,9 +2185,9 @@ implements
       (implements_statement
         (implements)
         (method)
-        (identifier
-          (identifier)
-          (identifier)))
+        (identifier)
+        (primitive)
+        (identifier))
       (statement
         (assignment
           (assign_left
@@ -2203,9 +2203,9 @@ implements
       (implements_statement
         (implements)
         (method)
-        (identifier
-          (identifier)
-          (identifier)))
+        (identifier)
+        (primitive)
+        (identifier))
       (statement
         (assignment
           (assign_left
@@ -2221,9 +2221,9 @@ implements
       (implements_statement
         (implements)
         (method)
-        (identifier
-          (identifier)
-          (identifier)))
+        (identifier)
+        (primitive)
+        (identifier))
       (statement
         (assignment
           (assign_left

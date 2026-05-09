@@ -465,18 +465,18 @@ if andif orif
     (if_statement
       (if)
       (if_condition
-        (identifier
-          (identifier)
-          (identifier))
+        (identifier)
+        (primitive)
+        (identifier)
         (primitive)
         (string_literal
           (string_literal_content))))
     (andif_statement
       (andif)
       (andif_condition
-        (identifier
-          (identifier)
-          (identifier))
+        (identifier)
+        (primitive)
+        (identifier)
         (primitive)
         (number_literal)
         (number_literal)
@@ -487,27 +487,27 @@ if andif orif
     (elseif_statement
       (elseif)
       (elseif_condition
-        (identifier
-          (identifier)
-          (identifier))
+        (identifier)
+        (primitive)
+        (identifier)
         (primitive)
         (string_literal
           (string_literal_content))))
     (orif_statement
       (orif)
       (orif_condition
-        (identifier
-          (identifier)
-          (identifier))
+        (identifier)
+        (primitive)
+        (identifier)
         (primitive)
         (string_literal
           (string_literal_content))))
     (orif_statement
       (orif)
       (orif_condition
-        (identifier
-          (identifier)
-          (identifier))
+        (identifier)
+        (primitive)
+        (identifier)
         (primitive)
         (number_literal)))
     (statement
@@ -1646,9 +1646,9 @@ with 1
     (with_statement
       (with)
       (with_expression
-        (identifier
-          (identifier)
-          (identifier))))
+        (identifier)
+        (primitive)
+        (identifier)))
     (statement
       (assignment
         (assign_left

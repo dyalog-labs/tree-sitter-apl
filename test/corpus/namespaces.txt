@@ -159,9 +159,9 @@ namespace nested
             (identifier))
           (left_arrow)
           (assign_right
-            (identifier
-              (identifier)
-              (identifier))))))
+            (identifier)
+            (primitive)
+            (identifier)))))
     (tradfn
       (identifier)
       (left_arrow)
