@@ -28,7 +28,7 @@ const char *SYSTEM_COMMANDS[] = {
   "NNUMS", "NPARTS", "NPUT", "NQ", "NR", "NREAD", "NRENAME", "NREPLACE", "NRESIZE", "NS",
   "NSI", "NSIZE", "NTIE", "NULL", "NUNTIE", "NXLATE", "OFF", "OPT", "OR", "PATH",
   "PFKEY", "PP", "PROFILE", "PW", "R", "REFS", "RL", "RSI", "RTL", "S",
-  "SAVE", "SD", "SE", "SH", "SHADOW", "SI", "SIGNAL", "SIZE", "SM", "SR",
+  "SAVE", "SD", "SE", "SH", "SHADOW", "SHELL", "SI", "SIGNAL", "SIZE", "SM", "SR",
   "SRC", "STACK", "STATE", "STOP", "SVC", "SVO", "SVQ", "SVR", "SVS", "TALLOC",
   "TC", "TCNUMS", "TGET", "THIS", "TID", "TKILL", "TNAME", "TNUMS", "TPOOL", "TPUT",
   "TRACE", "TRAP", "TREQ", "TS", "TSYNC", "UCS", "USING", "VFI", "VGET", "VR", "VSET", "WA",
