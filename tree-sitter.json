@@ -30,12 +30,13 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/tree-sitter/tree-sitter-apl"
+      "repository": "https://github.com/dyalog-labs/tree-sitter-apl"
     }
   },
   "bindings": {
     "c": true,
     "go": true,
+    "java": false,
     "node": true,
     "python": true,
     "rust": true,

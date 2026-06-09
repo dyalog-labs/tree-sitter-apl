@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-apl
+module github.com/dyalog-labs/tree-sitter-apl
 
 go 1.22
 

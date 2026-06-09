@@ -72,12 +72,26 @@
   (dop2_identifier)
 ] @variable.parameter.builtin
 
-(trad name: (identifier) @function)
-(trad left_arg: (identifier) @variable.builtin)
-(trad right_arg: (identifier) @variable.builtin)
-(trad left_op: (identifier) @variable.parameter.builtin)
-(trad right_op: (identifier) @variable.parameter.builtin)
-(trad local: (identifier) @variable.builtin)
+(tradfn name: (identifier) @function)
+(tradfn left_arg: (identifier) @variable.builtin)
+(tradfn right_arg: (identifier) @variable.builtin)
+(tradfn left_op: (identifier) @variable.parameter.builtin)
+(tradfn right_op: (identifier) @variable.parameter.builtin)
+(tradfn local: (identifier) @variable.builtin)
+
+(tradop1 name: (identifier) @function)
+(tradop1 left_arg: (identifier) @variable.builtin)
+(tradop1 right_arg: (identifier) @variable.builtin)
+(tradop1 left_op: (identifier) @variable.parameter.builtin)
+(tradop1 right_op: (identifier) @variable.parameter.builtin)
+(tradop1 local: (identifier) @variable.builtin)
+
+(tradop2 name: (identifier) @function)
+(tradop2 left_arg: (identifier) @variable.builtin)
+(tradop2 right_arg: (identifier) @variable.builtin)
+(tradop2 left_op: (identifier) @variable.parameter.builtin)
+(tradop2 right_op: (identifier) @variable.parameter.builtin)
+(tradop2 local: (identifier) @variable.builtin)
 
 ; Literals
 

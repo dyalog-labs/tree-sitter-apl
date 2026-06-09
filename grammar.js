@@ -102,7 +102,7 @@ const control = [
   'require', 'attribute', 'signature', 'implements', 'access',
 ];
 
-module.exports = grammar({
+export default grammar({
   name: 'apl',
 
   extras: $ => [
@@ -524,9 +524,9 @@ module.exports = grammar({
 // '_name' will give ['_name', '_dfn_name', ...]
 function defs(name) {
   const prefixes = ['', 'dfn_', 'dop1_', 'dop2_'];
-  const private = name[0] == '_' ? '_' : '';
+  const priv = name[0] == '_' ? '_' : '';
   const base = name[0] == '_' ? name.substring(1) : name;
-  return prefixes.map((prefix) => [private + prefix + base]);
+  return prefixes.map((prefix) => [priv + prefix + base]);
 }
 
 // return naked and definition nodes for given name
