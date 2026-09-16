@@ -32,6 +32,42 @@ definitions
         (number_literal)))))
 
 ================
+partial definitions 1
+================
+{
+---
+
+(source_file
+      (ERROR))
+
+================
+partial definitions 1
+================
+{1 b 3
+---
+
+(source_file
+  (ERROR
+    (number_literal)
+    (identifier)
+    (number_literal)))
+
+================
+partial definitions 1
+================
+{1 b 3⋄
+---
+
+(source_file
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal)
+        (identifier)
+        (number_literal))
+      (MISSING "}"))))
+
+================
 functions
 ================
 {}
