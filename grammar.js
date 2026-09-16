@@ -12,7 +12,7 @@ const DOP1 = 2;
 const DFN = 1;
 
 const newline = /\n/;
-const terminator = repeat1(choice(newline, '⋄', '\0'));
+const terminator = repeat1(choice(newline, '⋄'));
 const separator = repeat1(';');
 const lamp = '⍝';
 
