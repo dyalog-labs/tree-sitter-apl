@@ -7575,10 +7575,6 @@
         "required": false,
         "types": [
           {
-            "type": "\u0000",
-            "named": false
-          },
-          {
             "type": ":",
             "named": false
           },
@@ -7780,10 +7776,6 @@
         "multiple": true,
         "required": false,
         "types": [
-          {
-            "type": "\u0000",
-            "named": false
-          },
           {
             "type": ":",
             "named": false
@@ -7996,10 +7988,6 @@
         "multiple": true,
         "required": false,
         "types": [
-          {
-            "type": "\u0000",
-            "named": false
-          },
           {
             "type": ":",
             "named": false
@@ -8910,10 +8898,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "\u0000",
-    "named": false
   },
   {
     "type": "'",
