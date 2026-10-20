@@ -154,3 +154,23 @@ for with nested names
         (identifier)))
     (endfor_statement
       (endfor))))
+
+==================
+empty error guard
+==================
+f←{0:: ⋄ ⍵}
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (dfn_definition
+          (error_guard
+            (error_guard_condition
+              (number_literal)))
+          (dfn_statement
+            (dfn_identifier)))))))

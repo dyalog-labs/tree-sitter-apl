@@ -861,7 +861,10 @@ function def_rules() {
     error_guard($$, d) {
       const conditions = _alias($$, 'error_guard_condition');
       const expressions = _alias($$, 'error_guard_expression');
-      return _left_right(conditions, colons, expressions, d);
+      return choice(
+        _left_right(conditions, colons, expressions, d),
+        prec.right(seq(conditions[d], colons)),
+      );
     },
     // a namespace_literal includes members separated by terminators, or could be empty
     namespace_literal($$, d) {
