@@ -1,0 +1,28 @@
+==================
+scan and expand
+==================
+r←+\x
+r←1 0 1\x
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (primitive)
+        (primitive)
+        (identifier))))
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (number_literal)
+        (number_literal)
+        (number_literal)
+        (primitive)
+        (identifier)))))
