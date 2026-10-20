@@ -1601,15 +1601,11 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "primitive",
             "named": true
           }
         ]
@@ -2980,15 +2976,11 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "primitive",
             "named": true
           }
         ]
@@ -4438,15 +4430,11 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "primitive",
             "named": true
           }
         ]
@@ -6504,15 +6492,11 @@
     "named": true,
     "fields": {
       "member_name": {
-        "multiple": true,
+        "multiple": false,
         "required": true,
         "types": [
           {
             "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "primitive",
             "named": true
           }
         ]

@@ -8889,7 +8889,7 @@
           "name": "member_name",
           "content": {
             "type": "SYMBOL",
-            "name": "_identifier"
+            "name": "identifier"
           }
         },
         {
@@ -11352,7 +11352,7 @@
           "name": "member_name",
           "content": {
             "type": "SYMBOL",
-            "name": "_identifier"
+            "name": "identifier"
           }
         },
         {
@@ -11378,7 +11378,7 @@
           "name": "member_name",
           "content": {
             "type": "SYMBOL",
-            "name": "_identifier"
+            "name": "identifier"
           }
         },
         {
@@ -11404,7 +11404,7 @@
           "name": "member_name",
           "content": {
             "type": "SYMBOL",
-            "name": "_identifier"
+            "name": "identifier"
           }
         },
         {

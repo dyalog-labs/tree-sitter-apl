@@ -67,3 +67,50 @@ local system name
         (left_arrow)
         (assign_right
           (number_literal))))))
+
+===============================
+dotted names inside parenthesis
+===============================
+r←(a.b⍳c),(a.f 1)
+a.b[1;2]←(x.y)
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (parenthesis
+          (statement
+            (identifier)
+            (primitive)
+            (identifier)
+            (primitive)
+            (identifier)))
+        (primitive)
+        (parenthesis
+          (statement
+            (identifier)
+            (primitive)
+            (identifier)
+            (number_literal))))))
+  (statement
+    (assignment
+      (assign_left
+        (identifier)
+        (primitive)
+        (identifier)
+        (indices
+          (index
+            (number_literal))
+          (index
+            (number_literal))))
+      (left_arrow)
+      (assign_right
+        (parenthesis
+          (statement
+            (identifier)
+            (primitive)
+            (identifier)))))))

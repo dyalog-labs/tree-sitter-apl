@@ -871,7 +871,7 @@ function def_rules() {
     // namespace members can be definition expressions
     member($$, d) {
       const members = _alias($$, 'member_expression');
-      const name = field('member_name', $$._identifier);
+      const name = field('member_name', $$.identifier);
       return seq(name, colon, members[d]);
     },
     // a parenthesis might be a parenthesized expression
