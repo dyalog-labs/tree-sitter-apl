@@ -90,7 +90,7 @@ const control = [
   'section', 'endsection',
   'with', 'endwith',
   'disposable', 'enddisposable',
-  'while', 'endwhile', 'repeat', 'until',
+  'while', 'endwhile', 'repeat', 'endrepeat', 'until',
   'for', 'in', 'ineach', 'endfor',
   'andif', 'orif', 'end',
   'continue', 'leave', 'return',
@@ -247,7 +247,10 @@ export default grammar({
     repeat_block: $ => seq(
       $.repeat_statement,
       optional(seq(terminator, $._loop_body)),
-      $._until,
+      choice(
+        $._until,
+        seq(terminator, $.endrepeat_statement),
+      ),
     ),
     _until: $ => seq(
       terminator, $.until_statement,
@@ -289,6 +292,7 @@ export default grammar({
     until_statement: $ => condition_statement($, 'until'),
     endwhile_statement: $ => choice($.endwhile, $.end),
     repeat_statement: $ => $.repeat,
+    endrepeat_statement: $ => choice($.endrepeat, $.end),
     for_statement: $ => seq(
       $.for,
       alias(repeat1($._identifier), $.for_var_names),

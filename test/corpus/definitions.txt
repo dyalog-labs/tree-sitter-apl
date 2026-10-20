@@ -38,7 +38,7 @@ partial definitions 1
 ---
 
 (source_file
-      (ERROR))
+  (ERROR))
 
 ================
 partial definitions 1

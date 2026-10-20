@@ -26,3 +26,20 @@ r←1 0 1\x
         (number_literal)
         (primitive)
         (identifier)))))
+
+==================
+endrepeat
+==================
+:Repeat
+  :Leave
+:EndRepeat
+---
+
+(source_file
+  (repeat_block
+    (repeat_statement
+      (repeat))
+    (leave_statement
+      (leave))
+    (endrepeat_statement
+      (endrepeat))))

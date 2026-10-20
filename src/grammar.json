@@ -2325,6 +2325,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "endrepeat"
+        },
+        {
+          "type": "SYMBOL",
           "name": "until"
         },
         {
@@ -6143,8 +6147,38 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_until"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_until"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "PATTERN",
+                        "value": "\\n"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "⋄"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "endrepeat_statement"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -6694,6 +6728,19 @@
     "repeat_statement": {
       "type": "SYMBOL",
       "name": "repeat"
+    },
+    "endrepeat_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "endrepeat"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end"
+        }
+      ]
     },
     "for_statement": {
       "type": "SEQ",
@@ -13238,7 +13285,7 @@
     },
     "primitive": {
       "type": "PATTERN",
-      "value": "[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\\/⌿⍀\\.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕&⍬]"
+      "value": "[-+×÷*⍟⌹○!?|⌈⌊⊥⊤⊣⊢=≠≤<>≥≡≢∨∧⍲⍱↑↓⊂⊃⊆⌷⍋⍒⍳⍸∊⍷∪∩~\\/\\\\⌿⍀\\.,⍪⍴⌽⊖⍉¨⍨⍣∘⍛⍤⍥@⍠⌸⌺⌶⍎⍕&⍬]"
     },
     "left_arrow": {
       "type": "STRING",
@@ -13639,6 +13686,10 @@
     {
       "type": "SYMBOL",
       "name": "repeat"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "endrepeat"
     },
     {
       "type": "SYMBOL",

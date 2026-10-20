@@ -5026,6 +5026,25 @@
     }
   },
   {
+    "type": "endrepeat_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "end",
+          "named": true
+        },
+        {
+          "type": "endrepeat",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "endsection_statement",
     "named": true,
     "fields": {},
@@ -6974,6 +6993,10 @@
         },
         {
           "type": "disposable_block",
+          "named": true
+        },
+        {
+          "type": "endrepeat_statement",
           "named": true
         },
         {
@@ -9030,6 +9053,10 @@
   },
   {
     "type": "endproperty",
+    "named": true
+  },
+  {
+    "type": "endrepeat",
     "named": true
   },
   {
