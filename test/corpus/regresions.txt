@@ -114,3 +114,43 @@ a.b[1;2]←(x.y)
             (identifier)
             (primitive)
             (identifier)))))))
+
+=====================
+for with nested names
+=====================
+:For ((a b)c)(d e) :In x
+:EndFor
+:For (a b) :InEach x
+:EndFor
+---
+
+(source_file
+  (for_block
+    (for_statement
+      (for)
+      (for_var_names
+        (for_var_names
+          (for_var_names
+            (identifier)
+            (identifier))
+          (identifier))
+        (for_var_names
+          (identifier)
+          (identifier)))
+      (in)
+      (for_array_expression
+        (identifier)))
+    (endfor_statement
+      (endfor)))
+  (for_block
+    (for_statement
+      (for)
+      (for_var_names
+        (for_var_names
+          (identifier)
+          (identifier)))
+      (ineach)
+      (for_array_expression
+        (identifier)))
+    (endfor_statement
+      (endfor))))

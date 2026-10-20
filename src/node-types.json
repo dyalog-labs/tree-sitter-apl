@@ -5512,11 +5512,11 @@
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "for_var_names",
           "named": true
         },
         {
-          "type": "primitive",
+          "type": "identifier",
           "named": true
         }
       ]

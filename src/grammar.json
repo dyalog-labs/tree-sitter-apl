@@ -6777,16 +6777,8 @@
           "name": "for"
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "REPEAT1",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_identifier"
-            }
-          },
-          "named": true,
-          "value": "for_var_names"
+          "type": "SYMBOL",
+          "name": "for_var_names"
         },
         {
           "type": "CHOICE",
@@ -6811,6 +6803,35 @@
           "value": "for_array_expression"
         }
       ]
+    },
+    "for_var_names": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "SYMBOL",
+                "name": "for_var_names"
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              }
+            ]
+          }
+        ]
+      }
     },
     "endfor_statement": {
       "type": "CHOICE",

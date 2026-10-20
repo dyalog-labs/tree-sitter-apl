@@ -295,10 +295,14 @@ export default grammar({
     endrepeat_statement: $ => choice($.endrepeat, $.end),
     for_statement: $ => seq(
       $.for,
-      alias(repeat1($._identifier), $.for_var_names),
+      $.for_var_names,
       choice($.in, $.ineach),
       alias($._expression, $.for_array_expression),
     ),
+    for_var_names: $ => repeat1(choice(
+      $.identifier,
+      seq('(', $.for_var_names, ')'),
+    )),
     endfor_statement: $ => choice($.endfor, $.end),
     continue_statement: $ => $.continue,
     leave_statement: $ => $.leave,
