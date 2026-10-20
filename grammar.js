@@ -756,9 +756,10 @@ function label($$, statement){
 
 // trad-fns and trad-ops definitons
 function trad_def($$, d) {
+  const local = choice($$.identifier, $$.system_command)
   return seq(
     trad_header($$, d),
-    repeat(seq(repeat1(';'), field('local', $$.identifier))),
+    repeat(seq(repeat1(';'), field('local', local))),
     repeat(';'),
     newline,
     optional(field('body', $$._body)),

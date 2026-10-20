@@ -43,3 +43,27 @@ endrepeat
       (leave))
     (endrepeat_statement
       (endrepeat))))
+
+==================
+local system name
+==================
+∇ r←fn;⎕IO;local;⎕TRAP
+  r←0
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (system_command)
+    (identifier)
+    (system_command)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))))

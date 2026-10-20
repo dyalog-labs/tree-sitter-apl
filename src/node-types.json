@@ -7728,6 +7728,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "system_command",
+            "named": true
           }
         ]
       },
@@ -7940,6 +7944,10 @@
           {
             "type": "identifier",
             "named": true
+          },
+          {
+            "type": "system_command",
+            "named": true
           }
         ]
       },
@@ -8151,6 +8159,10 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "system_command",
             "named": true
           }
         ]
