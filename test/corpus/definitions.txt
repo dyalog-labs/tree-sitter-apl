@@ -41,19 +41,22 @@ partial definitions 1
   (ERROR))
 
 ================
-partial definitions 1
+partial definitions 2
 ================
 {1 b 3
 ---
 
 (source_file
-  (ERROR
-    (number_literal)
-    (identifier)
-    (number_literal)))
+  (statement
+    (dfn_definition
+      (statement
+        (number_literal)
+        (identifier)
+        (number_literal))
+      (MISSING "}"))))
 
 ================
-partial definitions 1
+partial definitions 3
 ================
 {1 b 3⋄
 ---

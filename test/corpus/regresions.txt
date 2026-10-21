@@ -174,3 +174,38 @@ f←{0:: ⋄ ⍵}
               (number_literal)))
           (dfn_statement
             (dfn_identifier)))))))
+
+====================
+lamps inside strings
+====================
+r←'⍝0: text'
+s←'a'⍝ comment 'not a string'
+t←'it''s ⍝'
+---
+
+(source_file
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (string_literal
+          (string_literal_content)))))
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (string_literal
+          (string_literal_content)))))
+  (comment)
+  (statement
+    (assignment
+      (assign_left
+        (identifier))
+      (left_arrow)
+      (assign_right
+        (string_literal
+          (string_literal_content))))))

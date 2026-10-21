@@ -523,7 +523,7 @@ export default grammar({
     right_arrow: _ => '→',
 
     // ilumination
-    comment: _ => token(seq(lamp, /.*/)),
+    comment: _ => seq(lamp, /.*/),
   },
 });
 
