@@ -329,7 +329,7 @@ export default grammar({
     namespace_section: $ => seq(
       $.section_statement,
       optional($._namespace_body),
-      $.endsection_statement,
+      terminator, $.endsection_statement,
     ),
     namespace_statement: $ => seq($.namespace, field('namespace_name', $.identifier)),
     endnamespace_statement: $ => choice($.endnamespace, $.end),
@@ -356,7 +356,7 @@ export default grammar({
     class_section: $ => seq(
       $.section_statement,
       optional($._class_body),
-      $.endsection_statement,
+      terminator, $.endsection_statement,
     ),
     property_section: $ => seq(
       $.property_statement,

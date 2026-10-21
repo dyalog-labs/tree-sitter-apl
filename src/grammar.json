@@ -6968,6 +6968,22 @@
           ]
         },
         {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "\\n"
+              },
+              {
+                "type": "STRING",
+                "value": "⋄"
+              }
+            ]
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "endsection_statement"
         }
@@ -7144,6 +7160,22 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "\\n"
+              },
+              {
+                "type": "STRING",
+                "value": "⋄"
+              }
+            ]
+          }
         },
         {
           "type": "SYMBOL",

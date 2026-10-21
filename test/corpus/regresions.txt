@@ -285,3 +285,42 @@ andif and orif after statements
         (identifier)))
     (endif_statement
       (endif))))
+
+====================
+endsection
+====================
+:Class cls
+    :Section sec
+    :EndSection
+:EndClass
+:Namespace ns
+    :Section sec
+    :EndSection
+:EndNamespace
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (class_section
+      (section_statement
+        (section)
+        (identifier))
+      (endsection_statement
+        (endsection)))
+    (endclass_statement
+      (endclass)))
+  (namespace_script
+    (namespace_statement
+      (namespace)
+      (identifier))
+    (namespace_section
+      (section_statement
+        (section)
+        (identifier))
+      (endsection_statement
+        (endsection)))
+    (endnamespace_statement
+      (endnamespace))))
