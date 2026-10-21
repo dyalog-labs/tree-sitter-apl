@@ -60,6 +60,11 @@ const body_target_statements = [
   'return_statement',
 ];
 
+const body_condition_statements = [
+  'andif_statement',
+  'orif_statement',
+];
+
 const body_loop_statements = [
   'continue_statement',
   'leave_statement',
@@ -232,10 +237,6 @@ export default grammar({
     // stinking loops!
     while_block: $ => seq(
       $.while_statement,
-      choice(
-        repeat(seq(terminator, $.andif_statement)),
-        repeat(seq(terminator, $.orif_statement)),
-      ),
       optional(seq(terminator, $._loop_body)),
       choice(
         $._until,
@@ -662,10 +663,6 @@ function block_rules(){
         optional(seq(terminator, body)),
         terminator, label($, $.elseif_statement),
       )),
-      choice(
-        repeat(seq(terminator, label($, $.andif_statement))),
-        repeat(seq(terminator, label($, $.orif_statement))),
-      ),
       optional(seq(
         optional(seq(terminator, body)),
         terminator, label($, $.else_statement),
@@ -742,6 +739,7 @@ function body($$, loop) {
     alias(label($$, $$._expression), $$.statement),
     ... body_statements.map(statement => $$[statement]),
     ... body_target_statements.map(statement => label($$, $$[statement])),
+    ... body_condition_statements.map(statement => label($$, $$[statement])),
     ... loop ? body_loop_statements.map(statement => label($$, $$[statement])) : [],
     ... blocks.map(block => loop ? alias($$['_loop_' + block], $$[block]) : $$[block]),
     ... loop_blocks.map(block => $$[block]),

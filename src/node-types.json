@@ -1845,6 +1845,10 @@
           "named": true
         },
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "attribute_statement",
           "named": true
         },
@@ -1910,6 +1914,10 @@
         },
         {
           "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {
@@ -5380,6 +5388,10 @@
           "named": true
         },
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "attribute_statement",
           "named": true
         },
@@ -5445,6 +5457,10 @@
         },
         {
           "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {
@@ -5767,6 +5783,10 @@
           "named": true
         },
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "attribute_statement",
           "named": true
         },
@@ -5832,6 +5852,10 @@
         },
         {
           "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {
@@ -7154,6 +7178,10 @@
           "named": true
         },
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "attribute_statement",
           "named": true
         },
@@ -7215,6 +7243,10 @@
         },
         {
           "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {
@@ -7299,6 +7331,10 @@
           "named": true
         },
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "attribute_statement",
           "named": true
         },
@@ -7372,6 +7408,10 @@
         },
         {
           "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {
@@ -7639,6 +7679,10 @@
             "named": true
           },
           {
+            "type": "andif_statement",
+            "named": true
+          },
+          {
             "type": "attribute_statement",
             "named": true
           },
@@ -7688,6 +7732,10 @@
           },
           {
             "type": "namespace_script",
+            "named": true
+          },
+          {
+            "type": "orif_statement",
             "named": true
           },
           {
@@ -7849,6 +7897,10 @@
             "named": true
           },
           {
+            "type": "andif_statement",
+            "named": true
+          },
+          {
             "type": "attribute_statement",
             "named": true
           },
@@ -7898,6 +7950,10 @@
           },
           {
             "type": "namespace_script",
+            "named": true
+          },
+          {
+            "type": "orif_statement",
             "named": true
           },
           {
@@ -8069,6 +8125,10 @@
             "named": true
           },
           {
+            "type": "andif_statement",
+            "named": true
+          },
+          {
             "type": "attribute_statement",
             "named": true
           },
@@ -8118,6 +8178,10 @@
           },
           {
             "type": "namespace_script",
+            "named": true
+          },
+          {
+            "type": "orif_statement",
             "named": true
           },
           {
@@ -8295,6 +8359,10 @@
           "named": true
         },
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "attribute_statement",
           "named": true
         },
@@ -8368,6 +8436,10 @@
         },
         {
           "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {
@@ -8811,6 +8883,10 @@
           "named": true
         },
         {
+          "type": "andif_statement",
+          "named": true
+        },
+        {
           "type": "attribute_statement",
           "named": true
         },
@@ -8872,6 +8948,10 @@
         },
         {
           "type": "namespace_script",
+          "named": true
+        },
+        {
+          "type": "orif_statement",
           "named": true
         },
         {

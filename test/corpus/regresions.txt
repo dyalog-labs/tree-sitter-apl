@@ -243,3 +243,45 @@ End:
           (identifier)))
       (endif_statement
         (endif)))))
+
+================================
+andif and orif after statements
+================================
+:If a
+  b←1
+:AndIf c
+  d←2
+:OrIf e
+:EndIf
+---
+
+(source_file
+  (if_block
+    (if_statement
+      (if)
+      (if_condition
+        (identifier)))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (andif_statement
+      (andif)
+      (andif_condition
+        (identifier)))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (endif_statement
+      (endif))))
