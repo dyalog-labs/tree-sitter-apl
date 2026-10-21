@@ -377,7 +377,7 @@ export default grammar({
       optional($.visibility),
       optional($.sharing),
       optional($.readonly),
-      optional($.type),
+      optional(alias($._identifier, $.type)),
       choice(
         field('field_name', $.identifier),
         alias($._field_assignment, $.assignment)),
@@ -444,7 +444,6 @@ export default grammar({
     visibility: _ => choice(/private/i, /public/i),
     sharing: _ => choice(/instance/i, /shared/i),
     readonly: _ => /readonly/i,
-    type: _ => /type/i,
     simple: _ => /simple/i,
     numbered: _ => /numbered/i,
     keyed: _ => /keyed/i,

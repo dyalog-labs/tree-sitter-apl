@@ -7429,8 +7429,13 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "type"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_identifier"
+              },
+              "named": true,
+              "value": "type"
             },
             {
               "type": "BLANK"
@@ -7927,11 +7932,6 @@
     "readonly": {
       "type": "PATTERN",
       "value": "readonly",
-      "flags": "i"
-    },
-    "type": {
-      "type": "PATTERN",
-      "value": "type",
       "flags": "i"
     },
     "simple": {

@@ -324,3 +324,25 @@ endsection
         (endsection)))
     (endnamespace_statement
       (endnamespace))))
+
+====================
+field type
+====================
+:Class cls
+    :Field Public tp fld
+:EndClass
+---
+
+(source_file
+  (class_definition
+    (class_statement
+      (class)
+      (identifier))
+    (field_statement
+      (field)
+      (visibility)
+      (type
+        (identifier))
+      (identifier))
+    (endclass_statement
+      (endclass))))
