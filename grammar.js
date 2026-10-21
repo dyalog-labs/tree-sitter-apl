@@ -266,6 +266,7 @@ export default grammar({
     ),
 
     // control statements
+    label_statement: $ => seq(alias($.identifier, $.label), colon),
     branch_statement: $ => seq($.right_arrow, alias($._expression, $.branch_expression)),
     goto_statement: $ => expression_statement($, 'goto'),
     if_statement: $ => condition_statement($, 'if'),
@@ -737,6 +738,7 @@ function condition_statement($$, name) {
 // bodies of blocks
 function body($$, loop) {
   return separated(choice(
+    $$.label_statement,
     alias(label($$, $$._expression), $$.statement),
     ... body_statements.map(statement => $$[statement]),
     ... body_target_statements.map(statement => label($$, $$[statement])),

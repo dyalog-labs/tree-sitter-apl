@@ -1901,6 +1901,10 @@
           "named": true
         },
         {
+          "type": "label_statement",
+          "named": true
+        },
+        {
           "type": "leave_statement",
           "named": true
         },
@@ -5432,6 +5436,10 @@
           "named": true
         },
         {
+          "type": "label_statement",
+          "named": true
+        },
+        {
           "type": "leave_statement",
           "named": true
         },
@@ -5815,6 +5823,10 @@
           "named": true
         },
         {
+          "type": "label_statement",
+          "named": true
+        },
+        {
           "type": "leave_statement",
           "named": true
         },
@@ -6013,6 +6025,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "label_statement",
           "named": true
         },
         {
@@ -6473,6 +6489,21 @@
       "types": [
         {
           "type": "interface",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "label_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "label",
           "named": true
         }
       ]
@@ -7018,6 +7049,10 @@
           "named": true
         },
         {
+          "type": "label_statement",
+          "named": true
+        },
+        {
           "type": "leave_statement",
           "named": true
         },
@@ -7171,6 +7206,10 @@
           "named": true
         },
         {
+          "type": "label_statement",
+          "named": true
+        },
+        {
           "type": "leave_statement",
           "named": true
         },
@@ -7321,6 +7360,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "label_statement",
           "named": true
         },
         {
@@ -7640,6 +7683,10 @@
             "named": true
           },
           {
+            "type": "label_statement",
+            "named": true
+          },
+          {
             "type": "namespace_script",
             "named": true
           },
@@ -7843,6 +7890,10 @@
           },
           {
             "type": "label",
+            "named": true
+          },
+          {
+            "type": "label_statement",
             "named": true
           },
           {
@@ -8059,6 +8110,10 @@
           },
           {
             "type": "label",
+            "named": true
+          },
+          {
+            "type": "label_statement",
             "named": true
           },
           {
@@ -8301,6 +8356,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "label_statement",
           "named": true
         },
         {
@@ -8603,6 +8662,10 @@
           "named": true
         },
         {
+          "type": "label_statement",
+          "named": true
+        },
+        {
           "type": "leave_statement",
           "named": true
         },
@@ -8797,6 +8860,10 @@
         },
         {
           "type": "label",
+          "named": true
+        },
+        {
+          "type": "label_statement",
           "named": true
         },
         {

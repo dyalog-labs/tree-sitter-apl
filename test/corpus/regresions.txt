@@ -209,3 +209,37 @@ t←'it''s ⍝'
       (assign_right
         (string_literal
           (string_literal_content))))))
+
+==================
+label statement
+==================
+∇ r←f x
+  r←1
+End:
+  :If x
+  :EndIf
+∇
+---
+
+(source_file
+  (tradfn
+    (identifier)
+    (left_arrow)
+    (identifier)
+    (identifier)
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (label_statement
+      (label))
+    (if_block
+      (if_statement
+        (if)
+        (if_condition
+          (identifier)))
+      (endif_statement
+        (endif)))))
