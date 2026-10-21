@@ -370,25 +370,6 @@
     }
   },
   {
-    "type": "base",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "primitive",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "branch_expression",
     "named": true,
     "fields": {},
@@ -9121,6 +9102,10 @@
   },
   {
     "type": "attribute",
+    "named": true
+  },
+  {
+    "type": "base",
     "named": true
   },
   {

@@ -104,7 +104,7 @@ const control = [
   'field', 'include', 'using',
   'interface', 'endinterface',
   'property', 'endproperty',
-  'require', 'attribute', 'signature', 'implements', 'access',
+  'require', 'attribute', 'signature', 'implements', 'access', 'base',
 ];
 
 export default grammar({
@@ -420,7 +420,7 @@ export default grammar({
     implements_statement: $ => seq(
       $.implements,
       choice(
-        seq($.constructor, optional(seq($.base, $._expression))),
+        seq($.constructor, optional($._base)),
         $.destructor,
         seq($.method, $._identifier),
         seq($.trigger, choice(
@@ -429,7 +429,7 @@ export default grammar({
         )),
       ),
     ),
-    base: $ => seq(colon, $._identifier),
+    _base: $ => seq($.base, optional($._expression)),
     access_statement: $ => seq(
       $.access,
       choice(

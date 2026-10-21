@@ -2725,6 +2725,10 @@
         {
           "type": "SYMBOL",
           "name": "access"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "base"
         }
       ]
     },
@@ -7696,17 +7700,8 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "base"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_expression"
-                        }
-                      ]
+                      "type": "SYMBOL",
+                      "name": "_base"
                     },
                     {
                       "type": "BLANK"
@@ -7779,16 +7774,24 @@
         }
       ]
     },
-    "base": {
+    "_base": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": ":"
+          "type": "SYMBOL",
+          "name": "base"
         },
         {
-          "type": "SYMBOL",
-          "name": "_identifier"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_expression"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -13942,6 +13945,10 @@
     {
       "type": "SYMBOL",
       "name": "access"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "base"
     }
   ],
   "inline": [],

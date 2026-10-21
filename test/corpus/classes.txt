@@ -579,8 +579,7 @@ constructor 6
       (implements_statement
         (implements)
         (constructor)
-        (base
-          (identifier))
+        (base)
         (string_literal
           (string_literal_content))
         (primitive)
@@ -608,8 +607,7 @@ constructor 6
       (implements_statement
         (implements)
         (constructor)
-        (base
-          (identifier))
+        (base)
         (identifier))
       (statement
         (assignment
@@ -1834,8 +1832,7 @@ keyed properties 2
       (implements_statement
         (implements)
         (constructor)
-        (base
-          (identifier))
+        (base)
         (identifier))
       (access_statement
         (access)
