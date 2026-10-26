@@ -655,10 +655,6 @@ function block_rules(){
     if_block: ($, body) => seq(
       label($, $.if_statement),
       repeat(seq(
-        choice(
-          repeat(seq(terminator, label($, $.andif_statement))),
-          repeat(seq(terminator, label($, $.orif_statement))),
-        ),
         optional(seq(terminator, body)),
         terminator, label($, $.elseif_statement),
       )),

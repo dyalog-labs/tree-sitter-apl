@@ -377,3 +377,77 @@ comment strings
   (statement
     (string_literal
       (string_literal_content))))
+
+====================
+andif orif chains
+====================
+:If a
+:OrIf b1
+:OrIf b2
+:OrIf b3
+:OrIf b4
+:OrIf b5
+:OrIf b6
+:OrIf b7
+:OrIf b8
+:OrIf b9
+:OrIf b10
+    x←1
+:EndIf
+---
+
+(source_file
+  (if_block
+    (if_statement
+      (if)
+      (if_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (orif_statement
+      (orif)
+      (orif_condition
+        (identifier)))
+    (statement
+      (assignment
+        (assign_left
+          (identifier))
+        (left_arrow)
+        (assign_right
+          (number_literal))))
+    (endif_statement
+      (endif))))
