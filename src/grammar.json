@@ -13223,8 +13223,12 @@
     "string_literal_content": {
       "type": "IMMEDIATE_TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "(''|[^'\\n])+"
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "(''|[^'\\n])+"
+        }
       }
     },
     "number_literal": {

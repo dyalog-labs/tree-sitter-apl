@@ -517,7 +517,7 @@ export default grammar({
       prec(1, optional($.string_literal_content)),
       token.immediate("'"),
     ),
-    string_literal_content: _ => token.immediate(stringContentLiteral),
+    string_literal_content: _ => token.immediate(prec(1, stringContentLiteral)),
     number_literal: _ => token(numberLiteral),
     primitive: _ => primitive,
     left_arrow: _ => '←',

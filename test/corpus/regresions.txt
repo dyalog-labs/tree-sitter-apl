@@ -346,3 +346,34 @@ field type
       (identifier))
     (endclass_statement
       (endclass))))
+
+====================
+comment strings
+====================
+'⍝a'
+'⍝⍝'
+'⍝ '
+'⍝'
+' ⍝'
+'  ⍝'
+---
+
+(source_file
+  (statement
+    (string_literal
+      (string_literal_content)))
+  (statement
+    (string_literal
+      (string_literal_content)))
+  (statement
+    (string_literal
+      (string_literal_content)))
+  (statement
+    (string_literal
+      (string_literal_content)))
+  (statement
+    (string_literal
+      (string_literal_content)))
+  (statement
+    (string_literal
+      (string_literal_content))))
