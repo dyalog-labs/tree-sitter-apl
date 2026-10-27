@@ -451,3 +451,32 @@ andif orif chains
           (number_literal))))
     (endif_statement
       (endif))))
+
+============
+and
+============
+0 0 1 1∧0 1 0 1
+0 0 1 1^0 1 0 1
+---
+
+(source_file
+  (statement
+    (number_literal)
+    (number_literal)
+    (number_literal)
+    (number_literal)
+    (primitive)
+    (number_literal)
+    (number_literal)
+    (number_literal)
+    (number_literal))
+  (statement
+    (number_literal)
+    (number_literal)
+    (number_literal)
+    (number_literal)
+    (primitive)
+    (number_literal)
+    (number_literal)
+    (number_literal)
+    (number_literal)))
