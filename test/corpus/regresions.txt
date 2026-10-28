@@ -455,8 +455,8 @@ andif orif chains
 ============
 and
 ============
-0 0 1 1∧0 1 0 1
-0 0 1 1^0 1 0 1
+0 0 1 1∧0 1 0 1  ⍝ ⎕UCS 8743
+0 0 1 1^0 1 0 1  ⍝ ⎕UCS 94
 ---
 
 (source_file
@@ -470,6 +470,7 @@ and
     (number_literal)
     (number_literal)
     (number_literal))
+  (comment)
   (statement
     (number_literal)
     (number_literal)
@@ -479,24 +480,28 @@ and
     (number_literal)
     (number_literal)
     (number_literal)
-    (number_literal)))
+    (number_literal))
+  (comment))
 
 ===========
 magnitude
 ===========
-|a
-∣b
-¦c
+|a  ⍝ ⎕UCS 124
+∣b  ⍝ ⎕UCS 8739
+¦c  ⍝ ⎕UCS 166
 ---
 
 (source_file
   (statement
     (primitive)
     (identifier))
+  (comment)
   (statement
     (primitive)
     (identifier))
+  (comment)
   (ERROR
     (UNEXPECTED 166))
   (statement
-    (identifier)))
+    (identifier))
+  (comment))
