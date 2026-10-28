@@ -480,3 +480,23 @@ and
     (number_literal)
     (number_literal)
     (number_literal)))
+
+===========
+magnitude
+===========
+|a
+∣b
+¦c
+---
+
+(source_file
+  (statement
+    (primitive)
+    (identifier))
+  (statement
+    (primitive)
+    (identifier))
+  (ERROR
+    (UNEXPECTED 166))
+  (statement
+    (identifier)))
